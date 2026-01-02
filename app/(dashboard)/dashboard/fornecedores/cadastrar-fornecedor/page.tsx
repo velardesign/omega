@@ -105,7 +105,7 @@ export default function SupplierCreateForm() {
         <CardContent className="pt-4">
           <Textarea
             placeholder="Observações importantes sobre o fornecedor"
-            className="min-h-[100px]"
+            className="min-h-25"
           />
         </CardContent>
       </Card>

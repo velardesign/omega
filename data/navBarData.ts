@@ -1,4 +1,4 @@
-import { AudioWaveform, BookOpen, Bot, Command, Frame, GalleryVerticalEnd, Map, PieChart, Search, Settings2, SquareTerminal, UserPlus, Users } from "lucide-react";
+import {BookOpen, Bot,Frame, Map, PieChart, Search, Settings2, SquareTerminal, UserPlus, Users } from "lucide-react";
 
  export const user = {
     name: "shadcn",
