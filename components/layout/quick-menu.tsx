@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { ChevronsUpDown, Plus } from "lucide-react"
+import { ChevronsUpDown, LayoutDashboard  } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 import {
   DropdownMenu,
@@ -19,22 +20,24 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
-export function TeamSwitcher({
-  teams,
+export function QuickMenu({
+  modules,
 }: {
-  teams: {
+  modules: {
     name: string
     logo: React.ElementType
     plan: string
+    url: string
   }[]
 }) {
-  const { isMobile } = useSidebar()
-  const [activeTeam, setActiveTeam] = React.useState(teams[0])
+  const { isMobile } = useSidebar();
+  const [activeTeam, setActiveTeam] = React.useState(modules[0]);
+  const router = useRouter();
 
   if (!activeTeam) {
     return null
   }
-
+  
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -63,25 +66,28 @@ export function TeamSwitcher({
             <DropdownMenuLabel className="text-muted-foreground text-xs">
               Orçamentos | Clientes
             </DropdownMenuLabel>
-            {teams.map((team, index) => (
+            {modules.map((module, index) => (
               <DropdownMenuItem
-                key={team.name}
-                onClick={() => setActiveTeam(team)}
+                key={module.name}
+                onClick={() => {
+                  setActiveTeam(module);
+                  router.push(module.url);
+                }}
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-md border">
-                  <team.logo className="size-3.5 shrink-0" />
+                  <module.logo className="size-3.5 shrink-0" />
                 </div>
-                {team.name}
+                {module.name}
                 <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="gap-2 p-2">
+            <DropdownMenuItem className="gap-2 p-2" onClick={()=>router.push('/dashboard')}>
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
-                <Plus className="size-4" />
+                <LayoutDashboard  className="size-4" />
               </div>
-              <div className="text-muted-foreground font-medium">Novo Orçamento</div>
+              <div className="text-muted-foreground font-medium">Menu Principal</div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

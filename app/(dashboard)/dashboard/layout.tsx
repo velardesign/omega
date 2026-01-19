@@ -8,7 +8,7 @@ import {
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { DynamicBreadcrumb } from "@/components/layout/dynamicBreadcrump";
+import { DynamicBreadcrumb } from "@/components/layout/dynamic-breadcrump";
 
 export const metadata: Metadata = {
   title: "Omega | Sistema Cálculo Móveis MVA",

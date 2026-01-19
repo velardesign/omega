@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { NavMain } from "@/components/layout/nav-main"
-import { NavProjects } from "@/components/layout/nav-projects"
+import { NavCommercial } from "@/components/layout/nav-commercial"
+import { NavFinance } from "./nav-finance"
 import { NavUser } from "@/components/layout/nav-user"
-import { TeamSwitcher } from "@/components/layout/team-switcher"
+import { QuickMenu } from "@/components/layout/quick-menu"
 import {
   Sidebar,
   SidebarContent,
@@ -12,19 +12,18 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { navMain, projects, teams, user } from "@/data/navBarData"
-
+import { navCommercial,modules, user, navFinance } from "@/data/nav-bar-data"
 
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={teams} />
+        <QuickMenu modules={modules} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={navMain} />
-        <NavProjects projects={projects} />
+        <NavCommercial items={navCommercial} />
+        <NavFinance items={navFinance} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user} />

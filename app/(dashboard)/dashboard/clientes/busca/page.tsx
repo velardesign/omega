@@ -45,7 +45,7 @@ export default function Home() {
         {/* 👤 CLIENTE ATIVO */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm">
+            <CardTitle>
               Cliente ativo
             </CardTitle>
           </CardHeader>
