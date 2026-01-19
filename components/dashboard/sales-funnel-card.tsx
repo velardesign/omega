@@ -10,7 +10,6 @@ import { FunnelStage } from "@/types/dashboard-types";
 import TableSaleFunnel from "./table-sale-funnel";
 
 export default function SalesFunnelCard({ stages }: { stages: FunnelStage[] }) {
-    const somaTotal = stages.flatMap((stage => stage.data)).reduce((sum,row)=> sum + row.price,0);
   return (
     <div>
 

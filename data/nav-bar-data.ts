@@ -12,6 +12,11 @@ import {
   ShoppingCart,
   Briefcase,
   Contact,
+  Package,
+  Settings,
+  BarChart,
+  Warehouse,
+  FileChartPie,
 } from "lucide-react";
 
 export const user = {
@@ -52,18 +57,18 @@ export const navCommercial = [
     title: "Vendas",
     url: "#",
     icon: ShoppingCart,
-    isActive: true,
+    isActive: false,
     items: [
       {
-        title: "History",
+        title: "Nova Proposta",
         url: "#",
       },
       {
-        title: "Starred",
+        title: "Buscar Proposta",
         url: "#",
       },
       {
-        title: "Settings",
+        title: "Relatórios",
         url: "#",
       },
     ],
@@ -74,15 +79,15 @@ export const navCommercial = [
     icon: Briefcase,
     items: [
       {
-        title: "Genesis",
+        title: "Agendar",
         url: "#",
       },
       {
-        title: "Explorer",
+        title: "Serviços do Dia",
         url: "#",
       },
       {
-        title: "Quantum",
+        title: "Relatórios",
         url: "#",
       },
     ],
@@ -93,19 +98,19 @@ export const navCommercial = [
     icon: Contact,
     items: [
       {
-        title: "Introduction",
+        title: "Clientes",
         url: "#",
       },
       {
-        title: "Get Started",
+        title: "Fornecedores",
         url: "#",
       },
       {
-        title: "Tutorials",
+        title: "Colaboradores",
         url: "#",
       },
       {
-        title: "Changelog",
+        title: "Relatórios",
         url: "#",
       },
     ],
@@ -121,19 +126,19 @@ export const navFinance = [
     items: [
       {
         title: "Abrir",
-        url: "#",
+        url: "/dashboard/financeiro/caixa/abrir",
       },
       {
         title: "Receber",
-        url: "#",
+        url: "/dashboard/financeiro/caixa/receber",
       },
       {
         title: "Fechar",
-        url: "#",
+        url: "/dashboard/financeiro/caixa/fechar",
       },
       {
         title: "Relatórios ",
-        url: "#",
+        url: "/dashboard/financeiro/caixa/relatorios",
       },
     ],
   },
@@ -180,3 +185,103 @@ export const navFinance = [
     ],
   },
 ];
+
+export const navProduct = [
+  {
+    title: "Gestão de Produtos",
+    url: "#",
+    icon: Package,
+    isActive: false,
+    items: [
+      {
+        title: "Novo",
+        url: "#",
+      },
+      {
+        title: "Listar",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "Configurações",
+    url: "#",
+    icon: Settings,
+    items: [
+      {
+        title: "Categorias",
+        url: "#",
+      },
+      {
+        title: "Marcas",
+        url: "#",
+      },
+      {
+        title: "Unidades",
+        url: "#",
+      },
+    ],
+  },
+];
+
+export const navStock = [
+  {
+    title: "Movimentações",
+    url: "#",
+    icon: Warehouse,
+    isActive: false,
+    items: [
+      {
+        title: "Entrada",
+        url: "#",
+      },
+      {
+        title: "Saída",
+        url: "#",
+      },
+      {
+        title: "Transferência",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "Consultas",
+    url: "#",
+    icon:FileChartPie ,
+    items: [
+      {
+        title: "Posição Atual",
+        url: "#",
+      },
+      {
+        title: "Histórico",
+        url: "#",
+      },
+      {
+        title: "Produtos em Falta",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "Controles",
+    url: "#",
+    icon: LineChart,
+    items: [
+      {
+        title: "Inventário",
+        url: "#",
+      },
+      {
+        title: "Ajustes",
+        url: "#",
+      },
+      {
+        title: "Alertas",
+        url: "#",
+      },
+    ],
+  },
+];
+

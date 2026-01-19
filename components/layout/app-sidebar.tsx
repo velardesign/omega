@@ -12,7 +12,9 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { navCommercial,modules, user, navFinance } from "@/data/nav-bar-data"
+import { navCommercial,modules, user, navFinance, navProduct, navStock } from "@/data/nav-bar-data"
+import { NavProduct } from "./nav-product"
+import { NavStock } from "./nav-stock"
 
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -24,6 +26,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavCommercial items={navCommercial} />
         <NavFinance items={navFinance} />
+        <NavProduct items={navProduct} />
+        <NavStock items ={navStock} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user} />
