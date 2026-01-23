@@ -37,3 +37,48 @@ export type Account = Prisma.AccountModel
  * 
  */
 export type Verification = Prisma.VerificationModel
+/**
+ * Model Cliente
+ * 
+ */
+export type Cliente = Prisma.ClienteModel
+/**
+ * Model Documento
+ * 
+ */
+export type Documento = Prisma.DocumentoModel
+/**
+ * Model Endereco
+ * 
+ */
+export type Endereco = Prisma.EnderecoModel
+/**
+ * Model Contato
+ * 
+ */
+export type Contato = Prisma.ContatoModel
+/**
+ * Model Caixa
+ * 
+ */
+export type Caixa = Prisma.CaixaModel
+/**
+ * Model Entrada
+ * 
+ */
+export type Entrada = Prisma.EntradaModel
+/**
+ * Model Saida
+ * 
+ */
+export type Saida = Prisma.SaidaModel
+/**
+ * Model Abertura
+ * 
+ */
+export type Abertura = Prisma.AberturaModel
+/**
+ * Model Fechamento
+ * 
+ */
+export type Fechamento = Prisma.FechamentoModel

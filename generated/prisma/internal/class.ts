@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "mysql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel User {\n  id            String    @id\n  name          String    @db.Text\n  email         String\n  emailVerified Boolean   @default(false)\n  image         String?   @db.Text\n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime  @updatedAt\n  sessions      Session[]\n  accounts      Account[]\n\n  @@unique([email])\n  @@map(\"user\")\n}\n\nmodel Session {\n  id        String   @id\n  expiresAt DateTime\n  token     String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  ipAddress String?  @db.Text\n  userAgent String?  @db.Text\n  userId    String\n  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([token])\n  @@index([userId(length: 191)])\n  @@map(\"session\")\n}\n\nmodel Account {\n  id                    String    @id\n  accountId             String    @db.Text\n  providerId            String    @db.Text\n  userId                String\n  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)\n  accessToken           String?   @db.Text\n  refreshToken          String?   @db.Text\n  idToken               String?   @db.Text\n  accessTokenExpiresAt  DateTime?\n  refreshTokenExpiresAt DateTime?\n  scope                 String?   @db.Text\n  password              String?   @db.Text\n  createdAt             DateTime  @default(now())\n  updatedAt             DateTime  @updatedAt\n\n  @@index([userId(length: 191)])\n  @@map(\"account\")\n}\n\nmodel Verification {\n  id         String   @id\n  identifier String   @db.Text\n  value      String   @db.Text\n  expiresAt  DateTime\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n\n  @@index([identifier(length: 191)])\n  @@map(\"verification\")\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel User {\n  id            String    @id\n  name          String    @db.Text\n  email         String    @unique\n  emailVerified Boolean   @default(false)\n  image         String?   @db.Text\n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime  @updatedAt\n  accounts      Account[]\n  sessions      Session[]\n\n  @@map(\"user\")\n}\n\nmodel Session {\n  id        String   @id\n  expiresAt DateTime\n  token     String   @unique\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  ipAddress String?  @db.Text\n  userAgent String?  @db.Text\n  userId    String\n  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@index([userId])\n  @@map(\"session\")\n}\n\nmodel Account {\n  id                    String    @id\n  accountId             String    @db.Text\n  providerId            String    @db.Text\n  userId                String\n  accessToken           String?   @db.Text\n  refreshToken          String?   @db.Text\n  idToken               String?   @db.Text\n  accessTokenExpiresAt  DateTime?\n  refreshTokenExpiresAt DateTime?\n  scope                 String?   @db.Text\n  password              String?   @db.Text\n  createdAt             DateTime  @default(now())\n  updatedAt             DateTime  @updatedAt\n  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@index([userId])\n  @@map(\"account\")\n}\n\nmodel Verification {\n  id         String   @id\n  identifier String   @db.Text\n  value      String   @db.Text\n  expiresAt  DateTime\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n\n  @@index([identifier(length: 191)])\n  @@map(\"verification\")\n}\n\nmodel Cliente {\n  id         String      @id @default(uuid())\n  nome       String\n  sobrenome  String\n  cod        String?\n  contatos   Contato[]\n  documentos Documento[]\n  enderecos  Endereco[]\n\n  @@map(\"cliente\")\n}\n\nmodel Documento {\n  id        String    @id @default(uuid())\n  nome      String\n  numero    String\n  validade  DateTime?\n  clienteId String\n  cliente   Cliente   @relation(fields: [clienteId], references: [id], onDelete: Cascade)\n\n  @@index([clienteId], map: \"documento_clienteId_fkey\")\n  @@map(\"documento\")\n}\n\nmodel Endereco {\n  id         String  @id @default(uuid())\n  logradouro String\n  numero     String\n  bairro     String\n  cidade     String\n  pais       String\n  cep        String\n  clienteId  String\n  cliente    Cliente @relation(fields: [clienteId], references: [id], onDelete: Cascade)\n\n  @@index([clienteId], map: \"endereco_clienteId_fkey\")\n  @@map(\"endereco\")\n}\n\nmodel Contato {\n  id        String  @id @default(uuid())\n  tipo      String\n  conteudo  String\n  clienteId String\n  cliente   Cliente @relation(fields: [clienteId], references: [id], onDelete: Cascade)\n\n  @@index([clienteId], map: \"contato_clienteId_fkey\")\n  @@map(\"contato\")\n}\n\nmodel Caixa {\n  id         String      @id @default(uuid())\n  abertura   Abertura?   @relation(\"CaixaAbertura\")\n  entradas   Entrada[]\n  fechamento Fechamento? @relation(\"CaixaFechamento\")\n  saidas     Saida[]\n\n  @@map(\"caixa\")\n}\n\nmodel Entrada {\n  id          String   @id @default(uuid())\n  tipo        String\n  responsavel String\n  data_hora   DateTime @default(now())\n  valor       Decimal  @db.Decimal(10, 2)\n  caixa_id    String\n  caixa       Caixa    @relation(fields: [caixa_id], references: [id], onDelete: Cascade)\n\n  @@index([caixa_id], map: \"entrada_caixa_id_fkey\")\n  @@map(\"entrada\")\n}\n\nmodel Saida {\n  id          String   @id @default(uuid())\n  tipo        String\n  responsavel String\n  data_hora   DateTime @default(now())\n  valor       Decimal  @db.Decimal(10, 2)\n  caixa_id    String\n  caixa       Caixa    @relation(fields: [caixa_id], references: [id], onDelete: Cascade)\n\n  @@index([caixa_id], map: \"saida_caixa_id_fkey\")\n  @@map(\"saida\")\n}\n\nmodel Abertura {\n  id          String   @id @default(uuid())\n  data_hora   DateTime @default(now())\n  responsavel String\n  autorizacao String\n  caixa_id    String   @unique\n  caixa       Caixa    @relation(\"CaixaAbertura\", fields: [caixa_id], references: [id], onDelete: Cascade)\n\n  @@map(\"abertura\")\n}\n\nmodel Fechamento {\n  id          String   @id @default(uuid())\n  data_hora   DateTime @default(now())\n  responsavel String\n  autorizacao String\n  caixa_id    String   @unique\n  caixa       Caixa    @relation(\"CaixaFechamento\", fields: [caixa_id], references: [id], onDelete: Cascade)\n\n  @@map(\"fechamento\")\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"emailVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"sessions\",\"kind\":\"object\",\"type\":\"Session\",\"relationName\":\"SessionToUser\"},{\"name\":\"accounts\",\"kind\":\"object\",\"type\":\"Account\",\"relationName\":\"AccountToUser\"}],\"dbName\":\"user\"},\"Session\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"ipAddress\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userAgent\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"SessionToUser\"}],\"dbName\":\"session\"},\"Account\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"accountId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"providerId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"AccountToUser\"},{\"name\":\"accessToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refreshToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"idToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"accessTokenExpiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"refreshTokenExpiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"scope\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"account\"},\"Verification\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"identifier\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"value\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"verification\"}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"emailVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"accounts\",\"kind\":\"object\",\"type\":\"Account\",\"relationName\":\"AccountToUser\"},{\"name\":\"sessions\",\"kind\":\"object\",\"type\":\"Session\",\"relationName\":\"SessionToUser\"}],\"dbName\":\"user\"},\"Session\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"ipAddress\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userAgent\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"SessionToUser\"}],\"dbName\":\"session\"},\"Account\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"accountId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"providerId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"accessToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refreshToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"idToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"accessTokenExpiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"refreshTokenExpiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"scope\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"AccountToUser\"}],\"dbName\":\"account\"},\"Verification\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"identifier\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"value\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"verification\"},\"Cliente\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sobrenome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cod\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"contatos\",\"kind\":\"object\",\"type\":\"Contato\",\"relationName\":\"ClienteToContato\"},{\"name\":\"documentos\",\"kind\":\"object\",\"type\":\"Documento\",\"relationName\":\"ClienteToDocumento\"},{\"name\":\"enderecos\",\"kind\":\"object\",\"type\":\"Endereco\",\"relationName\":\"ClienteToEndereco\"}],\"dbName\":\"cliente\"},\"Documento\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"numero\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"validade\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"clienteId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cliente\",\"kind\":\"object\",\"type\":\"Cliente\",\"relationName\":\"ClienteToDocumento\"}],\"dbName\":\"documento\"},\"Endereco\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"logradouro\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"numero\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"bairro\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cidade\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pais\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cep\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"clienteId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cliente\",\"kind\":\"object\",\"type\":\"Cliente\",\"relationName\":\"ClienteToEndereco\"}],\"dbName\":\"endereco\"},\"Contato\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tipo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"conteudo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"clienteId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cliente\",\"kind\":\"object\",\"type\":\"Cliente\",\"relationName\":\"ClienteToContato\"}],\"dbName\":\"contato\"},\"Caixa\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"abertura\",\"kind\":\"object\",\"type\":\"Abertura\",\"relationName\":\"CaixaAbertura\"},{\"name\":\"entradas\",\"kind\":\"object\",\"type\":\"Entrada\",\"relationName\":\"CaixaToEntrada\"},{\"name\":\"fechamento\",\"kind\":\"object\",\"type\":\"Fechamento\",\"relationName\":\"CaixaFechamento\"},{\"name\":\"saidas\",\"kind\":\"object\",\"type\":\"Saida\",\"relationName\":\"CaixaToSaida\"}],\"dbName\":\"caixa\"},\"Entrada\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tipo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"responsavel\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"data_hora\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"valor\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"caixa_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"caixa\",\"kind\":\"object\",\"type\":\"Caixa\",\"relationName\":\"CaixaToEntrada\"}],\"dbName\":\"entrada\"},\"Saida\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tipo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"responsavel\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"data_hora\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"valor\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"caixa_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"caixa\",\"kind\":\"object\",\"type\":\"Caixa\",\"relationName\":\"CaixaToSaida\"}],\"dbName\":\"saida\"},\"Abertura\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"data_hora\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"responsavel\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"autorizacao\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"caixa_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"caixa\",\"kind\":\"object\",\"type\":\"Caixa\",\"relationName\":\"CaixaAbertura\"}],\"dbName\":\"abertura\"},\"Fechamento\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"data_hora\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"responsavel\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"autorizacao\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"caixa_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"caixa\",\"kind\":\"object\",\"type\":\"Caixa\",\"relationName\":\"CaixaFechamento\"}],\"dbName\":\"fechamento\"}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -213,6 +213,96 @@ export interface PrismaClient<
     * ```
     */
   get verification(): Prisma.VerificationDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.cliente`: Exposes CRUD operations for the **Cliente** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Clientes
+    * const clientes = await prisma.cliente.findMany()
+    * ```
+    */
+  get cliente(): Prisma.ClienteDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.documento`: Exposes CRUD operations for the **Documento** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Documentos
+    * const documentos = await prisma.documento.findMany()
+    * ```
+    */
+  get documento(): Prisma.DocumentoDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.endereco`: Exposes CRUD operations for the **Endereco** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Enderecos
+    * const enderecos = await prisma.endereco.findMany()
+    * ```
+    */
+  get endereco(): Prisma.EnderecoDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.contato`: Exposes CRUD operations for the **Contato** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Contatoes
+    * const contatoes = await prisma.contato.findMany()
+    * ```
+    */
+  get contato(): Prisma.ContatoDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.caixa`: Exposes CRUD operations for the **Caixa** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Caixas
+    * const caixas = await prisma.caixa.findMany()
+    * ```
+    */
+  get caixa(): Prisma.CaixaDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.entrada`: Exposes CRUD operations for the **Entrada** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Entradas
+    * const entradas = await prisma.entrada.findMany()
+    * ```
+    */
+  get entrada(): Prisma.EntradaDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.saida`: Exposes CRUD operations for the **Saida** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Saidas
+    * const saidas = await prisma.saida.findMany()
+    * ```
+    */
+  get saida(): Prisma.SaidaDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.abertura`: Exposes CRUD operations for the **Abertura** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Aberturas
+    * const aberturas = await prisma.abertura.findMany()
+    * ```
+    */
+  get abertura(): Prisma.AberturaDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.fechamento`: Exposes CRUD operations for the **Fechamento** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Fechamentos
+    * const fechamentos = await prisma.fechamento.findMany()
+    * ```
+    */
+  get fechamento(): Prisma.FechamentoDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

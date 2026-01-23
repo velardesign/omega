@@ -54,7 +54,16 @@ export const ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  Cliente: 'Cliente',
+  Documento: 'Documento',
+  Endereco: 'Endereco',
+  Contato: 'Contato',
+  Caixa: 'Caixa',
+  Entrada: 'Entrada',
+  Saida: 'Saida',
+  Abertura: 'Abertura',
+  Fechamento: 'Fechamento'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -131,6 +140,104 @@ export const VerificationScalarFieldEnum = {
 export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
 
 
+export const ClienteScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  sobrenome: 'sobrenome',
+  cod: 'cod'
+} as const
+
+export type ClienteScalarFieldEnum = (typeof ClienteScalarFieldEnum)[keyof typeof ClienteScalarFieldEnum]
+
+
+export const DocumentoScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  numero: 'numero',
+  validade: 'validade',
+  clienteId: 'clienteId'
+} as const
+
+export type DocumentoScalarFieldEnum = (typeof DocumentoScalarFieldEnum)[keyof typeof DocumentoScalarFieldEnum]
+
+
+export const EnderecoScalarFieldEnum = {
+  id: 'id',
+  logradouro: 'logradouro',
+  numero: 'numero',
+  bairro: 'bairro',
+  cidade: 'cidade',
+  pais: 'pais',
+  cep: 'cep',
+  clienteId: 'clienteId'
+} as const
+
+export type EnderecoScalarFieldEnum = (typeof EnderecoScalarFieldEnum)[keyof typeof EnderecoScalarFieldEnum]
+
+
+export const ContatoScalarFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  conteudo: 'conteudo',
+  clienteId: 'clienteId'
+} as const
+
+export type ContatoScalarFieldEnum = (typeof ContatoScalarFieldEnum)[keyof typeof ContatoScalarFieldEnum]
+
+
+export const CaixaScalarFieldEnum = {
+  id: 'id'
+} as const
+
+export type CaixaScalarFieldEnum = (typeof CaixaScalarFieldEnum)[keyof typeof CaixaScalarFieldEnum]
+
+
+export const EntradaScalarFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  responsavel: 'responsavel',
+  data_hora: 'data_hora',
+  valor: 'valor',
+  caixa_id: 'caixa_id'
+} as const
+
+export type EntradaScalarFieldEnum = (typeof EntradaScalarFieldEnum)[keyof typeof EntradaScalarFieldEnum]
+
+
+export const SaidaScalarFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  responsavel: 'responsavel',
+  data_hora: 'data_hora',
+  valor: 'valor',
+  caixa_id: 'caixa_id'
+} as const
+
+export type SaidaScalarFieldEnum = (typeof SaidaScalarFieldEnum)[keyof typeof SaidaScalarFieldEnum]
+
+
+export const AberturaScalarFieldEnum = {
+  id: 'id',
+  data_hora: 'data_hora',
+  responsavel: 'responsavel',
+  autorizacao: 'autorizacao',
+  caixa_id: 'caixa_id'
+} as const
+
+export type AberturaScalarFieldEnum = (typeof AberturaScalarFieldEnum)[keyof typeof AberturaScalarFieldEnum]
+
+
+export const FechamentoScalarFieldEnum = {
+  id: 'id',
+  data_hora: 'data_hora',
+  responsavel: 'responsavel',
+  autorizacao: 'autorizacao',
+  caixa_id: 'caixa_id'
+} as const
+
+export type FechamentoScalarFieldEnum = (typeof FechamentoScalarFieldEnum)[keyof typeof FechamentoScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -190,4 +297,95 @@ export const VerificationOrderByRelevanceFieldEnum = {
 } as const
 
 export type VerificationOrderByRelevanceFieldEnum = (typeof VerificationOrderByRelevanceFieldEnum)[keyof typeof VerificationOrderByRelevanceFieldEnum]
+
+
+export const ClienteOrderByRelevanceFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  sobrenome: 'sobrenome',
+  cod: 'cod'
+} as const
+
+export type ClienteOrderByRelevanceFieldEnum = (typeof ClienteOrderByRelevanceFieldEnum)[keyof typeof ClienteOrderByRelevanceFieldEnum]
+
+
+export const DocumentoOrderByRelevanceFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  numero: 'numero',
+  clienteId: 'clienteId'
+} as const
+
+export type DocumentoOrderByRelevanceFieldEnum = (typeof DocumentoOrderByRelevanceFieldEnum)[keyof typeof DocumentoOrderByRelevanceFieldEnum]
+
+
+export const EnderecoOrderByRelevanceFieldEnum = {
+  id: 'id',
+  logradouro: 'logradouro',
+  numero: 'numero',
+  bairro: 'bairro',
+  cidade: 'cidade',
+  pais: 'pais',
+  cep: 'cep',
+  clienteId: 'clienteId'
+} as const
+
+export type EnderecoOrderByRelevanceFieldEnum = (typeof EnderecoOrderByRelevanceFieldEnum)[keyof typeof EnderecoOrderByRelevanceFieldEnum]
+
+
+export const ContatoOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  conteudo: 'conteudo',
+  clienteId: 'clienteId'
+} as const
+
+export type ContatoOrderByRelevanceFieldEnum = (typeof ContatoOrderByRelevanceFieldEnum)[keyof typeof ContatoOrderByRelevanceFieldEnum]
+
+
+export const CaixaOrderByRelevanceFieldEnum = {
+  id: 'id'
+} as const
+
+export type CaixaOrderByRelevanceFieldEnum = (typeof CaixaOrderByRelevanceFieldEnum)[keyof typeof CaixaOrderByRelevanceFieldEnum]
+
+
+export const EntradaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  responsavel: 'responsavel',
+  caixa_id: 'caixa_id'
+} as const
+
+export type EntradaOrderByRelevanceFieldEnum = (typeof EntradaOrderByRelevanceFieldEnum)[keyof typeof EntradaOrderByRelevanceFieldEnum]
+
+
+export const SaidaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  responsavel: 'responsavel',
+  caixa_id: 'caixa_id'
+} as const
+
+export type SaidaOrderByRelevanceFieldEnum = (typeof SaidaOrderByRelevanceFieldEnum)[keyof typeof SaidaOrderByRelevanceFieldEnum]
+
+
+export const AberturaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  responsavel: 'responsavel',
+  autorizacao: 'autorizacao',
+  caixa_id: 'caixa_id'
+} as const
+
+export type AberturaOrderByRelevanceFieldEnum = (typeof AberturaOrderByRelevanceFieldEnum)[keyof typeof AberturaOrderByRelevanceFieldEnum]
+
+
+export const FechamentoOrderByRelevanceFieldEnum = {
+  id: 'id',
+  responsavel: 'responsavel',
+  autorizacao: 'autorizacao',
+  caixa_id: 'caixa_id'
+} as const
+
+export type FechamentoOrderByRelevanceFieldEnum = (typeof FechamentoOrderByRelevanceFieldEnum)[keyof typeof FechamentoOrderByRelevanceFieldEnum]
 
