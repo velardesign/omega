@@ -19,12 +19,6 @@ import {
   FileChartPie,
 } from "lucide-react";
 
-export const user = {
-  name: "shadcn",
-  email: "m@example.com",
-  avatar: "/avatars/shadcn.jpg",
-};
-
 export const modules = [
   {
     name: "Adicionar Cliente",

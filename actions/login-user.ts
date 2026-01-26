@@ -1,23 +1,20 @@
-"use server";
-import { auth } from "@/lib/auth";
+"use client";
+import {authClient} from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 
 export async function loginUser(formData: FormData) {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
 
-    const result = await auth.api.signInEmail({
-      body: {
+  const { data, error } = await authClient.signIn.email({
         email,
         password,
-      },
-    });
+        callbackURL: "/dashboard",
+        rememberMe: false
+});
 
-    if (!result) {
-        console.log(result);
-        redirect("/login")
-    }
-
-  // Redireciona apenas se o login for bem-sucedido
-  redirect("/dashboard");
+  if(error){
+    console.log("Erro ao logar",error);
+    redirect("/login")
+  }
 }
