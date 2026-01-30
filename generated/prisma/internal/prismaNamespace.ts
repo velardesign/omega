@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.2.0
- * Query Engine version: 0c8ef2ce45c83248ab3df073180d5eda9e8be7a3
+ * Prisma Client JS version: 7.3.0
+ * Query Engine version: 9d6ad21cbbceab97458517b147a6a09ff43aa735
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.2.0",
-  engine: "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3"
+  client: "7.3.0",
+  engine: "9d6ad21cbbceab97458517b147a6a09ff43aa735"
 }
 
 /**
@@ -1583,7 +1583,6 @@ export type CaixaOrderByRelevanceFieldEnum = (typeof CaixaOrderByRelevanceFieldE
 
 export const EntradaOrderByRelevanceFieldEnum = {
   id: 'id',
-  tipo: 'tipo',
   responsavel: 'responsavel',
   caixa_id: 'caixa_id'
 } as const
@@ -1645,6 +1644,13 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'TipoEntrada'
+ */
+export type EnumTipoEntradaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoEntrada'>
     
 
 

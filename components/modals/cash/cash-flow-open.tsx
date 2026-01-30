@@ -18,7 +18,7 @@ import {Input} from "@/components/ui/input";
 import {useRouter} from "next/navigation";
 import React, {useCallback, useEffect, useState} from "react";
 import {authClient} from "@/lib/auth-client";
-import {fecharCaixa} from "@/services/caixa-services";
+import {abrirCaixa, fecharCaixa} from "@/services/caixa-services";
 
 const REDIRECT_DELAY_MS = 3000;
 const ERROR_DISPLAY_DELAY_MS = 3000;
@@ -39,7 +39,7 @@ interface DialogState {
     falhaAberto: boolean;
 }
 
-export default function CashFlow({open, onOpenChange}: CashFlowProp) {
+export default function CashFlowOpen({open, onOpenChange}: CashFlowProp) {
     const [userData, setUserData] = useState<UseData>({nome: "", email: ""});
     const [password, setPassword] = useState("");
     const [dialogState, setDialogState] = useState<DialogState>({
@@ -102,7 +102,7 @@ export default function CashFlow({open, onOpenChange}: CashFlowProp) {
                     onSuccess: async () => {
                         try {
 
-                            fecharCaixa();
+                            abrirCaixa();
                             setDialogState(
                                 (prev) => ({...prev, sucessoAberto: true})
                             );
@@ -179,7 +179,7 @@ export default function CashFlow({open, onOpenChange}: CashFlowProp) {
                     onPointerDownOutside={(e) => e.preventDefault()}
                 >
                     <DialogHeader>
-                        <DialogTitle>Fechar Caixa</DialogTitle>
+                        <DialogTitle>Abrir Caixa</DialogTitle>
                     </DialogHeader>
                     <div>
                         <FieldSet>
@@ -231,7 +231,7 @@ export default function CashFlow({open, onOpenChange}: CashFlowProp) {
                             disabled={!isPasswordValid() || dialogState.isLoading}
                             aria-busy={dialogState.isLoading}
                         >
-                            {dialogState.isLoading ? "Processando..." : "Fechar Caixa"}
+                            {dialogState.isLoading ? "Processando..." : "Abrir Caixa"}
                         </Button>
                     </DialogFooter>
                 </DialogContent>
@@ -241,7 +241,7 @@ export default function CashFlow({open, onOpenChange}: CashFlowProp) {
                 onOpenChange={
                     (value) => setDialogState((prev) => ({...prev, sucessoAberto: value}))
                 }
-                titulo="O caixa foi fechado com sucesso."
+                titulo="O caixa foi aberto com sucesso."
                 mensagem="Você será redirecionado para o Dashboard em alguns segundos."
             />
             <CashAlertDialog

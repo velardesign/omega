@@ -18,20 +18,22 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 
-export function NavFinance({
-  items,
-}: {
-  items: {
-    title: string
-    url: string
-    icon?: LucideIcon
-    isActive?: boolean
+interface NavFinanceItem {
+   title: string,
+    url: string,
+    icon?: LucideIcon,
+    isActive?: boolean,
     items?: {
-      title: string
-      url: string
+        title: string,
+        url: string,
     }[]
-  }[]
-}) {
+}
+
+interface NavFinanceProps{
+    items:NavFinanceItem[],
+}
+
+export function NavFinance({items}:NavFinanceProps){
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Financeiro</SidebarGroupLabel>

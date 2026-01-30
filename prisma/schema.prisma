@@ -128,14 +128,21 @@ model Caixa {
   @@map("caixa")
 }
 
+enum TipoEntrada {
+  CARTAO
+  DINHEIRO
+  PIX
+  TRANSFERENCIA
+}
+
 model Entrada {
-  id          String   @id @default(uuid())
-  tipo        String
+  id          String      @id @default(uuid())
+  tipo        TipoEntrada
   responsavel String
-  data_hora   DateTime @default(now())
-  valor       Decimal  @db.Decimal(10, 2)
+  data_hora   DateTime    @default(now())
+  valor       Decimal     @db.Decimal(10, 2)
   caixa_id    String
-  caixa       Caixa    @relation(fields: [caixa_id], references: [id], onDelete: Cascade)
+  caixa       Caixa       @relation(fields: [caixa_id], references: [id], onDelete: Cascade)
 
   @@index([caixa_id], map: "entrada_caixa_id_fkey")
   @@map("entrada")
@@ -175,5 +182,3 @@ model Fechamento {
 
   @@map("fechamento")
 }
-
-

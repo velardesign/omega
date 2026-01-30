@@ -36,7 +36,7 @@ export type EntradaSumAggregateOutputType = {
 
 export type EntradaMinAggregateOutputType = {
   id: string | null
-  tipo: string | null
+  tipo: $Enums.TipoEntrada | null
   responsavel: string | null
   data_hora: Date | null
   valor: runtime.Decimal | null
@@ -45,7 +45,7 @@ export type EntradaMinAggregateOutputType = {
 
 export type EntradaMaxAggregateOutputType = {
   id: string | null
-  tipo: string | null
+  tipo: $Enums.TipoEntrada | null
   responsavel: string | null
   data_hora: Date | null
   valor: runtime.Decimal | null
@@ -187,7 +187,7 @@ export type EntradaGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type EntradaGroupByOutputType = {
   id: string
-  tipo: string
+  tipo: $Enums.TipoEntrada
   responsavel: string
   data_hora: Date
   valor: runtime.Decimal
@@ -219,7 +219,7 @@ export type EntradaWhereInput = {
   OR?: Prisma.EntradaWhereInput[]
   NOT?: Prisma.EntradaWhereInput | Prisma.EntradaWhereInput[]
   id?: Prisma.StringFilter<"Entrada"> | string
-  tipo?: Prisma.StringFilter<"Entrada"> | string
+  tipo?: Prisma.EnumTipoEntradaFilter<"Entrada"> | $Enums.TipoEntrada
   responsavel?: Prisma.StringFilter<"Entrada"> | string
   data_hora?: Prisma.DateTimeFilter<"Entrada"> | Date | string
   valor?: Prisma.DecimalFilter<"Entrada"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -243,7 +243,7 @@ export type EntradaWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.EntradaWhereInput | Prisma.EntradaWhereInput[]
   OR?: Prisma.EntradaWhereInput[]
   NOT?: Prisma.EntradaWhereInput | Prisma.EntradaWhereInput[]
-  tipo?: Prisma.StringFilter<"Entrada"> | string
+  tipo?: Prisma.EnumTipoEntradaFilter<"Entrada"> | $Enums.TipoEntrada
   responsavel?: Prisma.StringFilter<"Entrada"> | string
   data_hora?: Prisma.DateTimeFilter<"Entrada"> | Date | string
   valor?: Prisma.DecimalFilter<"Entrada"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -270,7 +270,7 @@ export type EntradaScalarWhereWithAggregatesInput = {
   OR?: Prisma.EntradaScalarWhereWithAggregatesInput[]
   NOT?: Prisma.EntradaScalarWhereWithAggregatesInput | Prisma.EntradaScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Entrada"> | string
-  tipo?: Prisma.StringWithAggregatesFilter<"Entrada"> | string
+  tipo?: Prisma.EnumTipoEntradaWithAggregatesFilter<"Entrada"> | $Enums.TipoEntrada
   responsavel?: Prisma.StringWithAggregatesFilter<"Entrada"> | string
   data_hora?: Prisma.DateTimeWithAggregatesFilter<"Entrada"> | Date | string
   valor?: Prisma.DecimalWithAggregatesFilter<"Entrada"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -279,7 +279,7 @@ export type EntradaScalarWhereWithAggregatesInput = {
 
 export type EntradaCreateInput = {
   id?: string
-  tipo: string
+  tipo: $Enums.TipoEntrada
   responsavel: string
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -288,7 +288,7 @@ export type EntradaCreateInput = {
 
 export type EntradaUncheckedCreateInput = {
   id?: string
-  tipo: string
+  tipo: $Enums.TipoEntrada
   responsavel: string
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -297,7 +297,7 @@ export type EntradaUncheckedCreateInput = {
 
 export type EntradaUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoEntradaFieldUpdateOperationsInput | $Enums.TipoEntrada
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -306,7 +306,7 @@ export type EntradaUpdateInput = {
 
 export type EntradaUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoEntradaFieldUpdateOperationsInput | $Enums.TipoEntrada
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -315,7 +315,7 @@ export type EntradaUncheckedUpdateInput = {
 
 export type EntradaCreateManyInput = {
   id?: string
-  tipo: string
+  tipo: $Enums.TipoEntrada
   responsavel: string
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -324,7 +324,7 @@ export type EntradaCreateManyInput = {
 
 export type EntradaUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoEntradaFieldUpdateOperationsInput | $Enums.TipoEntrada
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -332,7 +332,7 @@ export type EntradaUpdateManyMutationInput = {
 
 export type EntradaUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoEntradaFieldUpdateOperationsInput | $Enums.TipoEntrada
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -432,6 +432,10 @@ export type EntradaUncheckedUpdateManyWithoutCaixaNestedInput = {
   deleteMany?: Prisma.EntradaScalarWhereInput | Prisma.EntradaScalarWhereInput[]
 }
 
+export type EnumTipoEntradaFieldUpdateOperationsInput = {
+  set?: $Enums.TipoEntrada
+}
+
 export type DecimalFieldUpdateOperationsInput = {
   set?: runtime.Decimal | runtime.DecimalJsLike | number | string
   increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -442,7 +446,7 @@ export type DecimalFieldUpdateOperationsInput = {
 
 export type EntradaCreateWithoutCaixaInput = {
   id?: string
-  tipo: string
+  tipo: $Enums.TipoEntrada
   responsavel: string
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -450,7 +454,7 @@ export type EntradaCreateWithoutCaixaInput = {
 
 export type EntradaUncheckedCreateWithoutCaixaInput = {
   id?: string
-  tipo: string
+  tipo: $Enums.TipoEntrada
   responsavel: string
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -487,7 +491,7 @@ export type EntradaScalarWhereInput = {
   OR?: Prisma.EntradaScalarWhereInput[]
   NOT?: Prisma.EntradaScalarWhereInput | Prisma.EntradaScalarWhereInput[]
   id?: Prisma.StringFilter<"Entrada"> | string
-  tipo?: Prisma.StringFilter<"Entrada"> | string
+  tipo?: Prisma.EnumTipoEntradaFilter<"Entrada"> | $Enums.TipoEntrada
   responsavel?: Prisma.StringFilter<"Entrada"> | string
   data_hora?: Prisma.DateTimeFilter<"Entrada"> | Date | string
   valor?: Prisma.DecimalFilter<"Entrada"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -496,7 +500,7 @@ export type EntradaScalarWhereInput = {
 
 export type EntradaCreateManyCaixaInput = {
   id?: string
-  tipo: string
+  tipo: $Enums.TipoEntrada
   responsavel: string
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -504,7 +508,7 @@ export type EntradaCreateManyCaixaInput = {
 
 export type EntradaUpdateWithoutCaixaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoEntradaFieldUpdateOperationsInput | $Enums.TipoEntrada
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -512,7 +516,7 @@ export type EntradaUpdateWithoutCaixaInput = {
 
 export type EntradaUncheckedUpdateWithoutCaixaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoEntradaFieldUpdateOperationsInput | $Enums.TipoEntrada
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -520,7 +524,7 @@ export type EntradaUncheckedUpdateWithoutCaixaInput = {
 
 export type EntradaUncheckedUpdateManyWithoutCaixaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoEntradaFieldUpdateOperationsInput | $Enums.TipoEntrada
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -561,7 +565,7 @@ export type $EntradaPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    tipo: string
+    tipo: $Enums.TipoEntrada
     responsavel: string
     data_hora: Date
     valor: runtime.Decimal
@@ -937,7 +941,7 @@ export interface Prisma__EntradaClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface EntradaFieldRefs {
   readonly id: Prisma.FieldRef<"Entrada", 'String'>
-  readonly tipo: Prisma.FieldRef<"Entrada", 'String'>
+  readonly tipo: Prisma.FieldRef<"Entrada", 'TipoEntrada'>
   readonly responsavel: Prisma.FieldRef<"Entrada", 'String'>
   readonly data_hora: Prisma.FieldRef<"Entrada", 'DateTime'>
   readonly valor: Prisma.FieldRef<"Entrada", 'Decimal'>

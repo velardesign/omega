@@ -1,36 +1,40 @@
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
 } from "../ui/alert-dialog";
 
 interface CashAlertDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
+    titulo: string;
+    mensagem: string;
 }
 
 export default function CashAlertDialog({
-  open,
-  onOpenChange,
-}: CashAlertDialogProps) {
-  return (
-    <AlertDialog open={open} onOpenChange={onOpenChange}>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>
-            Fechamento de caixa realizado com sucesso.
-          </AlertDialogTitle>
-          <AlertDialogDescription>
-            Redirecionando para o dashboard…
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-  );
+                                            open,
+                                            onOpenChange,
+                                            titulo,
+                                            mensagem
+                                        }: CashAlertDialogProps) {
+    return (
+        <AlertDialog open={open} onOpenChange={onOpenChange}>
+            <AlertDialogContent>
+                <AlertDialogHeader>
+                    <AlertDialogTitle>
+                        {titulo}
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                        {mensagem}
+                    </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+        </AlertDialog>
+    );
 }
