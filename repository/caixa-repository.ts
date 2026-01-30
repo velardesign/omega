@@ -1,5 +1,5 @@
 import {prisma} from "@/lib/prisma";
-import {Caixa, Entrada, TipoEntrada, Prisma} from "@/generated/prisma/client";
+import {Caixa, Entrada, TipoEntrada, Prisma, Saida} from "@/generated/prisma/client";
 import {DateTime} from "effect/DateTime";
 
 
@@ -10,11 +10,11 @@ interface EntradaDTO {
     valor: number;
 }
 
-interface SaidaDTO{
-    tipo:string;
-    responsavel:string;
-    data_hora?:DateTime;
-    valor:number;
+interface SaidaDTO {
+    tipo: string;
+    responsavel: string;
+    data_hora?: DateTime;
+    valor: number;
 }
 
 interface Autorizacao {
@@ -93,11 +93,11 @@ export async function addEntrada(entrada: EntradaDTO) {
         const caixaDoDia = await verificaCaixaDoDia();
 
         if (!caixaDoDia) {
-            throw new Error("Caixa do Dia Não Encontrado!")
+            throw new Error("Caixa do Dia Não Encontrado!");
         }
 
         if (caixaDoDia?.fechamento) {
-            throw new Error("Caixa do Dia Já Foi Fechado Converse com o Administrador do Sistema!")
+            throw new Error("Caixa do Dia Já Foi Fechado Converse com o Administrador do Sistema!");
         }
 
         await prisma.caixa.update({
@@ -129,11 +129,11 @@ export async function addSaida(saida: SaidaDTO) {
         const caixaDoDia = await verificaCaixaDoDia();
 
         if (!caixaDoDia) {
-            throw new Error("Caixa do Dia Não Encontrado!")
+            throw new Error("Caixa do Dia Não Encontrado!");
         }
 
         if (caixaDoDia?.fechamento) {
-            throw new Error("Caixa do Dia Já Foi Fechado Converse com o Administrador do Sistema!")
+            throw new Error("Caixa do Dia Já Foi Fechado Converse com o Administrador do Sistema!");
         }
 
         await prisma.caixa.update({
@@ -157,4 +157,76 @@ export async function addSaida(saida: SaidaDTO) {
         throw error;
     }
 
+}
+
+export async function listaTodasSaidasDoDia(data: Date): Promise<Saida[]> {
+    const dataInicial = new Date(
+        data.getFullYear(),
+        data.getMonth(),
+        data.getDate(),
+        0, 0, 0, 0
+    );
+    const proximaData = new Date(
+        data.getFullYear(),
+        data.getMonth(),
+        data.getDate() + 1,
+        0, 0, 0, 0
+    );
+    try {
+        const saidas = await prisma.saida.findMany({
+            where: {
+                data_hora: {
+                    gte: dataInicial,
+                    lt: proximaData,
+                }
+            }
+        });
+        return saidas;
+    } catch (error) {
+        console.error("Erro ao encontrar saidas: ", error);
+        return [];
+    }
+}
+
+export async function listaTodasEntradasDoDia(data: Date): Promise<Entrada[]> {
+    const dataInicial = new Date(
+        data.getFullYear(),
+        data.getMonth(),
+        data.getDate(),
+        0, 0, 0, 0
+    )
+    const proximaData = new Date(
+        data.getFullYear(),
+        data.getMonth(),
+        data.getDate() + 1,
+        0, 0, 0, 0
+    );
+    try {
+        const entradas = await prisma.entrada.findMany({
+            where: {
+                data_hora: {
+                    gte: dataInicial,
+                    lt: proximaData,
+                }
+            }
+        });
+        return entradas;
+    } catch (error) {
+        console.error("Erro ao encontrar entradas: ", error);
+        return [];
+    }
+}
+
+export async function listaTodasSaidas() {
+    try {
+        const saidas = await prisma.saida.findMany({
+            orderBy: {
+                data_hora: 'asc',
+            }
+        });
+        return saidas;
+    } catch (error) {
+        console.error("Erro ao encontrar saidas: ", error);
+        return [];
+    }
 }

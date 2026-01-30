@@ -1,22 +1,33 @@
 "use client"
 import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import TableCash from "@/components/cash/table-cash";
-import {cashMock} from "@/mocks/cash-mock";
 import {Button} from "@/components/ui/button";
 import {DoorOpen} from "lucide-react";
-import CashFlow from "@/components/modals/cash/cash-flow";
-import {useState} from "react";
-import {Open_Sans} from "next/dist/compiled/@next/font/dist/google";
+import {useEffect, useState} from "react";
 import CashFlowOpen from "@/components/modals/cash/cash-flow-open";
+import {todasSaidas} from "@/actions/caixa-action";
+
+interface SaidasDTO {
+    tipo: string
+    responsavel: string
+    data_hora: Date
+    valor: number
+}
 
 export default function CashFlowOpenPage() {
     const [open, setOpen] = useState(false);
-    const totalEntradas = cashMock
-        .flat()
-        .reduce((sum, cash) => sum + cash.price, 0);
-    const totalSaidas = cashMock
-        .flat()
-        .reduce((sum, cash) => sum + cash.price, 0);
+    const [data, setData] = useState<SaidasDTO[]>([]);
+
+    async function carregarListaSaidas() {
+        const listaSaidasTodosCaixas = await todasSaidas();
+        setData(listaSaidasTodosCaixas);
+        return;
+    }
+
+    useEffect(() => {
+        carregarListaSaidas().catch((error) => console.error("Erro ao carregar saidas: ", error));
+    }, []);
+
     return (
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
             <div className="grid auto-rows-min gap-4 md:grid-cols-2">
@@ -25,11 +36,11 @@ export default function CashFlowOpenPage() {
                         <CardTitle>Entradas Todos os Caixas</CardTitle>
                     </CardHeader>
                     <CardContent className="flex-1 overflow-y-auto">
-                        <TableCash data={cashMock}/>
+                        <TableCash data={data} corTexto={"text-green-700"}/>
                     </CardContent>
                     <CardFooter>
                         <CardTitle className="text-green-700">
-                            Total Entradas: R$ {totalEntradas}
+                            Total Entradas: R$ {0.00}
                         </CardTitle>
                     </CardFooter>
                 </Card>
@@ -38,11 +49,11 @@ export default function CashFlowOpenPage() {
                         <CardTitle>Saidas Todos os Caixas</CardTitle>
                     </CardHeader>
                     <CardContent className="flex-1 overflow-y-auto">
-                        <TableCash data={cashMock}/>
+                        <TableCash data={data} corTexto={"text-red-400"} />
                     </CardContent>
                     <CardFooter>
                         <CardTitle className="text-red-400">
-                            Total Saidas R$ {totalSaidas}
+                            Total Saidas R$ {0.00}
                         </CardTitle>
                     </CardFooter>
                 </Card>
@@ -73,7 +84,7 @@ export default function CashFlowOpenPage() {
                             <CashFlowOpen open={open} onOpenChange={setOpen}/>
                             <span className="text-right text-2xl">Total
                                 <span className="text-green-700 ml-2">
-                                    R$ {(totalEntradas - totalSaidas <= 0 ? "10000,00" : totalEntradas - totalSaidas)}
+                                    R$ {0.00}
                                 </span>
                             </span>
                         </div>

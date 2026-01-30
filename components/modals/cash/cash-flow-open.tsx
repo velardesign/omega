@@ -18,7 +18,7 @@ import {Input} from "@/components/ui/input";
 import {useRouter} from "next/navigation";
 import React, {useCallback, useEffect, useState} from "react";
 import {authClient} from "@/lib/auth-client";
-import {abrirCaixa, fecharCaixa} from "@/services/caixa-services";
+import {abrirCaixaAction} from "@/actions/caixa-action";
 
 const REDIRECT_DELAY_MS = 3000;
 const ERROR_DISPLAY_DELAY_MS = 3000;
@@ -102,7 +102,12 @@ export default function CashFlowOpen({open, onOpenChange}: CashFlowProp) {
                     onSuccess: async () => {
                         try {
 
-                            abrirCaixa();
+                            await abrirCaixaAction({
+                                valor:userData.email,
+                                responsavel:userData.nome
+                            });
+
+
                             setDialogState(
                                 (prev) => ({...prev, sucessoAberto: true})
                             );
@@ -112,7 +117,7 @@ export default function CashFlowOpen({open, onOpenChange}: CashFlowProp) {
 
                         } catch (error) {
 
-                            console.error("Erro ao fechar o caixa:", error);
+                            console.error("Erro ao abrir o caixa:", error);
                             setDialogState((prev) => ({
                                 ...prev,
                                 falhaAberto: true,

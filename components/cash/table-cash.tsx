@@ -1,38 +1,47 @@
 import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
 } from "@/components/ui/table";
-import { TableCashData } from "@/types/cash-types";
+import {TableCashData} from "@/types/cash-types";
 
-export default function TableCash({ data }: { data: TableCashData[] }) {
-  return (
-    <>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="text-left">Código</TableHead>
-            <TableHead className="text-right">Valor</TableHead>
-            <TableHead className="text-right">Data e Hora</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-            {data.map((c, index) => {
-              return (
-                <TableRow key={index} className={c.price > 0 ? "text-green-600":"text-red-400"}>
-                  <TableCell>{c.cod}</TableCell>
-                  <TableCell className="text-right">R$ {c.price.toLocaleString("pt-BR")}</TableCell>
-                  <TableCell className="text-right">{c.date.toLocaleString("pt-BR")}</TableCell>
-                </TableRow>
-              );
-            })}
-        </TableBody>
-        <TableCaption></TableCaption>
-      </Table>
-    </>
-  );
+interface TableCashProps{
+    data: TableCashData[];
+    corTexto:string;
+}
+export default function TableCash({data, corTexto}: TableCashProps) {
+    return (
+        <>
+            <Table>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead className="text-left">Responsável</TableHead>
+                        <TableHead className="text-left">Valor</TableHead>
+                        <TableHead className="text-left">Data e Hora</TableHead>
+                        <TableHead className="text-left">Tipo</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {data.map((c, index) => {
+                        return (
+                            <TableRow key={index} className={corTexto}>
+                                <TableCell className="text-left">{c.responsavel}</TableCell>
+                                <TableCell className="text-left">R$ {c.valor.toLocaleString("pt-BR", {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                })}</TableCell>
+                                <TableCell className="text-left">{c.data_hora.toLocaleString("pt-BR")}</TableCell>
+                                <TableCell className="text-left">{c.tipo}</TableCell>
+                            </TableRow>
+                        );
+                    })}
+                </TableBody>
+                <TableCaption></TableCaption>
+            </Table>
+        </>
+    );
 }

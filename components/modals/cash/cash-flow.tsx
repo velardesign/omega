@@ -18,7 +18,7 @@ import {Input} from "@/components/ui/input";
 import {useRouter} from "next/navigation";
 import React, {useCallback, useEffect, useState} from "react";
 import {authClient} from "@/lib/auth-client";
-import {fecharCaixa} from "@/services/caixa-services";
+import {fecharCaixaAction} from "@/actions/caixa-action";
 
 const REDIRECT_DELAY_MS = 3000;
 const ERROR_DISPLAY_DELAY_MS = 3000;
@@ -102,7 +102,7 @@ export default function CashFlow({open, onOpenChange}: CashFlowProp) {
                     onSuccess: async () => {
                         try {
 
-                            fecharCaixa();
+                            await fecharCaixaAction({valor:userData.email, responsavel:userData.nome});
                             setDialogState(
                                 (prev) => ({...prev, sucessoAberto: true})
                             );

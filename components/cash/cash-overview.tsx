@@ -1,5 +1,5 @@
 "use client"
-import { cashMock } from "@/mocks/cash-mock";
+
 import {
   Card,
   CardContent,
@@ -15,12 +15,6 @@ import CashFlow from "../modals/cash/cash-flow";
 
 export default function CashOverview() {
   const[open,setOpen] = useState(false);  
-  const totalEntradas = cashMock
-    .flat()
-    .reduce((sum, cash) => sum + cash.price, 0);
-  const totalSaidas = cashMock
-    .flat()
-    .reduce((sum, cash) => sum + cash.price, 0);
 
   return (
     <>
@@ -30,11 +24,11 @@ export default function CashOverview() {
             <CardTitle>Lista de Entradas</CardTitle>
           </CardHeader>
           <CardContent className="flex-1 overflow-y-auto">
-            <TableCash data={cashMock} />
+            {/*<TableCash data={} />*/}
           </CardContent>
           <CardFooter>
             <CardTitle className="text-green-700">
-              Total Entradas R$ {totalEntradas}
+              Total Entradas R$ {}
             </CardTitle>
           </CardFooter>
         </Card>
@@ -43,11 +37,11 @@ export default function CashOverview() {
             <CardTitle>Lista de Saidas</CardTitle>
           </CardHeader>
           <CardContent className="flex-1 overflow-y-auto">
-            <TableCash data={cashMock} />
+            {/*<TableCash data={} />*/}
           </CardContent>
           <CardFooter>
             <CardTitle className="text-red-400">
-              Total Saidas R$ {totalSaidas}
+              Total Saidas R$ {}
             </CardTitle>
           </CardFooter>
         </Card>
@@ -77,7 +71,7 @@ export default function CashOverview() {
               </Button>
               <CashFlow open={open} onOpenChange={setOpen}/>
               <span className="text-right text-2xl">
-                Total em Caixa <span className="text-green-700 ml-2">R$ {(totalEntradas - totalSaidas <= 0 ? "0,00": totalEntradas - totalSaidas)}</span> 
+                Total em Caixa <span className="text-green-700 ml-2">R$ {0.00}</span>
               </span>
             </div>
           </CardFooter>
