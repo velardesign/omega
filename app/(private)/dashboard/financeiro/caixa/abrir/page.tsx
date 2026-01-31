@@ -5,7 +5,7 @@ import {Button} from "@/components/ui/button";
 import {DoorOpen} from "lucide-react";
 import {useEffect, useState} from "react";
 import CashFlowOpen from "@/components/modals/cash/cash-flow-open";
-import {todasSaidas} from "@/actions/caixa-action";
+import {todasSaidas, todasEntradas, carregarResumoCaixa} from "@/actions/caixa-action";
 
 interface SaidasDTO {
     tipo: string
@@ -14,46 +14,74 @@ interface SaidasDTO {
     valor: number
 }
 
+interface EntradaDTO {
+    tipo: string | TipoEntrada;
+    responsavel: string;
+    data_hora: Date;
+    valor: number;
+}
+
+interface ResumoCaixa {
+    valoresCaixaAtual: ValoresCaixa,
+    saldoAcumulado: number,
+    entradasAcumuladas: number,
+    saidasAcumuladas: number,
+}
+
 export default function CashFlowOpenPage() {
     const [open, setOpen] = useState(false);
-    const [data, setData] = useState<SaidasDTO[]>([]);
+    const [listaTodasSaidas, setListaTodasSaidas] = useState<SaidasDTO[]>([]);
+    const [listaTodasEntradas, setListaTodasEntradas] = useState<EntradaDTO[]>([]);
+    const [valorTotalEntradas, setValorTotalEntradas] = useState(0.00);
+    const [valorTotalSaidas, setValorTotalSaidas] = useState(0.00);
+    const [saldoCaixa, setSaldoCaixa] = useState(0.00);
 
-    async function carregarListaSaidas() {
-        const listaSaidasTodosCaixas = await todasSaidas();
-        setData(listaSaidasTodosCaixas);
+
+    async function carregar() {
+        const [listaSaidasTodosCaixas, listaEntradaTodosCaixas, resumoCaixa] = await Promise.all([
+            todasSaidas(),
+            todasEntradas(),
+            carregarResumoCaixa()
+        ]);
+
+        setListaTodasSaidas(listaSaidasTodosCaixas);
+        setListaTodasEntradas(listaEntradaTodosCaixas);
+        setValorTotalSaidas(resumoCaixa.saidasAcumuladas);
+        setValorTotalEntradas(resumoCaixa.entradasAcumuladas);
+        setSaldoCaixa(resumoCaixa.saldoAcumulado);
         return;
     }
 
     useEffect(() => {
-        carregarListaSaidas().catch((error) => console.error("Erro ao carregar saidas: ", error));
+        carregar().catch((error) => console.error("Error ao carregar informaçõe do caixa", error));
     }, []);
 
     return (
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
             <div className="grid auto-rows-min gap-4 md:grid-cols-2">
-                <Card className="flex flex-col h-70">
+                <Card className="flex flex-col h-95">
                     <CardHeader>
                         <CardTitle>Entradas Todos os Caixas</CardTitle>
                     </CardHeader>
                     <CardContent className="flex-1 overflow-y-auto">
-                        <TableCash data={data} corTexto={"text-green-700"}/>
+                        <TableCash data={listaTodasEntradas} corTexto={"text-green-700"}/>
                     </CardContent>
                     <CardFooter>
                         <CardTitle className="text-green-700">
-                            Total Entradas: R$ {0.00}
+                            Total Entradas: R$ {valorTotalEntradas.toFixed(2)}
                         </CardTitle>
                     </CardFooter>
                 </Card>
-                <Card className="flex flex-col h-70">
+                <Card className="flex flex-col h-95">
                     <CardHeader>
                         <CardTitle>Saidas Todos os Caixas</CardTitle>
                     </CardHeader>
                     <CardContent className="flex-1 overflow-y-auto">
-                        <TableCash data={data} corTexto={"text-red-400"} />
+                        <TableCash data={listaTodasSaidas} corTexto={"text-red-400"}/>
                     </CardContent>
                     <CardFooter>
                         <CardTitle className="text-red-400">
-                            Total Saidas R$ {0.00}
+                            Total Saidas R$ - {valorTotalSaidas.toFixed(2)}
                         </CardTitle>
                     </CardFooter>
                 </Card>
@@ -65,14 +93,14 @@ export default function CashFlowOpenPage() {
                     </CardHeader>
                     <CardContent>
                         <div className="grid grid-cols-2 gap-2 justify-end text-right ml-auto w-max  text-2xl">
-                            <span className="text-left">Dinheiro</span>
-                            <span className="font-medium text-cyan-500">R$ 0,00</span>
+                            <span className="text-left"></span>
+                            <span className="font-medium text-cyan-500"></span>
 
-                            <span className="text-left">Pix</span>
-                            <span className="font-medium text-cyan-500">R$ 0,00</span>
+                            <span className="text-left"></span>
+                            <span className="font-medium text-cyan-500"></span>
 
-                            <span className="text-left">Cartão</span>
-                            <span className="font-medium text-cyan-500">R$ 0,00</span>
+                            <span className="text-left"></span>
+                            <span className="font-medium text-cyan-500"></span>
                         </div>
                     </CardContent>
                     <CardFooter>
@@ -84,7 +112,7 @@ export default function CashFlowOpenPage() {
                             <CashFlowOpen open={open} onOpenChange={setOpen}/>
                             <span className="text-right text-2xl">Total
                                 <span className="text-green-700 ml-2">
-                                    R$ {0.00}
+                                    R$ {saldoCaixa.toFixed(2)}
                                 </span>
                             </span>
                         </div>

@@ -1,3 +1,4 @@
+"use client"
 import {
     Table,
     TableBody,
@@ -35,7 +36,7 @@ export default function TableCash({data, corTexto}: TableCashProps) {
                                     maximumFractionDigits: 2
                                 })}</TableCell>
                                 <TableCell className="text-left">{c.data_hora.toLocaleString("pt-BR")}</TableCell>
-                                <TableCell className="text-left">{c.tipo}</TableCell>
+                                <TableCell className="text-left">{c.tipo.toString()}</TableCell>
                             </TableRow>
                         );
                     })}

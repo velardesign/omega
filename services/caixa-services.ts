@@ -2,9 +2,11 @@ import {
     getCaixa,
     listaTodasEntradasDoDia,
     listaTodasSaidas,
-    listaTodasSaidasDoDia
+    listaTodasSaidasDoDia,
+    listaTodasEntradas
 } from "@/repository/caixa-repository";
 import {Prisma} from "@/generated/prisma/client";
+
 
 interface Autorizacao {
     valor: string;
@@ -16,6 +18,13 @@ interface SaidaDTO {
     responsavel: string,
     data_hora: Date,
     valor: number,
+}
+
+interface EntradaDTO {
+    tipo: string | TipoEntrada;
+    responsavel: string;
+    data_hora: Date;
+    valor: number;
 }
 
 export async function getValoresCaixaDia(autorizacao: Autorizacao): Promise<ValoresCaixa> {
@@ -67,9 +76,40 @@ export async function getSaidasTodosCaixas(): Promise<SaidaDTO[]> {
                 responsavel: saida.responsavel,
                 data_hora: saida.data_hora,
                 valor: saida.valor.toNumber()
-            }));
+            })
+        );
         return listaSaidasDTO;
     } catch (error) {
         return [];
     }
+}
+
+export async function getEntradasTodosCaixas(): Promise<EntradaDTO[]> {
+    try {
+        const listaEntradas = await listaTodasEntradas();
+
+        const listaEntradasDTO = listaEntradas.map(
+            (entrada) => ({
+                tipo: entrada.tipo,
+                responsavel: entrada.responsavel,
+                data_hora: entrada.data_hora,
+                valor: entrada.valor.toNumber()
+            })
+        );
+        return listaEntradasDTO;
+    } catch (error) {
+        return [];
+    }
+}
+
+export async function getEntradasDoDia() {
+    const dataHoje = new Date();
+    dataHoje.setHours(0, 0, 0, 0);
+    return listaTodasEntradasDoDia(dataHoje);
+}
+
+export async function getSaidasDoDia() {
+    const dataHoje = new Date();
+    dataHoje.setHours(0, 0, 0, 0);
+    return listaTodasSaidasDoDia(dataHoje);
 }

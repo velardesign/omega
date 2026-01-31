@@ -1,5 +1,5 @@
 export interface TableCashData {
-    tipo: string,
+    tipo: string | TipoEntrada,
     responsavel: string,
     data_hora: Date,
     valor: number,

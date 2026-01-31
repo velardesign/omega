@@ -7,8 +7,10 @@ import {useEffect, useState} from "react";
 import {carregarResumoCaixa} from "@/actions/caixa-action";
 
 interface ResumoCaixa {
-    valoresCaixa: ValoresCaixa;
-    valoresTodosCaixas: number;
+    valoresCaixaAtual: ValoresCaixa,
+    saldoAcumulado: number,
+    entradasAcumuladas: number,
+    saidasAcumuladas: number,
 }
 
 export default function Home() {
@@ -28,11 +30,12 @@ export default function Home() {
 
     if (!data) {
         return null
-    };
+    }
+    ;
 
     return (
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-            <FinancialOverview valoresCaixa={data.valoresCaixa} valoresTodosCaixas={data.valoresTodosCaixas}/>
+            <FinancialOverview valoresCaixa={data.valoresCaixaAtual} valoresTodosCaixas={data.saldoAcumulado}/>
             <Separator/>
             <SalesFunnelCard stages={salesFunnelMock}/>
         </div>

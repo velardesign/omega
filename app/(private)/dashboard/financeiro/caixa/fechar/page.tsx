@@ -1,3 +1,4 @@
+"use client"
 import CashOverview from "@/components/cash/cash-overview";
 import { Separator } from "@/components/ui/separator";
 

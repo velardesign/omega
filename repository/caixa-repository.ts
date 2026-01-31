@@ -230,3 +230,20 @@ export async function listaTodasSaidas() {
         return [];
     }
 }
+
+export async function listaTodasEntradas() {
+    try {
+        const entradas = await prisma.entrada.findMany({
+            orderBy: {
+                data_hora: 'asc',
+            }
+        })
+
+        return entradas;
+
+    } catch (error) {
+
+        console.error("Error ao encontrar entradas: ", error);
+        return [];
+    }
+}
