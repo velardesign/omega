@@ -75,7 +75,7 @@ export default function CashOverview() {
                     </CardContent>
                     <CardFooter>
                         <CardTitle className="text-green-700">
-                            Total Entradas R$ {}
+                            Total Entradas R$ {resumoCaixaAtual?.valoresCaixaAtual.totalEntradas.toFixed(2)}
                         </CardTitle>
                     </CardFooter>
                 </Card>
@@ -84,11 +84,11 @@ export default function CashOverview() {
                         <CardTitle>Lista de Saidas</CardTitle>
                     </CardHeader>
                     <CardContent className="flex-1 overflow-y-auto">
-                        {/*<TableCash data={} />*/}
+                        <TableCash data={listaSaidas} corTexto={"text-red-400"} />
                     </CardContent>
                     <CardFooter>
                         <CardTitle className="text-red-400">
-                            Total Saidas R$ {}
+                            Total Saidas R$ - {resumoCaixaAtual?.valoresCaixaAtual.totalSaidas.toFixed(2)}
                         </CardTitle>
                     </CardFooter>
                 </Card>
@@ -118,7 +118,7 @@ export default function CashOverview() {
                             </Button>
                             <CashFlow open={open} onOpenChange={setOpen}/>
                             <span className="text-right text-2xl">
-                Total em Caixa <span className="text-green-700 ml-2">R$ {0.00}</span>
+                Total em Caixa <span className="text-green-700 ml-2">R$ {resumoCaixaAtual?.valoresCaixaAtual.total.toFixed()}</span>
               </span>
                         </div>
                     </CardFooter>
