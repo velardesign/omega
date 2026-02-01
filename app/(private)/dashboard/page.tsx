@@ -2,7 +2,7 @@
 import FinancialOverview from "@/components/dashboard/financial-overview";
 import SalesFunnelCard from "@/components/dashboard/sales-funnel-card";
 import {Separator} from "@/components/ui/separator";
-import {salesFunnelMock} from "@/mocks/sales-funnel-mocks";
+import {salesFunnelMock} from "@/__tests__/mocks/sales-funnel-mocks";
 import {useEffect, useState} from "react";
 import {carregarResumoCaixa} from "@/actions/caixa-action";
 

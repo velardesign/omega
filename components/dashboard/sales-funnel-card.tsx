@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { FunnelStage } from "@/types/dashboard-types";
+import { FunnelStage } from "@/src/domain/types/dashboard-types";
 import TableSaleFunnel from "./table-sale-funnel";
 
 export default function SalesFunnelCard({ stages }: { stages: FunnelStage[] }) {

@@ -6,31 +6,11 @@ import {DoorOpen} from "lucide-react";
 import {useEffect, useState} from "react";
 import CashFlowOpen from "@/components/modals/cash/cash-flow-open";
 import {todasSaidas, todasEntradas, carregarResumoCaixa} from "@/actions/caixa-action";
-
-interface SaidasDTO {
-    tipo: string
-    responsavel: string
-    data_hora: Date
-    valor: number
-}
-
-interface EntradaDTO {
-    tipo: string | TipoEntrada;
-    responsavel: string;
-    data_hora: Date;
-    valor: number;
-}
-
-interface ResumoCaixa {
-    valoresCaixaAtual: ValoresCaixa,
-    saldoAcumulado: number,
-    entradasAcumuladas: number,
-    saidasAcumuladas: number,
-}
+import {EntradaDTO,SaidaDTO} from "@/src/domain/types/caixa-types";
 
 export default function CashFlowOpenPage() {
     const [open, setOpen] = useState(false);
-    const [listaTodasSaidas, setListaTodasSaidas] = useState<SaidasDTO[]>([]);
+    const [listaTodasSaidas, setListaTodasSaidas] = useState<SaidaDTO[]>([]);
     const [listaTodasEntradas, setListaTodasEntradas] = useState<EntradaDTO[]>([]);
     const [valorTotalEntradas, setValorTotalEntradas] = useState(0.00);
     const [valorTotalSaidas, setValorTotalSaidas] = useState(0.00);

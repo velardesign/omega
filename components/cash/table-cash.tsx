@@ -8,7 +8,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import {TableCashData} from "@/types/cash-types";
+import {TableCashData} from "@/src/domain/types/cash-types";
 
 interface TableCashProps{
     data: TableCashData[];
@@ -36,7 +36,7 @@ export default function TableCash({data, corTexto}: TableCashProps) {
                                     maximumFractionDigits: 2
                                 })}</TableCell>
                                 <TableCell className="text-left">{c.data_hora.toLocaleString("pt-BR")}</TableCell>
-                                <TableCell className="text-left">{c.tipo.toString()}</TableCell>
+                                <TableCell className="text-left">{c.tipo}</TableCell>
                             </TableRow>
                         );
                     })}

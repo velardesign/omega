@@ -14,14 +14,8 @@ import {useEffect, useState} from "react";
 import CashFlow from "../modals/cash/cash-flow";
 import {carregarResumoCaixa, todasEntradasDoDia, todasSaidaDoDia} from "@/actions/caixa-action";
 import TableCash from "@/components/cash/table-cash";
-import {TableCashData} from "@/types/cash-types";
-
-interface ResumoCaixa {
-    valoresCaixaAtual: ValoresCaixa,
-    saldoAcumulado: number,
-    entradasAcumuladas: number,
-    saidasAcumuladas: number,
-}
+import {TableCashData} from "@/src/domain/types/cash-types";
+import {ResumoCaixa} from "@/src/domain/types/caixa-types";
 
 export default function CashOverview() {
     const [open, setOpen] = useState(false);

@@ -1,22 +1,22 @@
-import {describe, it, expect, beforeEach} from "vitest";
+import {describe, it, expect, beforeEach, afterEach} from "vitest";
 import {prisma} from "@/lib/prisma";
-import {
-    getCaixa,
-    addEntrada,
-    addSaida,
-    listaTodasSaidasDoDia,
-    listaTodasEntradasDoDia
-} from "@/repository/caixa-repository";
 import {TipoEntrada} from "@/generated/prisma/enums";
-import {getValoresCaixaDia} from "@/services/caixa-services";
+import {CaixaPrismaRepository} from "@/src/infra/prisma/repositories/caixa-prisma-repository";
+import {CaixaService} from "@/src/application/services/caixa-services";
+
 
 if (process.env.NODE_ENV === "production") {
     throw new Error("Testes não podem rodar em produção!");
 }
 
+const repository = new CaixaPrismaRepository();
+const service = CaixaService.getInstance();
+
 async function limparBanco() {
     await prisma.entrada.deleteMany();
     await prisma.saida.deleteMany();
+    await prisma.abertura.deleteMany();
+    await prisma.fechamento.deleteMany();
     await prisma.caixa.deleteMany();
 }
 
@@ -45,7 +45,7 @@ async function criarEntradas() {
     ]
 
     for (const entrada of entradas) {
-        await addEntrada(entrada);
+        await repository.addEntrada(entrada);
     }
     return entradas;
 }
@@ -75,7 +75,7 @@ async function criarSaidas() {
     ]
 
     for (const saida of saidas) {
-        await addSaida(saida);
+        await repository.addSaida(saida);
     }
     return saidas;
 }
@@ -85,14 +85,22 @@ const autorizacao = {
     valor: "Autorizado para teste",
 }
 
-describe("Caixa", () => {
+describe("Caixa Repository", () => {
     beforeEach(async () => {
         await limparBanco()
     });
 
+    afterEach(async () => {
+        await limparBanco();
+        await repository.getCaixa(autorizacao);
+        await criarSaidas();
+        await criarEntradas();
+    });
+
+
     it("deve criar o caixa do dia", async () => {
 
-        const caixa = await getCaixa(autorizacao);
+        const caixa = await repository.getCaixa(autorizacao);
 
         expect(caixa).toBeDefined();
         expect(caixa?.id).toBeTruthy();
@@ -100,12 +108,12 @@ describe("Caixa", () => {
 
     it("deve adicionar uma entrada ao caixa", async () => {
 
-        await getCaixa(autorizacao);
+        await repository.getCaixa(autorizacao);
 
-        await addEntrada({
+        await repository.addEntrada({
             tipo: TipoEntrada.PIX,
             responsavel: "Teste",
-            valor: 100,
+            valor: 100.0,
         });
 
         const entradas = await prisma.entrada.findMany();
@@ -117,9 +125,9 @@ describe("Caixa", () => {
 
     it("deve adicionar uma saida ao caixa", async () => {
 
-        await getCaixa(autorizacao);
+        await repository.getCaixa(autorizacao);
 
-        await addSaida({
+        await repository.addSaida({
             tipo: "Conta de Consumo",
             responsavel: "Anderson Andrade",
             valor: 1000.0,
@@ -140,14 +148,14 @@ describe("Caixa", () => {
             valor: "Autorizado por Senha",
         }
 
-        await getCaixa(autorizacao);
+        await repository.getCaixa(autorizacao);
 
         const saidas = await criarSaidas();
 
         const dataHoje = new Date();
         dataHoje.setHours(0, 0, 0, 0);
 
-        const saidasBuscadas = await listaTodasSaidasDoDia(dataHoje);
+        const saidasBuscadas = await repository.listarSaidasDoDia(dataHoje);
 
         expect(saidasBuscadas).toBeDefined();
         expect(saidasBuscadas).toHaveLength(saidas.length);
@@ -163,11 +171,11 @@ describe("Caixa", () => {
 
         await limparBanco();
 
-        await getCaixa(autorizacao);
+        await repository.getCaixa(autorizacao);
 
         const entradas = await criarEntradas();
 
-        const entradasBuscadas = await listaTodasEntradasDoDia(dataHoje);
+        const entradasBuscadas = await repository.listarEntradasDoDia(dataHoje);
 
         expect(entradasBuscadas).toBeDefined();
         expect(entradasBuscadas).toHaveLength(entradas.length);
@@ -177,10 +185,22 @@ describe("Caixa", () => {
 
     });
 
+    it("valor do caixa sem entrada nem saida deve devolver total = 0.00 tota saida = 0.00 e total entradas = 0.00",
+        async () => {
+            await limparBanco();
+            await repository.getCaixa(autorizacao);
+
+            const valoresCaixa = await service.getValoresCaixaDia(autorizacao);
+
+            expect(valoresCaixa.total).toEqual(0.00);
+            expect(valoresCaixa.totalEntradas).toEqual(0.00);
+            expect(valoresCaixa.totalSaidas).toEqual(0.00);
+        });
+
     it("deve mostrar a soma de todas as saida e entradas do dia e um total do caixa", async () => {
         await limparBanco();
 
-        await getCaixa(autorizacao);
+        await service.abrirCaixa(autorizacao);
 
         const entradas = await criarEntradas();
         const saidas = await criarSaidas();
@@ -188,28 +208,26 @@ describe("Caixa", () => {
         const somaEntradas = entradas.reduce((soma, entrada) => {
             return soma + entrada.valor;
         }, Number(0));
+
         const somaSaidas = saidas.reduce((soma, saida) => {
             return soma + saida.valor;
         }, Number(0));
+
         const entradasMenosSaidas = somaEntradas - somaSaidas;
 
-        const caixaDoDia = await getValoresCaixaDia(autorizacao);
+        const caixaDoDia = await service.getValoresCaixaDia(autorizacao);
 
         expect(caixaDoDia.totalSaidas).toEqual(somaSaidas);
         expect(caixaDoDia.totalEntradas).toEqual(somaEntradas);
         expect(caixaDoDia.total).toEqual(entradasMenosSaidas);
 
     });
+    it("deve fechar o caixa e enviar um aviso de sucesso", async () => {
+        await limparBanco();
+        await service.abrirCaixa(autorizacao);
+        const mensagem:{sucesso:string ,erro:string} = await service.fecharCaixa(autorizacao);
+        const mensagemComparacao = "Caixa Fechado Com Sucesso!";
+        expect(mensagem.sucesso).equals(mensagemComparacao);
 
-    it("valor do caixa sem entrada nem saida deve devolver total = 0.00 tota saida = 0.00 e total entradas = 0.00",
-        async () => {
-            await limparBanco();
-            await getCaixa(autorizacao);
-
-            const valoresCaixa = await getValoresCaixaDia(autorizacao);
-
-            expect(valoresCaixa.total).toEqual(0.00);
-            expect(valoresCaixa.totalEntradas).toEqual(0.00);
-            expect(valoresCaixa.totalSaidas).toEqual(0.00);
-        });
+    });
 });

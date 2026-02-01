@@ -1,7 +1,9 @@
+import {TipoEntrada} from "@/generated/prisma/enums";
+
 export interface TableCashData {
     tipo: string | TipoEntrada,
     responsavel: string,
-    data_hora: Date,
+    data_hora?: Date,
     valor: number,
 }
 

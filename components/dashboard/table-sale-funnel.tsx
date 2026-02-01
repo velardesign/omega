@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { TableFunelData } from "@/types/dashboard-types";
+import { TableFunelData } from "@/src/domain/types/dashboard-types";
 
 export default function TableSaleFunnel({ data }: { data: TableFunelData[] }) {
   return (

@@ -1,4 +1,4 @@
-import { FunnelStage } from "@/types/dashboard-types";
+import { FunnelStage } from "@/src/domain/types/dashboard-types";
 
 const mockDate = (daysAgo: number) => {
   const d = new Date();
