@@ -38,11 +38,11 @@ export async function carregarResumoCaixa() {
 }
 
 export async function todasSaidaDoDia() {
-return service.getSaidasDoDia();
+    return service.getSaidasDoDia();
 }
 
 export async function todasEntradasDoDia() {
-return service.getEntradasDoDia();
+    return service.getEntradasDoDia();
 }
 
 export async function todasSaidas() {
@@ -51,4 +51,8 @@ export async function todasSaidas() {
 
 export async function todasEntradas() {
     return await service.getEntradasTodosCaixas();
+}
+
+export async function caixaDoDia() {
+    return await service.getCaixaDoDia({valor: "ADM", responsavel: "Sistema"});
 }

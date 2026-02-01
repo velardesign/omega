@@ -5,8 +5,9 @@ import {Button} from "@/components/ui/button";
 import {DoorOpen} from "lucide-react";
 import {useEffect, useState} from "react";
 import CashFlowOpen from "@/components/modals/cash/cash-flow-open";
-import {todasSaidas, todasEntradas, carregarResumoCaixa} from "@/actions/caixa-action";
-import {EntradaDTO,SaidaDTO} from "@/src/domain/types/caixa-types";
+import {todasSaidas, todasEntradas, carregarResumoCaixa, caixaDoDia} from "@/actions/caixa-action";
+import {EntradaDTO, SaidaDTO} from "@/src/domain/types/caixa-types";
+import {setInterval} from "node:timers";
 
 export default function CashFlowOpenPage() {
     const [open, setOpen] = useState(false);
@@ -15,13 +16,15 @@ export default function CashFlowOpenPage() {
     const [valorTotalEntradas, setValorTotalEntradas] = useState(0.00);
     const [valorTotalSaidas, setValorTotalSaidas] = useState(0.00);
     const [saldoCaixa, setSaldoCaixa] = useState(0.00);
+    const [caixaAberto, setCaixaAberto] = useState(true);
 
 
     async function carregar() {
-        const [listaSaidasTodosCaixas, listaEntradaTodosCaixas, resumoCaixa] = await Promise.all([
+        const [listaSaidasTodosCaixas, listaEntradaTodosCaixas, resumoCaixa, caixa] = await Promise.all([
             todasSaidas(),
             todasEntradas(),
-            carregarResumoCaixa()
+            carregarResumoCaixa(),
+            caixaDoDia(),
         ]);
 
         setListaTodasSaidas(listaSaidasTodosCaixas);
@@ -29,12 +32,21 @@ export default function CashFlowOpenPage() {
         setValorTotalSaidas(resumoCaixa.saidasAcumuladas);
         setValorTotalEntradas(resumoCaixa.entradasAcumuladas);
         setSaldoCaixa(resumoCaixa.saldoAcumulado);
+
+        if (!caixa) {
+            setCaixaAberto(false);
+            return;
+        }
+
+        setCaixaAberto(!!caixa.abertura && !!caixa.fechamento);
         return;
     }
 
     useEffect(() => {
         carregar().catch((error) => console.error("Error ao carregar informaçõe do caixa", error));
-    }, []);
+        const id = setInterval(carregar, 30000);
+        return clearInterval(id);
+    }, [caixaAberto]);
 
     return (
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
@@ -72,20 +84,26 @@ export default function CashFlowOpenPage() {
                         <CardTitle>Total de Valores em Caixa</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="grid grid-cols-2 gap-2 justify-end text-right ml-auto w-max  text-2xl">
-                            <span className="text-left"></span>
-                            <span className="font-medium text-cyan-500"></span>
+                         {caixaAberto ? (
+                            <div className="flex flex-col items-center justify-center gap-2 w-full text-center">
+                                <span className="font-medium">
+                                    Operação não permitida.
+                                </span>
 
-                            <span className="text-left"></span>
-                            <span className="font-medium text-cyan-500"></span>
+                                <span className="font-medium">
+                                   O caixa já foi aberto hoje.
+                                </span>
 
-                            <span className="text-left"></span>
-                            <span className="font-medium text-cyan-500"></span>
-                        </div>
+                            </div>
+                        ) : null}
                     </CardContent>
                     <CardFooter>
                         <div className="flex w-full items-center justify-between">
-                            <Button variant={"outline"} onClick={() => setOpen(true)}>
+                            <Button
+                                variant={"outline"}
+                                onClick={() => setOpen(true)}
+                                disabled={caixaAberto}
+                            >
                                 <DoorOpen className="w-8 h-8 mr-2 text-blue-500"/>
                                 Abrir Caixa
                             </Button>

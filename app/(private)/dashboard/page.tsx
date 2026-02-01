@@ -5,6 +5,7 @@ import {Separator} from "@/components/ui/separator";
 import {salesFunnelMock} from "@/__tests__/mocks/sales-funnel-mocks";
 import {useEffect, useState} from "react";
 import {carregarResumoCaixa} from "@/actions/caixa-action";
+import {ValoresCaixa} from "@/src/domain/types/caixa-types";
 
 interface ResumoCaixa {
     valoresCaixaAtual: ValoresCaixa,
