@@ -1,6 +1,7 @@
 import {CalendarDays, FileChartColumn, MinusCircle, PlusCircle, Wallet} from "lucide-react";
 import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "../ui/card";import {Separator} from "../ui/separator";
 import {Button} from "../ui/button";
+import {ValoresCaixa} from "@/src/domain/types/caixa-types";
 
 interface FinancialOverviewProps {
     valoresCaixa: ValoresCaixa,
