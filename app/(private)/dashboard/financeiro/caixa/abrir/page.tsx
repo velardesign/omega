@@ -16,7 +16,7 @@ export default function CashFlowOpenPage() {
     const [valorTotalEntradas, setValorTotalEntradas] = useState(0.00);
     const [valorTotalSaidas, setValorTotalSaidas] = useState(0.00);
     const [saldoCaixa, setSaldoCaixa] = useState(0.00);
-    const [caixaAberto, setCaixaAberto] = useState(true);
+    const [bloquearBotao, setBloquearBotao] = useState(true);
 
 
     async function carregar() {
@@ -34,11 +34,19 @@ export default function CashFlowOpenPage() {
         setSaldoCaixa(resumoCaixa.saldoAcumulado);
 
         if (!caixa) {
-            setCaixaAberto(false);
+            setBloquearBotao(false);
             return;
         }
 
-        setCaixaAberto(!!caixa.abertura && !!caixa.fechamento);
+        if (caixa.abertura != null && caixa.fechamento != null) {
+            setBloquearBotao(true);
+            return;
+        }
+
+        if (caixa.abertura != null) {
+            setBloquearBotao(true);
+            return;
+        }
         return;
     }
 
@@ -46,7 +54,7 @@ export default function CashFlowOpenPage() {
         carregar().catch((error) => console.error("Error ao carregar informaçõe do caixa", error));
         const id = setInterval(carregar, 30000);
         return clearInterval(id);
-    }, [caixaAberto]);
+    }, [bloquearBotao]);
 
     return (
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
@@ -84,7 +92,7 @@ export default function CashFlowOpenPage() {
                         <CardTitle>Total de Valores em Caixa</CardTitle>
                     </CardHeader>
                     <CardContent>
-                         {caixaAberto ? (
+                        {bloquearBotao ? (
                             <div className="flex flex-col items-center justify-center gap-2 w-full text-center">
                                 <span className="font-medium">
                                     Operação não permitida.
@@ -102,7 +110,7 @@ export default function CashFlowOpenPage() {
                             <Button
                                 variant={"outline"}
                                 onClick={() => setOpen(true)}
-                                disabled={caixaAberto}
+                                disabled={bloquearBotao}
                             >
                                 <DoorOpen className="w-8 h-8 mr-2 text-blue-500"/>
                                 Abrir Caixa

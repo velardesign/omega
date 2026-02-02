@@ -50,7 +50,7 @@ export default function CashOverview() {
         }))
 
         if (caixa) {
-            setCaixaFechado(caixa.abertura != null && caixa.fechamento != null);
+            setCaixaFechado(!!caixa.abertura && !!caixa.fechamento);
         }
 
         setResumoCaixaAtual(resumoCaixa);
