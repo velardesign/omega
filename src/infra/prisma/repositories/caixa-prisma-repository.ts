@@ -17,7 +17,7 @@ export class CaixaPrismaRepository implements CaixaRepository {
 
     async addEntrada(entrada: EntradaDTO): Promise<void> {
         try {
-            const caixaDoDia = await this.verificaCaixaDoDia();
+            const caixaDoDia = await this.verificaCaixaDoDia(new Date());
 
             if (!caixaDoDia) {
                 throw new Error("Caixa do Dia Não Encontrado!");
@@ -52,7 +52,10 @@ export class CaixaPrismaRepository implements CaixaRepository {
 
     async addSaida(saida: SaidaDTO): Promise<void> {
         try {
-            const caixaDoDia = await this.verificaCaixaDoDia();
+            const dataHoje = new Date(
+
+            );
+            const caixaDoDia = await this.verificaCaixaDoDia(new Date());
 
             if (!caixaDoDia) {
                 throw new Error("Caixa do Dia Não Encontrado!");
@@ -85,22 +88,22 @@ export class CaixaPrismaRepository implements CaixaRepository {
 
     }
 
-    async getCaixa(autorizacao: Autorizacao): Promise<CaixaComAberturaFechamento | null> {
+    async abrirCaixa(autorizacao: Autorizacao): Promise<void> {
 
         try {
-            const caixa = await this.verificaCaixaDoDia();
+            const caixa = await this.verificaCaixaDoDia(new Date());
 
-
-            if (caixa) {
-                return caixa;
+            if (!caixa) {
+                await this.criaCaixaDoDia(autorizacao);
+                return
             }
 
-            return await this.criaCaixaDoDia(autorizacao);
         } catch
             (error) {
             console.error("Erro ao abrir caixa: ", error);
-            return null;
+            return;
         }
+        return;
     }
 
     async listarEntradasDoDia(data: Date): Promise<EntradaDTO[]> {
@@ -173,7 +176,7 @@ export class CaixaPrismaRepository implements CaixaRepository {
 
     async fecharCaixa(autorizacao: Autorizacao): Promise<CaixaComAberturaFechamento | null> {
         try {
-            const caixaDoDia = await this.verificaCaixaDoDia();
+            const caixaDoDia = await this.verificaCaixaDoDia(new Date());
 
             if (!caixaDoDia) {
                 throw new Error("Caixa do dia não encontrado!");
@@ -211,6 +214,14 @@ export class CaixaPrismaRepository implements CaixaRepository {
         }
     }
 
+    async getCaixa(data: Date) {
+        const caixa = await this.verificaCaixaDoDia(data);
+        if (!caixa) {
+            return null;
+        }
+        return caixa;
+    }
+
     private async criaCaixaDoDia(autorizacao: Autorizacao): Promise<CaixaComAberturaFechamento | null> {
         return await prisma.caixa.create({
             data: {
@@ -229,9 +240,8 @@ export class CaixaPrismaRepository implements CaixaRepository {
         });
     }
 
-    private async verificaCaixaDoDia(): Promise<CaixaComAberturaFechamento | null> {
-        const hoje = new Date();
-        const intervalo = this.getIntervaloDoDia(hoje);
+    private async verificaCaixaDoDia(data: Date): Promise<CaixaComAberturaFechamento | null> {
+        const intervalo = this.getIntervaloDoDia(data);
         return await prisma.caixa.findFirst({
             where: {
                 abertura: {

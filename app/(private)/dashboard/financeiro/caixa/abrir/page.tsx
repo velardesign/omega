@@ -7,7 +7,6 @@ import {useEffect, useState} from "react";
 import CashFlowOpen from "@/components/modals/cash/cash-flow-open";
 import {todasSaidas, todasEntradas, carregarResumoCaixa, caixaDoDia} from "@/actions/caixa-action";
 import {EntradaDTO, SaidaDTO} from "@/src/domain/types/caixa-types";
-import {setInterval} from "node:timers";
 
 export default function CashFlowOpenPage() {
     const [open, setOpen] = useState(false);
@@ -16,7 +15,7 @@ export default function CashFlowOpenPage() {
     const [valorTotalEntradas, setValorTotalEntradas] = useState(0.00);
     const [valorTotalSaidas, setValorTotalSaidas] = useState(0.00);
     const [saldoCaixa, setSaldoCaixa] = useState(0.00);
-    const [bloquearBotao, setBloquearBotao] = useState(true);
+    const [bloquearBotao, setBloquearBotao] = useState(false);
 
 
     async function carregar() {
@@ -53,7 +52,7 @@ export default function CashFlowOpenPage() {
     useEffect(() => {
         carregar().catch((error) => console.error("Error ao carregar informaçõe do caixa", error));
         const id = setInterval(carregar, 30000);
-        return clearInterval(id);
+        return () => clearInterval(id);
     }, [bloquearBotao]);
 
     return (

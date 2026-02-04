@@ -11,11 +11,13 @@ export interface CaixaRepository {
 
     listarTodasSaidas(): Promise<SaidaDTO[]>;
 
-    getCaixa(autorizacao: Autorizacao): Promise<CaixaComAberturaFechamento | null>;
+    abrirCaixa(autorizacao: Autorizacao): Promise<void>;
 
     addEntrada(entrada: EntradaDTO): Promise<void>;
 
     addSaida(saida: SaidaDTO): Promise<void>;
 
-    fecharCaixa(autorizacao:Autorizacao):Promise<CaixaComAberturaFechamento | null>;
+    fecharCaixa(autorizacao: Autorizacao): Promise<CaixaComAberturaFechamento | null>;
+
+    getCaixa(data: Date): Promise<CaixaComAberturaFechamento | null>;
 }

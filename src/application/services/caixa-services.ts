@@ -7,9 +7,10 @@ interface EntradasSaidas {
     entradas: EntradaDTO[];
     saidas: SaidaDTO[];
 }
-export interface Mensagem{
-    sucesso:string;
-    erro:string;
+
+export interface Mensagem {
+    sucesso: string;
+    erro: string;
 }
 
 export class CaixaService {
@@ -52,28 +53,28 @@ export class CaixaService {
     }
 
     async adicionaEntrada(entrada: EntradaDTO) {
-        await this.caixaRepo.addEntrada(entrada).catch((error)=> console.error("Erro ao adicionar entrada", error));
+        await this.caixaRepo.addEntrada(entrada).catch((error) => console.error("Erro ao adicionar entrada", error));
     }
 
-    async adicionarSaida(saida:SaidaDTO){
-        await this.caixaRepo.addSaida(saida).catch((error)=> console.error("Erro ao adicionar saida", error))
+    async adicionarSaida(saida: SaidaDTO) {
+        await this.caixaRepo.addSaida(saida).catch((error) => console.error("Erro ao adicionar saida", error))
     }
 
-    async getCaixaDoDia(autorizacao:Autorizacao){
-        return this.caixaRepo.getCaixa(autorizacao);
+    async getCaixaDoDia(autorizacao: Autorizacao) {
+        return this.caixaRepo.getCaixa(new Date());
     }
 
     async abrirCaixa(autorizacao: Autorizacao) {
-        await this.caixaRepo.getCaixa(autorizacao);
+        await this.caixaRepo.abrirCaixa(autorizacao);
     }
 
-    async fecharCaixa(autorizacao:Autorizacao):Promise<Mensagem> {
+    async fecharCaixa(autorizacao: Autorizacao): Promise<Mensagem> {
         try {
             await this.caixaRepo.fecharCaixa(autorizacao);
-            return {sucesso:"Caixa Fechado Com Sucesso!",erro:""};
-        }catch (error){
-            console.error("Erro ao fechar o caixa",error);
-            return {sucesso:"",erro:"Erro ao Fechar Caixa!"};
+            return {sucesso: "Caixa Fechado Com Sucesso!", erro: ""};
+        } catch (error) {
+            console.error("Erro ao fechar o caixa", error);
+            return {sucesso: "", erro: "Erro ao Fechar Caixa!"};
         }
 
     }

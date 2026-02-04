@@ -16,8 +16,6 @@ import {caixaDoDia, carregarResumoCaixa, todasEntradasDoDia, todasSaidaDoDia} fr
 import TableCash from "@/components/cash/table-cash";
 import {TableCashData} from "@/src/domain/types/cash-types";
 import {ResumoCaixa} from "@/src/domain/types/caixa-types";
-import {clearInterval, setInterval} from "node:timers";
-import {hidden} from "next/dist/lib/picocolors";
 
 export default function CashOverview() {
     const [open, setOpen] = useState(false);

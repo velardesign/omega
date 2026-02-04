@@ -92,15 +92,13 @@ describe("Caixa Repository", () => {
 
     afterEach(async () => {
         await limparBanco();
-        await repository.getCaixa(autorizacao);
-        await criarSaidas();
-        await criarEntradas();
     });
 
 
     it("deve criar o caixa do dia", async () => {
 
-        const caixa = await repository.getCaixa(autorizacao);
+        await repository.abrirCaixa(autorizacao);
+        const caixa = await repository.getCaixa(new Date());
 
         expect(caixa).toBeDefined();
         expect(caixa?.id).toBeTruthy();
@@ -108,7 +106,7 @@ describe("Caixa Repository", () => {
 
     it("deve adicionar uma entrada ao caixa", async () => {
 
-        await repository.getCaixa(autorizacao);
+        await repository.abrirCaixa(autorizacao);
 
         await repository.addEntrada({
             tipo: TipoEntrada.PIX,
@@ -125,7 +123,7 @@ describe("Caixa Repository", () => {
 
     it("deve adicionar uma saida ao caixa", async () => {
 
-        await repository.getCaixa(autorizacao);
+        await repository.abrirCaixa(autorizacao);
 
         await repository.addSaida({
             tipo: "Conta de Consumo",
@@ -148,7 +146,7 @@ describe("Caixa Repository", () => {
             valor: "Autorizado por Senha",
         }
 
-        await repository.getCaixa(autorizacao);
+        await repository.abrirCaixa(autorizacao);
 
         const saidas = await criarSaidas();
 
@@ -171,7 +169,7 @@ describe("Caixa Repository", () => {
 
         await limparBanco();
 
-        await repository.getCaixa(autorizacao);
+        await repository.abrirCaixa(autorizacao);
 
         const entradas = await criarEntradas();
 
@@ -188,7 +186,7 @@ describe("Caixa Repository", () => {
     it("valor do caixa sem entrada nem saida deve devolver total = 0.00 tota saida = 0.00 e total entradas = 0.00",
         async () => {
             await limparBanco();
-            await repository.getCaixa(autorizacao);
+            await repository.abrirCaixa(autorizacao);
 
             const valoresCaixa = await service.getValoresCaixaDia(autorizacao);
 

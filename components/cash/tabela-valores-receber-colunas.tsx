@@ -25,7 +25,18 @@ export type Payment = {
 export const columns: ColumnDef<Payment>[] = [
     {
         accessorKey: "status",
-        header: "Status",
+        header: ({column}) =>{
+            return(
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted()==="asc")}
+                >
+                  Status
+                  <ArrowUpDown className={"ml-2 h-4 w-4"}/>
+              </Button>
+
+            );
+        },
     },
     {
         accessorKey: "email",
@@ -35,7 +46,7 @@ export const columns: ColumnDef<Payment>[] = [
                     variant="ghost"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
-                    Email
+                    Cliente
                     <ArrowUpDown className="ml-2 h-4 w-4"/>
                 </Button>
             )
@@ -43,12 +54,12 @@ export const columns: ColumnDef<Payment>[] = [
     },
     {
         accessorKey: "amount",
-        header: () => <div className="text-right">Amount</div>,
+        header: () => <div className="text-right">Valor em Aberto</div>,
         cell: ({row}) => {
             const amount = parseFloat(row.getValue("amount"))
-            const formatted = new Intl.NumberFormat("en-US", {
+            const formatted = new Intl.NumberFormat("pt-BR", {
                 style: "currency",
-                currency: "USD",
+                currency: "BRL",
             }).format(amount)
 
             return <div className="text-right font-medium">{formatted}</div>
