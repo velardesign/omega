@@ -15,9 +15,10 @@ export interface Mensagem {
 
 export class CaixaService {
     private static instance: CaixaService;
-    private caixaRepo = new CaixaPrismaRepository();
+    private caixaRepo:CaixaPrismaRepository;
 
     private constructor() {
+        this.caixaRepo = new CaixaPrismaRepository();
     }
 
     static getInstance(): CaixaService {
@@ -53,7 +54,7 @@ export class CaixaService {
     }
 
     async adicionaEntrada(entrada: EntradaDTO) {
-        await this.caixaRepo.addEntrada(entrada).catch((error) => console.error("Erro ao adicionar entrada", error));
+        await this.caixaRepo.addEntrada(entrada);
     }
 
     async adicionarSaida(saida: SaidaDTO) {

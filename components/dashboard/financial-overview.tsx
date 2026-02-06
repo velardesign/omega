@@ -1,14 +1,18 @@
 import {CalendarDays, FileChartColumn, MinusCircle, PlusCircle, Wallet} from "lucide-react";
-import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "../ui/card";import {Separator} from "../ui/separator";
+import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "../ui/card";
+import {Separator} from "../ui/separator";
 import {Button} from "../ui/button";
 import {ValoresCaixa} from "@/src/domain/types/caixa-types";
+import {useState} from "react";
+import {DialogAddEntrada} from "@/components/dashboard/dialog-add-entrada";
 
 interface FinancialOverviewProps {
     valoresCaixa: ValoresCaixa,
-    valoresTodosCaixas:number
+    valoresTodosCaixas: number
 }
 
-export default function FinancialOverview({valoresCaixa,valoresTodosCaixas}: FinancialOverviewProps) {
+export default function FinancialOverview({valoresCaixa, valoresTodosCaixas}: FinancialOverviewProps) {
+    const [open, setOpen] = useState(false);
     return (
         <div className="grid auto-rows-min gap-4 md:grid-cols-4">
             <Card>
@@ -48,9 +52,15 @@ export default function FinancialOverview({valoresCaixa,valoresTodosCaixas}: Fin
                     <span className="text-center text-2xl">R$ {valoresCaixa.totalEntradas.toFixed(2)}</span>
                 </CardContent>
                 <CardFooter>
-                    <Button variant="outline" size="icon" title="Adicionar Entrada">
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        title="Adicionar Entrada"
+                        onClick={() => setOpen(true)}
+                    >
                         <PlusCircle className="w-6 h-6 text-green-600"/>
                     </Button>
+                    <DialogAddEntrada usuario={{nome:"Anderson"}} open={open} onOpenChange={setOpen}/>
                 </CardFooter>
             </Card>
             <Card>

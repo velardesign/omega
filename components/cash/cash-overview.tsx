@@ -126,10 +126,11 @@ export default function CashOverview() {
                                 Fechar Caixa
                             </Button>
                             <CashFlow open={open} onOpenChange={setOpen}/>
-                            <span className="text-right text-2xl">
-                Total em Caixa <span
-                                className="text-green-700 ml-2">R$ {resumoCaixaAtual?.valoresCaixaAtual.total.toFixed()}</span>
-              </span>
+                            <span className="text-right text-2xl">Total em Caixa
+                                <span className="text-green-700 ml-2">
+                                    R$ {resumoCaixaAtual?.valoresCaixaAtual.total.toFixed()}
+                                </span>
+                            </span>
                         </div>
                     </CardFooter>
                 </Card>

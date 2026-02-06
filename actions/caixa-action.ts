@@ -1,5 +1,5 @@
 "use server"
-import {Autorizacao} from "@/src/domain/types/caixa-types";
+import {Autorizacao, EntradaDTO} from "@/src/domain/types/caixa-types";
 import {CaixaService} from "@/src/application/services/caixa-services";
 
 const service = CaixaService.getInstance();
@@ -55,4 +55,8 @@ export async function todasEntradas() {
 
 export async function caixaDoDia() {
     return await service.getCaixaDoDia({valor: "ADM", responsavel: "Sistema"});
+}
+
+export async function addEntrada(entrada:EntradaDTO){
+    return await service.adicionaEntrada(entrada);
 }
