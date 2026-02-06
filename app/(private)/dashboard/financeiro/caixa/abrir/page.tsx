@@ -67,7 +67,10 @@ export default function CashFlowOpenPage() {
                     </CardContent>
                     <CardFooter>
                         <CardTitle className="text-green-700">
-                            Total Entradas: R$ {valorTotalEntradas.toFixed(2)}
+                            Total Entradas: R$ {valorTotalEntradas.toLocaleString("pt-BR", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                        })}
                         </CardTitle>
                     </CardFooter>
                 </Card>
@@ -80,7 +83,10 @@ export default function CashFlowOpenPage() {
                     </CardContent>
                     <CardFooter>
                         <CardTitle className="text-red-400">
-                            Total Saidas R$ - {valorTotalSaidas.toFixed(2)}
+                            Total Saidas R$ - {valorTotalSaidas.toLocaleString("pt-BR", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        })}
                         </CardTitle>
                     </CardFooter>
                 </Card>
@@ -117,7 +123,10 @@ export default function CashFlowOpenPage() {
                             <CashFlowOpen open={open} onOpenChange={setOpen}/>
                             <span className="text-right text-2xl">Total
                                 <span className="text-green-700 ml-2">
-                                    R$ {saldoCaixa.toFixed(2)}
+                                    R$ {saldoCaixa.toLocaleString("pt-BR", {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2,
+                                })}
                                 </span>
                             </span>
                         </div>

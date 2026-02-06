@@ -82,3 +82,18 @@ export type Abertura = Prisma.AberturaModel
  * 
  */
 export type Fechamento = Prisma.FechamentoModel
+/**
+ * Model Venda
+ * 
+ */
+export type Venda = Prisma.VendaModel
+/**
+ * Model Produto
+ * 
+ */
+export type Produto = Prisma.ProdutoModel
+/**
+ * Model Pagamento
+ * 
+ */
+export type Pagamento = Prisma.PagamentoModel

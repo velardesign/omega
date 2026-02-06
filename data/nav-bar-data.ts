@@ -146,7 +146,7 @@ export const navFinance = [
         url: "#",
       },
       {
-        title: "Contas de Consulmo",
+        title: "Contas de Consumo",
         url: "#",
       },
       {

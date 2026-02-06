@@ -58,7 +58,7 @@ export class CaixaService {
     }
 
     async adicionarSaida(saida: SaidaDTO) {
-        await this.caixaRepo.addSaida(saida).catch((error) => console.error("Erro ao adicionar saida", error))
+        await this.caixaRepo.addSaida(saida);
     }
 
     async getCaixaDoDia(autorizacao: Autorizacao) {

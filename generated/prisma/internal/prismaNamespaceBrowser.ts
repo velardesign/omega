@@ -63,7 +63,10 @@ export const ModelName = {
   Entrada: 'Entrada',
   Saida: 'Saida',
   Abertura: 'Abertura',
-  Fechamento: 'Fechamento'
+  Fechamento: 'Fechamento',
+  Venda: 'Venda',
+  Produto: 'Produto',
+  Pagamento: 'Pagamento'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -198,7 +201,8 @@ export const EntradaScalarFieldEnum = {
   responsavel: 'responsavel',
   data_hora: 'data_hora',
   valor: 'valor',
-  caixa_id: 'caixa_id'
+  caixa_id: 'caixa_id',
+  pagamento_id: 'pagamento_id'
 } as const
 
 export type EntradaScalarFieldEnum = (typeof EntradaScalarFieldEnum)[keyof typeof EntradaScalarFieldEnum]
@@ -236,6 +240,36 @@ export const FechamentoScalarFieldEnum = {
 } as const
 
 export type FechamentoScalarFieldEnum = (typeof FechamentoScalarFieldEnum)[keyof typeof FechamentoScalarFieldEnum]
+
+
+export const VendaScalarFieldEnum = {
+  id: 'id',
+  data_hora: 'data_hora',
+  responsavel: 'responsavel',
+  cliente_id: 'cliente_id',
+  pagamentoId: 'pagamentoId'
+} as const
+
+export type VendaScalarFieldEnum = (typeof VendaScalarFieldEnum)[keyof typeof VendaScalarFieldEnum]
+
+
+export const ProdutoScalarFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  descricao: 'descricao',
+  preco_venda: 'preco_venda',
+  preco_compra: 'preco_compra',
+  venda_id: 'venda_id'
+} as const
+
+export type ProdutoScalarFieldEnum = (typeof ProdutoScalarFieldEnum)[keyof typeof ProdutoScalarFieldEnum]
+
+
+export const PagamentoScalarFieldEnum = {
+  id: 'id'
+} as const
+
+export type PagamentoScalarFieldEnum = (typeof PagamentoScalarFieldEnum)[keyof typeof PagamentoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -353,7 +387,8 @@ export type CaixaOrderByRelevanceFieldEnum = (typeof CaixaOrderByRelevanceFieldE
 export const EntradaOrderByRelevanceFieldEnum = {
   id: 'id',
   responsavel: 'responsavel',
-  caixa_id: 'caixa_id'
+  caixa_id: 'caixa_id',
+  pagamento_id: 'pagamento_id'
 } as const
 
 export type EntradaOrderByRelevanceFieldEnum = (typeof EntradaOrderByRelevanceFieldEnum)[keyof typeof EntradaOrderByRelevanceFieldEnum]
@@ -387,4 +422,31 @@ export const FechamentoOrderByRelevanceFieldEnum = {
 } as const
 
 export type FechamentoOrderByRelevanceFieldEnum = (typeof FechamentoOrderByRelevanceFieldEnum)[keyof typeof FechamentoOrderByRelevanceFieldEnum]
+
+
+export const VendaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  responsavel: 'responsavel',
+  cliente_id: 'cliente_id',
+  pagamentoId: 'pagamentoId'
+} as const
+
+export type VendaOrderByRelevanceFieldEnum = (typeof VendaOrderByRelevanceFieldEnum)[keyof typeof VendaOrderByRelevanceFieldEnum]
+
+
+export const ProdutoOrderByRelevanceFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  descricao: 'descricao',
+  venda_id: 'venda_id'
+} as const
+
+export type ProdutoOrderByRelevanceFieldEnum = (typeof ProdutoOrderByRelevanceFieldEnum)[keyof typeof ProdutoOrderByRelevanceFieldEnum]
+
+
+export const PagamentoOrderByRelevanceFieldEnum = {
+  id: 'id'
+} as const
+
+export type PagamentoOrderByRelevanceFieldEnum = (typeof PagamentoOrderByRelevanceFieldEnum)[keyof typeof PagamentoOrderByRelevanceFieldEnum]
 

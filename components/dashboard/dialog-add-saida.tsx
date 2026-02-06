@@ -3,13 +3,13 @@ import {Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTi
 import {Field, FieldDescription, FieldGroup, FieldSet} from "@/components/ui/field";
 import {Input} from "@/components/ui/input";
 import React, {useState} from "react";
-import {addEntrada} from "@/actions/caixa-action";
-import {EntradaDTO} from "@/src/domain/types/caixa-types";
+import {addSaida} from "@/actions/caixa-action";
+import {SaidaDTO} from "@/src/domain/types/caixa-types";
 import {TipoEntrada} from "@/generated/prisma/enums";
 import CashAlertDialog from "@/components/cash/cash-alert-dialog";
 
 
-interface DialogAddEntradaProps {
+interface DialogAddSaidaProps {
     usuario: {
         nome: string;
     };
@@ -17,31 +17,22 @@ interface DialogAddEntradaProps {
     onOpenChange: (open: boolean) => void;
 }
 
-export function DialogAddEntrada({usuario, open, onOpenChange}: DialogAddEntradaProps) {
+export function DialogAddSaida({usuario, open, onOpenChange}: DialogAddSaidaProps) {
 
     const [valor, setValor] = useState<string>("");
     const [tipo, setTipo] = useState<string>("");
     const [openAlert, setOpenAlert] = useState(false);
     const [openAlertErro, setOpenAlertErro] = useState(false);
 
-
-    const convertStringEnum = (str: string): TipoEntrada | undefined => {
-        if (str.toUpperCase() === "PIX") return TipoEntrada.PIX;
-        if (str.toUpperCase() === "DINHEIRO") return TipoEntrada.DINHEIRO;
-        if (str.toUpperCase() === "CARTÂO") return TipoEntrada.CARTAO;
-        if (str.toUpperCase() === "TRANSFERÊNCIA") return TipoEntrada.TRANSFERENCIA;
-        return undefined;
-    }
-
     const handleSubmit = () => {
         if (valor === "" || !usuario) return;
 
-        const entrada: EntradaDTO = {
+        const saida: SaidaDTO = {
             valor: Number(valor.replaceAll(",",".")),
-            tipo: convertStringEnum(tipo)!,
+            tipo: tipo,
             responsavel: usuario.nome,
         }
-        addEntrada(entrada)
+        addSaida(saida)
             .then(() => {
                 onOpenChange(false);
                 setOpenAlert(true);
@@ -70,7 +61,7 @@ export function DialogAddEntrada({usuario, open, onOpenChange}: DialogAddEntrada
                     onPointerDownOutside={(e) => e.preventDefault()}
                 >
                     <DialogHeader>
-                        <DialogTitle>Adicionar Entrada</DialogTitle>
+                        <DialogTitle>Adicionar Saida</DialogTitle>
                     </DialogHeader>
 
                     <FieldSet>
@@ -86,13 +77,13 @@ export function DialogAddEntrada({usuario, open, onOpenChange}: DialogAddEntrada
                             <Field>
                                 <Input
                                     type="text"
-                                    placeholder="Tipo da Entrada"
+                                    placeholder="Tipo da Saida"
                                     onChange={(e) => setTipo(e.target.value)}
                                     onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
                                 />
                                 <Input
                                     type="text"
-                                    placeholder="Valor da Entrada"
+                                    placeholder="Valor da Saida"
                                     onChange={(e) => setValor(e.target.value)}
                                     onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
                                 />
@@ -100,7 +91,7 @@ export function DialogAddEntrada({usuario, open, onOpenChange}: DialogAddEntrada
                                     <span className="text-red-500 font-bold mr-1">
                                         Aviso importante:
                                     </span>
-                                    Utilize para entradas rapidas no caixa.
+                                    Utilize para saidas rapidas no caixa.
                                 </FieldDescription>
                             </Field>
                         </FieldGroup>
@@ -119,7 +110,7 @@ export function DialogAddEntrada({usuario, open, onOpenChange}: DialogAddEntrada
                         <Button
                             onClick={handleSubmit}
                         >
-                            Adicionar Entrada
+                            Adicionar Saida
                         </Button>
                     </DialogFooter>
                 </DialogContent>
@@ -128,13 +119,13 @@ export function DialogAddEntrada({usuario, open, onOpenChange}: DialogAddEntrada
                 open={openAlert}
                 onOpenChange={setOpenAlert}
                 titulo={"Sucesso"}
-                mensagem={"Entrada Adicionada Com Sucesso!"}
+                mensagem={"Saida Adicionada Com Sucesso!"}
             />
             <CashAlertDialog
                 open={openAlertErro}
                 onOpenChange={setOpenAlertErro}
                 titulo={"Erro"}
-                mensagem={"Erro ao Adicionar Entrada!"}
+                mensagem={"Erro ao Adicionar Saida!"}
             />
         </>
     );

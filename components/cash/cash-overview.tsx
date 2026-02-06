@@ -61,7 +61,7 @@ export default function CashOverview() {
 
     useEffect(() => {
         carrega().catch((error) => console.error("erro ao carregar dados: ", error));
-        const id = setInterval(carrega, 30000);
+        const id = setInterval(carrega, 3000);
         return () => clearInterval(id);
     }, [caixaFechado]);
 
@@ -78,7 +78,11 @@ export default function CashOverview() {
                     </CardContent>
                     <CardFooter>
                         <CardTitle className="text-green-700">
-                            Total Entradas R$ {resumoCaixaAtual?.valoresCaixaAtual.totalEntradas.toFixed(2)}
+                            Total Entradas
+                            R$ {resumoCaixaAtual?.valoresCaixaAtual.totalEntradas.toLocaleString("pt-BR", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                        })}
                         </CardTitle>
                     </CardFooter>
                 </Card>
@@ -91,7 +95,10 @@ export default function CashOverview() {
                     </CardContent>
                     <CardFooter>
                         <CardTitle className="text-red-400">
-                            Total Saidas R$ - {resumoCaixaAtual?.valoresCaixaAtual.totalSaidas.toFixed(2)}
+                            Total Saidas R$ - {resumoCaixaAtual?.valoresCaixaAtual.totalSaidas.toLocaleString("pt-BR", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                        })}
                         </CardTitle>
                     </CardFooter>
                 </Card>
@@ -128,7 +135,10 @@ export default function CashOverview() {
                             <CashFlow open={open} onOpenChange={setOpen}/>
                             <span className="text-right text-2xl">Total em Caixa
                                 <span className="text-green-700 ml-2">
-                                    R$ {resumoCaixaAtual?.valoresCaixaAtual.total.toFixed()}
+                                    R$ {resumoCaixaAtual?.valoresCaixaAtual.total.toLocaleString("pt-BR", {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2,
+                                })}
                                 </span>
                             </span>
                         </div>

@@ -5,6 +5,7 @@ import {Button} from "../ui/button";
 import {ValoresCaixa} from "@/src/domain/types/caixa-types";
 import {useState} from "react";
 import {DialogAddEntrada} from "@/components/dashboard/dialog-add-entrada";
+import {DialogAddSaida} from "@/components/dashboard/dialog-add-saida";
 
 interface FinancialOverviewProps {
     valoresCaixa: ValoresCaixa,
@@ -12,7 +13,8 @@ interface FinancialOverviewProps {
 }
 
 export default function FinancialOverview({valoresCaixa, valoresTodosCaixas}: FinancialOverviewProps) {
-    const [open, setOpen] = useState(false);
+    const [openEntrada, setOpenEntrada] = useState(false);
+    const [openSaida, setOpenSaida] = useState(false);
     return (
         <div className="grid auto-rows-min gap-4 md:grid-cols-4">
             <Card>
@@ -21,7 +23,10 @@ export default function FinancialOverview({valoresCaixa, valoresTodosCaixas}: Fi
                 </CardHeader>
                 <CardContent className="flex flex-1 flex-col items-center justify-center gap-4">
                     <Wallet className=" w-6 h-6 md:w-12 md:h-12 text-blue-500"/>
-                    <span className="text-center text-2xl">R$ {valoresTodosCaixas.toFixed(2)} </span>
+                    <span className="text-center text-2xl">R$ {valoresTodosCaixas.toLocaleString("pt-BR", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                    })} </span>
                 </CardContent>
                 <CardFooter>
                     <Button variant="outline" size="icon" title="Verificar Valores">
@@ -35,7 +40,10 @@ export default function FinancialOverview({valoresCaixa, valoresTodosCaixas}: Fi
                 </CardHeader>
                 <CardContent className="flex flex-1 flex-col items-center justify-center gap-4">
                     <CalendarDays className=" w-6 h-6 md:w-12 md:h-12 text-green-600"/>
-                    <span className="text-center text-2xl">R$ {valoresCaixa.total.toFixed(2)} </span>
+                    <span className="text-center text-2xl">R$ {valoresCaixa.total.toLocaleString("pt-BR", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                    })} </span>
                 </CardContent>
                 <CardFooter>
                     <Button variant="outline" size="icon" title="Verificar Caixa">
@@ -49,18 +57,21 @@ export default function FinancialOverview({valoresCaixa, valoresTodosCaixas}: Fi
                 </CardHeader>
                 <CardContent className="flex flex-1 flex-col items-center justify-center gap-4">
                     <PlusCircle className=" w-6 h-6 md:w-12 md:h-12 text-green-600"/>
-                    <span className="text-center text-2xl">R$ {valoresCaixa.totalEntradas.toFixed(2)}</span>
+                    <span className="text-center text-2xl">R$ {valoresCaixa.totalEntradas.toLocaleString("pt-BR",{
+                        minimumFractionDigits:2,
+                        maximumFractionDigits:2,
+                    })}</span>
                 </CardContent>
                 <CardFooter>
                     <Button
                         variant="outline"
                         size="icon"
                         title="Adicionar Entrada"
-                        onClick={() => setOpen(true)}
+                        onClick={() => setOpenEntrada(true)}
                     >
                         <PlusCircle className="w-6 h-6 text-green-600"/>
                     </Button>
-                    <DialogAddEntrada usuario={{nome:"Anderson"}} open={open} onOpenChange={setOpen}/>
+                    <DialogAddEntrada usuario={{nome: "Anderson"}} open={openEntrada} onOpenChange={setOpenEntrada}/>
                 </CardFooter>
             </Card>
             <Card>
@@ -69,12 +80,21 @@ export default function FinancialOverview({valoresCaixa, valoresTodosCaixas}: Fi
                 </CardHeader>
                 <CardContent className="flex flex-1 flex-col items-center justify-center gap-4">
                     <MinusCircle className=" w-6 h-6 md:w-12 md:h-12 text-red-500"/>
-                    <span className="text-center text-2xl">R$ - {valoresCaixa.totalSaidas.toFixed(2)} </span>
+                    <span className="text-center text-2xl">R$ - {valoresCaixa.totalSaidas.toLocaleString("pt-BR",{
+                        minimumFractionDigits:2,
+                        maximumFractionDigits:2,
+                    })} </span>
                 </CardContent>
                 <CardFooter>
-                    <Button variant="outline" size="icon" title="Adicionar Saida">
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        title="Adicionar Saida"
+                        onClick={() => setOpenSaida(true)}
+                    >
                         <MinusCircle className="w-6 h-6 text-red-500"/>
                     </Button>
+                    <DialogAddSaida usuario={{nome: "Anderson"}} open={openSaida} onOpenChange={setOpenSaida}/>
                 </CardFooter>
             </Card>
         </div>

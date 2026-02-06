@@ -1,5 +1,6 @@
-import {Decimal} from "@prisma/client-runtime-utils";
+
 import {TipoEntrada} from "@/generated/prisma/enums";
+import {Decimal} from "@prisma/client-runtime-utils";
 
 export interface ValoresCaixa {
     total: number;

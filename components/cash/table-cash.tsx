@@ -35,7 +35,7 @@ export default function TableCash({data, corTexto}: TableCashProps) {
                                     minimumFractionDigits: 2,
                                     maximumFractionDigits: 2
                                 })}</TableCell>
-                                <TableCell className="text-left">{c.data_hora.toLocaleString("pt-BR")}</TableCell>
+                                <TableCell className="text-left">{c.data_hora?.toLocaleString("pt-BR")}</TableCell>
                                 <TableCell className="text-left">{c.tipo}</TableCell>
                             </TableRow>
                         );

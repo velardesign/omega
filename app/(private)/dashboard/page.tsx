@@ -25,14 +25,13 @@ export default function Home() {
 
     useEffect(() => {
         carregar().catch((error) => console.log("erro ao buscar dados", error));
-        const id = setInterval(carregar, 30000)
+        const id = setInterval(carregar, 3000)
         return () => clearInterval(id);
     }, []);
 
     if (!data) {
         return null
     }
-    ;
 
     return (
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">

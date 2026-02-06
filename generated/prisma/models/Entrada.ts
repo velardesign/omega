@@ -41,6 +41,7 @@ export type EntradaMinAggregateOutputType = {
   data_hora: Date | null
   valor: runtime.Decimal | null
   caixa_id: string | null
+  pagamento_id: string | null
 }
 
 export type EntradaMaxAggregateOutputType = {
@@ -50,6 +51,7 @@ export type EntradaMaxAggregateOutputType = {
   data_hora: Date | null
   valor: runtime.Decimal | null
   caixa_id: string | null
+  pagamento_id: string | null
 }
 
 export type EntradaCountAggregateOutputType = {
@@ -59,6 +61,7 @@ export type EntradaCountAggregateOutputType = {
   data_hora: number
   valor: number
   caixa_id: number
+  pagamento_id: number
   _all: number
 }
 
@@ -78,6 +81,7 @@ export type EntradaMinAggregateInputType = {
   data_hora?: true
   valor?: true
   caixa_id?: true
+  pagamento_id?: true
 }
 
 export type EntradaMaxAggregateInputType = {
@@ -87,6 +91,7 @@ export type EntradaMaxAggregateInputType = {
   data_hora?: true
   valor?: true
   caixa_id?: true
+  pagamento_id?: true
 }
 
 export type EntradaCountAggregateInputType = {
@@ -96,6 +101,7 @@ export type EntradaCountAggregateInputType = {
   data_hora?: true
   valor?: true
   caixa_id?: true
+  pagamento_id?: true
   _all?: true
 }
 
@@ -192,6 +198,7 @@ export type EntradaGroupByOutputType = {
   data_hora: Date
   valor: runtime.Decimal
   caixa_id: string
+  pagamento_id: string | null
   _count: EntradaCountAggregateOutputType | null
   _avg: EntradaAvgAggregateOutputType | null
   _sum: EntradaSumAggregateOutputType | null
@@ -224,7 +231,9 @@ export type EntradaWhereInput = {
   data_hora?: Prisma.DateTimeFilter<"Entrada"> | Date | string
   valor?: Prisma.DecimalFilter<"Entrada"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   caixa_id?: Prisma.StringFilter<"Entrada"> | string
+  pagamento_id?: Prisma.StringNullableFilter<"Entrada"> | string | null
   caixa?: Prisma.XOR<Prisma.CaixaScalarRelationFilter, Prisma.CaixaWhereInput>
+  pagamento?: Prisma.XOR<Prisma.PagamentoNullableScalarRelationFilter, Prisma.PagamentoWhereInput> | null
 }
 
 export type EntradaOrderByWithRelationInput = {
@@ -234,7 +243,9 @@ export type EntradaOrderByWithRelationInput = {
   data_hora?: Prisma.SortOrder
   valor?: Prisma.SortOrder
   caixa_id?: Prisma.SortOrder
+  pagamento_id?: Prisma.SortOrderInput | Prisma.SortOrder
   caixa?: Prisma.CaixaOrderByWithRelationInput
+  pagamento?: Prisma.PagamentoOrderByWithRelationInput
   _relevance?: Prisma.EntradaOrderByRelevanceInput
 }
 
@@ -248,7 +259,9 @@ export type EntradaWhereUniqueInput = Prisma.AtLeast<{
   data_hora?: Prisma.DateTimeFilter<"Entrada"> | Date | string
   valor?: Prisma.DecimalFilter<"Entrada"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   caixa_id?: Prisma.StringFilter<"Entrada"> | string
+  pagamento_id?: Prisma.StringNullableFilter<"Entrada"> | string | null
   caixa?: Prisma.XOR<Prisma.CaixaScalarRelationFilter, Prisma.CaixaWhereInput>
+  pagamento?: Prisma.XOR<Prisma.PagamentoNullableScalarRelationFilter, Prisma.PagamentoWhereInput> | null
 }, "id">
 
 export type EntradaOrderByWithAggregationInput = {
@@ -258,6 +271,7 @@ export type EntradaOrderByWithAggregationInput = {
   data_hora?: Prisma.SortOrder
   valor?: Prisma.SortOrder
   caixa_id?: Prisma.SortOrder
+  pagamento_id?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EntradaCountOrderByAggregateInput
   _avg?: Prisma.EntradaAvgOrderByAggregateInput
   _max?: Prisma.EntradaMaxOrderByAggregateInput
@@ -275,6 +289,7 @@ export type EntradaScalarWhereWithAggregatesInput = {
   data_hora?: Prisma.DateTimeWithAggregatesFilter<"Entrada"> | Date | string
   valor?: Prisma.DecimalWithAggregatesFilter<"Entrada"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   caixa_id?: Prisma.StringWithAggregatesFilter<"Entrada"> | string
+  pagamento_id?: Prisma.StringNullableWithAggregatesFilter<"Entrada"> | string | null
 }
 
 export type EntradaCreateInput = {
@@ -284,6 +299,7 @@ export type EntradaCreateInput = {
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
   caixa: Prisma.CaixaCreateNestedOneWithoutEntradasInput
+  pagamento?: Prisma.PagamentoCreateNestedOneWithoutEntradaInput
 }
 
 export type EntradaUncheckedCreateInput = {
@@ -293,6 +309,7 @@ export type EntradaUncheckedCreateInput = {
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
   caixa_id: string
+  pagamento_id?: string | null
 }
 
 export type EntradaUpdateInput = {
@@ -302,6 +319,7 @@ export type EntradaUpdateInput = {
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   caixa?: Prisma.CaixaUpdateOneRequiredWithoutEntradasNestedInput
+  pagamento?: Prisma.PagamentoUpdateOneWithoutEntradaNestedInput
 }
 
 export type EntradaUncheckedUpdateInput = {
@@ -311,6 +329,7 @@ export type EntradaUncheckedUpdateInput = {
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   caixa_id?: Prisma.StringFieldUpdateOperationsInput | string
+  pagamento_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EntradaCreateManyInput = {
@@ -320,6 +339,7 @@ export type EntradaCreateManyInput = {
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
   caixa_id: string
+  pagamento_id?: string | null
 }
 
 export type EntradaUpdateManyMutationInput = {
@@ -337,6 +357,7 @@ export type EntradaUncheckedUpdateManyInput = {
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   caixa_id?: Prisma.StringFieldUpdateOperationsInput | string
+  pagamento_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EntradaListRelationFilter = {
@@ -362,6 +383,7 @@ export type EntradaCountOrderByAggregateInput = {
   data_hora?: Prisma.SortOrder
   valor?: Prisma.SortOrder
   caixa_id?: Prisma.SortOrder
+  pagamento_id?: Prisma.SortOrder
 }
 
 export type EntradaAvgOrderByAggregateInput = {
@@ -375,6 +397,7 @@ export type EntradaMaxOrderByAggregateInput = {
   data_hora?: Prisma.SortOrder
   valor?: Prisma.SortOrder
   caixa_id?: Prisma.SortOrder
+  pagamento_id?: Prisma.SortOrder
 }
 
 export type EntradaMinOrderByAggregateInput = {
@@ -384,6 +407,7 @@ export type EntradaMinOrderByAggregateInput = {
   data_hora?: Prisma.SortOrder
   valor?: Prisma.SortOrder
   caixa_id?: Prisma.SortOrder
+  pagamento_id?: Prisma.SortOrder
 }
 
 export type EntradaSumOrderByAggregateInput = {
@@ -444,12 +468,55 @@ export type DecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type EntradaCreateNestedManyWithoutPagamentoInput = {
+  create?: Prisma.XOR<Prisma.EntradaCreateWithoutPagamentoInput, Prisma.EntradaUncheckedCreateWithoutPagamentoInput> | Prisma.EntradaCreateWithoutPagamentoInput[] | Prisma.EntradaUncheckedCreateWithoutPagamentoInput[]
+  connectOrCreate?: Prisma.EntradaCreateOrConnectWithoutPagamentoInput | Prisma.EntradaCreateOrConnectWithoutPagamentoInput[]
+  createMany?: Prisma.EntradaCreateManyPagamentoInputEnvelope
+  connect?: Prisma.EntradaWhereUniqueInput | Prisma.EntradaWhereUniqueInput[]
+}
+
+export type EntradaUncheckedCreateNestedManyWithoutPagamentoInput = {
+  create?: Prisma.XOR<Prisma.EntradaCreateWithoutPagamentoInput, Prisma.EntradaUncheckedCreateWithoutPagamentoInput> | Prisma.EntradaCreateWithoutPagamentoInput[] | Prisma.EntradaUncheckedCreateWithoutPagamentoInput[]
+  connectOrCreate?: Prisma.EntradaCreateOrConnectWithoutPagamentoInput | Prisma.EntradaCreateOrConnectWithoutPagamentoInput[]
+  createMany?: Prisma.EntradaCreateManyPagamentoInputEnvelope
+  connect?: Prisma.EntradaWhereUniqueInput | Prisma.EntradaWhereUniqueInput[]
+}
+
+export type EntradaUpdateManyWithoutPagamentoNestedInput = {
+  create?: Prisma.XOR<Prisma.EntradaCreateWithoutPagamentoInput, Prisma.EntradaUncheckedCreateWithoutPagamentoInput> | Prisma.EntradaCreateWithoutPagamentoInput[] | Prisma.EntradaUncheckedCreateWithoutPagamentoInput[]
+  connectOrCreate?: Prisma.EntradaCreateOrConnectWithoutPagamentoInput | Prisma.EntradaCreateOrConnectWithoutPagamentoInput[]
+  upsert?: Prisma.EntradaUpsertWithWhereUniqueWithoutPagamentoInput | Prisma.EntradaUpsertWithWhereUniqueWithoutPagamentoInput[]
+  createMany?: Prisma.EntradaCreateManyPagamentoInputEnvelope
+  set?: Prisma.EntradaWhereUniqueInput | Prisma.EntradaWhereUniqueInput[]
+  disconnect?: Prisma.EntradaWhereUniqueInput | Prisma.EntradaWhereUniqueInput[]
+  delete?: Prisma.EntradaWhereUniqueInput | Prisma.EntradaWhereUniqueInput[]
+  connect?: Prisma.EntradaWhereUniqueInput | Prisma.EntradaWhereUniqueInput[]
+  update?: Prisma.EntradaUpdateWithWhereUniqueWithoutPagamentoInput | Prisma.EntradaUpdateWithWhereUniqueWithoutPagamentoInput[]
+  updateMany?: Prisma.EntradaUpdateManyWithWhereWithoutPagamentoInput | Prisma.EntradaUpdateManyWithWhereWithoutPagamentoInput[]
+  deleteMany?: Prisma.EntradaScalarWhereInput | Prisma.EntradaScalarWhereInput[]
+}
+
+export type EntradaUncheckedUpdateManyWithoutPagamentoNestedInput = {
+  create?: Prisma.XOR<Prisma.EntradaCreateWithoutPagamentoInput, Prisma.EntradaUncheckedCreateWithoutPagamentoInput> | Prisma.EntradaCreateWithoutPagamentoInput[] | Prisma.EntradaUncheckedCreateWithoutPagamentoInput[]
+  connectOrCreate?: Prisma.EntradaCreateOrConnectWithoutPagamentoInput | Prisma.EntradaCreateOrConnectWithoutPagamentoInput[]
+  upsert?: Prisma.EntradaUpsertWithWhereUniqueWithoutPagamentoInput | Prisma.EntradaUpsertWithWhereUniqueWithoutPagamentoInput[]
+  createMany?: Prisma.EntradaCreateManyPagamentoInputEnvelope
+  set?: Prisma.EntradaWhereUniqueInput | Prisma.EntradaWhereUniqueInput[]
+  disconnect?: Prisma.EntradaWhereUniqueInput | Prisma.EntradaWhereUniqueInput[]
+  delete?: Prisma.EntradaWhereUniqueInput | Prisma.EntradaWhereUniqueInput[]
+  connect?: Prisma.EntradaWhereUniqueInput | Prisma.EntradaWhereUniqueInput[]
+  update?: Prisma.EntradaUpdateWithWhereUniqueWithoutPagamentoInput | Prisma.EntradaUpdateWithWhereUniqueWithoutPagamentoInput[]
+  updateMany?: Prisma.EntradaUpdateManyWithWhereWithoutPagamentoInput | Prisma.EntradaUpdateManyWithWhereWithoutPagamentoInput[]
+  deleteMany?: Prisma.EntradaScalarWhereInput | Prisma.EntradaScalarWhereInput[]
+}
+
 export type EntradaCreateWithoutCaixaInput = {
   id?: string
   tipo: $Enums.TipoEntrada
   responsavel: string
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pagamento?: Prisma.PagamentoCreateNestedOneWithoutEntradaInput
 }
 
 export type EntradaUncheckedCreateWithoutCaixaInput = {
@@ -458,6 +525,7 @@ export type EntradaUncheckedCreateWithoutCaixaInput = {
   responsavel: string
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pagamento_id?: string | null
 }
 
 export type EntradaCreateOrConnectWithoutCaixaInput = {
@@ -496,6 +564,51 @@ export type EntradaScalarWhereInput = {
   data_hora?: Prisma.DateTimeFilter<"Entrada"> | Date | string
   valor?: Prisma.DecimalFilter<"Entrada"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   caixa_id?: Prisma.StringFilter<"Entrada"> | string
+  pagamento_id?: Prisma.StringNullableFilter<"Entrada"> | string | null
+}
+
+export type EntradaCreateWithoutPagamentoInput = {
+  id?: string
+  tipo: $Enums.TipoEntrada
+  responsavel: string
+  data_hora?: Date | string
+  valor: runtime.Decimal | runtime.DecimalJsLike | number | string
+  caixa: Prisma.CaixaCreateNestedOneWithoutEntradasInput
+}
+
+export type EntradaUncheckedCreateWithoutPagamentoInput = {
+  id?: string
+  tipo: $Enums.TipoEntrada
+  responsavel: string
+  data_hora?: Date | string
+  valor: runtime.Decimal | runtime.DecimalJsLike | number | string
+  caixa_id: string
+}
+
+export type EntradaCreateOrConnectWithoutPagamentoInput = {
+  where: Prisma.EntradaWhereUniqueInput
+  create: Prisma.XOR<Prisma.EntradaCreateWithoutPagamentoInput, Prisma.EntradaUncheckedCreateWithoutPagamentoInput>
+}
+
+export type EntradaCreateManyPagamentoInputEnvelope = {
+  data: Prisma.EntradaCreateManyPagamentoInput | Prisma.EntradaCreateManyPagamentoInput[]
+  skipDuplicates?: boolean
+}
+
+export type EntradaUpsertWithWhereUniqueWithoutPagamentoInput = {
+  where: Prisma.EntradaWhereUniqueInput
+  update: Prisma.XOR<Prisma.EntradaUpdateWithoutPagamentoInput, Prisma.EntradaUncheckedUpdateWithoutPagamentoInput>
+  create: Prisma.XOR<Prisma.EntradaCreateWithoutPagamentoInput, Prisma.EntradaUncheckedCreateWithoutPagamentoInput>
+}
+
+export type EntradaUpdateWithWhereUniqueWithoutPagamentoInput = {
+  where: Prisma.EntradaWhereUniqueInput
+  data: Prisma.XOR<Prisma.EntradaUpdateWithoutPagamentoInput, Prisma.EntradaUncheckedUpdateWithoutPagamentoInput>
+}
+
+export type EntradaUpdateManyWithWhereWithoutPagamentoInput = {
+  where: Prisma.EntradaScalarWhereInput
+  data: Prisma.XOR<Prisma.EntradaUpdateManyMutationInput, Prisma.EntradaUncheckedUpdateManyWithoutPagamentoInput>
 }
 
 export type EntradaCreateManyCaixaInput = {
@@ -504,6 +617,7 @@ export type EntradaCreateManyCaixaInput = {
   responsavel: string
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pagamento_id?: string | null
 }
 
 export type EntradaUpdateWithoutCaixaInput = {
@@ -512,6 +626,7 @@ export type EntradaUpdateWithoutCaixaInput = {
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pagamento?: Prisma.PagamentoUpdateOneWithoutEntradaNestedInput
 }
 
 export type EntradaUncheckedUpdateWithoutCaixaInput = {
@@ -520,6 +635,7 @@ export type EntradaUncheckedUpdateWithoutCaixaInput = {
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pagamento_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EntradaUncheckedUpdateManyWithoutCaixaInput = {
@@ -528,6 +644,43 @@ export type EntradaUncheckedUpdateManyWithoutCaixaInput = {
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pagamento_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type EntradaCreateManyPagamentoInput = {
+  id?: string
+  tipo: $Enums.TipoEntrada
+  responsavel: string
+  data_hora?: Date | string
+  valor: runtime.Decimal | runtime.DecimalJsLike | number | string
+  caixa_id: string
+}
+
+export type EntradaUpdateWithoutPagamentoInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoEntradaFieldUpdateOperationsInput | $Enums.TipoEntrada
+  responsavel?: Prisma.StringFieldUpdateOperationsInput | string
+  data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  caixa?: Prisma.CaixaUpdateOneRequiredWithoutEntradasNestedInput
+}
+
+export type EntradaUncheckedUpdateWithoutPagamentoInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoEntradaFieldUpdateOperationsInput | $Enums.TipoEntrada
+  responsavel?: Prisma.StringFieldUpdateOperationsInput | string
+  data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  caixa_id?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type EntradaUncheckedUpdateManyWithoutPagamentoInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumTipoEntradaFieldUpdateOperationsInput | $Enums.TipoEntrada
+  responsavel?: Prisma.StringFieldUpdateOperationsInput | string
+  data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  caixa_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -539,7 +692,9 @@ export type EntradaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   data_hora?: boolean
   valor?: boolean
   caixa_id?: boolean
+  pagamento_id?: boolean
   caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
+  pagamento?: boolean | Prisma.Entrada$pagamentoArgs<ExtArgs>
 }, ExtArgs["result"]["entrada"]>
 
 
@@ -551,17 +706,20 @@ export type EntradaSelectScalar = {
   data_hora?: boolean
   valor?: boolean
   caixa_id?: boolean
+  pagamento_id?: boolean
 }
 
-export type EntradaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tipo" | "responsavel" | "data_hora" | "valor" | "caixa_id", ExtArgs["result"]["entrada"]>
+export type EntradaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tipo" | "responsavel" | "data_hora" | "valor" | "caixa_id" | "pagamento_id", ExtArgs["result"]["entrada"]>
 export type EntradaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
+  pagamento?: boolean | Prisma.Entrada$pagamentoArgs<ExtArgs>
 }
 
 export type $EntradaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Entrada"
   objects: {
     caixa: Prisma.$CaixaPayload<ExtArgs>
+    pagamento: Prisma.$PagamentoPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -570,6 +728,7 @@ export type $EntradaPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     data_hora: Date
     valor: runtime.Decimal
     caixa_id: string
+    pagamento_id: string | null
   }, ExtArgs["result"]["entrada"]>
   composites: {}
 }
@@ -911,6 +1070,7 @@ readonly fields: EntradaFieldRefs;
 export interface Prisma__EntradaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   caixa<T extends Prisma.CaixaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CaixaDefaultArgs<ExtArgs>>): Prisma.Prisma__CaixaClient<runtime.Types.Result.GetResult<Prisma.$CaixaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  pagamento<T extends Prisma.Entrada$pagamentoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entrada$pagamentoArgs<ExtArgs>>): Prisma.Prisma__PagamentoClient<runtime.Types.Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -946,6 +1106,7 @@ export interface EntradaFieldRefs {
   readonly data_hora: Prisma.FieldRef<"Entrada", 'DateTime'>
   readonly valor: Prisma.FieldRef<"Entrada", 'Decimal'>
   readonly caixa_id: Prisma.FieldRef<"Entrada", 'String'>
+  readonly pagamento_id: Prisma.FieldRef<"Entrada", 'String'>
 }
     
 
@@ -1286,6 +1447,25 @@ export type EntradaDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Entradas to delete.
    */
   limit?: number
+}
+
+/**
+ * Entrada.pagamento
+ */
+export type Entrada$pagamentoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Pagamento
+   */
+  select?: Prisma.PagamentoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Pagamento
+   */
+  omit?: Prisma.PagamentoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PagamentoInclude<ExtArgs> | null
+  where?: Prisma.PagamentoWhereInput
 }
 
 /**
