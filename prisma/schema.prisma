@@ -72,7 +72,7 @@ model Cliente {
   id         String      @id @default(uuid())
   nome       String
   sobrenome  String
-  cod        String?
+  cod        String      @unique
   contatos   Contato[]
   documentos Documento[]
   enderecos  Endereco[]
@@ -187,34 +187,47 @@ model Fechamento {
 }
 
 model Venda {
-  id          String    @id @default(uuid())
-  data_hora   DateTime  @default(now())
+  id          String   @id @default(uuid())
+  data_hora   DateTime @default(now())
   responsavel String
   cliente_id  String
-  cliente     Cliente   @relation(fields: [cliente_id], references: [id], onDelete: Cascade)
-  produtos    Produto[]
-  pagamentoId String    @unique
-  pagamento   Pagamento @relation(fields: [pagamentoId], references: [id])
+  cliente     Cliente  @relation(fields: [cliente_id], references: [id], onDelete: Cascade)
+
+  pagamentoId String      @unique
+  pagamento   Pagamento   @relation(fields: [pagamentoId], references: [id])
+  itensVenda  ItemVenda[]
 
   @@map("venda")
 }
 
+model ItemVenda {
+  id          String  @id @default(uuid())
+  quantidade  Decimal @db.Decimal(10, 3)
+  preco_venda Decimal
+  ambiente    String?
+  observacao  String?
+
+  venda_id   String
+  venda      Venda   @relation(fields: [venda_id], references: [id], onDelete: Cascade)
+  produto_id String
+  produto    Produto @relation(fields: [produto_id], references: [id])
+}
+
 model Produto {
-  id           String  @id @default(uuid())
-  codigo       String  @unique
+  id           String      @id @default(uuid())
+  codigo       String      @unique
   descricao    String
   preco_venda  Decimal
   preco_compra Decimal
-  venda_id     String
-  venda        Venda   @relation(fields: [venda_id], references: [id], onDelete: Cascade)
+  itens        ItemVenda[]
 
   @@map("produto")
 }
 
 model Pagamento {
-  id      String    @id @default(uuid())
-  entrada Entrada[]
-  vendas  Venda?
+  id       String    @id @default(uuid())
+  entradas Entrada[]
+  venda    Venda?
 
   @@map("pagamento")
 }

@@ -299,7 +299,7 @@ export type EntradaCreateInput = {
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
   caixa: Prisma.CaixaCreateNestedOneWithoutEntradasInput
-  pagamento?: Prisma.PagamentoCreateNestedOneWithoutEntradaInput
+  pagamento?: Prisma.PagamentoCreateNestedOneWithoutEntradasInput
 }
 
 export type EntradaUncheckedCreateInput = {
@@ -319,7 +319,7 @@ export type EntradaUpdateInput = {
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   caixa?: Prisma.CaixaUpdateOneRequiredWithoutEntradasNestedInput
-  pagamento?: Prisma.PagamentoUpdateOneWithoutEntradaNestedInput
+  pagamento?: Prisma.PagamentoUpdateOneWithoutEntradasNestedInput
 }
 
 export type EntradaUncheckedUpdateInput = {
@@ -516,7 +516,7 @@ export type EntradaCreateWithoutCaixaInput = {
   responsavel: string
   data_hora?: Date | string
   valor: runtime.Decimal | runtime.DecimalJsLike | number | string
-  pagamento?: Prisma.PagamentoCreateNestedOneWithoutEntradaInput
+  pagamento?: Prisma.PagamentoCreateNestedOneWithoutEntradasInput
 }
 
 export type EntradaUncheckedCreateWithoutCaixaInput = {
@@ -626,7 +626,7 @@ export type EntradaUpdateWithoutCaixaInput = {
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   valor?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  pagamento?: Prisma.PagamentoUpdateOneWithoutEntradaNestedInput
+  pagamento?: Prisma.PagamentoUpdateOneWithoutEntradasNestedInput
 }
 
 export type EntradaUncheckedUpdateWithoutCaixaInput = {

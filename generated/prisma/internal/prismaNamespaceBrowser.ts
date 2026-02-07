@@ -65,6 +65,7 @@ export const ModelName = {
   Abertura: 'Abertura',
   Fechamento: 'Fechamento',
   Venda: 'Venda',
+  ItemVenda: 'ItemVenda',
   Produto: 'Produto',
   Pagamento: 'Pagamento'
 } as const
@@ -253,13 +254,25 @@ export const VendaScalarFieldEnum = {
 export type VendaScalarFieldEnum = (typeof VendaScalarFieldEnum)[keyof typeof VendaScalarFieldEnum]
 
 
+export const ItemVendaScalarFieldEnum = {
+  id: 'id',
+  quantidade: 'quantidade',
+  preco_venda: 'preco_venda',
+  ambiente: 'ambiente',
+  observacao: 'observacao',
+  venda_id: 'venda_id',
+  produto_id: 'produto_id'
+} as const
+
+export type ItemVendaScalarFieldEnum = (typeof ItemVendaScalarFieldEnum)[keyof typeof ItemVendaScalarFieldEnum]
+
+
 export const ProdutoScalarFieldEnum = {
   id: 'id',
   codigo: 'codigo',
   descricao: 'descricao',
   preco_venda: 'preco_venda',
-  preco_compra: 'preco_compra',
-  venda_id: 'venda_id'
+  preco_compra: 'preco_compra'
 } as const
 
 export type ProdutoScalarFieldEnum = (typeof ProdutoScalarFieldEnum)[keyof typeof ProdutoScalarFieldEnum]
@@ -434,11 +447,21 @@ export const VendaOrderByRelevanceFieldEnum = {
 export type VendaOrderByRelevanceFieldEnum = (typeof VendaOrderByRelevanceFieldEnum)[keyof typeof VendaOrderByRelevanceFieldEnum]
 
 
+export const ItemVendaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  ambiente: 'ambiente',
+  observacao: 'observacao',
+  venda_id: 'venda_id',
+  produto_id: 'produto_id'
+} as const
+
+export type ItemVendaOrderByRelevanceFieldEnum = (typeof ItemVendaOrderByRelevanceFieldEnum)[keyof typeof ItemVendaOrderByRelevanceFieldEnum]
+
+
 export const ProdutoOrderByRelevanceFieldEnum = {
   id: 'id',
   codigo: 'codigo',
-  descricao: 'descricao',
-  venda_id: 'venda_id'
+  descricao: 'descricao'
 } as const
 
 export type ProdutoOrderByRelevanceFieldEnum = (typeof ProdutoOrderByRelevanceFieldEnum)[keyof typeof ProdutoOrderByRelevanceFieldEnum]

@@ -398,6 +398,7 @@ export const ModelName = {
   Abertura: 'Abertura',
   Fechamento: 'Fechamento',
   Venda: 'Venda',
+  ItemVenda: 'ItemVenda',
   Produto: 'Produto',
   Pagamento: 'Pagamento'
 } as const
@@ -415,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "documento" | "endereco" | "contato" | "caixa" | "entrada" | "saida" | "abertura" | "fechamento" | "venda" | "produto" | "pagamento"
+    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "documento" | "endereco" | "contato" | "caixa" | "entrada" | "saida" | "abertura" | "fechamento" | "venda" | "itemVenda" | "produto" | "pagamento"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1343,6 +1344,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ItemVenda: {
+      payload: Prisma.$ItemVendaPayload<ExtArgs>
+      fields: Prisma.ItemVendaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ItemVendaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemVendaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ItemVendaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemVendaPayload>
+        }
+        findFirst: {
+          args: Prisma.ItemVendaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemVendaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ItemVendaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemVendaPayload>
+        }
+        findMany: {
+          args: Prisma.ItemVendaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemVendaPayload>[]
+        }
+        create: {
+          args: Prisma.ItemVendaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemVendaPayload>
+        }
+        createMany: {
+          args: Prisma.ItemVendaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.ItemVendaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemVendaPayload>
+        }
+        update: {
+          args: Prisma.ItemVendaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemVendaPayload>
+        }
+        deleteMany: {
+          args: Prisma.ItemVendaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ItemVendaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.ItemVendaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ItemVendaPayload>
+        }
+        aggregate: {
+          args: Prisma.ItemVendaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateItemVenda>
+        }
+        groupBy: {
+          args: Prisma.ItemVendaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ItemVendaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ItemVendaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ItemVendaCountAggregateOutputType> | number
+        }
+      }
+    }
     Produto: {
       payload: Prisma.$ProdutoPayload<ExtArgs>
       fields: Prisma.ProdutoFieldRefs
@@ -1682,13 +1749,25 @@ export const VendaScalarFieldEnum = {
 export type VendaScalarFieldEnum = (typeof VendaScalarFieldEnum)[keyof typeof VendaScalarFieldEnum]
 
 
+export const ItemVendaScalarFieldEnum = {
+  id: 'id',
+  quantidade: 'quantidade',
+  preco_venda: 'preco_venda',
+  ambiente: 'ambiente',
+  observacao: 'observacao',
+  venda_id: 'venda_id',
+  produto_id: 'produto_id'
+} as const
+
+export type ItemVendaScalarFieldEnum = (typeof ItemVendaScalarFieldEnum)[keyof typeof ItemVendaScalarFieldEnum]
+
+
 export const ProdutoScalarFieldEnum = {
   id: 'id',
   codigo: 'codigo',
   descricao: 'descricao',
   preco_venda: 'preco_venda',
-  preco_compra: 'preco_compra',
-  venda_id: 'venda_id'
+  preco_compra: 'preco_compra'
 } as const
 
 export type ProdutoScalarFieldEnum = (typeof ProdutoScalarFieldEnum)[keyof typeof ProdutoScalarFieldEnum]
@@ -1863,11 +1942,21 @@ export const VendaOrderByRelevanceFieldEnum = {
 export type VendaOrderByRelevanceFieldEnum = (typeof VendaOrderByRelevanceFieldEnum)[keyof typeof VendaOrderByRelevanceFieldEnum]
 
 
+export const ItemVendaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  ambiente: 'ambiente',
+  observacao: 'observacao',
+  venda_id: 'venda_id',
+  produto_id: 'produto_id'
+} as const
+
+export type ItemVendaOrderByRelevanceFieldEnum = (typeof ItemVendaOrderByRelevanceFieldEnum)[keyof typeof ItemVendaOrderByRelevanceFieldEnum]
+
+
 export const ProdutoOrderByRelevanceFieldEnum = {
   id: 'id',
   codigo: 'codigo',
-  descricao: 'descricao',
-  venda_id: 'venda_id'
+  descricao: 'descricao'
 } as const
 
 export type ProdutoOrderByRelevanceFieldEnum = (typeof ProdutoOrderByRelevanceFieldEnum)[keyof typeof ProdutoOrderByRelevanceFieldEnum]
@@ -2036,6 +2125,7 @@ export type GlobalOmitConfig = {
   abertura?: Prisma.AberturaOmit
   fechamento?: Prisma.FechamentoOmit
   venda?: Prisma.VendaOmit
+  itemVenda?: Prisma.ItemVendaOmit
   produto?: Prisma.ProdutoOmit
   pagamento?: Prisma.PagamentoOmit
 }

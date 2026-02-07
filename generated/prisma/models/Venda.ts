@@ -183,8 +183,8 @@ export type VendaWhereInput = {
   cliente_id?: Prisma.StringFilter<"Venda"> | string
   pagamentoId?: Prisma.StringFilter<"Venda"> | string
   cliente?: Prisma.XOR<Prisma.ClienteScalarRelationFilter, Prisma.ClienteWhereInput>
-  produtos?: Prisma.ProdutoListRelationFilter
   pagamento?: Prisma.XOR<Prisma.PagamentoScalarRelationFilter, Prisma.PagamentoWhereInput>
+  itensVenda?: Prisma.ItemVendaListRelationFilter
 }
 
 export type VendaOrderByWithRelationInput = {
@@ -194,8 +194,8 @@ export type VendaOrderByWithRelationInput = {
   cliente_id?: Prisma.SortOrder
   pagamentoId?: Prisma.SortOrder
   cliente?: Prisma.ClienteOrderByWithRelationInput
-  produtos?: Prisma.ProdutoOrderByRelationAggregateInput
   pagamento?: Prisma.PagamentoOrderByWithRelationInput
+  itensVenda?: Prisma.ItemVendaOrderByRelationAggregateInput
   _relevance?: Prisma.VendaOrderByRelevanceInput
 }
 
@@ -209,8 +209,8 @@ export type VendaWhereUniqueInput = Prisma.AtLeast<{
   responsavel?: Prisma.StringFilter<"Venda"> | string
   cliente_id?: Prisma.StringFilter<"Venda"> | string
   cliente?: Prisma.XOR<Prisma.ClienteScalarRelationFilter, Prisma.ClienteWhereInput>
-  produtos?: Prisma.ProdutoListRelationFilter
   pagamento?: Prisma.XOR<Prisma.PagamentoScalarRelationFilter, Prisma.PagamentoWhereInput>
+  itensVenda?: Prisma.ItemVendaListRelationFilter
 }, "id" | "pagamentoId">
 
 export type VendaOrderByWithAggregationInput = {
@@ -240,8 +240,8 @@ export type VendaCreateInput = {
   data_hora?: Date | string
   responsavel: string
   cliente: Prisma.ClienteCreateNestedOneWithoutVendasInput
-  produtos?: Prisma.ProdutoCreateNestedManyWithoutVendaInput
-  pagamento: Prisma.PagamentoCreateNestedOneWithoutVendasInput
+  pagamento: Prisma.PagamentoCreateNestedOneWithoutVendaInput
+  itensVenda?: Prisma.ItemVendaCreateNestedManyWithoutVendaInput
 }
 
 export type VendaUncheckedCreateInput = {
@@ -250,7 +250,7 @@ export type VendaUncheckedCreateInput = {
   responsavel: string
   cliente_id: string
   pagamentoId: string
-  produtos?: Prisma.ProdutoUncheckedCreateNestedManyWithoutVendaInput
+  itensVenda?: Prisma.ItemVendaUncheckedCreateNestedManyWithoutVendaInput
 }
 
 export type VendaUpdateInput = {
@@ -258,8 +258,8 @@ export type VendaUpdateInput = {
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   cliente?: Prisma.ClienteUpdateOneRequiredWithoutVendasNestedInput
-  produtos?: Prisma.ProdutoUpdateManyWithoutVendaNestedInput
-  pagamento?: Prisma.PagamentoUpdateOneRequiredWithoutVendasNestedInput
+  pagamento?: Prisma.PagamentoUpdateOneRequiredWithoutVendaNestedInput
+  itensVenda?: Prisma.ItemVendaUpdateManyWithoutVendaNestedInput
 }
 
 export type VendaUncheckedUpdateInput = {
@@ -268,7 +268,7 @@ export type VendaUncheckedUpdateInput = {
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   cliente_id?: Prisma.StringFieldUpdateOperationsInput | string
   pagamentoId?: Prisma.StringFieldUpdateOperationsInput | string
-  produtos?: Prisma.ProdutoUncheckedUpdateManyWithoutVendaNestedInput
+  itensVenda?: Prisma.ItemVendaUncheckedUpdateManyWithoutVendaNestedInput
 }
 
 export type VendaCreateManyInput = {
@@ -385,18 +385,18 @@ export type VendaUncheckedUpdateManyWithoutClienteNestedInput = {
   deleteMany?: Prisma.VendaScalarWhereInput | Prisma.VendaScalarWhereInput[]
 }
 
-export type VendaCreateNestedOneWithoutProdutosInput = {
-  create?: Prisma.XOR<Prisma.VendaCreateWithoutProdutosInput, Prisma.VendaUncheckedCreateWithoutProdutosInput>
-  connectOrCreate?: Prisma.VendaCreateOrConnectWithoutProdutosInput
+export type VendaCreateNestedOneWithoutItensVendaInput = {
+  create?: Prisma.XOR<Prisma.VendaCreateWithoutItensVendaInput, Prisma.VendaUncheckedCreateWithoutItensVendaInput>
+  connectOrCreate?: Prisma.VendaCreateOrConnectWithoutItensVendaInput
   connect?: Prisma.VendaWhereUniqueInput
 }
 
-export type VendaUpdateOneRequiredWithoutProdutosNestedInput = {
-  create?: Prisma.XOR<Prisma.VendaCreateWithoutProdutosInput, Prisma.VendaUncheckedCreateWithoutProdutosInput>
-  connectOrCreate?: Prisma.VendaCreateOrConnectWithoutProdutosInput
-  upsert?: Prisma.VendaUpsertWithoutProdutosInput
+export type VendaUpdateOneRequiredWithoutItensVendaNestedInput = {
+  create?: Prisma.XOR<Prisma.VendaCreateWithoutItensVendaInput, Prisma.VendaUncheckedCreateWithoutItensVendaInput>
+  connectOrCreate?: Prisma.VendaCreateOrConnectWithoutItensVendaInput
+  upsert?: Prisma.VendaUpsertWithoutItensVendaInput
   connect?: Prisma.VendaWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.VendaUpdateToOneWithWhereWithoutProdutosInput, Prisma.VendaUpdateWithoutProdutosInput>, Prisma.VendaUncheckedUpdateWithoutProdutosInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VendaUpdateToOneWithWhereWithoutItensVendaInput, Prisma.VendaUpdateWithoutItensVendaInput>, Prisma.VendaUncheckedUpdateWithoutItensVendaInput>
 }
 
 export type VendaCreateNestedOneWithoutPagamentoInput = {
@@ -435,8 +435,8 @@ export type VendaCreateWithoutClienteInput = {
   id?: string
   data_hora?: Date | string
   responsavel: string
-  produtos?: Prisma.ProdutoCreateNestedManyWithoutVendaInput
-  pagamento: Prisma.PagamentoCreateNestedOneWithoutVendasInput
+  pagamento: Prisma.PagamentoCreateNestedOneWithoutVendaInput
+  itensVenda?: Prisma.ItemVendaCreateNestedManyWithoutVendaInput
 }
 
 export type VendaUncheckedCreateWithoutClienteInput = {
@@ -444,7 +444,7 @@ export type VendaUncheckedCreateWithoutClienteInput = {
   data_hora?: Date | string
   responsavel: string
   pagamentoId: string
-  produtos?: Prisma.ProdutoUncheckedCreateNestedManyWithoutVendaInput
+  itensVenda?: Prisma.ItemVendaUncheckedCreateNestedManyWithoutVendaInput
 }
 
 export type VendaCreateOrConnectWithoutClienteInput = {
@@ -484,15 +484,15 @@ export type VendaScalarWhereInput = {
   pagamentoId?: Prisma.StringFilter<"Venda"> | string
 }
 
-export type VendaCreateWithoutProdutosInput = {
+export type VendaCreateWithoutItensVendaInput = {
   id?: string
   data_hora?: Date | string
   responsavel: string
   cliente: Prisma.ClienteCreateNestedOneWithoutVendasInput
-  pagamento: Prisma.PagamentoCreateNestedOneWithoutVendasInput
+  pagamento: Prisma.PagamentoCreateNestedOneWithoutVendaInput
 }
 
-export type VendaUncheckedCreateWithoutProdutosInput = {
+export type VendaUncheckedCreateWithoutItensVendaInput = {
   id?: string
   data_hora?: Date | string
   responsavel: string
@@ -500,31 +500,31 @@ export type VendaUncheckedCreateWithoutProdutosInput = {
   pagamentoId: string
 }
 
-export type VendaCreateOrConnectWithoutProdutosInput = {
+export type VendaCreateOrConnectWithoutItensVendaInput = {
   where: Prisma.VendaWhereUniqueInput
-  create: Prisma.XOR<Prisma.VendaCreateWithoutProdutosInput, Prisma.VendaUncheckedCreateWithoutProdutosInput>
+  create: Prisma.XOR<Prisma.VendaCreateWithoutItensVendaInput, Prisma.VendaUncheckedCreateWithoutItensVendaInput>
 }
 
-export type VendaUpsertWithoutProdutosInput = {
-  update: Prisma.XOR<Prisma.VendaUpdateWithoutProdutosInput, Prisma.VendaUncheckedUpdateWithoutProdutosInput>
-  create: Prisma.XOR<Prisma.VendaCreateWithoutProdutosInput, Prisma.VendaUncheckedCreateWithoutProdutosInput>
+export type VendaUpsertWithoutItensVendaInput = {
+  update: Prisma.XOR<Prisma.VendaUpdateWithoutItensVendaInput, Prisma.VendaUncheckedUpdateWithoutItensVendaInput>
+  create: Prisma.XOR<Prisma.VendaCreateWithoutItensVendaInput, Prisma.VendaUncheckedCreateWithoutItensVendaInput>
   where?: Prisma.VendaWhereInput
 }
 
-export type VendaUpdateToOneWithWhereWithoutProdutosInput = {
+export type VendaUpdateToOneWithWhereWithoutItensVendaInput = {
   where?: Prisma.VendaWhereInput
-  data: Prisma.XOR<Prisma.VendaUpdateWithoutProdutosInput, Prisma.VendaUncheckedUpdateWithoutProdutosInput>
+  data: Prisma.XOR<Prisma.VendaUpdateWithoutItensVendaInput, Prisma.VendaUncheckedUpdateWithoutItensVendaInput>
 }
 
-export type VendaUpdateWithoutProdutosInput = {
+export type VendaUpdateWithoutItensVendaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   cliente?: Prisma.ClienteUpdateOneRequiredWithoutVendasNestedInput
-  pagamento?: Prisma.PagamentoUpdateOneRequiredWithoutVendasNestedInput
+  pagamento?: Prisma.PagamentoUpdateOneRequiredWithoutVendaNestedInput
 }
 
-export type VendaUncheckedUpdateWithoutProdutosInput = {
+export type VendaUncheckedUpdateWithoutItensVendaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
@@ -537,7 +537,7 @@ export type VendaCreateWithoutPagamentoInput = {
   data_hora?: Date | string
   responsavel: string
   cliente: Prisma.ClienteCreateNestedOneWithoutVendasInput
-  produtos?: Prisma.ProdutoCreateNestedManyWithoutVendaInput
+  itensVenda?: Prisma.ItemVendaCreateNestedManyWithoutVendaInput
 }
 
 export type VendaUncheckedCreateWithoutPagamentoInput = {
@@ -545,7 +545,7 @@ export type VendaUncheckedCreateWithoutPagamentoInput = {
   data_hora?: Date | string
   responsavel: string
   cliente_id: string
-  produtos?: Prisma.ProdutoUncheckedCreateNestedManyWithoutVendaInput
+  itensVenda?: Prisma.ItemVendaUncheckedCreateNestedManyWithoutVendaInput
 }
 
 export type VendaCreateOrConnectWithoutPagamentoInput = {
@@ -569,7 +569,7 @@ export type VendaUpdateWithoutPagamentoInput = {
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   cliente?: Prisma.ClienteUpdateOneRequiredWithoutVendasNestedInput
-  produtos?: Prisma.ProdutoUpdateManyWithoutVendaNestedInput
+  itensVenda?: Prisma.ItemVendaUpdateManyWithoutVendaNestedInput
 }
 
 export type VendaUncheckedUpdateWithoutPagamentoInput = {
@@ -577,7 +577,7 @@ export type VendaUncheckedUpdateWithoutPagamentoInput = {
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   cliente_id?: Prisma.StringFieldUpdateOperationsInput | string
-  produtos?: Prisma.ProdutoUncheckedUpdateManyWithoutVendaNestedInput
+  itensVenda?: Prisma.ItemVendaUncheckedUpdateManyWithoutVendaNestedInput
 }
 
 export type VendaCreateManyClienteInput = {
@@ -591,8 +591,8 @@ export type VendaUpdateWithoutClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
-  produtos?: Prisma.ProdutoUpdateManyWithoutVendaNestedInput
-  pagamento?: Prisma.PagamentoUpdateOneRequiredWithoutVendasNestedInput
+  pagamento?: Prisma.PagamentoUpdateOneRequiredWithoutVendaNestedInput
+  itensVenda?: Prisma.ItemVendaUpdateManyWithoutVendaNestedInput
 }
 
 export type VendaUncheckedUpdateWithoutClienteInput = {
@@ -600,7 +600,7 @@ export type VendaUncheckedUpdateWithoutClienteInput = {
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   pagamentoId?: Prisma.StringFieldUpdateOperationsInput | string
-  produtos?: Prisma.ProdutoUncheckedUpdateManyWithoutVendaNestedInput
+  itensVenda?: Prisma.ItemVendaUncheckedUpdateManyWithoutVendaNestedInput
 }
 
 export type VendaUncheckedUpdateManyWithoutClienteInput = {
@@ -616,11 +616,11 @@ export type VendaUncheckedUpdateManyWithoutClienteInput = {
  */
 
 export type VendaCountOutputType = {
-  produtos: number
+  itensVenda: number
 }
 
 export type VendaCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  produtos?: boolean | VendaCountOutputTypeCountProdutosArgs
+  itensVenda?: boolean | VendaCountOutputTypeCountItensVendaArgs
 }
 
 /**
@@ -636,8 +636,8 @@ export type VendaCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
 /**
  * VendaCountOutputType without action
  */
-export type VendaCountOutputTypeCountProdutosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ProdutoWhereInput
+export type VendaCountOutputTypeCountItensVendaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ItemVendaWhereInput
 }
 
 
@@ -648,8 +648,8 @@ export type VendaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   cliente_id?: boolean
   pagamentoId?: boolean
   cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
-  produtos?: boolean | Prisma.Venda$produtosArgs<ExtArgs>
   pagamento?: boolean | Prisma.PagamentoDefaultArgs<ExtArgs>
+  itensVenda?: boolean | Prisma.Venda$itensVendaArgs<ExtArgs>
   _count?: boolean | Prisma.VendaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["venda"]>
 
@@ -666,8 +666,8 @@ export type VendaSelectScalar = {
 export type VendaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "data_hora" | "responsavel" | "cliente_id" | "pagamentoId", ExtArgs["result"]["venda"]>
 export type VendaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
-  produtos?: boolean | Prisma.Venda$produtosArgs<ExtArgs>
   pagamento?: boolean | Prisma.PagamentoDefaultArgs<ExtArgs>
+  itensVenda?: boolean | Prisma.Venda$itensVendaArgs<ExtArgs>
   _count?: boolean | Prisma.VendaCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -675,8 +675,8 @@ export type $VendaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Venda"
   objects: {
     cliente: Prisma.$ClientePayload<ExtArgs>
-    produtos: Prisma.$ProdutoPayload<ExtArgs>[]
     pagamento: Prisma.$PagamentoPayload<ExtArgs>
+    itensVenda: Prisma.$ItemVendaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1025,8 +1025,8 @@ readonly fields: VendaFieldRefs;
 export interface Prisma__VendaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   cliente<T extends Prisma.ClienteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClienteDefaultArgs<ExtArgs>>): Prisma.Prisma__ClienteClient<runtime.Types.Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  produtos<T extends Prisma.Venda$produtosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Venda$produtosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProdutoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pagamento<T extends Prisma.PagamentoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PagamentoDefaultArgs<ExtArgs>>): Prisma.Prisma__PagamentoClient<runtime.Types.Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  itensVenda<T extends Prisma.Venda$itensVendaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Venda$itensVendaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItemVendaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1404,27 +1404,27 @@ export type VendaDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Venda.produtos
+ * Venda.itensVenda
  */
-export type Venda$produtosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Venda$itensVendaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Produto
+   * Select specific fields to fetch from the ItemVenda
    */
-  select?: Prisma.ProdutoSelect<ExtArgs> | null
+  select?: Prisma.ItemVendaSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Produto
+   * Omit specific fields from the ItemVenda
    */
-  omit?: Prisma.ProdutoOmit<ExtArgs> | null
+  omit?: Prisma.ItemVendaOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ProdutoInclude<ExtArgs> | null
-  where?: Prisma.ProdutoWhereInput
-  orderBy?: Prisma.ProdutoOrderByWithRelationInput | Prisma.ProdutoOrderByWithRelationInput[]
-  cursor?: Prisma.ProdutoWhereUniqueInput
+  include?: Prisma.ItemVendaInclude<ExtArgs> | null
+  where?: Prisma.ItemVendaWhereInput
+  orderBy?: Prisma.ItemVendaOrderByWithRelationInput | Prisma.ItemVendaOrderByWithRelationInput[]
+  cursor?: Prisma.ItemVendaWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ProdutoScalarFieldEnum | Prisma.ProdutoScalarFieldEnum[]
+  distinct?: Prisma.ItemVendaScalarFieldEnum | Prisma.ItemVendaScalarFieldEnum[]
 }
 
 /**

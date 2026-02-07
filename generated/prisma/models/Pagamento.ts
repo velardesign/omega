@@ -150,14 +150,14 @@ export type PagamentoWhereInput = {
   OR?: Prisma.PagamentoWhereInput[]
   NOT?: Prisma.PagamentoWhereInput | Prisma.PagamentoWhereInput[]
   id?: Prisma.StringFilter<"Pagamento"> | string
-  entrada?: Prisma.EntradaListRelationFilter
-  vendas?: Prisma.XOR<Prisma.VendaNullableScalarRelationFilter, Prisma.VendaWhereInput> | null
+  entradas?: Prisma.EntradaListRelationFilter
+  venda?: Prisma.XOR<Prisma.VendaNullableScalarRelationFilter, Prisma.VendaWhereInput> | null
 }
 
 export type PagamentoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  entrada?: Prisma.EntradaOrderByRelationAggregateInput
-  vendas?: Prisma.VendaOrderByWithRelationInput
+  entradas?: Prisma.EntradaOrderByRelationAggregateInput
+  venda?: Prisma.VendaOrderByWithRelationInput
   _relevance?: Prisma.PagamentoOrderByRelevanceInput
 }
 
@@ -166,8 +166,8 @@ export type PagamentoWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.PagamentoWhereInput | Prisma.PagamentoWhereInput[]
   OR?: Prisma.PagamentoWhereInput[]
   NOT?: Prisma.PagamentoWhereInput | Prisma.PagamentoWhereInput[]
-  entrada?: Prisma.EntradaListRelationFilter
-  vendas?: Prisma.XOR<Prisma.VendaNullableScalarRelationFilter, Prisma.VendaWhereInput> | null
+  entradas?: Prisma.EntradaListRelationFilter
+  venda?: Prisma.XOR<Prisma.VendaNullableScalarRelationFilter, Prisma.VendaWhereInput> | null
 }, "id">
 
 export type PagamentoOrderByWithAggregationInput = {
@@ -186,26 +186,26 @@ export type PagamentoScalarWhereWithAggregatesInput = {
 
 export type PagamentoCreateInput = {
   id?: string
-  entrada?: Prisma.EntradaCreateNestedManyWithoutPagamentoInput
-  vendas?: Prisma.VendaCreateNestedOneWithoutPagamentoInput
+  entradas?: Prisma.EntradaCreateNestedManyWithoutPagamentoInput
+  venda?: Prisma.VendaCreateNestedOneWithoutPagamentoInput
 }
 
 export type PagamentoUncheckedCreateInput = {
   id?: string
-  entrada?: Prisma.EntradaUncheckedCreateNestedManyWithoutPagamentoInput
-  vendas?: Prisma.VendaUncheckedCreateNestedOneWithoutPagamentoInput
+  entradas?: Prisma.EntradaUncheckedCreateNestedManyWithoutPagamentoInput
+  venda?: Prisma.VendaUncheckedCreateNestedOneWithoutPagamentoInput
 }
 
 export type PagamentoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  entrada?: Prisma.EntradaUpdateManyWithoutPagamentoNestedInput
-  vendas?: Prisma.VendaUpdateOneWithoutPagamentoNestedInput
+  entradas?: Prisma.EntradaUpdateManyWithoutPagamentoNestedInput
+  venda?: Prisma.VendaUpdateOneWithoutPagamentoNestedInput
 }
 
 export type PagamentoUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  entrada?: Prisma.EntradaUncheckedUpdateManyWithoutPagamentoNestedInput
-  vendas?: Prisma.VendaUncheckedUpdateOneWithoutPagamentoNestedInput
+  entradas?: Prisma.EntradaUncheckedUpdateManyWithoutPagamentoNestedInput
+  venda?: Prisma.VendaUncheckedUpdateOneWithoutPagamentoNestedInput
 }
 
 export type PagamentoCreateManyInput = {
@@ -248,106 +248,106 @@ export type PagamentoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
-export type PagamentoCreateNestedOneWithoutEntradaInput = {
-  create?: Prisma.XOR<Prisma.PagamentoCreateWithoutEntradaInput, Prisma.PagamentoUncheckedCreateWithoutEntradaInput>
-  connectOrCreate?: Prisma.PagamentoCreateOrConnectWithoutEntradaInput
+export type PagamentoCreateNestedOneWithoutEntradasInput = {
+  create?: Prisma.XOR<Prisma.PagamentoCreateWithoutEntradasInput, Prisma.PagamentoUncheckedCreateWithoutEntradasInput>
+  connectOrCreate?: Prisma.PagamentoCreateOrConnectWithoutEntradasInput
   connect?: Prisma.PagamentoWhereUniqueInput
 }
 
-export type PagamentoUpdateOneWithoutEntradaNestedInput = {
-  create?: Prisma.XOR<Prisma.PagamentoCreateWithoutEntradaInput, Prisma.PagamentoUncheckedCreateWithoutEntradaInput>
-  connectOrCreate?: Prisma.PagamentoCreateOrConnectWithoutEntradaInput
-  upsert?: Prisma.PagamentoUpsertWithoutEntradaInput
+export type PagamentoUpdateOneWithoutEntradasNestedInput = {
+  create?: Prisma.XOR<Prisma.PagamentoCreateWithoutEntradasInput, Prisma.PagamentoUncheckedCreateWithoutEntradasInput>
+  connectOrCreate?: Prisma.PagamentoCreateOrConnectWithoutEntradasInput
+  upsert?: Prisma.PagamentoUpsertWithoutEntradasInput
   disconnect?: Prisma.PagamentoWhereInput | boolean
   delete?: Prisma.PagamentoWhereInput | boolean
   connect?: Prisma.PagamentoWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PagamentoUpdateToOneWithWhereWithoutEntradaInput, Prisma.PagamentoUpdateWithoutEntradaInput>, Prisma.PagamentoUncheckedUpdateWithoutEntradaInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PagamentoUpdateToOneWithWhereWithoutEntradasInput, Prisma.PagamentoUpdateWithoutEntradasInput>, Prisma.PagamentoUncheckedUpdateWithoutEntradasInput>
 }
 
-export type PagamentoCreateNestedOneWithoutVendasInput = {
-  create?: Prisma.XOR<Prisma.PagamentoCreateWithoutVendasInput, Prisma.PagamentoUncheckedCreateWithoutVendasInput>
-  connectOrCreate?: Prisma.PagamentoCreateOrConnectWithoutVendasInput
+export type PagamentoCreateNestedOneWithoutVendaInput = {
+  create?: Prisma.XOR<Prisma.PagamentoCreateWithoutVendaInput, Prisma.PagamentoUncheckedCreateWithoutVendaInput>
+  connectOrCreate?: Prisma.PagamentoCreateOrConnectWithoutVendaInput
   connect?: Prisma.PagamentoWhereUniqueInput
 }
 
-export type PagamentoUpdateOneRequiredWithoutVendasNestedInput = {
-  create?: Prisma.XOR<Prisma.PagamentoCreateWithoutVendasInput, Prisma.PagamentoUncheckedCreateWithoutVendasInput>
-  connectOrCreate?: Prisma.PagamentoCreateOrConnectWithoutVendasInput
-  upsert?: Prisma.PagamentoUpsertWithoutVendasInput
+export type PagamentoUpdateOneRequiredWithoutVendaNestedInput = {
+  create?: Prisma.XOR<Prisma.PagamentoCreateWithoutVendaInput, Prisma.PagamentoUncheckedCreateWithoutVendaInput>
+  connectOrCreate?: Prisma.PagamentoCreateOrConnectWithoutVendaInput
+  upsert?: Prisma.PagamentoUpsertWithoutVendaInput
   connect?: Prisma.PagamentoWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PagamentoUpdateToOneWithWhereWithoutVendasInput, Prisma.PagamentoUpdateWithoutVendasInput>, Prisma.PagamentoUncheckedUpdateWithoutVendasInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PagamentoUpdateToOneWithWhereWithoutVendaInput, Prisma.PagamentoUpdateWithoutVendaInput>, Prisma.PagamentoUncheckedUpdateWithoutVendaInput>
 }
 
-export type PagamentoCreateWithoutEntradaInput = {
+export type PagamentoCreateWithoutEntradasInput = {
   id?: string
-  vendas?: Prisma.VendaCreateNestedOneWithoutPagamentoInput
+  venda?: Prisma.VendaCreateNestedOneWithoutPagamentoInput
 }
 
-export type PagamentoUncheckedCreateWithoutEntradaInput = {
+export type PagamentoUncheckedCreateWithoutEntradasInput = {
   id?: string
-  vendas?: Prisma.VendaUncheckedCreateNestedOneWithoutPagamentoInput
+  venda?: Prisma.VendaUncheckedCreateNestedOneWithoutPagamentoInput
 }
 
-export type PagamentoCreateOrConnectWithoutEntradaInput = {
+export type PagamentoCreateOrConnectWithoutEntradasInput = {
   where: Prisma.PagamentoWhereUniqueInput
-  create: Prisma.XOR<Prisma.PagamentoCreateWithoutEntradaInput, Prisma.PagamentoUncheckedCreateWithoutEntradaInput>
+  create: Prisma.XOR<Prisma.PagamentoCreateWithoutEntradasInput, Prisma.PagamentoUncheckedCreateWithoutEntradasInput>
 }
 
-export type PagamentoUpsertWithoutEntradaInput = {
-  update: Prisma.XOR<Prisma.PagamentoUpdateWithoutEntradaInput, Prisma.PagamentoUncheckedUpdateWithoutEntradaInput>
-  create: Prisma.XOR<Prisma.PagamentoCreateWithoutEntradaInput, Prisma.PagamentoUncheckedCreateWithoutEntradaInput>
+export type PagamentoUpsertWithoutEntradasInput = {
+  update: Prisma.XOR<Prisma.PagamentoUpdateWithoutEntradasInput, Prisma.PagamentoUncheckedUpdateWithoutEntradasInput>
+  create: Prisma.XOR<Prisma.PagamentoCreateWithoutEntradasInput, Prisma.PagamentoUncheckedCreateWithoutEntradasInput>
   where?: Prisma.PagamentoWhereInput
 }
 
-export type PagamentoUpdateToOneWithWhereWithoutEntradaInput = {
+export type PagamentoUpdateToOneWithWhereWithoutEntradasInput = {
   where?: Prisma.PagamentoWhereInput
-  data: Prisma.XOR<Prisma.PagamentoUpdateWithoutEntradaInput, Prisma.PagamentoUncheckedUpdateWithoutEntradaInput>
+  data: Prisma.XOR<Prisma.PagamentoUpdateWithoutEntradasInput, Prisma.PagamentoUncheckedUpdateWithoutEntradasInput>
 }
 
-export type PagamentoUpdateWithoutEntradaInput = {
+export type PagamentoUpdateWithoutEntradasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  vendas?: Prisma.VendaUpdateOneWithoutPagamentoNestedInput
+  venda?: Prisma.VendaUpdateOneWithoutPagamentoNestedInput
 }
 
-export type PagamentoUncheckedUpdateWithoutEntradaInput = {
+export type PagamentoUncheckedUpdateWithoutEntradasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  vendas?: Prisma.VendaUncheckedUpdateOneWithoutPagamentoNestedInput
+  venda?: Prisma.VendaUncheckedUpdateOneWithoutPagamentoNestedInput
 }
 
-export type PagamentoCreateWithoutVendasInput = {
+export type PagamentoCreateWithoutVendaInput = {
   id?: string
-  entrada?: Prisma.EntradaCreateNestedManyWithoutPagamentoInput
+  entradas?: Prisma.EntradaCreateNestedManyWithoutPagamentoInput
 }
 
-export type PagamentoUncheckedCreateWithoutVendasInput = {
+export type PagamentoUncheckedCreateWithoutVendaInput = {
   id?: string
-  entrada?: Prisma.EntradaUncheckedCreateNestedManyWithoutPagamentoInput
+  entradas?: Prisma.EntradaUncheckedCreateNestedManyWithoutPagamentoInput
 }
 
-export type PagamentoCreateOrConnectWithoutVendasInput = {
+export type PagamentoCreateOrConnectWithoutVendaInput = {
   where: Prisma.PagamentoWhereUniqueInput
-  create: Prisma.XOR<Prisma.PagamentoCreateWithoutVendasInput, Prisma.PagamentoUncheckedCreateWithoutVendasInput>
+  create: Prisma.XOR<Prisma.PagamentoCreateWithoutVendaInput, Prisma.PagamentoUncheckedCreateWithoutVendaInput>
 }
 
-export type PagamentoUpsertWithoutVendasInput = {
-  update: Prisma.XOR<Prisma.PagamentoUpdateWithoutVendasInput, Prisma.PagamentoUncheckedUpdateWithoutVendasInput>
-  create: Prisma.XOR<Prisma.PagamentoCreateWithoutVendasInput, Prisma.PagamentoUncheckedCreateWithoutVendasInput>
+export type PagamentoUpsertWithoutVendaInput = {
+  update: Prisma.XOR<Prisma.PagamentoUpdateWithoutVendaInput, Prisma.PagamentoUncheckedUpdateWithoutVendaInput>
+  create: Prisma.XOR<Prisma.PagamentoCreateWithoutVendaInput, Prisma.PagamentoUncheckedCreateWithoutVendaInput>
   where?: Prisma.PagamentoWhereInput
 }
 
-export type PagamentoUpdateToOneWithWhereWithoutVendasInput = {
+export type PagamentoUpdateToOneWithWhereWithoutVendaInput = {
   where?: Prisma.PagamentoWhereInput
-  data: Prisma.XOR<Prisma.PagamentoUpdateWithoutVendasInput, Prisma.PagamentoUncheckedUpdateWithoutVendasInput>
+  data: Prisma.XOR<Prisma.PagamentoUpdateWithoutVendaInput, Prisma.PagamentoUncheckedUpdateWithoutVendaInput>
 }
 
-export type PagamentoUpdateWithoutVendasInput = {
+export type PagamentoUpdateWithoutVendaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  entrada?: Prisma.EntradaUpdateManyWithoutPagamentoNestedInput
+  entradas?: Prisma.EntradaUpdateManyWithoutPagamentoNestedInput
 }
 
-export type PagamentoUncheckedUpdateWithoutVendasInput = {
+export type PagamentoUncheckedUpdateWithoutVendaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  entrada?: Prisma.EntradaUncheckedUpdateManyWithoutPagamentoNestedInput
+  entradas?: Prisma.EntradaUncheckedUpdateManyWithoutPagamentoNestedInput
 }
 
 
@@ -356,11 +356,11 @@ export type PagamentoUncheckedUpdateWithoutVendasInput = {
  */
 
 export type PagamentoCountOutputType = {
-  entrada: number
+  entradas: number
 }
 
 export type PagamentoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  entrada?: boolean | PagamentoCountOutputTypeCountEntradaArgs
+  entradas?: boolean | PagamentoCountOutputTypeCountEntradasArgs
 }
 
 /**
@@ -376,15 +376,15 @@ export type PagamentoCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
 /**
  * PagamentoCountOutputType without action
  */
-export type PagamentoCountOutputTypeCountEntradaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type PagamentoCountOutputTypeCountEntradasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.EntradaWhereInput
 }
 
 
 export type PagamentoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  entrada?: boolean | Prisma.Pagamento$entradaArgs<ExtArgs>
-  vendas?: boolean | Prisma.Pagamento$vendasArgs<ExtArgs>
+  entradas?: boolean | Prisma.Pagamento$entradasArgs<ExtArgs>
+  venda?: boolean | Prisma.Pagamento$vendaArgs<ExtArgs>
   _count?: boolean | Prisma.PagamentoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pagamento"]>
 
@@ -396,16 +396,16 @@ export type PagamentoSelectScalar = {
 
 export type PagamentoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id", ExtArgs["result"]["pagamento"]>
 export type PagamentoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  entrada?: boolean | Prisma.Pagamento$entradaArgs<ExtArgs>
-  vendas?: boolean | Prisma.Pagamento$vendasArgs<ExtArgs>
+  entradas?: boolean | Prisma.Pagamento$entradasArgs<ExtArgs>
+  venda?: boolean | Prisma.Pagamento$vendaArgs<ExtArgs>
   _count?: boolean | Prisma.PagamentoCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $PagamentoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Pagamento"
   objects: {
-    entrada: Prisma.$EntradaPayload<ExtArgs>[]
-    vendas: Prisma.$VendaPayload<ExtArgs> | null
+    entradas: Prisma.$EntradaPayload<ExtArgs>[]
+    venda: Prisma.$VendaPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -749,8 +749,8 @@ readonly fields: PagamentoFieldRefs;
  */
 export interface Prisma__PagamentoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  entrada<T extends Prisma.Pagamento$entradaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pagamento$entradaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntradaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  vendas<T extends Prisma.Pagamento$vendasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pagamento$vendasArgs<ExtArgs>>): Prisma.Prisma__VendaClient<runtime.Types.Result.GetResult<Prisma.$VendaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  entradas<T extends Prisma.Pagamento$entradasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pagamento$entradasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntradaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  venda<T extends Prisma.Pagamento$vendaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pagamento$vendaArgs<ExtArgs>>): Prisma.Prisma__VendaClient<runtime.Types.Result.GetResult<Prisma.$VendaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1124,9 +1124,9 @@ export type PagamentoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * Pagamento.entrada
+ * Pagamento.entradas
  */
-export type Pagamento$entradaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Pagamento$entradasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Entrada
    */
@@ -1148,9 +1148,9 @@ export type Pagamento$entradaArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Pagamento.vendas
+ * Pagamento.venda
  */
-export type Pagamento$vendasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Pagamento$vendaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Venda
    */

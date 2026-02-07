@@ -110,6 +110,11 @@ export type Fechamento = Prisma.FechamentoModel
  */
 export type Venda = Prisma.VendaModel
 /**
+ * Model ItemVenda
+ * 
+ */
+export type ItemVenda = Prisma.ItemVendaModel
+/**
  * Model Produto
  * 
  */
