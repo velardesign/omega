@@ -189,11 +189,11 @@ export const navProduct = [
     items: [
       {
         title: "Novo",
-        url: "#",
+        url: "/dashboard/produto/adiciona",
       },
       {
         title: "Listar",
-        url: "#",
+        url: "/dashboard/produto/lista",
       },
     ],
   },

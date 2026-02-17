@@ -176,7 +176,7 @@ export type ClienteWhereInput = {
   cod?: Prisma.StringFilter<"Cliente"> | string
   contatos?: Prisma.ContatoListRelationFilter
   documentos?: Prisma.DocumentoListRelationFilter
-  enderecos?: Prisma.EnderecoListRelationFilter
+  enderecos?: Prisma.EnderecoClienteListRelationFilter
   vendas?: Prisma.VendaListRelationFilter
 }
 
@@ -187,7 +187,7 @@ export type ClienteOrderByWithRelationInput = {
   cod?: Prisma.SortOrder
   contatos?: Prisma.ContatoOrderByRelationAggregateInput
   documentos?: Prisma.DocumentoOrderByRelationAggregateInput
-  enderecos?: Prisma.EnderecoOrderByRelationAggregateInput
+  enderecos?: Prisma.EnderecoClienteOrderByRelationAggregateInput
   vendas?: Prisma.VendaOrderByRelationAggregateInput
   _relevance?: Prisma.ClienteOrderByRelevanceInput
 }
@@ -202,7 +202,7 @@ export type ClienteWhereUniqueInput = Prisma.AtLeast<{
   sobrenome?: Prisma.StringFilter<"Cliente"> | string
   contatos?: Prisma.ContatoListRelationFilter
   documentos?: Prisma.DocumentoListRelationFilter
-  enderecos?: Prisma.EnderecoListRelationFilter
+  enderecos?: Prisma.EnderecoClienteListRelationFilter
   vendas?: Prisma.VendaListRelationFilter
 }, "id" | "cod">
 
@@ -233,7 +233,7 @@ export type ClienteCreateInput = {
   cod: string
   contatos?: Prisma.ContatoCreateNestedManyWithoutClienteInput
   documentos?: Prisma.DocumentoCreateNestedManyWithoutClienteInput
-  enderecos?: Prisma.EnderecoCreateNestedManyWithoutClienteInput
+  enderecos?: Prisma.EnderecoClienteCreateNestedManyWithoutClienteInput
   vendas?: Prisma.VendaCreateNestedManyWithoutClienteInput
 }
 
@@ -244,7 +244,7 @@ export type ClienteUncheckedCreateInput = {
   cod: string
   contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutClienteInput
   documentos?: Prisma.DocumentoUncheckedCreateNestedManyWithoutClienteInput
-  enderecos?: Prisma.EnderecoUncheckedCreateNestedManyWithoutClienteInput
+  enderecos?: Prisma.EnderecoClienteUncheckedCreateNestedManyWithoutClienteInput
   vendas?: Prisma.VendaUncheckedCreateNestedManyWithoutClienteInput
 }
 
@@ -255,7 +255,7 @@ export type ClienteUpdateInput = {
   cod?: Prisma.StringFieldUpdateOperationsInput | string
   contatos?: Prisma.ContatoUpdateManyWithoutClienteNestedInput
   documentos?: Prisma.DocumentoUpdateManyWithoutClienteNestedInput
-  enderecos?: Prisma.EnderecoUpdateManyWithoutClienteNestedInput
+  enderecos?: Prisma.EnderecoClienteUpdateManyWithoutClienteNestedInput
   vendas?: Prisma.VendaUpdateManyWithoutClienteNestedInput
 }
 
@@ -266,7 +266,7 @@ export type ClienteUncheckedUpdateInput = {
   cod?: Prisma.StringFieldUpdateOperationsInput | string
   contatos?: Prisma.ContatoUncheckedUpdateManyWithoutClienteNestedInput
   documentos?: Prisma.DocumentoUncheckedUpdateManyWithoutClienteNestedInput
-  enderecos?: Prisma.EnderecoUncheckedUpdateManyWithoutClienteNestedInput
+  enderecos?: Prisma.EnderecoClienteUncheckedUpdateManyWithoutClienteNestedInput
   vendas?: Prisma.VendaUncheckedUpdateManyWithoutClienteNestedInput
 }
 
@@ -323,6 +323,11 @@ export type ClienteScalarRelationFilter = {
   isNot?: Prisma.ClienteWhereInput
 }
 
+export type ClienteNullableScalarRelationFilter = {
+  is?: Prisma.ClienteWhereInput | null
+  isNot?: Prisma.ClienteWhereInput | null
+}
+
 export type ClienteCreateNestedOneWithoutDocumentosInput = {
   create?: Prisma.XOR<Prisma.ClienteCreateWithoutDocumentosInput, Prisma.ClienteUncheckedCreateWithoutDocumentosInput>
   connectOrCreate?: Prisma.ClienteCreateOrConnectWithoutDocumentosInput
@@ -357,10 +362,12 @@ export type ClienteCreateNestedOneWithoutContatosInput = {
   connect?: Prisma.ClienteWhereUniqueInput
 }
 
-export type ClienteUpdateOneRequiredWithoutContatosNestedInput = {
+export type ClienteUpdateOneWithoutContatosNestedInput = {
   create?: Prisma.XOR<Prisma.ClienteCreateWithoutContatosInput, Prisma.ClienteUncheckedCreateWithoutContatosInput>
   connectOrCreate?: Prisma.ClienteCreateOrConnectWithoutContatosInput
   upsert?: Prisma.ClienteUpsertWithoutContatosInput
+  disconnect?: Prisma.ClienteWhereInput | boolean
+  delete?: Prisma.ClienteWhereInput | boolean
   connect?: Prisma.ClienteWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClienteUpdateToOneWithWhereWithoutContatosInput, Prisma.ClienteUpdateWithoutContatosInput>, Prisma.ClienteUncheckedUpdateWithoutContatosInput>
 }
@@ -385,7 +392,7 @@ export type ClienteCreateWithoutDocumentosInput = {
   sobrenome: string
   cod: string
   contatos?: Prisma.ContatoCreateNestedManyWithoutClienteInput
-  enderecos?: Prisma.EnderecoCreateNestedManyWithoutClienteInput
+  enderecos?: Prisma.EnderecoClienteCreateNestedManyWithoutClienteInput
   vendas?: Prisma.VendaCreateNestedManyWithoutClienteInput
 }
 
@@ -395,7 +402,7 @@ export type ClienteUncheckedCreateWithoutDocumentosInput = {
   sobrenome: string
   cod: string
   contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutClienteInput
-  enderecos?: Prisma.EnderecoUncheckedCreateNestedManyWithoutClienteInput
+  enderecos?: Prisma.EnderecoClienteUncheckedCreateNestedManyWithoutClienteInput
   vendas?: Prisma.VendaUncheckedCreateNestedManyWithoutClienteInput
 }
 
@@ -421,7 +428,7 @@ export type ClienteUpdateWithoutDocumentosInput = {
   sobrenome?: Prisma.StringFieldUpdateOperationsInput | string
   cod?: Prisma.StringFieldUpdateOperationsInput | string
   contatos?: Prisma.ContatoUpdateManyWithoutClienteNestedInput
-  enderecos?: Prisma.EnderecoUpdateManyWithoutClienteNestedInput
+  enderecos?: Prisma.EnderecoClienteUpdateManyWithoutClienteNestedInput
   vendas?: Prisma.VendaUpdateManyWithoutClienteNestedInput
 }
 
@@ -431,7 +438,7 @@ export type ClienteUncheckedUpdateWithoutDocumentosInput = {
   sobrenome?: Prisma.StringFieldUpdateOperationsInput | string
   cod?: Prisma.StringFieldUpdateOperationsInput | string
   contatos?: Prisma.ContatoUncheckedUpdateManyWithoutClienteNestedInput
-  enderecos?: Prisma.EnderecoUncheckedUpdateManyWithoutClienteNestedInput
+  enderecos?: Prisma.EnderecoClienteUncheckedUpdateManyWithoutClienteNestedInput
   vendas?: Prisma.VendaUncheckedUpdateManyWithoutClienteNestedInput
 }
 
@@ -497,7 +504,7 @@ export type ClienteCreateWithoutContatosInput = {
   sobrenome: string
   cod: string
   documentos?: Prisma.DocumentoCreateNestedManyWithoutClienteInput
-  enderecos?: Prisma.EnderecoCreateNestedManyWithoutClienteInput
+  enderecos?: Prisma.EnderecoClienteCreateNestedManyWithoutClienteInput
   vendas?: Prisma.VendaCreateNestedManyWithoutClienteInput
 }
 
@@ -507,7 +514,7 @@ export type ClienteUncheckedCreateWithoutContatosInput = {
   sobrenome: string
   cod: string
   documentos?: Prisma.DocumentoUncheckedCreateNestedManyWithoutClienteInput
-  enderecos?: Prisma.EnderecoUncheckedCreateNestedManyWithoutClienteInput
+  enderecos?: Prisma.EnderecoClienteUncheckedCreateNestedManyWithoutClienteInput
   vendas?: Prisma.VendaUncheckedCreateNestedManyWithoutClienteInput
 }
 
@@ -533,7 +540,7 @@ export type ClienteUpdateWithoutContatosInput = {
   sobrenome?: Prisma.StringFieldUpdateOperationsInput | string
   cod?: Prisma.StringFieldUpdateOperationsInput | string
   documentos?: Prisma.DocumentoUpdateManyWithoutClienteNestedInput
-  enderecos?: Prisma.EnderecoUpdateManyWithoutClienteNestedInput
+  enderecos?: Prisma.EnderecoClienteUpdateManyWithoutClienteNestedInput
   vendas?: Prisma.VendaUpdateManyWithoutClienteNestedInput
 }
 
@@ -543,7 +550,7 @@ export type ClienteUncheckedUpdateWithoutContatosInput = {
   sobrenome?: Prisma.StringFieldUpdateOperationsInput | string
   cod?: Prisma.StringFieldUpdateOperationsInput | string
   documentos?: Prisma.DocumentoUncheckedUpdateManyWithoutClienteNestedInput
-  enderecos?: Prisma.EnderecoUncheckedUpdateManyWithoutClienteNestedInput
+  enderecos?: Prisma.EnderecoClienteUncheckedUpdateManyWithoutClienteNestedInput
   vendas?: Prisma.VendaUncheckedUpdateManyWithoutClienteNestedInput
 }
 
@@ -554,7 +561,7 @@ export type ClienteCreateWithoutVendasInput = {
   cod: string
   contatos?: Prisma.ContatoCreateNestedManyWithoutClienteInput
   documentos?: Prisma.DocumentoCreateNestedManyWithoutClienteInput
-  enderecos?: Prisma.EnderecoCreateNestedManyWithoutClienteInput
+  enderecos?: Prisma.EnderecoClienteCreateNestedManyWithoutClienteInput
 }
 
 export type ClienteUncheckedCreateWithoutVendasInput = {
@@ -564,7 +571,7 @@ export type ClienteUncheckedCreateWithoutVendasInput = {
   cod: string
   contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutClienteInput
   documentos?: Prisma.DocumentoUncheckedCreateNestedManyWithoutClienteInput
-  enderecos?: Prisma.EnderecoUncheckedCreateNestedManyWithoutClienteInput
+  enderecos?: Prisma.EnderecoClienteUncheckedCreateNestedManyWithoutClienteInput
 }
 
 export type ClienteCreateOrConnectWithoutVendasInput = {
@@ -590,7 +597,7 @@ export type ClienteUpdateWithoutVendasInput = {
   cod?: Prisma.StringFieldUpdateOperationsInput | string
   contatos?: Prisma.ContatoUpdateManyWithoutClienteNestedInput
   documentos?: Prisma.DocumentoUpdateManyWithoutClienteNestedInput
-  enderecos?: Prisma.EnderecoUpdateManyWithoutClienteNestedInput
+  enderecos?: Prisma.EnderecoClienteUpdateManyWithoutClienteNestedInput
 }
 
 export type ClienteUncheckedUpdateWithoutVendasInput = {
@@ -600,7 +607,7 @@ export type ClienteUncheckedUpdateWithoutVendasInput = {
   cod?: Prisma.StringFieldUpdateOperationsInput | string
   contatos?: Prisma.ContatoUncheckedUpdateManyWithoutClienteNestedInput
   documentos?: Prisma.DocumentoUncheckedUpdateManyWithoutClienteNestedInput
-  enderecos?: Prisma.EnderecoUncheckedUpdateManyWithoutClienteNestedInput
+  enderecos?: Prisma.EnderecoClienteUncheckedUpdateManyWithoutClienteNestedInput
 }
 
 
@@ -650,7 +657,7 @@ export type ClienteCountOutputTypeCountDocumentosArgs<ExtArgs extends runtime.Ty
  * ClienteCountOutputType without action
  */
 export type ClienteCountOutputTypeCountEnderecosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.EnderecoWhereInput
+  where?: Prisma.EnderecoClienteWhereInput
 }
 
 /**
@@ -696,7 +703,7 @@ export type $ClientePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     contatos: Prisma.$ContatoPayload<ExtArgs>[]
     documentos: Prisma.$DocumentoPayload<ExtArgs>[]
-    enderecos: Prisma.$EnderecoPayload<ExtArgs>[]
+    enderecos: Prisma.$EnderecoClientePayload<ExtArgs>[]
     vendas: Prisma.$VendaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1046,7 +1053,7 @@ export interface Prisma__ClienteClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   contatos<T extends Prisma.Cliente$contatosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cliente$contatosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   documentos<T extends Prisma.Cliente$documentosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cliente$documentosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  enderecos<T extends Prisma.Cliente$enderecosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cliente$enderecosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnderecoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  enderecos<T extends Prisma.Cliente$enderecosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cliente$enderecosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnderecoClientePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   vendas<T extends Prisma.Cliente$vendasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cliente$vendasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VendaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1476,23 +1483,23 @@ export type Cliente$documentosArgs<ExtArgs extends runtime.Types.Extensions.Inte
  */
 export type Cliente$enderecosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Endereco
+   * Select specific fields to fetch from the EnderecoCliente
    */
-  select?: Prisma.EnderecoSelect<ExtArgs> | null
+  select?: Prisma.EnderecoClienteSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Endereco
+   * Omit specific fields from the EnderecoCliente
    */
-  omit?: Prisma.EnderecoOmit<ExtArgs> | null
+  omit?: Prisma.EnderecoClienteOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.EnderecoInclude<ExtArgs> | null
-  where?: Prisma.EnderecoWhereInput
-  orderBy?: Prisma.EnderecoOrderByWithRelationInput | Prisma.EnderecoOrderByWithRelationInput[]
-  cursor?: Prisma.EnderecoWhereUniqueInput
+  include?: Prisma.EnderecoClienteInclude<ExtArgs> | null
+  where?: Prisma.EnderecoClienteWhereInput
+  orderBy?: Prisma.EnderecoClienteOrderByWithRelationInput | Prisma.EnderecoClienteOrderByWithRelationInput[]
+  cursor?: Prisma.EnderecoClienteWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.EnderecoScalarFieldEnum | Prisma.EnderecoScalarFieldEnum[]
+  distinct?: Prisma.EnderecoClienteScalarFieldEnum | Prisma.EnderecoClienteScalarFieldEnum[]
 }
 
 /**

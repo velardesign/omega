@@ -390,7 +390,7 @@ export const ModelName = {
   Verification: 'Verification',
   Cliente: 'Cliente',
   Documento: 'Documento',
-  Endereco: 'Endereco',
+  EnderecoCliente: 'EnderecoCliente',
   Contato: 'Contato',
   Caixa: 'Caixa',
   Entrada: 'Entrada',
@@ -400,7 +400,11 @@ export const ModelName = {
   Venda: 'Venda',
   ItemVenda: 'ItemVenda',
   Produto: 'Produto',
-  Pagamento: 'Pagamento'
+  Pagamento: 'Pagamento',
+  Categoria: 'Categoria',
+  Fornecedor: 'Fornecedor',
+  EnderecoFornecedor: 'EnderecoFornecedor',
+  DadosComercialFornecedor: 'DadosComercialFornecedor'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -416,7 +420,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "documento" | "endereco" | "contato" | "caixa" | "entrada" | "saida" | "abertura" | "fechamento" | "venda" | "itemVenda" | "produto" | "pagamento"
+    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "documento" | "enderecoCliente" | "contato" | "caixa" | "entrada" | "saida" | "abertura" | "fechamento" | "venda" | "itemVenda" | "produto" | "pagamento" | "categoria" | "fornecedor" | "enderecoFornecedor" | "dadosComercialFornecedor"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -816,69 +820,69 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Endereco: {
-      payload: Prisma.$EnderecoPayload<ExtArgs>
-      fields: Prisma.EnderecoFieldRefs
+    EnderecoCliente: {
+      payload: Prisma.$EnderecoClientePayload<ExtArgs>
+      fields: Prisma.EnderecoClienteFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.EnderecoFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload> | null
+          args: Prisma.EnderecoClienteFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoClientePayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.EnderecoFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>
+          args: Prisma.EnderecoClienteFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoClientePayload>
         }
         findFirst: {
-          args: Prisma.EnderecoFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload> | null
+          args: Prisma.EnderecoClienteFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoClientePayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.EnderecoFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>
+          args: Prisma.EnderecoClienteFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoClientePayload>
         }
         findMany: {
-          args: Prisma.EnderecoFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>[]
+          args: Prisma.EnderecoClienteFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoClientePayload>[]
         }
         create: {
-          args: Prisma.EnderecoCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>
+          args: Prisma.EnderecoClienteCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoClientePayload>
         }
         createMany: {
-          args: Prisma.EnderecoCreateManyArgs<ExtArgs>
+          args: Prisma.EnderecoClienteCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         delete: {
-          args: Prisma.EnderecoDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>
+          args: Prisma.EnderecoClienteDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoClientePayload>
         }
         update: {
-          args: Prisma.EnderecoUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>
+          args: Prisma.EnderecoClienteUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoClientePayload>
         }
         deleteMany: {
-          args: Prisma.EnderecoDeleteManyArgs<ExtArgs>
+          args: Prisma.EnderecoClienteDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.EnderecoUpdateManyArgs<ExtArgs>
+          args: Prisma.EnderecoClienteUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         upsert: {
-          args: Prisma.EnderecoUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoPayload>
+          args: Prisma.EnderecoClienteUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoClientePayload>
         }
         aggregate: {
-          args: Prisma.EnderecoAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateEndereco>
+          args: Prisma.EnderecoClienteAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEnderecoCliente>
         }
         groupBy: {
-          args: Prisma.EnderecoGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.EnderecoGroupByOutputType>[]
+          args: Prisma.EnderecoClienteGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnderecoClienteGroupByOutputType>[]
         }
         count: {
-          args: Prisma.EnderecoCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.EnderecoCountAggregateOutputType> | number
+          args: Prisma.EnderecoClienteCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnderecoClienteCountAggregateOutputType> | number
         }
       }
     }
@@ -1542,6 +1546,270 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Categoria: {
+      payload: Prisma.$CategoriaPayload<ExtArgs>
+      fields: Prisma.CategoriaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CategoriaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoriaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CategoriaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoriaPayload>
+        }
+        findFirst: {
+          args: Prisma.CategoriaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoriaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CategoriaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoriaPayload>
+        }
+        findMany: {
+          args: Prisma.CategoriaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoriaPayload>[]
+        }
+        create: {
+          args: Prisma.CategoriaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoriaPayload>
+        }
+        createMany: {
+          args: Prisma.CategoriaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.CategoriaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoriaPayload>
+        }
+        update: {
+          args: Prisma.CategoriaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoriaPayload>
+        }
+        deleteMany: {
+          args: Prisma.CategoriaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CategoriaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.CategoriaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoriaPayload>
+        }
+        aggregate: {
+          args: Prisma.CategoriaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCategoria>
+        }
+        groupBy: {
+          args: Prisma.CategoriaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CategoriaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CategoriaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CategoriaCountAggregateOutputType> | number
+        }
+      }
+    }
+    Fornecedor: {
+      payload: Prisma.$FornecedorPayload<ExtArgs>
+      fields: Prisma.FornecedorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FornecedorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FornecedorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FornecedorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FornecedorPayload>
+        }
+        findFirst: {
+          args: Prisma.FornecedorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FornecedorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FornecedorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FornecedorPayload>
+        }
+        findMany: {
+          args: Prisma.FornecedorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FornecedorPayload>[]
+        }
+        create: {
+          args: Prisma.FornecedorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FornecedorPayload>
+        }
+        createMany: {
+          args: Prisma.FornecedorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.FornecedorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FornecedorPayload>
+        }
+        update: {
+          args: Prisma.FornecedorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FornecedorPayload>
+        }
+        deleteMany: {
+          args: Prisma.FornecedorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FornecedorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.FornecedorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FornecedorPayload>
+        }
+        aggregate: {
+          args: Prisma.FornecedorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFornecedor>
+        }
+        groupBy: {
+          args: Prisma.FornecedorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FornecedorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FornecedorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FornecedorCountAggregateOutputType> | number
+        }
+      }
+    }
+    EnderecoFornecedor: {
+      payload: Prisma.$EnderecoFornecedorPayload<ExtArgs>
+      fields: Prisma.EnderecoFornecedorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EnderecoFornecedorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoFornecedorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EnderecoFornecedorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoFornecedorPayload>
+        }
+        findFirst: {
+          args: Prisma.EnderecoFornecedorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoFornecedorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EnderecoFornecedorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoFornecedorPayload>
+        }
+        findMany: {
+          args: Prisma.EnderecoFornecedorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoFornecedorPayload>[]
+        }
+        create: {
+          args: Prisma.EnderecoFornecedorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoFornecedorPayload>
+        }
+        createMany: {
+          args: Prisma.EnderecoFornecedorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.EnderecoFornecedorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoFornecedorPayload>
+        }
+        update: {
+          args: Prisma.EnderecoFornecedorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoFornecedorPayload>
+        }
+        deleteMany: {
+          args: Prisma.EnderecoFornecedorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EnderecoFornecedorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.EnderecoFornecedorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnderecoFornecedorPayload>
+        }
+        aggregate: {
+          args: Prisma.EnderecoFornecedorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEnderecoFornecedor>
+        }
+        groupBy: {
+          args: Prisma.EnderecoFornecedorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnderecoFornecedorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EnderecoFornecedorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnderecoFornecedorCountAggregateOutputType> | number
+        }
+      }
+    }
+    DadosComercialFornecedor: {
+      payload: Prisma.$DadosComercialFornecedorPayload<ExtArgs>
+      fields: Prisma.DadosComercialFornecedorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DadosComercialFornecedorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosComercialFornecedorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DadosComercialFornecedorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosComercialFornecedorPayload>
+        }
+        findFirst: {
+          args: Prisma.DadosComercialFornecedorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosComercialFornecedorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DadosComercialFornecedorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosComercialFornecedorPayload>
+        }
+        findMany: {
+          args: Prisma.DadosComercialFornecedorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosComercialFornecedorPayload>[]
+        }
+        create: {
+          args: Prisma.DadosComercialFornecedorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosComercialFornecedorPayload>
+        }
+        createMany: {
+          args: Prisma.DadosComercialFornecedorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.DadosComercialFornecedorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosComercialFornecedorPayload>
+        }
+        update: {
+          args: Prisma.DadosComercialFornecedorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosComercialFornecedorPayload>
+        }
+        deleteMany: {
+          args: Prisma.DadosComercialFornecedorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DadosComercialFornecedorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.DadosComercialFornecedorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DadosComercialFornecedorPayload>
+        }
+        aggregate: {
+          args: Prisma.DadosComercialFornecedorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDadosComercialFornecedor>
+        }
+        groupBy: {
+          args: Prisma.DadosComercialFornecedorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DadosComercialFornecedorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DadosComercialFornecedorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DadosComercialFornecedorCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1660,7 +1928,7 @@ export const DocumentoScalarFieldEnum = {
 export type DocumentoScalarFieldEnum = (typeof DocumentoScalarFieldEnum)[keyof typeof DocumentoScalarFieldEnum]
 
 
-export const EnderecoScalarFieldEnum = {
+export const EnderecoClienteScalarFieldEnum = {
   id: 'id',
   logradouro: 'logradouro',
   numero: 'numero',
@@ -1671,14 +1939,15 @@ export const EnderecoScalarFieldEnum = {
   clienteId: 'clienteId'
 } as const
 
-export type EnderecoScalarFieldEnum = (typeof EnderecoScalarFieldEnum)[keyof typeof EnderecoScalarFieldEnum]
+export type EnderecoClienteScalarFieldEnum = (typeof EnderecoClienteScalarFieldEnum)[keyof typeof EnderecoClienteScalarFieldEnum]
 
 
 export const ContatoScalarFieldEnum = {
   id: 'id',
   tipo: 'tipo',
   conteudo: 'conteudo',
-  clienteId: 'clienteId'
+  clienteId: 'clienteId',
+  fornecedorId: 'fornecedorId'
 } as const
 
 export type ContatoScalarFieldEnum = (typeof ContatoScalarFieldEnum)[keyof typeof ContatoScalarFieldEnum]
@@ -1764,10 +2033,16 @@ export type ItemVendaScalarFieldEnum = (typeof ItemVendaScalarFieldEnum)[keyof t
 
 export const ProdutoScalarFieldEnum = {
   id: 'id',
+  nome: 'nome',
   codigo: 'codigo',
+  unidade_medida: 'unidade_medida',
+  material: 'material',
+  cor: 'cor',
   descricao: 'descricao',
   preco_venda: 'preco_venda',
-  preco_compra: 'preco_compra'
+  preco_compra: 'preco_compra',
+  categoria_id: 'categoria_id',
+  fornecedor_id: 'fornecedor_id'
 } as const
 
 export type ProdutoScalarFieldEnum = (typeof ProdutoScalarFieldEnum)[keyof typeof ProdutoScalarFieldEnum]
@@ -1778,6 +2053,53 @@ export const PagamentoScalarFieldEnum = {
 } as const
 
 export type PagamentoScalarFieldEnum = (typeof PagamentoScalarFieldEnum)[keyof typeof PagamentoScalarFieldEnum]
+
+
+export const CategoriaScalarFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  nome: 'nome'
+} as const
+
+export type CategoriaScalarFieldEnum = (typeof CategoriaScalarFieldEnum)[keyof typeof CategoriaScalarFieldEnum]
+
+
+export const FornecedorScalarFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  razao_social: 'razao_social',
+  nome_fantasia: 'nome_fantasia',
+  observacoes: 'observacoes'
+} as const
+
+export type FornecedorScalarFieldEnum = (typeof FornecedorScalarFieldEnum)[keyof typeof FornecedorScalarFieldEnum]
+
+
+export const EnderecoFornecedorScalarFieldEnum = {
+  id: 'id',
+  logradouro: 'logradouro',
+  numero: 'numero',
+  bairro: 'bairro',
+  cidade: 'cidade',
+  pais: 'pais',
+  cep: 'cep',
+  fornecedorId: 'fornecedorId'
+} as const
+
+export type EnderecoFornecedorScalarFieldEnum = (typeof EnderecoFornecedorScalarFieldEnum)[keyof typeof EnderecoFornecedorScalarFieldEnum]
+
+
+export const DadosComercialFornecedorScalarFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  prazo_pagamento: 'prazo_pagamento',
+  forma_pagamento: 'forma_pagamento',
+  banco: 'banco',
+  chave_pix: 'chave_pix',
+  fornecedorId: 'fornecedorId'
+} as const
+
+export type DadosComercialFornecedorScalarFieldEnum = (typeof DadosComercialFornecedorScalarFieldEnum)[keyof typeof DadosComercialFornecedorScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1861,7 +2183,7 @@ export const DocumentoOrderByRelevanceFieldEnum = {
 export type DocumentoOrderByRelevanceFieldEnum = (typeof DocumentoOrderByRelevanceFieldEnum)[keyof typeof DocumentoOrderByRelevanceFieldEnum]
 
 
-export const EnderecoOrderByRelevanceFieldEnum = {
+export const EnderecoClienteOrderByRelevanceFieldEnum = {
   id: 'id',
   logradouro: 'logradouro',
   numero: 'numero',
@@ -1872,14 +2194,15 @@ export const EnderecoOrderByRelevanceFieldEnum = {
   clienteId: 'clienteId'
 } as const
 
-export type EnderecoOrderByRelevanceFieldEnum = (typeof EnderecoOrderByRelevanceFieldEnum)[keyof typeof EnderecoOrderByRelevanceFieldEnum]
+export type EnderecoClienteOrderByRelevanceFieldEnum = (typeof EnderecoClienteOrderByRelevanceFieldEnum)[keyof typeof EnderecoClienteOrderByRelevanceFieldEnum]
 
 
 export const ContatoOrderByRelevanceFieldEnum = {
   id: 'id',
   tipo: 'tipo',
   conteudo: 'conteudo',
-  clienteId: 'clienteId'
+  clienteId: 'clienteId',
+  fornecedorId: 'fornecedorId'
 } as const
 
 export type ContatoOrderByRelevanceFieldEnum = (typeof ContatoOrderByRelevanceFieldEnum)[keyof typeof ContatoOrderByRelevanceFieldEnum]
@@ -1955,8 +2278,14 @@ export type ItemVendaOrderByRelevanceFieldEnum = (typeof ItemVendaOrderByRelevan
 
 export const ProdutoOrderByRelevanceFieldEnum = {
   id: 'id',
+  nome: 'nome',
   codigo: 'codigo',
-  descricao: 'descricao'
+  unidade_medida: 'unidade_medida',
+  material: 'material',
+  cor: 'cor',
+  descricao: 'descricao',
+  categoria_id: 'categoria_id',
+  fornecedor_id: 'fornecedor_id'
 } as const
 
 export type ProdutoOrderByRelevanceFieldEnum = (typeof ProdutoOrderByRelevanceFieldEnum)[keyof typeof ProdutoOrderByRelevanceFieldEnum]
@@ -1967,6 +2296,52 @@ export const PagamentoOrderByRelevanceFieldEnum = {
 } as const
 
 export type PagamentoOrderByRelevanceFieldEnum = (typeof PagamentoOrderByRelevanceFieldEnum)[keyof typeof PagamentoOrderByRelevanceFieldEnum]
+
+
+export const CategoriaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  nome: 'nome'
+} as const
+
+export type CategoriaOrderByRelevanceFieldEnum = (typeof CategoriaOrderByRelevanceFieldEnum)[keyof typeof CategoriaOrderByRelevanceFieldEnum]
+
+
+export const FornecedorOrderByRelevanceFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  razao_social: 'razao_social',
+  nome_fantasia: 'nome_fantasia',
+  observacoes: 'observacoes'
+} as const
+
+export type FornecedorOrderByRelevanceFieldEnum = (typeof FornecedorOrderByRelevanceFieldEnum)[keyof typeof FornecedorOrderByRelevanceFieldEnum]
+
+
+export const EnderecoFornecedorOrderByRelevanceFieldEnum = {
+  id: 'id',
+  logradouro: 'logradouro',
+  numero: 'numero',
+  bairro: 'bairro',
+  cidade: 'cidade',
+  pais: 'pais',
+  cep: 'cep',
+  fornecedorId: 'fornecedorId'
+} as const
+
+export type EnderecoFornecedorOrderByRelevanceFieldEnum = (typeof EnderecoFornecedorOrderByRelevanceFieldEnum)[keyof typeof EnderecoFornecedorOrderByRelevanceFieldEnum]
+
+
+export const DadosComercialFornecedorOrderByRelevanceFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  forma_pagamento: 'forma_pagamento',
+  banco: 'banco',
+  chave_pix: 'chave_pix',
+  fornecedorId: 'fornecedorId'
+} as const
+
+export type DadosComercialFornecedorOrderByRelevanceFieldEnum = (typeof DadosComercialFornecedorOrderByRelevanceFieldEnum)[keyof typeof DadosComercialFornecedorOrderByRelevanceFieldEnum]
 
 
 
@@ -2014,6 +2389,13 @@ export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 /**
@@ -2117,7 +2499,7 @@ export type GlobalOmitConfig = {
   verification?: Prisma.VerificationOmit
   cliente?: Prisma.ClienteOmit
   documento?: Prisma.DocumentoOmit
-  endereco?: Prisma.EnderecoOmit
+  enderecoCliente?: Prisma.EnderecoClienteOmit
   contato?: Prisma.ContatoOmit
   caixa?: Prisma.CaixaOmit
   entrada?: Prisma.EntradaOmit
@@ -2128,6 +2510,10 @@ export type GlobalOmitConfig = {
   itemVenda?: Prisma.ItemVendaOmit
   produto?: Prisma.ProdutoOmit
   pagamento?: Prisma.PagamentoOmit
+  categoria?: Prisma.CategoriaOmit
+  fornecedor?: Prisma.FornecedorOmit
+  enderecoFornecedor?: Prisma.EnderecoFornecedorOmit
+  dadosComercialFornecedor?: Prisma.DadosComercialFornecedorOmit
 }
 
 /* Types for Logging */

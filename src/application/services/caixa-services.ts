@@ -49,10 +49,6 @@ export class CaixaService {
         }
     }
 
-    getValoresTodosCaixa(): number {
-        return 100000.00;
-    }
-
     async adicionaEntrada(entrada: EntradaDTO) {
         await this.caixaRepo.addEntrada(entrada);
     }

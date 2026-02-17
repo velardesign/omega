@@ -29,6 +29,7 @@ export type ContatoMinAggregateOutputType = {
   tipo: string | null
   conteudo: string | null
   clienteId: string | null
+  fornecedorId: string | null
 }
 
 export type ContatoMaxAggregateOutputType = {
@@ -36,6 +37,7 @@ export type ContatoMaxAggregateOutputType = {
   tipo: string | null
   conteudo: string | null
   clienteId: string | null
+  fornecedorId: string | null
 }
 
 export type ContatoCountAggregateOutputType = {
@@ -43,6 +45,7 @@ export type ContatoCountAggregateOutputType = {
   tipo: number
   conteudo: number
   clienteId: number
+  fornecedorId: number
   _all: number
 }
 
@@ -52,6 +55,7 @@ export type ContatoMinAggregateInputType = {
   tipo?: true
   conteudo?: true
   clienteId?: true
+  fornecedorId?: true
 }
 
 export type ContatoMaxAggregateInputType = {
@@ -59,6 +63,7 @@ export type ContatoMaxAggregateInputType = {
   tipo?: true
   conteudo?: true
   clienteId?: true
+  fornecedorId?: true
 }
 
 export type ContatoCountAggregateInputType = {
@@ -66,6 +71,7 @@ export type ContatoCountAggregateInputType = {
   tipo?: true
   conteudo?: true
   clienteId?: true
+  fornecedorId?: true
   _all?: true
 }
 
@@ -145,7 +151,8 @@ export type ContatoGroupByOutputType = {
   id: string
   tipo: string
   conteudo: string
-  clienteId: string
+  clienteId: string | null
+  fornecedorId: string | null
   _count: ContatoCountAggregateOutputType | null
   _min: ContatoMinAggregateOutputType | null
   _max: ContatoMaxAggregateOutputType | null
@@ -173,16 +180,20 @@ export type ContatoWhereInput = {
   id?: Prisma.StringFilter<"Contato"> | string
   tipo?: Prisma.StringFilter<"Contato"> | string
   conteudo?: Prisma.StringFilter<"Contato"> | string
-  clienteId?: Prisma.StringFilter<"Contato"> | string
-  cliente?: Prisma.XOR<Prisma.ClienteScalarRelationFilter, Prisma.ClienteWhereInput>
+  clienteId?: Prisma.StringNullableFilter<"Contato"> | string | null
+  fornecedorId?: Prisma.StringNullableFilter<"Contato"> | string | null
+  cliente?: Prisma.XOR<Prisma.ClienteNullableScalarRelationFilter, Prisma.ClienteWhereInput> | null
+  fornecedor?: Prisma.XOR<Prisma.FornecedorNullableScalarRelationFilter, Prisma.FornecedorWhereInput> | null
 }
 
 export type ContatoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
   conteudo?: Prisma.SortOrder
-  clienteId?: Prisma.SortOrder
+  clienteId?: Prisma.SortOrderInput | Prisma.SortOrder
+  fornecedorId?: Prisma.SortOrderInput | Prisma.SortOrder
   cliente?: Prisma.ClienteOrderByWithRelationInput
+  fornecedor?: Prisma.FornecedorOrderByWithRelationInput
   _relevance?: Prisma.ContatoOrderByRelevanceInput
 }
 
@@ -193,15 +204,18 @@ export type ContatoWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ContatoWhereInput | Prisma.ContatoWhereInput[]
   tipo?: Prisma.StringFilter<"Contato"> | string
   conteudo?: Prisma.StringFilter<"Contato"> | string
-  clienteId?: Prisma.StringFilter<"Contato"> | string
-  cliente?: Prisma.XOR<Prisma.ClienteScalarRelationFilter, Prisma.ClienteWhereInput>
+  clienteId?: Prisma.StringNullableFilter<"Contato"> | string | null
+  fornecedorId?: Prisma.StringNullableFilter<"Contato"> | string | null
+  cliente?: Prisma.XOR<Prisma.ClienteNullableScalarRelationFilter, Prisma.ClienteWhereInput> | null
+  fornecedor?: Prisma.XOR<Prisma.FornecedorNullableScalarRelationFilter, Prisma.FornecedorWhereInput> | null
 }, "id">
 
 export type ContatoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
   conteudo?: Prisma.SortOrder
-  clienteId?: Prisma.SortOrder
+  clienteId?: Prisma.SortOrderInput | Prisma.SortOrder
+  fornecedorId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ContatoCountOrderByAggregateInput
   _max?: Prisma.ContatoMaxOrderByAggregateInput
   _min?: Prisma.ContatoMinOrderByAggregateInput
@@ -214,42 +228,48 @@ export type ContatoScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Contato"> | string
   tipo?: Prisma.StringWithAggregatesFilter<"Contato"> | string
   conteudo?: Prisma.StringWithAggregatesFilter<"Contato"> | string
-  clienteId?: Prisma.StringWithAggregatesFilter<"Contato"> | string
+  clienteId?: Prisma.StringNullableWithAggregatesFilter<"Contato"> | string | null
+  fornecedorId?: Prisma.StringNullableWithAggregatesFilter<"Contato"> | string | null
 }
 
 export type ContatoCreateInput = {
   id?: string
   tipo: string
   conteudo: string
-  cliente: Prisma.ClienteCreateNestedOneWithoutContatosInput
+  cliente?: Prisma.ClienteCreateNestedOneWithoutContatosInput
+  fornecedor?: Prisma.FornecedorCreateNestedOneWithoutContatosInput
 }
 
 export type ContatoUncheckedCreateInput = {
   id?: string
   tipo: string
   conteudo: string
-  clienteId: string
+  clienteId?: string | null
+  fornecedorId?: string | null
 }
 
 export type ContatoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
-  cliente?: Prisma.ClienteUpdateOneRequiredWithoutContatosNestedInput
+  cliente?: Prisma.ClienteUpdateOneWithoutContatosNestedInput
+  fornecedor?: Prisma.FornecedorUpdateOneWithoutContatosNestedInput
 }
 
 export type ContatoUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
-  clienteId?: Prisma.StringFieldUpdateOperationsInput | string
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fornecedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ContatoCreateManyInput = {
   id?: string
   tipo: string
   conteudo: string
-  clienteId: string
+  clienteId?: string | null
+  fornecedorId?: string | null
 }
 
 export type ContatoUpdateManyMutationInput = {
@@ -262,7 +282,8 @@ export type ContatoUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
-  clienteId?: Prisma.StringFieldUpdateOperationsInput | string
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fornecedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ContatoListRelationFilter = {
@@ -286,6 +307,7 @@ export type ContatoCountOrderByAggregateInput = {
   tipo?: Prisma.SortOrder
   conteudo?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
+  fornecedorId?: Prisma.SortOrder
 }
 
 export type ContatoMaxOrderByAggregateInput = {
@@ -293,6 +315,7 @@ export type ContatoMaxOrderByAggregateInput = {
   tipo?: Prisma.SortOrder
   conteudo?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
+  fornecedorId?: Prisma.SortOrder
 }
 
 export type ContatoMinOrderByAggregateInput = {
@@ -300,6 +323,7 @@ export type ContatoMinOrderByAggregateInput = {
   tipo?: Prisma.SortOrder
   conteudo?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
+  fornecedorId?: Prisma.SortOrder
 }
 
 export type ContatoCreateNestedManyWithoutClienteInput = {
@@ -344,16 +368,60 @@ export type ContatoUncheckedUpdateManyWithoutClienteNestedInput = {
   deleteMany?: Prisma.ContatoScalarWhereInput | Prisma.ContatoScalarWhereInput[]
 }
 
+export type ContatoCreateNestedManyWithoutFornecedorInput = {
+  create?: Prisma.XOR<Prisma.ContatoCreateWithoutFornecedorInput, Prisma.ContatoUncheckedCreateWithoutFornecedorInput> | Prisma.ContatoCreateWithoutFornecedorInput[] | Prisma.ContatoUncheckedCreateWithoutFornecedorInput[]
+  connectOrCreate?: Prisma.ContatoCreateOrConnectWithoutFornecedorInput | Prisma.ContatoCreateOrConnectWithoutFornecedorInput[]
+  createMany?: Prisma.ContatoCreateManyFornecedorInputEnvelope
+  connect?: Prisma.ContatoWhereUniqueInput | Prisma.ContatoWhereUniqueInput[]
+}
+
+export type ContatoUncheckedCreateNestedManyWithoutFornecedorInput = {
+  create?: Prisma.XOR<Prisma.ContatoCreateWithoutFornecedorInput, Prisma.ContatoUncheckedCreateWithoutFornecedorInput> | Prisma.ContatoCreateWithoutFornecedorInput[] | Prisma.ContatoUncheckedCreateWithoutFornecedorInput[]
+  connectOrCreate?: Prisma.ContatoCreateOrConnectWithoutFornecedorInput | Prisma.ContatoCreateOrConnectWithoutFornecedorInput[]
+  createMany?: Prisma.ContatoCreateManyFornecedorInputEnvelope
+  connect?: Prisma.ContatoWhereUniqueInput | Prisma.ContatoWhereUniqueInput[]
+}
+
+export type ContatoUpdateManyWithoutFornecedorNestedInput = {
+  create?: Prisma.XOR<Prisma.ContatoCreateWithoutFornecedorInput, Prisma.ContatoUncheckedCreateWithoutFornecedorInput> | Prisma.ContatoCreateWithoutFornecedorInput[] | Prisma.ContatoUncheckedCreateWithoutFornecedorInput[]
+  connectOrCreate?: Prisma.ContatoCreateOrConnectWithoutFornecedorInput | Prisma.ContatoCreateOrConnectWithoutFornecedorInput[]
+  upsert?: Prisma.ContatoUpsertWithWhereUniqueWithoutFornecedorInput | Prisma.ContatoUpsertWithWhereUniqueWithoutFornecedorInput[]
+  createMany?: Prisma.ContatoCreateManyFornecedorInputEnvelope
+  set?: Prisma.ContatoWhereUniqueInput | Prisma.ContatoWhereUniqueInput[]
+  disconnect?: Prisma.ContatoWhereUniqueInput | Prisma.ContatoWhereUniqueInput[]
+  delete?: Prisma.ContatoWhereUniqueInput | Prisma.ContatoWhereUniqueInput[]
+  connect?: Prisma.ContatoWhereUniqueInput | Prisma.ContatoWhereUniqueInput[]
+  update?: Prisma.ContatoUpdateWithWhereUniqueWithoutFornecedorInput | Prisma.ContatoUpdateWithWhereUniqueWithoutFornecedorInput[]
+  updateMany?: Prisma.ContatoUpdateManyWithWhereWithoutFornecedorInput | Prisma.ContatoUpdateManyWithWhereWithoutFornecedorInput[]
+  deleteMany?: Prisma.ContatoScalarWhereInput | Prisma.ContatoScalarWhereInput[]
+}
+
+export type ContatoUncheckedUpdateManyWithoutFornecedorNestedInput = {
+  create?: Prisma.XOR<Prisma.ContatoCreateWithoutFornecedorInput, Prisma.ContatoUncheckedCreateWithoutFornecedorInput> | Prisma.ContatoCreateWithoutFornecedorInput[] | Prisma.ContatoUncheckedCreateWithoutFornecedorInput[]
+  connectOrCreate?: Prisma.ContatoCreateOrConnectWithoutFornecedorInput | Prisma.ContatoCreateOrConnectWithoutFornecedorInput[]
+  upsert?: Prisma.ContatoUpsertWithWhereUniqueWithoutFornecedorInput | Prisma.ContatoUpsertWithWhereUniqueWithoutFornecedorInput[]
+  createMany?: Prisma.ContatoCreateManyFornecedorInputEnvelope
+  set?: Prisma.ContatoWhereUniqueInput | Prisma.ContatoWhereUniqueInput[]
+  disconnect?: Prisma.ContatoWhereUniqueInput | Prisma.ContatoWhereUniqueInput[]
+  delete?: Prisma.ContatoWhereUniqueInput | Prisma.ContatoWhereUniqueInput[]
+  connect?: Prisma.ContatoWhereUniqueInput | Prisma.ContatoWhereUniqueInput[]
+  update?: Prisma.ContatoUpdateWithWhereUniqueWithoutFornecedorInput | Prisma.ContatoUpdateWithWhereUniqueWithoutFornecedorInput[]
+  updateMany?: Prisma.ContatoUpdateManyWithWhereWithoutFornecedorInput | Prisma.ContatoUpdateManyWithWhereWithoutFornecedorInput[]
+  deleteMany?: Prisma.ContatoScalarWhereInput | Prisma.ContatoScalarWhereInput[]
+}
+
 export type ContatoCreateWithoutClienteInput = {
   id?: string
   tipo: string
   conteudo: string
+  fornecedor?: Prisma.FornecedorCreateNestedOneWithoutContatosInput
 }
 
 export type ContatoUncheckedCreateWithoutClienteInput = {
   id?: string
   tipo: string
   conteudo: string
+  fornecedorId?: string | null
 }
 
 export type ContatoCreateOrConnectWithoutClienteInput = {
@@ -389,31 +457,104 @@ export type ContatoScalarWhereInput = {
   id?: Prisma.StringFilter<"Contato"> | string
   tipo?: Prisma.StringFilter<"Contato"> | string
   conteudo?: Prisma.StringFilter<"Contato"> | string
-  clienteId?: Prisma.StringFilter<"Contato"> | string
+  clienteId?: Prisma.StringNullableFilter<"Contato"> | string | null
+  fornecedorId?: Prisma.StringNullableFilter<"Contato"> | string | null
+}
+
+export type ContatoCreateWithoutFornecedorInput = {
+  id?: string
+  tipo: string
+  conteudo: string
+  cliente?: Prisma.ClienteCreateNestedOneWithoutContatosInput
+}
+
+export type ContatoUncheckedCreateWithoutFornecedorInput = {
+  id?: string
+  tipo: string
+  conteudo: string
+  clienteId?: string | null
+}
+
+export type ContatoCreateOrConnectWithoutFornecedorInput = {
+  where: Prisma.ContatoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ContatoCreateWithoutFornecedorInput, Prisma.ContatoUncheckedCreateWithoutFornecedorInput>
+}
+
+export type ContatoCreateManyFornecedorInputEnvelope = {
+  data: Prisma.ContatoCreateManyFornecedorInput | Prisma.ContatoCreateManyFornecedorInput[]
+  skipDuplicates?: boolean
+}
+
+export type ContatoUpsertWithWhereUniqueWithoutFornecedorInput = {
+  where: Prisma.ContatoWhereUniqueInput
+  update: Prisma.XOR<Prisma.ContatoUpdateWithoutFornecedorInput, Prisma.ContatoUncheckedUpdateWithoutFornecedorInput>
+  create: Prisma.XOR<Prisma.ContatoCreateWithoutFornecedorInput, Prisma.ContatoUncheckedCreateWithoutFornecedorInput>
+}
+
+export type ContatoUpdateWithWhereUniqueWithoutFornecedorInput = {
+  where: Prisma.ContatoWhereUniqueInput
+  data: Prisma.XOR<Prisma.ContatoUpdateWithoutFornecedorInput, Prisma.ContatoUncheckedUpdateWithoutFornecedorInput>
+}
+
+export type ContatoUpdateManyWithWhereWithoutFornecedorInput = {
+  where: Prisma.ContatoScalarWhereInput
+  data: Prisma.XOR<Prisma.ContatoUpdateManyMutationInput, Prisma.ContatoUncheckedUpdateManyWithoutFornecedorInput>
 }
 
 export type ContatoCreateManyClienteInput = {
   id?: string
   tipo: string
   conteudo: string
+  fornecedorId?: string | null
 }
 
 export type ContatoUpdateWithoutClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
+  fornecedor?: Prisma.FornecedorUpdateOneWithoutContatosNestedInput
 }
 
 export type ContatoUncheckedUpdateWithoutClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
+  fornecedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ContatoUncheckedUpdateManyWithoutClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   conteudo?: Prisma.StringFieldUpdateOperationsInput | string
+  fornecedorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type ContatoCreateManyFornecedorInput = {
+  id?: string
+  tipo: string
+  conteudo: string
+  clienteId?: string | null
+}
+
+export type ContatoUpdateWithoutFornecedorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  conteudo?: Prisma.StringFieldUpdateOperationsInput | string
+  cliente?: Prisma.ClienteUpdateOneWithoutContatosNestedInput
+}
+
+export type ContatoUncheckedUpdateWithoutFornecedorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  conteudo?: Prisma.StringFieldUpdateOperationsInput | string
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type ContatoUncheckedUpdateManyWithoutFornecedorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  conteudo?: Prisma.StringFieldUpdateOperationsInput | string
+  clienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -423,7 +564,9 @@ export type ContatoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   tipo?: boolean
   conteudo?: boolean
   clienteId?: boolean
-  cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
+  fornecedorId?: boolean
+  cliente?: boolean | Prisma.Contato$clienteArgs<ExtArgs>
+  fornecedor?: boolean | Prisma.Contato$fornecedorArgs<ExtArgs>
 }, ExtArgs["result"]["contato"]>
 
 
@@ -433,23 +576,27 @@ export type ContatoSelectScalar = {
   tipo?: boolean
   conteudo?: boolean
   clienteId?: boolean
+  fornecedorId?: boolean
 }
 
-export type ContatoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tipo" | "conteudo" | "clienteId", ExtArgs["result"]["contato"]>
+export type ContatoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tipo" | "conteudo" | "clienteId" | "fornecedorId", ExtArgs["result"]["contato"]>
 export type ContatoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
+  cliente?: boolean | Prisma.Contato$clienteArgs<ExtArgs>
+  fornecedor?: boolean | Prisma.Contato$fornecedorArgs<ExtArgs>
 }
 
 export type $ContatoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Contato"
   objects: {
-    cliente: Prisma.$ClientePayload<ExtArgs>
+    cliente: Prisma.$ClientePayload<ExtArgs> | null
+    fornecedor: Prisma.$FornecedorPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     tipo: string
     conteudo: string
-    clienteId: string
+    clienteId: string | null
+    fornecedorId: string | null
   }, ExtArgs["result"]["contato"]>
   composites: {}
 }
@@ -790,7 +937,8 @@ readonly fields: ContatoFieldRefs;
  */
 export interface Prisma__ContatoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  cliente<T extends Prisma.ClienteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClienteDefaultArgs<ExtArgs>>): Prisma.Prisma__ClienteClient<runtime.Types.Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  cliente<T extends Prisma.Contato$clienteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contato$clienteArgs<ExtArgs>>): Prisma.Prisma__ClienteClient<runtime.Types.Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  fornecedor<T extends Prisma.Contato$fornecedorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contato$fornecedorArgs<ExtArgs>>): Prisma.Prisma__FornecedorClient<runtime.Types.Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -824,6 +972,7 @@ export interface ContatoFieldRefs {
   readonly tipo: Prisma.FieldRef<"Contato", 'String'>
   readonly conteudo: Prisma.FieldRef<"Contato", 'String'>
   readonly clienteId: Prisma.FieldRef<"Contato", 'String'>
+  readonly fornecedorId: Prisma.FieldRef<"Contato", 'String'>
 }
     
 
@@ -1164,6 +1313,44 @@ export type ContatoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Contatoes to delete.
    */
   limit?: number
+}
+
+/**
+ * Contato.cliente
+ */
+export type Contato$clienteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Cliente
+   */
+  select?: Prisma.ClienteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Cliente
+   */
+  omit?: Prisma.ClienteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClienteInclude<ExtArgs> | null
+  where?: Prisma.ClienteWhereInput
+}
+
+/**
+ * Contato.fornecedor
+ */
+export type Contato$fornecedorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Fornecedor
+   */
+  select?: Prisma.FornecedorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Fornecedor
+   */
+  omit?: Prisma.FornecedorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FornecedorInclude<ExtArgs> | null
+  where?: Prisma.FornecedorWhereInput
 }
 
 /**

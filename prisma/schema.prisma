@@ -69,13 +69,13 @@ model Verification {
 }
 
 model Cliente {
-  id         String      @id @default(uuid())
+  id         String            @id @default(uuid())
   nome       String
   sobrenome  String
-  cod        String      @unique
+  cod        String            @unique
   contatos   Contato[]
   documentos Documento[]
-  enderecos  Endereco[]
+  enderecos  EnderecoCliente[]
   vendas     Venda[]
 
   @@map("cliente")
@@ -93,7 +93,7 @@ model Documento {
   @@map("documento")
 }
 
-model Endereco {
+model EnderecoCliente {
   id         String  @id @default(uuid())
   logradouro String
   numero     String
@@ -105,15 +105,17 @@ model Endereco {
   cliente    Cliente @relation(fields: [clienteId], references: [id], onDelete: Cascade)
 
   @@index([clienteId], map: "endereco_clienteId_fkey")
-  @@map("endereco")
+  @@map("endereco_cliente")
 }
 
 model Contato {
-  id        String  @id @default(uuid())
-  tipo      String
-  conteudo  String
-  clienteId String
-  cliente   Cliente @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  id           String      @id @default(uuid())
+  tipo         String
+  conteudo     String
+  clienteId    String?
+  cliente      Cliente?    @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  fornecedorId String?
+  fornecedor   Fornecedor? @relation(fields: [fornecedorId], references: [id])
 
   @@index([clienteId], map: "contato_clienteId_fkey")
   @@map("contato")
@@ -211,15 +213,25 @@ model ItemVenda {
   venda      Venda   @relation(fields: [venda_id], references: [id], onDelete: Cascade)
   produto_id String
   produto    Produto @relation(fields: [produto_id], references: [id])
+
+  @@map("item_venda")
 }
 
 model Produto {
-  id           String      @id @default(uuid())
-  codigo       String      @unique
-  descricao    String
-  preco_venda  Decimal
-  preco_compra Decimal
-  itens        ItemVenda[]
+  id             String      @id @default(uuid())
+  nome           String      @unique
+  codigo         String      @unique
+  unidade_medida String
+  material       String
+  cor            String
+  descricao      String
+  preco_venda    Decimal?
+  preco_compra   Decimal
+  itens          ItemVenda[]
+  categoria_id   String
+  categoria      Categoria   @relation(fields: [categoria_id], references: [id])
+  fornecedor_id  String
+  fornecedor     Fornecedor  @relation(fields: [fornecedor_id], references: [id])
 
   @@map("produto")
 }
@@ -230,4 +242,54 @@ model Pagamento {
   venda    Venda?
 
   @@map("pagamento")
+}
+
+model Categoria {
+  id       String    @id @default(uuid())
+  codigo   String    @unique
+  nome     String    @unique
+  produtos Produto[]
+
+  @@map("categoria")
+}
+
+model Fornecedor {
+  id                  String                    @id @default(uuid())
+  codigo              String?
+  razao_social        String
+  nome_fantasia       String?
+  observacoes         String?
+  produtos            Produto[]
+  contatos            Contato[]
+  endereco_fornecedor EnderecoFornecedor?
+  dados_comercial     DadosComercialFornecedor?
+
+  @@map("fornecedor")
+}
+
+model EnderecoFornecedor {
+  id           String     @id @default(uuid())
+  logradouro   String
+  numero       String
+  bairro       String
+  cidade       String
+  pais         String
+  cep          String
+  fornecedorId String     @unique
+  fornecedor   Fornecedor @relation(fields: [fornecedorId], references: [id], onDelete: Cascade)
+
+  @@map("endereco_fornecedor")
+}
+
+model DadosComercialFornecedor {
+  id              String     @id @default(uuid())
+  codigo          String?
+  prazo_pagamento Int?
+  forma_pagamento String?
+  banco           String?
+  chave_pix       String?
+  fornecedorId    String     @unique
+  forecedor       Fornecedor @relation(fields: [fornecedorId], references: [id], onDelete: Cascade)
+
+  @@map("dados_comercial_fornecedor")
 }
