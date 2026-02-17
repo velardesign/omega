@@ -32,7 +32,7 @@ export interface PropsProduto {
 export default function AdicionaProduto(props: PropsProduto) {
 
     const {categorias, fornecedores} = props;
-    const urlCategoria = "/login";
+    const urlCategoria = "/dashboard/categoria/adicionar";
     const urlFornecedor = "/dashboard/fornecedores/cadastrar-fornecedor"
     const router = useRouter();
 

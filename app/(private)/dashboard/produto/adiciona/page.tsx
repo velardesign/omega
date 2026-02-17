@@ -26,7 +26,6 @@ async function carregaCategoria(): Promise<PropsProduto> {
     return {categorias, fornecedores}
 }
 
-
 export default async function Page() {
 
     const {categorias, fornecedores} = await carregaCategoria();
