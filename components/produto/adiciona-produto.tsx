@@ -16,7 +16,7 @@ import {Input} from "@/components/ui/input";
 
 interface PropsCategoria {
     nome: string;
-    value: string;
+    codigo: string;
 }
 
 interface PropsFornecedor {
@@ -56,7 +56,7 @@ export default function AdicionaProduto(props: PropsProduto) {
                                 <SelectLabel>Categorias</SelectLabel>
                                 {
                                     categorias.map((c, k) => (
-                                            <SelectItem value={c.value} key={k}>{c.nome}</SelectItem>
+                                            <SelectItem value={c.codigo} key={k}>{c.nome}</SelectItem>
                                         )
                                     )
                                 }

@@ -1,6 +1,5 @@
-import {Caixa} from "@/generated/prisma/client";
 import {CaixaDTO} from "@/src/domain/types/caixa-types";
-import {CaixaComAberturaFechamento} from "@/src/infra/prisma/repositories/caixa-prisma-repository";
+
 
 export function caixaToDTO(caixa:CaixaDTO):CaixaDTO{
     return {

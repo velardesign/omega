@@ -1,17 +1,9 @@
 import AdicionaProduto, {PropsProduto} from "@/components/produto/adiciona-produto";
+import {listarTodasCategorias} from "@/actions/categoria-action";
 
 async function carregaCategoria(): Promise<PropsProduto> {
 
-    const categorias = [
-        {
-            nome: "Ferragens",
-            value: "ferragens"
-        },
-        {
-            nome: "Perfis",
-            value: "perfis"
-        }
-    ]
+    const categorias = await listarTodasCategorias();
     const fornecedores = [
         {
             nome: "Divibras",
