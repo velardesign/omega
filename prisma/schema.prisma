@@ -250,9 +250,9 @@ model Categoria {
 
 model Fornecedor {
   id                  String                    @id @default(uuid())
-  codigo              String?
-  razao_social        String
-  nome_fantasia       String?
+  codigo              String?                   @unique
+  razao_social        String                    @unique
+  nome_fantasia       String?                   @unique
   observacoes         String?
   contatos            ContatoFornecedor[]
   dados_comercial     DadosComercialFornecedor?
@@ -300,6 +300,12 @@ model ContatoFornecedor {
 
   @@index([fornecedorId], map: "contato_fornecedor_fornecedorId_fkey")
   @@map("contato_fornecedor")
+}
+
+model Sequencia {
+  id      String @id @default(uuid())
+  nome    String @unique
+  proximo Int
 }
 
 enum TipoEntrada {

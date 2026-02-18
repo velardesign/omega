@@ -405,7 +405,8 @@ export const ModelName = {
   Fornecedor: 'Fornecedor',
   EnderecoFornecedor: 'EnderecoFornecedor',
   DadosComercialFornecedor: 'DadosComercialFornecedor',
-  ContatoFornecedor: 'ContatoFornecedor'
+  ContatoFornecedor: 'ContatoFornecedor',
+  Sequencia: 'Sequencia'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -421,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "documento" | "enderecoCliente" | "contatoCliente" | "caixa" | "entrada" | "saida" | "abertura" | "fechamento" | "venda" | "itemVenda" | "produto" | "pagamento" | "categoria" | "fornecedor" | "enderecoFornecedor" | "dadosComercialFornecedor" | "contatoFornecedor"
+    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "documento" | "enderecoCliente" | "contatoCliente" | "caixa" | "entrada" | "saida" | "abertura" | "fechamento" | "venda" | "itemVenda" | "produto" | "pagamento" | "categoria" | "fornecedor" | "enderecoFornecedor" | "dadosComercialFornecedor" | "contatoFornecedor" | "sequencia"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1877,6 +1878,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Sequencia: {
+      payload: Prisma.$SequenciaPayload<ExtArgs>
+      fields: Prisma.SequenciaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SequenciaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SequenciaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SequenciaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SequenciaPayload>
+        }
+        findFirst: {
+          args: Prisma.SequenciaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SequenciaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SequenciaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SequenciaPayload>
+        }
+        findMany: {
+          args: Prisma.SequenciaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SequenciaPayload>[]
+        }
+        create: {
+          args: Prisma.SequenciaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SequenciaPayload>
+        }
+        createMany: {
+          args: Prisma.SequenciaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.SequenciaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SequenciaPayload>
+        }
+        update: {
+          args: Prisma.SequenciaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SequenciaPayload>
+        }
+        deleteMany: {
+          args: Prisma.SequenciaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SequenciaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.SequenciaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SequenciaPayload>
+        }
+        aggregate: {
+          args: Prisma.SequenciaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSequencia>
+        }
+        groupBy: {
+          args: Prisma.SequenciaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SequenciaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SequenciaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SequenciaCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2180,6 +2247,15 @@ export const ContatoFornecedorScalarFieldEnum = {
 export type ContatoFornecedorScalarFieldEnum = (typeof ContatoFornecedorScalarFieldEnum)[keyof typeof ContatoFornecedorScalarFieldEnum]
 
 
+export const SequenciaScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  proximo: 'proximo'
+} as const
+
+export type SequenciaScalarFieldEnum = (typeof SequenciaScalarFieldEnum)[keyof typeof SequenciaScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2433,6 +2509,14 @@ export const ContatoFornecedorOrderByRelevanceFieldEnum = {
 export type ContatoFornecedorOrderByRelevanceFieldEnum = (typeof ContatoFornecedorOrderByRelevanceFieldEnum)[keyof typeof ContatoFornecedorOrderByRelevanceFieldEnum]
 
 
+export const SequenciaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  nome: 'nome'
+} as const
+
+export type SequenciaOrderByRelevanceFieldEnum = (typeof SequenciaOrderByRelevanceFieldEnum)[keyof typeof SequenciaOrderByRelevanceFieldEnum]
+
+
 
 /**
  * Field references
@@ -2604,6 +2688,7 @@ export type GlobalOmitConfig = {
   enderecoFornecedor?: Prisma.EnderecoFornecedorOmit
   dadosComercialFornecedor?: Prisma.DadosComercialFornecedorOmit
   contatoFornecedor?: Prisma.ContatoFornecedorOmit
+  sequencia?: Prisma.SequenciaOmit
 }
 
 /* Types for Logging */

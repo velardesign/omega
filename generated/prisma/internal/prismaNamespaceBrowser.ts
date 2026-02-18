@@ -72,7 +72,8 @@ export const ModelName = {
   Fornecedor: 'Fornecedor',
   EnderecoFornecedor: 'EnderecoFornecedor',
   DadosComercialFornecedor: 'DadosComercialFornecedor',
-  ContatoFornecedor: 'ContatoFornecedor'
+  ContatoFornecedor: 'ContatoFornecedor',
+  Sequencia: 'Sequencia'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -355,6 +356,15 @@ export const ContatoFornecedorScalarFieldEnum = {
 export type ContatoFornecedorScalarFieldEnum = (typeof ContatoFornecedorScalarFieldEnum)[keyof typeof ContatoFornecedorScalarFieldEnum]
 
 
+export const SequenciaScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  proximo: 'proximo'
+} as const
+
+export type SequenciaScalarFieldEnum = (typeof SequenciaScalarFieldEnum)[keyof typeof SequenciaScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -606,4 +616,12 @@ export const ContatoFornecedorOrderByRelevanceFieldEnum = {
 } as const
 
 export type ContatoFornecedorOrderByRelevanceFieldEnum = (typeof ContatoFornecedorOrderByRelevanceFieldEnum)[keyof typeof ContatoFornecedorOrderByRelevanceFieldEnum]
+
+
+export const SequenciaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  nome: 'nome'
+} as const
+
+export type SequenciaOrderByRelevanceFieldEnum = (typeof SequenciaOrderByRelevanceFieldEnum)[keyof typeof SequenciaOrderByRelevanceFieldEnum]
 

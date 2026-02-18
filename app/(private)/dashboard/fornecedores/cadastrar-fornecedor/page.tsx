@@ -12,20 +12,36 @@ import {FornecedorCriarFormData, fornecedorCriarSchema} from "@/schemas/forneced
 import {createUserAction} from "@/actions/create-user";
 import {PlusCircle} from "lucide-react";
 import {addFornecedor} from "@/actions/fornecedor-action";
+import {useEffect, useRef} from "react";
 
 export default function SupplierCreateForm() {
     const {
         register,
         handleSubmit,
         setValue,
+        setError,
+        reset,
         formState: {errors},
     } = useForm<FornecedorCriarFormData>({
         resolver: zodResolver(fornecedorCriarSchema),
     });
 
-    function onSubmit(data: FornecedorCriarFormData) {
-        addFornecedor(data);
-        console.log("Dados validados:", data);
+    const errorRef = useRef<HTMLParagraphElement>(null);
+
+    useEffect(() => {
+        if (errors.root) {
+            errorRef.current?.scrollIntoView({behavior: "smooth", block: "center"});
+        }
+    }, [errors.root]);
+
+
+    async function onSubmit(data: FornecedorCriarFormData) {
+        const result = await addFornecedor(data);
+        if (result.success) {
+            reset();
+            return;
+        }
+        setError("root", {message: result.error});
     }
 
     return (
@@ -34,6 +50,14 @@ export default function SupplierCreateForm() {
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-1 flex-col gap-4 p-4 pt-0"
             >
+                {errors.root && (
+                    <p
+                        ref={errorRef}
+                        tabIndex={-1}
+                        className="text-sm text-center text-red-400 p-3 rounded-md border"
+                    >{errors.root.message}</p>
+                )}
+
                 <Card>
                     <CardHeader>
                         <CardTitle className="text-base">
@@ -144,7 +168,7 @@ export default function SupplierCreateForm() {
                             )}
 
                         </div>
-                         <div>
+                        <div>
                             <Input
                                 placeholder="Rua"
                                 className="md:col-span-2"
@@ -170,7 +194,7 @@ export default function SupplierCreateForm() {
                                 <p className={"text-sm text-red-500"}>{errors.bairro.message}</p>
                             )}
                         </div>
-                         <div>
+                        <div>
                             <Input placeholder="Cidade"
                                    {...register("cidade")}
                             />
@@ -276,7 +300,7 @@ export default function SupplierCreateForm() {
                         type={"submit"}
                         variant={"outline"}
                     >
-                      <PlusCircle className={"text-green-500"}/>Salvar fornecedor
+                        <PlusCircle className={"text-green-500"}/>Salvar fornecedor
                     </Button>
                 </div>
             </form>

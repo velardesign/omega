@@ -203,18 +203,18 @@ export type FornecedorOrderByWithRelationInput = {
 
 export type FornecedorWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  codigo?: string
+  razao_social?: string
+  nome_fantasia?: string
   AND?: Prisma.FornecedorWhereInput | Prisma.FornecedorWhereInput[]
   OR?: Prisma.FornecedorWhereInput[]
   NOT?: Prisma.FornecedorWhereInput | Prisma.FornecedorWhereInput[]
-  codigo?: Prisma.StringNullableFilter<"Fornecedor"> | string | null
-  razao_social?: Prisma.StringFilter<"Fornecedor"> | string
-  nome_fantasia?: Prisma.StringNullableFilter<"Fornecedor"> | string | null
   observacoes?: Prisma.StringNullableFilter<"Fornecedor"> | string | null
   contatos?: Prisma.ContatoFornecedorListRelationFilter
   dados_comercial?: Prisma.XOR<Prisma.DadosComercialFornecedorNullableScalarRelationFilter, Prisma.DadosComercialFornecedorWhereInput> | null
   endereco_fornecedor?: Prisma.XOR<Prisma.EnderecoFornecedorNullableScalarRelationFilter, Prisma.EnderecoFornecedorWhereInput> | null
   produtos?: Prisma.ProdutoListRelationFilter
-}, "id">
+}, "id" | "codigo" | "razao_social" | "nome_fantasia">
 
 export type FornecedorOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

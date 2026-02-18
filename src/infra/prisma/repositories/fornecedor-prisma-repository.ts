@@ -19,6 +19,7 @@ export class FornecedorPrismaRepository implements FornecedorRepository {
     async addFornecedor(fornecedor: FornecedorDTO): Promise<void> {
         await prisma.fornecedor.create({
             data: {
+                codigo:fornecedor.codigo,
                 razao_social: fornecedor.razao_social,
                 nome_fantasia: fornecedor.nome_fantasia,
                 observacoes: fornecedor.observacoes,

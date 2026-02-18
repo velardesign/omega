@@ -127,3 +127,8 @@ export type DadosComercialFornecedor = Prisma.DadosComercialFornecedorModel
  * 
  */
 export type ContatoFornecedor = Prisma.ContatoFornecedorModel
+/**
+ * Model Sequencia
+ * 
+ */
+export type Sequencia = Prisma.SequenciaModel
