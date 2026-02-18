@@ -53,10 +53,10 @@ export type Documento = Prisma.DocumentoModel
  */
 export type EnderecoCliente = Prisma.EnderecoClienteModel
 /**
- * Model Contato
+ * Model ContatoCliente
  * 
  */
-export type Contato = Prisma.ContatoModel
+export type ContatoCliente = Prisma.ContatoClienteModel
 /**
  * Model Caixa
  * 
@@ -122,3 +122,8 @@ export type EnderecoFornecedor = Prisma.EnderecoFornecedorModel
  * 
  */
 export type DadosComercialFornecedor = Prisma.DadosComercialFornecedorModel
+/**
+ * Model ContatoFornecedor
+ * 
+ */
+export type ContatoFornecedor = Prisma.ContatoFornecedorModel

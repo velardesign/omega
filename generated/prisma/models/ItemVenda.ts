@@ -236,8 +236,8 @@ export type ItemVendaWhereInput = {
   observacao?: Prisma.StringNullableFilter<"ItemVenda"> | string | null
   venda_id?: Prisma.StringFilter<"ItemVenda"> | string
   produto_id?: Prisma.StringFilter<"ItemVenda"> | string
-  venda?: Prisma.XOR<Prisma.VendaScalarRelationFilter, Prisma.VendaWhereInput>
   produto?: Prisma.XOR<Prisma.ProdutoScalarRelationFilter, Prisma.ProdutoWhereInput>
+  venda?: Prisma.XOR<Prisma.VendaScalarRelationFilter, Prisma.VendaWhereInput>
 }
 
 export type ItemVendaOrderByWithRelationInput = {
@@ -248,8 +248,8 @@ export type ItemVendaOrderByWithRelationInput = {
   observacao?: Prisma.SortOrderInput | Prisma.SortOrder
   venda_id?: Prisma.SortOrder
   produto_id?: Prisma.SortOrder
-  venda?: Prisma.VendaOrderByWithRelationInput
   produto?: Prisma.ProdutoOrderByWithRelationInput
+  venda?: Prisma.VendaOrderByWithRelationInput
   _relevance?: Prisma.ItemVendaOrderByRelevanceInput
 }
 
@@ -264,8 +264,8 @@ export type ItemVendaWhereUniqueInput = Prisma.AtLeast<{
   observacao?: Prisma.StringNullableFilter<"ItemVenda"> | string | null
   venda_id?: Prisma.StringFilter<"ItemVenda"> | string
   produto_id?: Prisma.StringFilter<"ItemVenda"> | string
-  venda?: Prisma.XOR<Prisma.VendaScalarRelationFilter, Prisma.VendaWhereInput>
   produto?: Prisma.XOR<Prisma.ProdutoScalarRelationFilter, Prisma.ProdutoWhereInput>
+  venda?: Prisma.XOR<Prisma.VendaScalarRelationFilter, Prisma.VendaWhereInput>
 }, "id">
 
 export type ItemVendaOrderByWithAggregationInput = {
@@ -302,8 +302,8 @@ export type ItemVendaCreateInput = {
   preco_venda: runtime.Decimal | runtime.DecimalJsLike | number | string
   ambiente?: string | null
   observacao?: string | null
-  venda: Prisma.VendaCreateNestedOneWithoutItensVendaInput
   produto: Prisma.ProdutoCreateNestedOneWithoutItensInput
+  venda: Prisma.VendaCreateNestedOneWithoutItensVendaInput
 }
 
 export type ItemVendaUncheckedCreateInput = {
@@ -322,8 +322,8 @@ export type ItemVendaUpdateInput = {
   preco_venda?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ambiente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  venda?: Prisma.VendaUpdateOneRequiredWithoutItensVendaNestedInput
   produto?: Prisma.ProdutoUpdateOneRequiredWithoutItensNestedInput
+  venda?: Prisma.VendaUpdateOneRequiredWithoutItensVendaNestedInput
 }
 
 export type ItemVendaUncheckedUpdateInput = {
@@ -687,8 +687,8 @@ export type ItemVendaSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   observacao?: boolean
   venda_id?: boolean
   produto_id?: boolean
-  venda?: boolean | Prisma.VendaDefaultArgs<ExtArgs>
   produto?: boolean | Prisma.ProdutoDefaultArgs<ExtArgs>
+  venda?: boolean | Prisma.VendaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["itemVenda"]>
 
 
@@ -705,15 +705,15 @@ export type ItemVendaSelectScalar = {
 
 export type ItemVendaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "quantidade" | "preco_venda" | "ambiente" | "observacao" | "venda_id" | "produto_id", ExtArgs["result"]["itemVenda"]>
 export type ItemVendaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  venda?: boolean | Prisma.VendaDefaultArgs<ExtArgs>
   produto?: boolean | Prisma.ProdutoDefaultArgs<ExtArgs>
+  venda?: boolean | Prisma.VendaDefaultArgs<ExtArgs>
 }
 
 export type $ItemVendaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ItemVenda"
   objects: {
-    venda: Prisma.$VendaPayload<ExtArgs>
     produto: Prisma.$ProdutoPayload<ExtArgs>
+    venda: Prisma.$VendaPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1063,8 +1063,8 @@ readonly fields: ItemVendaFieldRefs;
  */
 export interface Prisma__ItemVendaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  venda<T extends Prisma.VendaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VendaDefaultArgs<ExtArgs>>): Prisma.Prisma__VendaClient<runtime.Types.Result.GetResult<Prisma.$VendaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   produto<T extends Prisma.ProdutoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProdutoDefaultArgs<ExtArgs>>): Prisma.Prisma__ProdutoClient<runtime.Types.Result.GetResult<Prisma.$ProdutoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  venda<T extends Prisma.VendaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VendaDefaultArgs<ExtArgs>>): Prisma.Prisma__VendaClient<runtime.Types.Result.GetResult<Prisma.$VendaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

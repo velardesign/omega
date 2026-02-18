@@ -38,44 +38,44 @@ export type ProdutoSumAggregateOutputType = {
 
 export type ProdutoMinAggregateOutputType = {
   id: string | null
-  nome: string | null
   codigo: string | null
-  unidade_medida: string | null
-  material: string | null
-  cor: string | null
   descricao: string | null
   preco_venda: runtime.Decimal | null
   preco_compra: runtime.Decimal | null
   categoria_id: string | null
+  cor: string | null
   fornecedor_id: string | null
+  material: string | null
+  nome: string | null
+  unidade_medida: string | null
 }
 
 export type ProdutoMaxAggregateOutputType = {
   id: string | null
-  nome: string | null
   codigo: string | null
-  unidade_medida: string | null
-  material: string | null
-  cor: string | null
   descricao: string | null
   preco_venda: runtime.Decimal | null
   preco_compra: runtime.Decimal | null
   categoria_id: string | null
+  cor: string | null
   fornecedor_id: string | null
+  material: string | null
+  nome: string | null
+  unidade_medida: string | null
 }
 
 export type ProdutoCountAggregateOutputType = {
   id: number
-  nome: number
   codigo: number
-  unidade_medida: number
-  material: number
-  cor: number
   descricao: number
   preco_venda: number
   preco_compra: number
   categoria_id: number
+  cor: number
   fornecedor_id: number
+  material: number
+  nome: number
+  unidade_medida: number
   _all: number
 }
 
@@ -92,44 +92,44 @@ export type ProdutoSumAggregateInputType = {
 
 export type ProdutoMinAggregateInputType = {
   id?: true
-  nome?: true
   codigo?: true
-  unidade_medida?: true
-  material?: true
-  cor?: true
   descricao?: true
   preco_venda?: true
   preco_compra?: true
   categoria_id?: true
+  cor?: true
   fornecedor_id?: true
+  material?: true
+  nome?: true
+  unidade_medida?: true
 }
 
 export type ProdutoMaxAggregateInputType = {
   id?: true
-  nome?: true
   codigo?: true
-  unidade_medida?: true
-  material?: true
-  cor?: true
   descricao?: true
   preco_venda?: true
   preco_compra?: true
   categoria_id?: true
+  cor?: true
   fornecedor_id?: true
+  material?: true
+  nome?: true
+  unidade_medida?: true
 }
 
 export type ProdutoCountAggregateInputType = {
   id?: true
-  nome?: true
   codigo?: true
-  unidade_medida?: true
-  material?: true
-  cor?: true
   descricao?: true
   preco_venda?: true
   preco_compra?: true
   categoria_id?: true
+  cor?: true
   fornecedor_id?: true
+  material?: true
+  nome?: true
+  unidade_medida?: true
   _all?: true
 }
 
@@ -221,16 +221,16 @@ export type ProdutoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type ProdutoGroupByOutputType = {
   id: string
-  nome: string
   codigo: string
-  unidade_medida: string
-  material: string
-  cor: string
   descricao: string
   preco_venda: runtime.Decimal | null
   preco_compra: runtime.Decimal
   categoria_id: string
+  cor: string
   fornecedor_id: string
+  material: string
+  nome: string
+  unidade_medida: string
   _count: ProdutoCountAggregateOutputType | null
   _avg: ProdutoAvgAggregateOutputType | null
   _sum: ProdutoSumAggregateOutputType | null
@@ -258,16 +258,16 @@ export type ProdutoWhereInput = {
   OR?: Prisma.ProdutoWhereInput[]
   NOT?: Prisma.ProdutoWhereInput | Prisma.ProdutoWhereInput[]
   id?: Prisma.StringFilter<"Produto"> | string
-  nome?: Prisma.StringFilter<"Produto"> | string
   codigo?: Prisma.StringFilter<"Produto"> | string
-  unidade_medida?: Prisma.StringFilter<"Produto"> | string
-  material?: Prisma.StringFilter<"Produto"> | string
-  cor?: Prisma.StringFilter<"Produto"> | string
   descricao?: Prisma.StringFilter<"Produto"> | string
   preco_venda?: Prisma.DecimalNullableFilter<"Produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFilter<"Produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id?: Prisma.StringFilter<"Produto"> | string
+  cor?: Prisma.StringFilter<"Produto"> | string
   fornecedor_id?: Prisma.StringFilter<"Produto"> | string
+  material?: Prisma.StringFilter<"Produto"> | string
+  nome?: Prisma.StringFilter<"Produto"> | string
+  unidade_medida?: Prisma.StringFilter<"Produto"> | string
   itens?: Prisma.ItemVendaListRelationFilter
   categoria?: Prisma.XOR<Prisma.CategoriaScalarRelationFilter, Prisma.CategoriaWhereInput>
   fornecedor?: Prisma.XOR<Prisma.FornecedorScalarRelationFilter, Prisma.FornecedorWhereInput>
@@ -275,16 +275,16 @@ export type ProdutoWhereInput = {
 
 export type ProdutoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  nome?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
-  unidade_medida?: Prisma.SortOrder
-  material?: Prisma.SortOrder
-  cor?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
   preco_venda?: Prisma.SortOrderInput | Prisma.SortOrder
   preco_compra?: Prisma.SortOrder
   categoria_id?: Prisma.SortOrder
+  cor?: Prisma.SortOrder
   fornecedor_id?: Prisma.SortOrder
+  material?: Prisma.SortOrder
+  nome?: Prisma.SortOrder
+  unidade_medida?: Prisma.SortOrder
   itens?: Prisma.ItemVendaOrderByRelationAggregateInput
   categoria?: Prisma.CategoriaOrderByWithRelationInput
   fornecedor?: Prisma.FornecedorOrderByWithRelationInput
@@ -293,36 +293,36 @@ export type ProdutoOrderByWithRelationInput = {
 
 export type ProdutoWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  nome?: string
   codigo?: string
+  nome?: string
   AND?: Prisma.ProdutoWhereInput | Prisma.ProdutoWhereInput[]
   OR?: Prisma.ProdutoWhereInput[]
   NOT?: Prisma.ProdutoWhereInput | Prisma.ProdutoWhereInput[]
-  unidade_medida?: Prisma.StringFilter<"Produto"> | string
-  material?: Prisma.StringFilter<"Produto"> | string
-  cor?: Prisma.StringFilter<"Produto"> | string
   descricao?: Prisma.StringFilter<"Produto"> | string
   preco_venda?: Prisma.DecimalNullableFilter<"Produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFilter<"Produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id?: Prisma.StringFilter<"Produto"> | string
+  cor?: Prisma.StringFilter<"Produto"> | string
   fornecedor_id?: Prisma.StringFilter<"Produto"> | string
+  material?: Prisma.StringFilter<"Produto"> | string
+  unidade_medida?: Prisma.StringFilter<"Produto"> | string
   itens?: Prisma.ItemVendaListRelationFilter
   categoria?: Prisma.XOR<Prisma.CategoriaScalarRelationFilter, Prisma.CategoriaWhereInput>
   fornecedor?: Prisma.XOR<Prisma.FornecedorScalarRelationFilter, Prisma.FornecedorWhereInput>
-}, "id" | "nome" | "codigo">
+}, "id" | "codigo" | "nome">
 
 export type ProdutoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  nome?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
-  unidade_medida?: Prisma.SortOrder
-  material?: Prisma.SortOrder
-  cor?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
   preco_venda?: Prisma.SortOrderInput | Prisma.SortOrder
   preco_compra?: Prisma.SortOrder
   categoria_id?: Prisma.SortOrder
+  cor?: Prisma.SortOrder
   fornecedor_id?: Prisma.SortOrder
+  material?: Prisma.SortOrder
+  nome?: Prisma.SortOrder
+  unidade_medida?: Prisma.SortOrder
   _count?: Prisma.ProdutoCountOrderByAggregateInput
   _avg?: Prisma.ProdutoAvgOrderByAggregateInput
   _max?: Prisma.ProdutoMaxOrderByAggregateInput
@@ -335,28 +335,28 @@ export type ProdutoScalarWhereWithAggregatesInput = {
   OR?: Prisma.ProdutoScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProdutoScalarWhereWithAggregatesInput | Prisma.ProdutoScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Produto"> | string
-  nome?: Prisma.StringWithAggregatesFilter<"Produto"> | string
   codigo?: Prisma.StringWithAggregatesFilter<"Produto"> | string
-  unidade_medida?: Prisma.StringWithAggregatesFilter<"Produto"> | string
-  material?: Prisma.StringWithAggregatesFilter<"Produto"> | string
-  cor?: Prisma.StringWithAggregatesFilter<"Produto"> | string
   descricao?: Prisma.StringWithAggregatesFilter<"Produto"> | string
   preco_venda?: Prisma.DecimalNullableWithAggregatesFilter<"Produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalWithAggregatesFilter<"Produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id?: Prisma.StringWithAggregatesFilter<"Produto"> | string
+  cor?: Prisma.StringWithAggregatesFilter<"Produto"> | string
   fornecedor_id?: Prisma.StringWithAggregatesFilter<"Produto"> | string
+  material?: Prisma.StringWithAggregatesFilter<"Produto"> | string
+  nome?: Prisma.StringWithAggregatesFilter<"Produto"> | string
+  unidade_medida?: Prisma.StringWithAggregatesFilter<"Produto"> | string
 }
 
 export type ProdutoCreateInput = {
   id?: string
-  nome: string
   codigo: string
-  unidade_medida: string
-  material: string
-  cor: string
   descricao: string
   preco_venda?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cor: string
+  material: string
+  nome: string
+  unidade_medida: string
   itens?: Prisma.ItemVendaCreateNestedManyWithoutProdutoInput
   categoria: Prisma.CategoriaCreateNestedOneWithoutProdutosInput
   fornecedor: Prisma.FornecedorCreateNestedOneWithoutProdutosInput
@@ -364,29 +364,29 @@ export type ProdutoCreateInput = {
 
 export type ProdutoUncheckedCreateInput = {
   id?: string
-  nome: string
   codigo: string
-  unidade_medida: string
-  material: string
-  cor: string
   descricao: string
   preco_venda?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra: runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id: string
+  cor: string
   fornecedor_id: string
+  material: string
+  nome: string
+  unidade_medida: string
   itens?: Prisma.ItemVendaUncheckedCreateNestedManyWithoutProdutoInput
 }
 
 export type ProdutoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
-  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
-  material?: Prisma.StringFieldUpdateOperationsInput | string
-  cor?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco_venda?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cor?: Prisma.StringFieldUpdateOperationsInput | string
+  material?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   itens?: Prisma.ItemVendaUpdateManyWithoutProdutoNestedInput
   categoria?: Prisma.CategoriaUpdateOneRequiredWithoutProdutosNestedInput
   fornecedor?: Prisma.FornecedorUpdateOneRequiredWithoutProdutosNestedInput
@@ -394,57 +394,57 @@ export type ProdutoUpdateInput = {
 
 export type ProdutoUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
-  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
-  material?: Prisma.StringFieldUpdateOperationsInput | string
-  cor?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco_venda?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id?: Prisma.StringFieldUpdateOperationsInput | string
+  cor?: Prisma.StringFieldUpdateOperationsInput | string
   fornecedor_id?: Prisma.StringFieldUpdateOperationsInput | string
+  material?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   itens?: Prisma.ItemVendaUncheckedUpdateManyWithoutProdutoNestedInput
 }
 
 export type ProdutoCreateManyInput = {
   id?: string
-  nome: string
   codigo: string
-  unidade_medida: string
-  material: string
-  cor: string
   descricao: string
   preco_venda?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra: runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id: string
+  cor: string
   fornecedor_id: string
+  material: string
+  nome: string
+  unidade_medida: string
 }
 
 export type ProdutoUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
-  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
-  material?: Prisma.StringFieldUpdateOperationsInput | string
-  cor?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco_venda?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cor?: Prisma.StringFieldUpdateOperationsInput | string
+  material?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProdutoUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
-  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
-  material?: Prisma.StringFieldUpdateOperationsInput | string
-  cor?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco_venda?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id?: Prisma.StringFieldUpdateOperationsInput | string
+  cor?: Prisma.StringFieldUpdateOperationsInput | string
   fornecedor_id?: Prisma.StringFieldUpdateOperationsInput | string
+  material?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProdutoScalarRelationFilter = {
@@ -460,16 +460,16 @@ export type ProdutoOrderByRelevanceInput = {
 
 export type ProdutoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  nome?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
-  unidade_medida?: Prisma.SortOrder
-  material?: Prisma.SortOrder
-  cor?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
   preco_venda?: Prisma.SortOrder
   preco_compra?: Prisma.SortOrder
   categoria_id?: Prisma.SortOrder
+  cor?: Prisma.SortOrder
   fornecedor_id?: Prisma.SortOrder
+  material?: Prisma.SortOrder
+  nome?: Prisma.SortOrder
+  unidade_medida?: Prisma.SortOrder
 }
 
 export type ProdutoAvgOrderByAggregateInput = {
@@ -479,30 +479,30 @@ export type ProdutoAvgOrderByAggregateInput = {
 
 export type ProdutoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  nome?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
-  unidade_medida?: Prisma.SortOrder
-  material?: Prisma.SortOrder
-  cor?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
   preco_venda?: Prisma.SortOrder
   preco_compra?: Prisma.SortOrder
   categoria_id?: Prisma.SortOrder
+  cor?: Prisma.SortOrder
   fornecedor_id?: Prisma.SortOrder
+  material?: Prisma.SortOrder
+  nome?: Prisma.SortOrder
+  unidade_medida?: Prisma.SortOrder
 }
 
 export type ProdutoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  nome?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
-  unidade_medida?: Prisma.SortOrder
-  material?: Prisma.SortOrder
-  cor?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
   preco_venda?: Prisma.SortOrder
   preco_compra?: Prisma.SortOrder
   categoria_id?: Prisma.SortOrder
+  cor?: Prisma.SortOrder
   fornecedor_id?: Prisma.SortOrder
+  material?: Prisma.SortOrder
+  nome?: Prisma.SortOrder
+  unidade_medida?: Prisma.SortOrder
 }
 
 export type ProdutoSumOrderByAggregateInput = {
@@ -628,30 +628,30 @@ export type ProdutoUncheckedUpdateManyWithoutFornecedorNestedInput = {
 
 export type ProdutoCreateWithoutItensInput = {
   id?: string
-  nome: string
   codigo: string
-  unidade_medida: string
-  material: string
-  cor: string
   descricao: string
   preco_venda?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cor: string
+  material: string
+  nome: string
+  unidade_medida: string
   categoria: Prisma.CategoriaCreateNestedOneWithoutProdutosInput
   fornecedor: Prisma.FornecedorCreateNestedOneWithoutProdutosInput
 }
 
 export type ProdutoUncheckedCreateWithoutItensInput = {
   id?: string
-  nome: string
   codigo: string
-  unidade_medida: string
-  material: string
-  cor: string
   descricao: string
   preco_venda?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra: runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id: string
+  cor: string
   fornecedor_id: string
+  material: string
+  nome: string
+  unidade_medida: string
 }
 
 export type ProdutoCreateOrConnectWithoutItensInput = {
@@ -672,57 +672,57 @@ export type ProdutoUpdateToOneWithWhereWithoutItensInput = {
 
 export type ProdutoUpdateWithoutItensInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
-  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
-  material?: Prisma.StringFieldUpdateOperationsInput | string
-  cor?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco_venda?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cor?: Prisma.StringFieldUpdateOperationsInput | string
+  material?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   categoria?: Prisma.CategoriaUpdateOneRequiredWithoutProdutosNestedInput
   fornecedor?: Prisma.FornecedorUpdateOneRequiredWithoutProdutosNestedInput
 }
 
 export type ProdutoUncheckedUpdateWithoutItensInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
-  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
-  material?: Prisma.StringFieldUpdateOperationsInput | string
-  cor?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco_venda?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id?: Prisma.StringFieldUpdateOperationsInput | string
+  cor?: Prisma.StringFieldUpdateOperationsInput | string
   fornecedor_id?: Prisma.StringFieldUpdateOperationsInput | string
+  material?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProdutoCreateWithoutCategoriaInput = {
   id?: string
-  nome: string
   codigo: string
-  unidade_medida: string
-  material: string
-  cor: string
   descricao: string
   preco_venda?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cor: string
+  material: string
+  nome: string
+  unidade_medida: string
   itens?: Prisma.ItemVendaCreateNestedManyWithoutProdutoInput
   fornecedor: Prisma.FornecedorCreateNestedOneWithoutProdutosInput
 }
 
 export type ProdutoUncheckedCreateWithoutCategoriaInput = {
   id?: string
-  nome: string
   codigo: string
-  unidade_medida: string
-  material: string
-  cor: string
   descricao: string
   preco_venda?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cor: string
   fornecedor_id: string
+  material: string
+  nome: string
+  unidade_medida: string
   itens?: Prisma.ItemVendaUncheckedCreateNestedManyWithoutProdutoInput
 }
 
@@ -757,43 +757,43 @@ export type ProdutoScalarWhereInput = {
   OR?: Prisma.ProdutoScalarWhereInput[]
   NOT?: Prisma.ProdutoScalarWhereInput | Prisma.ProdutoScalarWhereInput[]
   id?: Prisma.StringFilter<"Produto"> | string
-  nome?: Prisma.StringFilter<"Produto"> | string
   codigo?: Prisma.StringFilter<"Produto"> | string
-  unidade_medida?: Prisma.StringFilter<"Produto"> | string
-  material?: Prisma.StringFilter<"Produto"> | string
-  cor?: Prisma.StringFilter<"Produto"> | string
   descricao?: Prisma.StringFilter<"Produto"> | string
   preco_venda?: Prisma.DecimalNullableFilter<"Produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFilter<"Produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id?: Prisma.StringFilter<"Produto"> | string
+  cor?: Prisma.StringFilter<"Produto"> | string
   fornecedor_id?: Prisma.StringFilter<"Produto"> | string
+  material?: Prisma.StringFilter<"Produto"> | string
+  nome?: Prisma.StringFilter<"Produto"> | string
+  unidade_medida?: Prisma.StringFilter<"Produto"> | string
 }
 
 export type ProdutoCreateWithoutFornecedorInput = {
   id?: string
-  nome: string
   codigo: string
-  unidade_medida: string
-  material: string
-  cor: string
   descricao: string
   preco_venda?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cor: string
+  material: string
+  nome: string
+  unidade_medida: string
   itens?: Prisma.ItemVendaCreateNestedManyWithoutProdutoInput
   categoria: Prisma.CategoriaCreateNestedOneWithoutProdutosInput
 }
 
 export type ProdutoUncheckedCreateWithoutFornecedorInput = {
   id?: string
-  nome: string
   codigo: string
-  unidade_medida: string
-  material: string
-  cor: string
   descricao: string
   preco_venda?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra: runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id: string
+  cor: string
+  material: string
+  nome: string
+  unidade_medida: string
   itens?: Prisma.ItemVendaUncheckedCreateNestedManyWithoutProdutoInput
 }
 
@@ -825,110 +825,110 @@ export type ProdutoUpdateManyWithWhereWithoutFornecedorInput = {
 
 export type ProdutoCreateManyCategoriaInput = {
   id?: string
-  nome: string
   codigo: string
-  unidade_medida: string
-  material: string
-  cor: string
   descricao: string
   preco_venda?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra: runtime.Decimal | runtime.DecimalJsLike | number | string
+  cor: string
   fornecedor_id: string
+  material: string
+  nome: string
+  unidade_medida: string
 }
 
 export type ProdutoUpdateWithoutCategoriaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
-  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
-  material?: Prisma.StringFieldUpdateOperationsInput | string
-  cor?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco_venda?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cor?: Prisma.StringFieldUpdateOperationsInput | string
+  material?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   itens?: Prisma.ItemVendaUpdateManyWithoutProdutoNestedInput
   fornecedor?: Prisma.FornecedorUpdateOneRequiredWithoutProdutosNestedInput
 }
 
 export type ProdutoUncheckedUpdateWithoutCategoriaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
-  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
-  material?: Prisma.StringFieldUpdateOperationsInput | string
-  cor?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco_venda?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cor?: Prisma.StringFieldUpdateOperationsInput | string
   fornecedor_id?: Prisma.StringFieldUpdateOperationsInput | string
+  material?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   itens?: Prisma.ItemVendaUncheckedUpdateManyWithoutProdutoNestedInput
 }
 
 export type ProdutoUncheckedUpdateManyWithoutCategoriaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
-  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
-  material?: Prisma.StringFieldUpdateOperationsInput | string
-  cor?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco_venda?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cor?: Prisma.StringFieldUpdateOperationsInput | string
   fornecedor_id?: Prisma.StringFieldUpdateOperationsInput | string
+  material?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProdutoCreateManyFornecedorInput = {
   id?: string
-  nome: string
   codigo: string
-  unidade_medida: string
-  material: string
-  cor: string
   descricao: string
   preco_venda?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra: runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id: string
+  cor: string
+  material: string
+  nome: string
+  unidade_medida: string
 }
 
 export type ProdutoUpdateWithoutFornecedorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
-  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
-  material?: Prisma.StringFieldUpdateOperationsInput | string
-  cor?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco_venda?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  cor?: Prisma.StringFieldUpdateOperationsInput | string
+  material?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   itens?: Prisma.ItemVendaUpdateManyWithoutProdutoNestedInput
   categoria?: Prisma.CategoriaUpdateOneRequiredWithoutProdutosNestedInput
 }
 
 export type ProdutoUncheckedUpdateWithoutFornecedorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
-  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
-  material?: Prisma.StringFieldUpdateOperationsInput | string
-  cor?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco_venda?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id?: Prisma.StringFieldUpdateOperationsInput | string
+  cor?: Prisma.StringFieldUpdateOperationsInput | string
+  material?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   itens?: Prisma.ItemVendaUncheckedUpdateManyWithoutProdutoNestedInput
 }
 
 export type ProdutoUncheckedUpdateManyWithoutFornecedorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nome?: Prisma.StringFieldUpdateOperationsInput | string
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
-  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
-  material?: Prisma.StringFieldUpdateOperationsInput | string
-  cor?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco_venda?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   preco_compra?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   categoria_id?: Prisma.StringFieldUpdateOperationsInput | string
+  cor?: Prisma.StringFieldUpdateOperationsInput | string
+  material?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -964,16 +964,16 @@ export type ProdutoCountOutputTypeCountItensArgs<ExtArgs extends runtime.Types.E
 
 export type ProdutoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  nome?: boolean
   codigo?: boolean
-  unidade_medida?: boolean
-  material?: boolean
-  cor?: boolean
   descricao?: boolean
   preco_venda?: boolean
   preco_compra?: boolean
   categoria_id?: boolean
+  cor?: boolean
   fornecedor_id?: boolean
+  material?: boolean
+  nome?: boolean
+  unidade_medida?: boolean
   itens?: boolean | Prisma.Produto$itensArgs<ExtArgs>
   categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>
   fornecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
@@ -984,19 +984,19 @@ export type ProdutoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 
 export type ProdutoSelectScalar = {
   id?: boolean
-  nome?: boolean
   codigo?: boolean
-  unidade_medida?: boolean
-  material?: boolean
-  cor?: boolean
   descricao?: boolean
   preco_venda?: boolean
   preco_compra?: boolean
   categoria_id?: boolean
+  cor?: boolean
   fornecedor_id?: boolean
+  material?: boolean
+  nome?: boolean
+  unidade_medida?: boolean
 }
 
-export type ProdutoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "codigo" | "unidade_medida" | "material" | "cor" | "descricao" | "preco_venda" | "preco_compra" | "categoria_id" | "fornecedor_id", ExtArgs["result"]["produto"]>
+export type ProdutoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "descricao" | "preco_venda" | "preco_compra" | "categoria_id" | "cor" | "fornecedor_id" | "material" | "nome" | "unidade_medida", ExtArgs["result"]["produto"]>
 export type ProdutoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   itens?: boolean | Prisma.Produto$itensArgs<ExtArgs>
   categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>
@@ -1013,16 +1013,16 @@ export type $ProdutoPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    nome: string
     codigo: string
-    unidade_medida: string
-    material: string
-    cor: string
     descricao: string
     preco_venda: runtime.Decimal | null
     preco_compra: runtime.Decimal
     categoria_id: string
+    cor: string
     fornecedor_id: string
+    material: string
+    nome: string
+    unidade_medida: string
   }, ExtArgs["result"]["produto"]>
   composites: {}
 }
@@ -1396,16 +1396,16 @@ export interface Prisma__ProdutoClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface ProdutoFieldRefs {
   readonly id: Prisma.FieldRef<"Produto", 'String'>
-  readonly nome: Prisma.FieldRef<"Produto", 'String'>
   readonly codigo: Prisma.FieldRef<"Produto", 'String'>
-  readonly unidade_medida: Prisma.FieldRef<"Produto", 'String'>
-  readonly material: Prisma.FieldRef<"Produto", 'String'>
-  readonly cor: Prisma.FieldRef<"Produto", 'String'>
   readonly descricao: Prisma.FieldRef<"Produto", 'String'>
   readonly preco_venda: Prisma.FieldRef<"Produto", 'Decimal'>
   readonly preco_compra: Prisma.FieldRef<"Produto", 'Decimal'>
   readonly categoria_id: Prisma.FieldRef<"Produto", 'String'>
+  readonly cor: Prisma.FieldRef<"Produto", 'String'>
   readonly fornecedor_id: Prisma.FieldRef<"Produto", 'String'>
+  readonly material: Prisma.FieldRef<"Produto", 'String'>
+  readonly nome: Prisma.FieldRef<"Produto", 'String'>
+  readonly unidade_medida: Prisma.FieldRef<"Produto", 'String'>
 }
     
 

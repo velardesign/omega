@@ -182,9 +182,9 @@ export type VendaWhereInput = {
   responsavel?: Prisma.StringFilter<"Venda"> | string
   cliente_id?: Prisma.StringFilter<"Venda"> | string
   pagamentoId?: Prisma.StringFilter<"Venda"> | string
+  itensVenda?: Prisma.ItemVendaListRelationFilter
   cliente?: Prisma.XOR<Prisma.ClienteScalarRelationFilter, Prisma.ClienteWhereInput>
   pagamento?: Prisma.XOR<Prisma.PagamentoScalarRelationFilter, Prisma.PagamentoWhereInput>
-  itensVenda?: Prisma.ItemVendaListRelationFilter
 }
 
 export type VendaOrderByWithRelationInput = {
@@ -193,9 +193,9 @@ export type VendaOrderByWithRelationInput = {
   responsavel?: Prisma.SortOrder
   cliente_id?: Prisma.SortOrder
   pagamentoId?: Prisma.SortOrder
+  itensVenda?: Prisma.ItemVendaOrderByRelationAggregateInput
   cliente?: Prisma.ClienteOrderByWithRelationInput
   pagamento?: Prisma.PagamentoOrderByWithRelationInput
-  itensVenda?: Prisma.ItemVendaOrderByRelationAggregateInput
   _relevance?: Prisma.VendaOrderByRelevanceInput
 }
 
@@ -208,9 +208,9 @@ export type VendaWhereUniqueInput = Prisma.AtLeast<{
   data_hora?: Prisma.DateTimeFilter<"Venda"> | Date | string
   responsavel?: Prisma.StringFilter<"Venda"> | string
   cliente_id?: Prisma.StringFilter<"Venda"> | string
+  itensVenda?: Prisma.ItemVendaListRelationFilter
   cliente?: Prisma.XOR<Prisma.ClienteScalarRelationFilter, Prisma.ClienteWhereInput>
   pagamento?: Prisma.XOR<Prisma.PagamentoScalarRelationFilter, Prisma.PagamentoWhereInput>
-  itensVenda?: Prisma.ItemVendaListRelationFilter
 }, "id" | "pagamentoId">
 
 export type VendaOrderByWithAggregationInput = {
@@ -239,9 +239,9 @@ export type VendaCreateInput = {
   id?: string
   data_hora?: Date | string
   responsavel: string
+  itensVenda?: Prisma.ItemVendaCreateNestedManyWithoutVendaInput
   cliente: Prisma.ClienteCreateNestedOneWithoutVendasInput
   pagamento: Prisma.PagamentoCreateNestedOneWithoutVendaInput
-  itensVenda?: Prisma.ItemVendaCreateNestedManyWithoutVendaInput
 }
 
 export type VendaUncheckedCreateInput = {
@@ -257,9 +257,9 @@ export type VendaUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
+  itensVenda?: Prisma.ItemVendaUpdateManyWithoutVendaNestedInput
   cliente?: Prisma.ClienteUpdateOneRequiredWithoutVendasNestedInput
   pagamento?: Prisma.PagamentoUpdateOneRequiredWithoutVendaNestedInput
-  itensVenda?: Prisma.ItemVendaUpdateManyWithoutVendaNestedInput
 }
 
 export type VendaUncheckedUpdateInput = {
@@ -435,8 +435,8 @@ export type VendaCreateWithoutClienteInput = {
   id?: string
   data_hora?: Date | string
   responsavel: string
-  pagamento: Prisma.PagamentoCreateNestedOneWithoutVendaInput
   itensVenda?: Prisma.ItemVendaCreateNestedManyWithoutVendaInput
+  pagamento: Prisma.PagamentoCreateNestedOneWithoutVendaInput
 }
 
 export type VendaUncheckedCreateWithoutClienteInput = {
@@ -536,8 +536,8 @@ export type VendaCreateWithoutPagamentoInput = {
   id?: string
   data_hora?: Date | string
   responsavel: string
-  cliente: Prisma.ClienteCreateNestedOneWithoutVendasInput
   itensVenda?: Prisma.ItemVendaCreateNestedManyWithoutVendaInput
+  cliente: Prisma.ClienteCreateNestedOneWithoutVendasInput
 }
 
 export type VendaUncheckedCreateWithoutPagamentoInput = {
@@ -568,8 +568,8 @@ export type VendaUpdateWithoutPagamentoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
-  cliente?: Prisma.ClienteUpdateOneRequiredWithoutVendasNestedInput
   itensVenda?: Prisma.ItemVendaUpdateManyWithoutVendaNestedInput
+  cliente?: Prisma.ClienteUpdateOneRequiredWithoutVendasNestedInput
 }
 
 export type VendaUncheckedUpdateWithoutPagamentoInput = {
@@ -591,8 +591,8 @@ export type VendaUpdateWithoutClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
-  pagamento?: Prisma.PagamentoUpdateOneRequiredWithoutVendaNestedInput
   itensVenda?: Prisma.ItemVendaUpdateManyWithoutVendaNestedInput
+  pagamento?: Prisma.PagamentoUpdateOneRequiredWithoutVendaNestedInput
 }
 
 export type VendaUncheckedUpdateWithoutClienteInput = {
@@ -647,9 +647,9 @@ export type VendaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   responsavel?: boolean
   cliente_id?: boolean
   pagamentoId?: boolean
+  itensVenda?: boolean | Prisma.Venda$itensVendaArgs<ExtArgs>
   cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
   pagamento?: boolean | Prisma.PagamentoDefaultArgs<ExtArgs>
-  itensVenda?: boolean | Prisma.Venda$itensVendaArgs<ExtArgs>
   _count?: boolean | Prisma.VendaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["venda"]>
 
@@ -665,18 +665,18 @@ export type VendaSelectScalar = {
 
 export type VendaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "data_hora" | "responsavel" | "cliente_id" | "pagamentoId", ExtArgs["result"]["venda"]>
 export type VendaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  itensVenda?: boolean | Prisma.Venda$itensVendaArgs<ExtArgs>
   cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
   pagamento?: boolean | Prisma.PagamentoDefaultArgs<ExtArgs>
-  itensVenda?: boolean | Prisma.Venda$itensVendaArgs<ExtArgs>
   _count?: boolean | Prisma.VendaCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $VendaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Venda"
   objects: {
+    itensVenda: Prisma.$ItemVendaPayload<ExtArgs>[]
     cliente: Prisma.$ClientePayload<ExtArgs>
     pagamento: Prisma.$PagamentoPayload<ExtArgs>
-    itensVenda: Prisma.$ItemVendaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1024,9 +1024,9 @@ readonly fields: VendaFieldRefs;
  */
 export interface Prisma__VendaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  itensVenda<T extends Prisma.Venda$itensVendaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Venda$itensVendaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItemVendaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cliente<T extends Prisma.ClienteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClienteDefaultArgs<ExtArgs>>): Prisma.Prisma__ClienteClient<runtime.Types.Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   pagamento<T extends Prisma.PagamentoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PagamentoDefaultArgs<ExtArgs>>): Prisma.Prisma__PagamentoClient<runtime.Types.Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  itensVenda<T extends Prisma.Venda$itensVendaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Venda$itensVendaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItemVendaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

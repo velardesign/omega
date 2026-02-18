@@ -33,6 +33,8 @@ export type EnderecoFornecedorMinAggregateOutputType = {
   pais: string | null
   cep: string | null
   fornecedorId: string | null
+  estado: string | null
+  complemento: string | null
 }
 
 export type EnderecoFornecedorMaxAggregateOutputType = {
@@ -44,6 +46,8 @@ export type EnderecoFornecedorMaxAggregateOutputType = {
   pais: string | null
   cep: string | null
   fornecedorId: string | null
+  estado: string | null
+  complemento: string | null
 }
 
 export type EnderecoFornecedorCountAggregateOutputType = {
@@ -55,6 +59,8 @@ export type EnderecoFornecedorCountAggregateOutputType = {
   pais: number
   cep: number
   fornecedorId: number
+  estado: number
+  complemento: number
   _all: number
 }
 
@@ -68,6 +74,8 @@ export type EnderecoFornecedorMinAggregateInputType = {
   pais?: true
   cep?: true
   fornecedorId?: true
+  estado?: true
+  complemento?: true
 }
 
 export type EnderecoFornecedorMaxAggregateInputType = {
@@ -79,6 +87,8 @@ export type EnderecoFornecedorMaxAggregateInputType = {
   pais?: true
   cep?: true
   fornecedorId?: true
+  estado?: true
+  complemento?: true
 }
 
 export type EnderecoFornecedorCountAggregateInputType = {
@@ -90,6 +100,8 @@ export type EnderecoFornecedorCountAggregateInputType = {
   pais?: true
   cep?: true
   fornecedorId?: true
+  estado?: true
+  complemento?: true
   _all?: true
 }
 
@@ -174,6 +186,8 @@ export type EnderecoFornecedorGroupByOutputType = {
   pais: string
   cep: string
   fornecedorId: string
+  estado: string
+  complemento: string | null
   _count: EnderecoFornecedorCountAggregateOutputType | null
   _min: EnderecoFornecedorMinAggregateOutputType | null
   _max: EnderecoFornecedorMaxAggregateOutputType | null
@@ -206,6 +220,8 @@ export type EnderecoFornecedorWhereInput = {
   pais?: Prisma.StringFilter<"EnderecoFornecedor"> | string
   cep?: Prisma.StringFilter<"EnderecoFornecedor"> | string
   fornecedorId?: Prisma.StringFilter<"EnderecoFornecedor"> | string
+  estado?: Prisma.StringFilter<"EnderecoFornecedor"> | string
+  complemento?: Prisma.StringNullableFilter<"EnderecoFornecedor"> | string | null
   fornecedor?: Prisma.XOR<Prisma.FornecedorScalarRelationFilter, Prisma.FornecedorWhereInput>
 }
 
@@ -218,6 +234,8 @@ export type EnderecoFornecedorOrderByWithRelationInput = {
   pais?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   fornecedorId?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  complemento?: Prisma.SortOrderInput | Prisma.SortOrder
   fornecedor?: Prisma.FornecedorOrderByWithRelationInput
   _relevance?: Prisma.EnderecoFornecedorOrderByRelevanceInput
 }
@@ -234,6 +252,8 @@ export type EnderecoFornecedorWhereUniqueInput = Prisma.AtLeast<{
   cidade?: Prisma.StringFilter<"EnderecoFornecedor"> | string
   pais?: Prisma.StringFilter<"EnderecoFornecedor"> | string
   cep?: Prisma.StringFilter<"EnderecoFornecedor"> | string
+  estado?: Prisma.StringFilter<"EnderecoFornecedor"> | string
+  complemento?: Prisma.StringNullableFilter<"EnderecoFornecedor"> | string | null
   fornecedor?: Prisma.XOR<Prisma.FornecedorScalarRelationFilter, Prisma.FornecedorWhereInput>
 }, "id" | "fornecedorId">
 
@@ -246,6 +266,8 @@ export type EnderecoFornecedorOrderByWithAggregationInput = {
   pais?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   fornecedorId?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  complemento?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EnderecoFornecedorCountOrderByAggregateInput
   _max?: Prisma.EnderecoFornecedorMaxOrderByAggregateInput
   _min?: Prisma.EnderecoFornecedorMinOrderByAggregateInput
@@ -263,6 +285,8 @@ export type EnderecoFornecedorScalarWhereWithAggregatesInput = {
   pais?: Prisma.StringWithAggregatesFilter<"EnderecoFornecedor"> | string
   cep?: Prisma.StringWithAggregatesFilter<"EnderecoFornecedor"> | string
   fornecedorId?: Prisma.StringWithAggregatesFilter<"EnderecoFornecedor"> | string
+  estado?: Prisma.StringWithAggregatesFilter<"EnderecoFornecedor"> | string
+  complemento?: Prisma.StringNullableWithAggregatesFilter<"EnderecoFornecedor"> | string | null
 }
 
 export type EnderecoFornecedorCreateInput = {
@@ -273,6 +297,8 @@ export type EnderecoFornecedorCreateInput = {
   cidade: string
   pais: string
   cep: string
+  estado: string
+  complemento?: string | null
   fornecedor: Prisma.FornecedorCreateNestedOneWithoutEndereco_fornecedorInput
 }
 
@@ -285,6 +311,8 @@ export type EnderecoFornecedorUncheckedCreateInput = {
   pais: string
   cep: string
   fornecedorId: string
+  estado: string
+  complemento?: string | null
 }
 
 export type EnderecoFornecedorUpdateInput = {
@@ -295,6 +323,8 @@ export type EnderecoFornecedorUpdateInput = {
   cidade?: Prisma.StringFieldUpdateOperationsInput | string
   pais?: Prisma.StringFieldUpdateOperationsInput | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  complemento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fornecedor?: Prisma.FornecedorUpdateOneRequiredWithoutEndereco_fornecedorNestedInput
 }
 
@@ -307,6 +337,8 @@ export type EnderecoFornecedorUncheckedUpdateInput = {
   pais?: Prisma.StringFieldUpdateOperationsInput | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   fornecedorId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  complemento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EnderecoFornecedorCreateManyInput = {
@@ -318,6 +350,8 @@ export type EnderecoFornecedorCreateManyInput = {
   pais: string
   cep: string
   fornecedorId: string
+  estado: string
+  complemento?: string | null
 }
 
 export type EnderecoFornecedorUpdateManyMutationInput = {
@@ -328,6 +362,8 @@ export type EnderecoFornecedorUpdateManyMutationInput = {
   cidade?: Prisma.StringFieldUpdateOperationsInput | string
   pais?: Prisma.StringFieldUpdateOperationsInput | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  complemento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EnderecoFornecedorUncheckedUpdateManyInput = {
@@ -339,6 +375,8 @@ export type EnderecoFornecedorUncheckedUpdateManyInput = {
   pais?: Prisma.StringFieldUpdateOperationsInput | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   fornecedorId?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  complemento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EnderecoFornecedorNullableScalarRelationFilter = {
@@ -361,6 +399,8 @@ export type EnderecoFornecedorCountOrderByAggregateInput = {
   pais?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   fornecedorId?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  complemento?: Prisma.SortOrder
 }
 
 export type EnderecoFornecedorMaxOrderByAggregateInput = {
@@ -372,6 +412,8 @@ export type EnderecoFornecedorMaxOrderByAggregateInput = {
   pais?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   fornecedorId?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  complemento?: Prisma.SortOrder
 }
 
 export type EnderecoFornecedorMinOrderByAggregateInput = {
@@ -383,6 +425,8 @@ export type EnderecoFornecedorMinOrderByAggregateInput = {
   pais?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   fornecedorId?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  complemento?: Prisma.SortOrder
 }
 
 export type EnderecoFornecedorCreateNestedOneWithoutFornecedorInput = {
@@ -425,6 +469,8 @@ export type EnderecoFornecedorCreateWithoutFornecedorInput = {
   cidade: string
   pais: string
   cep: string
+  estado: string
+  complemento?: string | null
 }
 
 export type EnderecoFornecedorUncheckedCreateWithoutFornecedorInput = {
@@ -435,6 +481,8 @@ export type EnderecoFornecedorUncheckedCreateWithoutFornecedorInput = {
   cidade: string
   pais: string
   cep: string
+  estado: string
+  complemento?: string | null
 }
 
 export type EnderecoFornecedorCreateOrConnectWithoutFornecedorInput = {
@@ -461,6 +509,8 @@ export type EnderecoFornecedorUpdateWithoutFornecedorInput = {
   cidade?: Prisma.StringFieldUpdateOperationsInput | string
   pais?: Prisma.StringFieldUpdateOperationsInput | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  complemento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EnderecoFornecedorUncheckedUpdateWithoutFornecedorInput = {
@@ -471,6 +521,8 @@ export type EnderecoFornecedorUncheckedUpdateWithoutFornecedorInput = {
   cidade?: Prisma.StringFieldUpdateOperationsInput | string
   pais?: Prisma.StringFieldUpdateOperationsInput | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  complemento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -484,6 +536,8 @@ export type EnderecoFornecedorSelect<ExtArgs extends runtime.Types.Extensions.In
   pais?: boolean
   cep?: boolean
   fornecedorId?: boolean
+  estado?: boolean
+  complemento?: boolean
   fornecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["enderecoFornecedor"]>
 
@@ -498,9 +552,11 @@ export type EnderecoFornecedorSelectScalar = {
   pais?: boolean
   cep?: boolean
   fornecedorId?: boolean
+  estado?: boolean
+  complemento?: boolean
 }
 
-export type EnderecoFornecedorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "logradouro" | "numero" | "bairro" | "cidade" | "pais" | "cep" | "fornecedorId", ExtArgs["result"]["enderecoFornecedor"]>
+export type EnderecoFornecedorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "logradouro" | "numero" | "bairro" | "cidade" | "pais" | "cep" | "fornecedorId" | "estado" | "complemento", ExtArgs["result"]["enderecoFornecedor"]>
 export type EnderecoFornecedorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   fornecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
 }
@@ -519,6 +575,8 @@ export type $EnderecoFornecedorPayload<ExtArgs extends runtime.Types.Extensions.
     pais: string
     cep: string
     fornecedorId: string
+    estado: string
+    complemento: string | null
   }, ExtArgs["result"]["enderecoFornecedor"]>
   composites: {}
 }
@@ -897,6 +955,8 @@ export interface EnderecoFornecedorFieldRefs {
   readonly pais: Prisma.FieldRef<"EnderecoFornecedor", 'String'>
   readonly cep: Prisma.FieldRef<"EnderecoFornecedor", 'String'>
   readonly fornecedorId: Prisma.FieldRef<"EnderecoFornecedor", 'String'>
+  readonly estado: Prisma.FieldRef<"EnderecoFornecedor", 'String'>
+  readonly complemento: Prisma.FieldRef<"EnderecoFornecedor", 'String'>
 }
     
 

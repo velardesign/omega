@@ -58,7 +58,7 @@ export const ModelName = {
   Cliente: 'Cliente',
   Documento: 'Documento',
   EnderecoCliente: 'EnderecoCliente',
-  Contato: 'Contato',
+  ContatoCliente: 'ContatoCliente',
   Caixa: 'Caixa',
   Entrada: 'Entrada',
   Saida: 'Saida',
@@ -71,7 +71,8 @@ export const ModelName = {
   Categoria: 'Categoria',
   Fornecedor: 'Fornecedor',
   EnderecoFornecedor: 'EnderecoFornecedor',
-  DadosComercialFornecedor: 'DadosComercialFornecedor'
+  DadosComercialFornecedor: 'DadosComercialFornecedor',
+  ContatoFornecedor: 'ContatoFornecedor'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -183,15 +184,14 @@ export const EnderecoClienteScalarFieldEnum = {
 export type EnderecoClienteScalarFieldEnum = (typeof EnderecoClienteScalarFieldEnum)[keyof typeof EnderecoClienteScalarFieldEnum]
 
 
-export const ContatoScalarFieldEnum = {
+export const ContatoClienteScalarFieldEnum = {
   id: 'id',
   tipo: 'tipo',
-  conteudo: 'conteudo',
-  clienteId: 'clienteId',
-  fornecedorId: 'fornecedorId'
+  valor: 'valor',
+  clienteId: 'clienteId'
 } as const
 
-export type ContatoScalarFieldEnum = (typeof ContatoScalarFieldEnum)[keyof typeof ContatoScalarFieldEnum]
+export type ContatoClienteScalarFieldEnum = (typeof ContatoClienteScalarFieldEnum)[keyof typeof ContatoClienteScalarFieldEnum]
 
 
 export const CaixaScalarFieldEnum = {
@@ -274,16 +274,16 @@ export type ItemVendaScalarFieldEnum = (typeof ItemVendaScalarFieldEnum)[keyof t
 
 export const ProdutoScalarFieldEnum = {
   id: 'id',
-  nome: 'nome',
   codigo: 'codigo',
-  unidade_medida: 'unidade_medida',
-  material: 'material',
-  cor: 'cor',
   descricao: 'descricao',
   preco_venda: 'preco_venda',
   preco_compra: 'preco_compra',
   categoria_id: 'categoria_id',
-  fornecedor_id: 'fornecedor_id'
+  cor: 'cor',
+  fornecedor_id: 'fornecedor_id',
+  material: 'material',
+  nome: 'nome',
+  unidade_medida: 'unidade_medida'
 } as const
 
 export type ProdutoScalarFieldEnum = (typeof ProdutoScalarFieldEnum)[keyof typeof ProdutoScalarFieldEnum]
@@ -324,7 +324,9 @@ export const EnderecoFornecedorScalarFieldEnum = {
   cidade: 'cidade',
   pais: 'pais',
   cep: 'cep',
-  fornecedorId: 'fornecedorId'
+  fornecedorId: 'fornecedorId',
+  estado: 'estado',
+  complemento: 'complemento'
 } as const
 
 export type EnderecoFornecedorScalarFieldEnum = (typeof EnderecoFornecedorScalarFieldEnum)[keyof typeof EnderecoFornecedorScalarFieldEnum]
@@ -341,6 +343,16 @@ export const DadosComercialFornecedorScalarFieldEnum = {
 } as const
 
 export type DadosComercialFornecedorScalarFieldEnum = (typeof DadosComercialFornecedorScalarFieldEnum)[keyof typeof DadosComercialFornecedorScalarFieldEnum]
+
+
+export const ContatoFornecedorScalarFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  valor: 'valor',
+  fornecedorId: 'fornecedorId'
+} as const
+
+export type ContatoFornecedorScalarFieldEnum = (typeof ContatoFornecedorScalarFieldEnum)[keyof typeof ContatoFornecedorScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -438,15 +450,14 @@ export const EnderecoClienteOrderByRelevanceFieldEnum = {
 export type EnderecoClienteOrderByRelevanceFieldEnum = (typeof EnderecoClienteOrderByRelevanceFieldEnum)[keyof typeof EnderecoClienteOrderByRelevanceFieldEnum]
 
 
-export const ContatoOrderByRelevanceFieldEnum = {
+export const ContatoClienteOrderByRelevanceFieldEnum = {
   id: 'id',
   tipo: 'tipo',
-  conteudo: 'conteudo',
-  clienteId: 'clienteId',
-  fornecedorId: 'fornecedorId'
+  valor: 'valor',
+  clienteId: 'clienteId'
 } as const
 
-export type ContatoOrderByRelevanceFieldEnum = (typeof ContatoOrderByRelevanceFieldEnum)[keyof typeof ContatoOrderByRelevanceFieldEnum]
+export type ContatoClienteOrderByRelevanceFieldEnum = (typeof ContatoClienteOrderByRelevanceFieldEnum)[keyof typeof ContatoClienteOrderByRelevanceFieldEnum]
 
 
 export const CaixaOrderByRelevanceFieldEnum = {
@@ -519,14 +530,14 @@ export type ItemVendaOrderByRelevanceFieldEnum = (typeof ItemVendaOrderByRelevan
 
 export const ProdutoOrderByRelevanceFieldEnum = {
   id: 'id',
-  nome: 'nome',
   codigo: 'codigo',
-  unidade_medida: 'unidade_medida',
-  material: 'material',
-  cor: 'cor',
   descricao: 'descricao',
   categoria_id: 'categoria_id',
-  fornecedor_id: 'fornecedor_id'
+  cor: 'cor',
+  fornecedor_id: 'fornecedor_id',
+  material: 'material',
+  nome: 'nome',
+  unidade_medida: 'unidade_medida'
 } as const
 
 export type ProdutoOrderByRelevanceFieldEnum = (typeof ProdutoOrderByRelevanceFieldEnum)[keyof typeof ProdutoOrderByRelevanceFieldEnum]
@@ -567,7 +578,9 @@ export const EnderecoFornecedorOrderByRelevanceFieldEnum = {
   cidade: 'cidade',
   pais: 'pais',
   cep: 'cep',
-  fornecedorId: 'fornecedorId'
+  fornecedorId: 'fornecedorId',
+  estado: 'estado',
+  complemento: 'complemento'
 } as const
 
 export type EnderecoFornecedorOrderByRelevanceFieldEnum = (typeof EnderecoFornecedorOrderByRelevanceFieldEnum)[keyof typeof EnderecoFornecedorOrderByRelevanceFieldEnum]
@@ -583,4 +596,14 @@ export const DadosComercialFornecedorOrderByRelevanceFieldEnum = {
 } as const
 
 export type DadosComercialFornecedorOrderByRelevanceFieldEnum = (typeof DadosComercialFornecedorOrderByRelevanceFieldEnum)[keyof typeof DadosComercialFornecedorOrderByRelevanceFieldEnum]
+
+
+export const ContatoFornecedorOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  valor: 'valor',
+  fornecedorId: 'fornecedorId'
+} as const
+
+export type ContatoFornecedorOrderByRelevanceFieldEnum = (typeof ContatoFornecedorOrderByRelevanceFieldEnum)[keyof typeof ContatoFornecedorOrderByRelevanceFieldEnum]
 

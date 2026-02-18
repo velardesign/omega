@@ -182,10 +182,10 @@ export type FornecedorWhereInput = {
   razao_social?: Prisma.StringFilter<"Fornecedor"> | string
   nome_fantasia?: Prisma.StringNullableFilter<"Fornecedor"> | string | null
   observacoes?: Prisma.StringNullableFilter<"Fornecedor"> | string | null
-  produtos?: Prisma.ProdutoListRelationFilter
-  contatos?: Prisma.ContatoListRelationFilter
-  endereco_fornecedor?: Prisma.XOR<Prisma.EnderecoFornecedorNullableScalarRelationFilter, Prisma.EnderecoFornecedorWhereInput> | null
+  contatos?: Prisma.ContatoFornecedorListRelationFilter
   dados_comercial?: Prisma.XOR<Prisma.DadosComercialFornecedorNullableScalarRelationFilter, Prisma.DadosComercialFornecedorWhereInput> | null
+  endereco_fornecedor?: Prisma.XOR<Prisma.EnderecoFornecedorNullableScalarRelationFilter, Prisma.EnderecoFornecedorWhereInput> | null
+  produtos?: Prisma.ProdutoListRelationFilter
 }
 
 export type FornecedorOrderByWithRelationInput = {
@@ -194,10 +194,10 @@ export type FornecedorOrderByWithRelationInput = {
   razao_social?: Prisma.SortOrder
   nome_fantasia?: Prisma.SortOrderInput | Prisma.SortOrder
   observacoes?: Prisma.SortOrderInput | Prisma.SortOrder
-  produtos?: Prisma.ProdutoOrderByRelationAggregateInput
-  contatos?: Prisma.ContatoOrderByRelationAggregateInput
-  endereco_fornecedor?: Prisma.EnderecoFornecedorOrderByWithRelationInput
+  contatos?: Prisma.ContatoFornecedorOrderByRelationAggregateInput
   dados_comercial?: Prisma.DadosComercialFornecedorOrderByWithRelationInput
+  endereco_fornecedor?: Prisma.EnderecoFornecedorOrderByWithRelationInput
+  produtos?: Prisma.ProdutoOrderByRelationAggregateInput
   _relevance?: Prisma.FornecedorOrderByRelevanceInput
 }
 
@@ -210,10 +210,10 @@ export type FornecedorWhereUniqueInput = Prisma.AtLeast<{
   razao_social?: Prisma.StringFilter<"Fornecedor"> | string
   nome_fantasia?: Prisma.StringNullableFilter<"Fornecedor"> | string | null
   observacoes?: Prisma.StringNullableFilter<"Fornecedor"> | string | null
-  produtos?: Prisma.ProdutoListRelationFilter
-  contatos?: Prisma.ContatoListRelationFilter
-  endereco_fornecedor?: Prisma.XOR<Prisma.EnderecoFornecedorNullableScalarRelationFilter, Prisma.EnderecoFornecedorWhereInput> | null
+  contatos?: Prisma.ContatoFornecedorListRelationFilter
   dados_comercial?: Prisma.XOR<Prisma.DadosComercialFornecedorNullableScalarRelationFilter, Prisma.DadosComercialFornecedorWhereInput> | null
+  endereco_fornecedor?: Prisma.XOR<Prisma.EnderecoFornecedorNullableScalarRelationFilter, Prisma.EnderecoFornecedorWhereInput> | null
+  produtos?: Prisma.ProdutoListRelationFilter
 }, "id">
 
 export type FornecedorOrderByWithAggregationInput = {
@@ -244,10 +244,10 @@ export type FornecedorCreateInput = {
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
-  produtos?: Prisma.ProdutoCreateNestedManyWithoutFornecedorInput
-  contatos?: Prisma.ContatoCreateNestedManyWithoutFornecedorInput
-  endereco_fornecedor?: Prisma.EnderecoFornecedorCreateNestedOneWithoutFornecedorInput
+  contatos?: Prisma.ContatoFornecedorCreateNestedManyWithoutFornecedorInput
   dados_comercial?: Prisma.DadosComercialFornecedorCreateNestedOneWithoutForecedorInput
+  endereco_fornecedor?: Prisma.EnderecoFornecedorCreateNestedOneWithoutFornecedorInput
+  produtos?: Prisma.ProdutoCreateNestedManyWithoutFornecedorInput
 }
 
 export type FornecedorUncheckedCreateInput = {
@@ -256,10 +256,10 @@ export type FornecedorUncheckedCreateInput = {
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
-  produtos?: Prisma.ProdutoUncheckedCreateNestedManyWithoutFornecedorInput
-  contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutFornecedorInput
-  endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedCreateNestedOneWithoutFornecedorInput
+  contatos?: Prisma.ContatoFornecedorUncheckedCreateNestedManyWithoutFornecedorInput
   dados_comercial?: Prisma.DadosComercialFornecedorUncheckedCreateNestedOneWithoutForecedorInput
+  endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedCreateNestedOneWithoutFornecedorInput
+  produtos?: Prisma.ProdutoUncheckedCreateNestedManyWithoutFornecedorInput
 }
 
 export type FornecedorUpdateInput = {
@@ -268,10 +268,10 @@ export type FornecedorUpdateInput = {
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  produtos?: Prisma.ProdutoUpdateManyWithoutFornecedorNestedInput
-  contatos?: Prisma.ContatoUpdateManyWithoutFornecedorNestedInput
-  endereco_fornecedor?: Prisma.EnderecoFornecedorUpdateOneWithoutFornecedorNestedInput
+  contatos?: Prisma.ContatoFornecedorUpdateManyWithoutFornecedorNestedInput
   dados_comercial?: Prisma.DadosComercialFornecedorUpdateOneWithoutForecedorNestedInput
+  endereco_fornecedor?: Prisma.EnderecoFornecedorUpdateOneWithoutFornecedorNestedInput
+  produtos?: Prisma.ProdutoUpdateManyWithoutFornecedorNestedInput
 }
 
 export type FornecedorUncheckedUpdateInput = {
@@ -280,10 +280,10 @@ export type FornecedorUncheckedUpdateInput = {
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  produtos?: Prisma.ProdutoUncheckedUpdateManyWithoutFornecedorNestedInput
-  contatos?: Prisma.ContatoUncheckedUpdateManyWithoutFornecedorNestedInput
-  endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedUpdateOneWithoutFornecedorNestedInput
+  contatos?: Prisma.ContatoFornecedorUncheckedUpdateManyWithoutFornecedorNestedInput
   dados_comercial?: Prisma.DadosComercialFornecedorUncheckedUpdateOneWithoutForecedorNestedInput
+  endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedUpdateOneWithoutFornecedorNestedInput
+  produtos?: Prisma.ProdutoUncheckedUpdateManyWithoutFornecedorNestedInput
 }
 
 export type FornecedorCreateManyInput = {
@@ -308,11 +308,6 @@ export type FornecedorUncheckedUpdateManyInput = {
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type FornecedorNullableScalarRelationFilter = {
-  is?: Prisma.FornecedorWhereInput | null
-  isNot?: Prisma.FornecedorWhereInput | null
 }
 
 export type FornecedorScalarRelationFilter = {
@@ -350,20 +345,9 @@ export type FornecedorMinOrderByAggregateInput = {
   observacoes?: Prisma.SortOrder
 }
 
-export type FornecedorCreateNestedOneWithoutContatosInput = {
-  create?: Prisma.XOR<Prisma.FornecedorCreateWithoutContatosInput, Prisma.FornecedorUncheckedCreateWithoutContatosInput>
-  connectOrCreate?: Prisma.FornecedorCreateOrConnectWithoutContatosInput
-  connect?: Prisma.FornecedorWhereUniqueInput
-}
-
-export type FornecedorUpdateOneWithoutContatosNestedInput = {
-  create?: Prisma.XOR<Prisma.FornecedorCreateWithoutContatosInput, Prisma.FornecedorUncheckedCreateWithoutContatosInput>
-  connectOrCreate?: Prisma.FornecedorCreateOrConnectWithoutContatosInput
-  upsert?: Prisma.FornecedorUpsertWithoutContatosInput
-  disconnect?: Prisma.FornecedorWhereInput | boolean
-  delete?: Prisma.FornecedorWhereInput | boolean
-  connect?: Prisma.FornecedorWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.FornecedorUpdateToOneWithWhereWithoutContatosInput, Prisma.FornecedorUpdateWithoutContatosInput>, Prisma.FornecedorUncheckedUpdateWithoutContatosInput>
+export type FornecedorNullableScalarRelationFilter = {
+  is?: Prisma.FornecedorWhereInput | null
+  isNot?: Prisma.FornecedorWhereInput | null
 }
 
 export type FornecedorCreateNestedOneWithoutProdutosInput = {
@@ -408,64 +392,20 @@ export type FornecedorUpdateOneRequiredWithoutDados_comercialNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.FornecedorUpdateToOneWithWhereWithoutDados_comercialInput, Prisma.FornecedorUpdateWithoutDados_comercialInput>, Prisma.FornecedorUncheckedUpdateWithoutDados_comercialInput>
 }
 
-export type FornecedorCreateWithoutContatosInput = {
-  id?: string
-  codigo?: string | null
-  razao_social: string
-  nome_fantasia?: string | null
-  observacoes?: string | null
-  produtos?: Prisma.ProdutoCreateNestedManyWithoutFornecedorInput
-  endereco_fornecedor?: Prisma.EnderecoFornecedorCreateNestedOneWithoutFornecedorInput
-  dados_comercial?: Prisma.DadosComercialFornecedorCreateNestedOneWithoutForecedorInput
+export type FornecedorCreateNestedOneWithoutContatosInput = {
+  create?: Prisma.XOR<Prisma.FornecedorCreateWithoutContatosInput, Prisma.FornecedorUncheckedCreateWithoutContatosInput>
+  connectOrCreate?: Prisma.FornecedorCreateOrConnectWithoutContatosInput
+  connect?: Prisma.FornecedorWhereUniqueInput
 }
 
-export type FornecedorUncheckedCreateWithoutContatosInput = {
-  id?: string
-  codigo?: string | null
-  razao_social: string
-  nome_fantasia?: string | null
-  observacoes?: string | null
-  produtos?: Prisma.ProdutoUncheckedCreateNestedManyWithoutFornecedorInput
-  endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedCreateNestedOneWithoutFornecedorInput
-  dados_comercial?: Prisma.DadosComercialFornecedorUncheckedCreateNestedOneWithoutForecedorInput
-}
-
-export type FornecedorCreateOrConnectWithoutContatosInput = {
-  where: Prisma.FornecedorWhereUniqueInput
-  create: Prisma.XOR<Prisma.FornecedorCreateWithoutContatosInput, Prisma.FornecedorUncheckedCreateWithoutContatosInput>
-}
-
-export type FornecedorUpsertWithoutContatosInput = {
-  update: Prisma.XOR<Prisma.FornecedorUpdateWithoutContatosInput, Prisma.FornecedorUncheckedUpdateWithoutContatosInput>
-  create: Prisma.XOR<Prisma.FornecedorCreateWithoutContatosInput, Prisma.FornecedorUncheckedCreateWithoutContatosInput>
-  where?: Prisma.FornecedorWhereInput
-}
-
-export type FornecedorUpdateToOneWithWhereWithoutContatosInput = {
-  where?: Prisma.FornecedorWhereInput
-  data: Prisma.XOR<Prisma.FornecedorUpdateWithoutContatosInput, Prisma.FornecedorUncheckedUpdateWithoutContatosInput>
-}
-
-export type FornecedorUpdateWithoutContatosInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  razao_social?: Prisma.StringFieldUpdateOperationsInput | string
-  nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  produtos?: Prisma.ProdutoUpdateManyWithoutFornecedorNestedInput
-  endereco_fornecedor?: Prisma.EnderecoFornecedorUpdateOneWithoutFornecedorNestedInput
-  dados_comercial?: Prisma.DadosComercialFornecedorUpdateOneWithoutForecedorNestedInput
-}
-
-export type FornecedorUncheckedUpdateWithoutContatosInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  razao_social?: Prisma.StringFieldUpdateOperationsInput | string
-  nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  produtos?: Prisma.ProdutoUncheckedUpdateManyWithoutFornecedorNestedInput
-  endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedUpdateOneWithoutFornecedorNestedInput
-  dados_comercial?: Prisma.DadosComercialFornecedorUncheckedUpdateOneWithoutForecedorNestedInput
+export type FornecedorUpdateOneWithoutContatosNestedInput = {
+  create?: Prisma.XOR<Prisma.FornecedorCreateWithoutContatosInput, Prisma.FornecedorUncheckedCreateWithoutContatosInput>
+  connectOrCreate?: Prisma.FornecedorCreateOrConnectWithoutContatosInput
+  upsert?: Prisma.FornecedorUpsertWithoutContatosInput
+  disconnect?: Prisma.FornecedorWhereInput | boolean
+  delete?: Prisma.FornecedorWhereInput | boolean
+  connect?: Prisma.FornecedorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FornecedorUpdateToOneWithWhereWithoutContatosInput, Prisma.FornecedorUpdateWithoutContatosInput>, Prisma.FornecedorUncheckedUpdateWithoutContatosInput>
 }
 
 export type FornecedorCreateWithoutProdutosInput = {
@@ -474,9 +414,9 @@ export type FornecedorCreateWithoutProdutosInput = {
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
-  contatos?: Prisma.ContatoCreateNestedManyWithoutFornecedorInput
-  endereco_fornecedor?: Prisma.EnderecoFornecedorCreateNestedOneWithoutFornecedorInput
+  contatos?: Prisma.ContatoFornecedorCreateNestedManyWithoutFornecedorInput
   dados_comercial?: Prisma.DadosComercialFornecedorCreateNestedOneWithoutForecedorInput
+  endereco_fornecedor?: Prisma.EnderecoFornecedorCreateNestedOneWithoutFornecedorInput
 }
 
 export type FornecedorUncheckedCreateWithoutProdutosInput = {
@@ -485,9 +425,9 @@ export type FornecedorUncheckedCreateWithoutProdutosInput = {
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
-  contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutFornecedorInput
-  endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedCreateNestedOneWithoutFornecedorInput
+  contatos?: Prisma.ContatoFornecedorUncheckedCreateNestedManyWithoutFornecedorInput
   dados_comercial?: Prisma.DadosComercialFornecedorUncheckedCreateNestedOneWithoutForecedorInput
+  endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedCreateNestedOneWithoutFornecedorInput
 }
 
 export type FornecedorCreateOrConnectWithoutProdutosInput = {
@@ -512,9 +452,9 @@ export type FornecedorUpdateWithoutProdutosInput = {
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contatos?: Prisma.ContatoUpdateManyWithoutFornecedorNestedInput
-  endereco_fornecedor?: Prisma.EnderecoFornecedorUpdateOneWithoutFornecedorNestedInput
+  contatos?: Prisma.ContatoFornecedorUpdateManyWithoutFornecedorNestedInput
   dados_comercial?: Prisma.DadosComercialFornecedorUpdateOneWithoutForecedorNestedInput
+  endereco_fornecedor?: Prisma.EnderecoFornecedorUpdateOneWithoutFornecedorNestedInput
 }
 
 export type FornecedorUncheckedUpdateWithoutProdutosInput = {
@@ -523,9 +463,9 @@ export type FornecedorUncheckedUpdateWithoutProdutosInput = {
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contatos?: Prisma.ContatoUncheckedUpdateManyWithoutFornecedorNestedInput
-  endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedUpdateOneWithoutFornecedorNestedInput
+  contatos?: Prisma.ContatoFornecedorUncheckedUpdateManyWithoutFornecedorNestedInput
   dados_comercial?: Prisma.DadosComercialFornecedorUncheckedUpdateOneWithoutForecedorNestedInput
+  endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedUpdateOneWithoutFornecedorNestedInput
 }
 
 export type FornecedorCreateWithoutEndereco_fornecedorInput = {
@@ -534,9 +474,9 @@ export type FornecedorCreateWithoutEndereco_fornecedorInput = {
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
-  produtos?: Prisma.ProdutoCreateNestedManyWithoutFornecedorInput
-  contatos?: Prisma.ContatoCreateNestedManyWithoutFornecedorInput
+  contatos?: Prisma.ContatoFornecedorCreateNestedManyWithoutFornecedorInput
   dados_comercial?: Prisma.DadosComercialFornecedorCreateNestedOneWithoutForecedorInput
+  produtos?: Prisma.ProdutoCreateNestedManyWithoutFornecedorInput
 }
 
 export type FornecedorUncheckedCreateWithoutEndereco_fornecedorInput = {
@@ -545,9 +485,9 @@ export type FornecedorUncheckedCreateWithoutEndereco_fornecedorInput = {
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
-  produtos?: Prisma.ProdutoUncheckedCreateNestedManyWithoutFornecedorInput
-  contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutFornecedorInput
+  contatos?: Prisma.ContatoFornecedorUncheckedCreateNestedManyWithoutFornecedorInput
   dados_comercial?: Prisma.DadosComercialFornecedorUncheckedCreateNestedOneWithoutForecedorInput
+  produtos?: Prisma.ProdutoUncheckedCreateNestedManyWithoutFornecedorInput
 }
 
 export type FornecedorCreateOrConnectWithoutEndereco_fornecedorInput = {
@@ -572,9 +512,9 @@ export type FornecedorUpdateWithoutEndereco_fornecedorInput = {
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  produtos?: Prisma.ProdutoUpdateManyWithoutFornecedorNestedInput
-  contatos?: Prisma.ContatoUpdateManyWithoutFornecedorNestedInput
+  contatos?: Prisma.ContatoFornecedorUpdateManyWithoutFornecedorNestedInput
   dados_comercial?: Prisma.DadosComercialFornecedorUpdateOneWithoutForecedorNestedInput
+  produtos?: Prisma.ProdutoUpdateManyWithoutFornecedorNestedInput
 }
 
 export type FornecedorUncheckedUpdateWithoutEndereco_fornecedorInput = {
@@ -583,9 +523,9 @@ export type FornecedorUncheckedUpdateWithoutEndereco_fornecedorInput = {
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  produtos?: Prisma.ProdutoUncheckedUpdateManyWithoutFornecedorNestedInput
-  contatos?: Prisma.ContatoUncheckedUpdateManyWithoutFornecedorNestedInput
+  contatos?: Prisma.ContatoFornecedorUncheckedUpdateManyWithoutFornecedorNestedInput
   dados_comercial?: Prisma.DadosComercialFornecedorUncheckedUpdateOneWithoutForecedorNestedInput
+  produtos?: Prisma.ProdutoUncheckedUpdateManyWithoutFornecedorNestedInput
 }
 
 export type FornecedorCreateWithoutDados_comercialInput = {
@@ -594,9 +534,9 @@ export type FornecedorCreateWithoutDados_comercialInput = {
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
-  produtos?: Prisma.ProdutoCreateNestedManyWithoutFornecedorInput
-  contatos?: Prisma.ContatoCreateNestedManyWithoutFornecedorInput
+  contatos?: Prisma.ContatoFornecedorCreateNestedManyWithoutFornecedorInput
   endereco_fornecedor?: Prisma.EnderecoFornecedorCreateNestedOneWithoutFornecedorInput
+  produtos?: Prisma.ProdutoCreateNestedManyWithoutFornecedorInput
 }
 
 export type FornecedorUncheckedCreateWithoutDados_comercialInput = {
@@ -605,9 +545,9 @@ export type FornecedorUncheckedCreateWithoutDados_comercialInput = {
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
-  produtos?: Prisma.ProdutoUncheckedCreateNestedManyWithoutFornecedorInput
-  contatos?: Prisma.ContatoUncheckedCreateNestedManyWithoutFornecedorInput
+  contatos?: Prisma.ContatoFornecedorUncheckedCreateNestedManyWithoutFornecedorInput
   endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedCreateNestedOneWithoutFornecedorInput
+  produtos?: Prisma.ProdutoUncheckedCreateNestedManyWithoutFornecedorInput
 }
 
 export type FornecedorCreateOrConnectWithoutDados_comercialInput = {
@@ -632,9 +572,9 @@ export type FornecedorUpdateWithoutDados_comercialInput = {
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  produtos?: Prisma.ProdutoUpdateManyWithoutFornecedorNestedInput
-  contatos?: Prisma.ContatoUpdateManyWithoutFornecedorNestedInput
+  contatos?: Prisma.ContatoFornecedorUpdateManyWithoutFornecedorNestedInput
   endereco_fornecedor?: Prisma.EnderecoFornecedorUpdateOneWithoutFornecedorNestedInput
+  produtos?: Prisma.ProdutoUpdateManyWithoutFornecedorNestedInput
 }
 
 export type FornecedorUncheckedUpdateWithoutDados_comercialInput = {
@@ -643,9 +583,69 @@ export type FornecedorUncheckedUpdateWithoutDados_comercialInput = {
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  produtos?: Prisma.ProdutoUncheckedUpdateManyWithoutFornecedorNestedInput
-  contatos?: Prisma.ContatoUncheckedUpdateManyWithoutFornecedorNestedInput
+  contatos?: Prisma.ContatoFornecedorUncheckedUpdateManyWithoutFornecedorNestedInput
   endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedUpdateOneWithoutFornecedorNestedInput
+  produtos?: Prisma.ProdutoUncheckedUpdateManyWithoutFornecedorNestedInput
+}
+
+export type FornecedorCreateWithoutContatosInput = {
+  id?: string
+  codigo?: string | null
+  razao_social: string
+  nome_fantasia?: string | null
+  observacoes?: string | null
+  dados_comercial?: Prisma.DadosComercialFornecedorCreateNestedOneWithoutForecedorInput
+  endereco_fornecedor?: Prisma.EnderecoFornecedorCreateNestedOneWithoutFornecedorInput
+  produtos?: Prisma.ProdutoCreateNestedManyWithoutFornecedorInput
+}
+
+export type FornecedorUncheckedCreateWithoutContatosInput = {
+  id?: string
+  codigo?: string | null
+  razao_social: string
+  nome_fantasia?: string | null
+  observacoes?: string | null
+  dados_comercial?: Prisma.DadosComercialFornecedorUncheckedCreateNestedOneWithoutForecedorInput
+  endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedCreateNestedOneWithoutFornecedorInput
+  produtos?: Prisma.ProdutoUncheckedCreateNestedManyWithoutFornecedorInput
+}
+
+export type FornecedorCreateOrConnectWithoutContatosInput = {
+  where: Prisma.FornecedorWhereUniqueInput
+  create: Prisma.XOR<Prisma.FornecedorCreateWithoutContatosInput, Prisma.FornecedorUncheckedCreateWithoutContatosInput>
+}
+
+export type FornecedorUpsertWithoutContatosInput = {
+  update: Prisma.XOR<Prisma.FornecedorUpdateWithoutContatosInput, Prisma.FornecedorUncheckedUpdateWithoutContatosInput>
+  create: Prisma.XOR<Prisma.FornecedorCreateWithoutContatosInput, Prisma.FornecedorUncheckedCreateWithoutContatosInput>
+  where?: Prisma.FornecedorWhereInput
+}
+
+export type FornecedorUpdateToOneWithWhereWithoutContatosInput = {
+  where?: Prisma.FornecedorWhereInput
+  data: Prisma.XOR<Prisma.FornecedorUpdateWithoutContatosInput, Prisma.FornecedorUncheckedUpdateWithoutContatosInput>
+}
+
+export type FornecedorUpdateWithoutContatosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razao_social?: Prisma.StringFieldUpdateOperationsInput | string
+  nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dados_comercial?: Prisma.DadosComercialFornecedorUpdateOneWithoutForecedorNestedInput
+  endereco_fornecedor?: Prisma.EnderecoFornecedorUpdateOneWithoutFornecedorNestedInput
+  produtos?: Prisma.ProdutoUpdateManyWithoutFornecedorNestedInput
+}
+
+export type FornecedorUncheckedUpdateWithoutContatosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razao_social?: Prisma.StringFieldUpdateOperationsInput | string
+  nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dados_comercial?: Prisma.DadosComercialFornecedorUncheckedUpdateOneWithoutForecedorNestedInput
+  endereco_fornecedor?: Prisma.EnderecoFornecedorUncheckedUpdateOneWithoutFornecedorNestedInput
+  produtos?: Prisma.ProdutoUncheckedUpdateManyWithoutFornecedorNestedInput
 }
 
 
@@ -654,13 +654,13 @@ export type FornecedorUncheckedUpdateWithoutDados_comercialInput = {
  */
 
 export type FornecedorCountOutputType = {
-  produtos: number
   contatos: number
+  produtos: number
 }
 
 export type FornecedorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  produtos?: boolean | FornecedorCountOutputTypeCountProdutosArgs
   contatos?: boolean | FornecedorCountOutputTypeCountContatosArgs
+  produtos?: boolean | FornecedorCountOutputTypeCountProdutosArgs
 }
 
 /**
@@ -676,15 +676,15 @@ export type FornecedorCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.E
 /**
  * FornecedorCountOutputType without action
  */
-export type FornecedorCountOutputTypeCountProdutosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ProdutoWhereInput
+export type FornecedorCountOutputTypeCountContatosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContatoFornecedorWhereInput
 }
 
 /**
  * FornecedorCountOutputType without action
  */
-export type FornecedorCountOutputTypeCountContatosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ContatoWhereInput
+export type FornecedorCountOutputTypeCountProdutosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProdutoWhereInput
 }
 
 
@@ -694,10 +694,10 @@ export type FornecedorSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   razao_social?: boolean
   nome_fantasia?: boolean
   observacoes?: boolean
-  produtos?: boolean | Prisma.Fornecedor$produtosArgs<ExtArgs>
   contatos?: boolean | Prisma.Fornecedor$contatosArgs<ExtArgs>
-  endereco_fornecedor?: boolean | Prisma.Fornecedor$endereco_fornecedorArgs<ExtArgs>
   dados_comercial?: boolean | Prisma.Fornecedor$dados_comercialArgs<ExtArgs>
+  endereco_fornecedor?: boolean | Prisma.Fornecedor$endereco_fornecedorArgs<ExtArgs>
+  produtos?: boolean | Prisma.Fornecedor$produtosArgs<ExtArgs>
   _count?: boolean | Prisma.FornecedorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["fornecedor"]>
 
@@ -713,20 +713,20 @@ export type FornecedorSelectScalar = {
 
 export type FornecedorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "razao_social" | "nome_fantasia" | "observacoes", ExtArgs["result"]["fornecedor"]>
 export type FornecedorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  produtos?: boolean | Prisma.Fornecedor$produtosArgs<ExtArgs>
   contatos?: boolean | Prisma.Fornecedor$contatosArgs<ExtArgs>
-  endereco_fornecedor?: boolean | Prisma.Fornecedor$endereco_fornecedorArgs<ExtArgs>
   dados_comercial?: boolean | Prisma.Fornecedor$dados_comercialArgs<ExtArgs>
+  endereco_fornecedor?: boolean | Prisma.Fornecedor$endereco_fornecedorArgs<ExtArgs>
+  produtos?: boolean | Prisma.Fornecedor$produtosArgs<ExtArgs>
   _count?: boolean | Prisma.FornecedorCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $FornecedorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Fornecedor"
   objects: {
-    produtos: Prisma.$ProdutoPayload<ExtArgs>[]
-    contatos: Prisma.$ContatoPayload<ExtArgs>[]
-    endereco_fornecedor: Prisma.$EnderecoFornecedorPayload<ExtArgs> | null
+    contatos: Prisma.$ContatoFornecedorPayload<ExtArgs>[]
     dados_comercial: Prisma.$DadosComercialFornecedorPayload<ExtArgs> | null
+    endereco_fornecedor: Prisma.$EnderecoFornecedorPayload<ExtArgs> | null
+    produtos: Prisma.$ProdutoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1074,10 +1074,10 @@ readonly fields: FornecedorFieldRefs;
  */
 export interface Prisma__FornecedorClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  produtos<T extends Prisma.Fornecedor$produtosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Fornecedor$produtosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProdutoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  contatos<T extends Prisma.Fornecedor$contatosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Fornecedor$contatosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  endereco_fornecedor<T extends Prisma.Fornecedor$endereco_fornecedorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Fornecedor$endereco_fornecedorArgs<ExtArgs>>): Prisma.Prisma__EnderecoFornecedorClient<runtime.Types.Result.GetResult<Prisma.$EnderecoFornecedorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  contatos<T extends Prisma.Fornecedor$contatosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Fornecedor$contatosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContatoFornecedorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   dados_comercial<T extends Prisma.Fornecedor$dados_comercialArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Fornecedor$dados_comercialArgs<ExtArgs>>): Prisma.Prisma__DadosComercialFornecedorClient<runtime.Types.Result.GetResult<Prisma.$DadosComercialFornecedorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  endereco_fornecedor<T extends Prisma.Fornecedor$endereco_fornecedorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Fornecedor$endereco_fornecedorArgs<ExtArgs>>): Prisma.Prisma__EnderecoFornecedorClient<runtime.Types.Result.GetResult<Prisma.$EnderecoFornecedorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  produtos<T extends Prisma.Fornecedor$produtosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Fornecedor$produtosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProdutoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1455,51 +1455,46 @@ export type FornecedorDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * Fornecedor.produtos
- */
-export type Fornecedor$produtosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Produto
-   */
-  select?: Prisma.ProdutoSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Produto
-   */
-  omit?: Prisma.ProdutoOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProdutoInclude<ExtArgs> | null
-  where?: Prisma.ProdutoWhereInput
-  orderBy?: Prisma.ProdutoOrderByWithRelationInput | Prisma.ProdutoOrderByWithRelationInput[]
-  cursor?: Prisma.ProdutoWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ProdutoScalarFieldEnum | Prisma.ProdutoScalarFieldEnum[]
-}
-
-/**
  * Fornecedor.contatos
  */
 export type Fornecedor$contatosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Contato
+   * Select specific fields to fetch from the ContatoFornecedor
    */
-  select?: Prisma.ContatoSelect<ExtArgs> | null
+  select?: Prisma.ContatoFornecedorSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Contato
+   * Omit specific fields from the ContatoFornecedor
    */
-  omit?: Prisma.ContatoOmit<ExtArgs> | null
+  omit?: Prisma.ContatoFornecedorOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ContatoInclude<ExtArgs> | null
-  where?: Prisma.ContatoWhereInput
-  orderBy?: Prisma.ContatoOrderByWithRelationInput | Prisma.ContatoOrderByWithRelationInput[]
-  cursor?: Prisma.ContatoWhereUniqueInput
+  include?: Prisma.ContatoFornecedorInclude<ExtArgs> | null
+  where?: Prisma.ContatoFornecedorWhereInput
+  orderBy?: Prisma.ContatoFornecedorOrderByWithRelationInput | Prisma.ContatoFornecedorOrderByWithRelationInput[]
+  cursor?: Prisma.ContatoFornecedorWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ContatoScalarFieldEnum | Prisma.ContatoScalarFieldEnum[]
+  distinct?: Prisma.ContatoFornecedorScalarFieldEnum | Prisma.ContatoFornecedorScalarFieldEnum[]
+}
+
+/**
+ * Fornecedor.dados_comercial
+ */
+export type Fornecedor$dados_comercialArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DadosComercialFornecedor
+   */
+  select?: Prisma.DadosComercialFornecedorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DadosComercialFornecedor
+   */
+  omit?: Prisma.DadosComercialFornecedorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DadosComercialFornecedorInclude<ExtArgs> | null
+  where?: Prisma.DadosComercialFornecedorWhereInput
 }
 
 /**
@@ -1522,22 +1517,27 @@ export type Fornecedor$endereco_fornecedorArgs<ExtArgs extends runtime.Types.Ext
 }
 
 /**
- * Fornecedor.dados_comercial
+ * Fornecedor.produtos
  */
-export type Fornecedor$dados_comercialArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Fornecedor$produtosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the DadosComercialFornecedor
+   * Select specific fields to fetch from the Produto
    */
-  select?: Prisma.DadosComercialFornecedorSelect<ExtArgs> | null
+  select?: Prisma.ProdutoSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the DadosComercialFornecedor
+   * Omit specific fields from the Produto
    */
-  omit?: Prisma.DadosComercialFornecedorOmit<ExtArgs> | null
+  omit?: Prisma.ProdutoOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.DadosComercialFornecedorInclude<ExtArgs> | null
-  where?: Prisma.DadosComercialFornecedorWhereInput
+  include?: Prisma.ProdutoInclude<ExtArgs> | null
+  where?: Prisma.ProdutoWhereInput
+  orderBy?: Prisma.ProdutoOrderByWithRelationInput | Prisma.ProdutoOrderByWithRelationInput[]
+  cursor?: Prisma.ProdutoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProdutoScalarFieldEnum | Prisma.ProdutoScalarFieldEnum[]
 }
 
 /**

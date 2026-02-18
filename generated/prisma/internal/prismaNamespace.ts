@@ -391,7 +391,7 @@ export const ModelName = {
   Cliente: 'Cliente',
   Documento: 'Documento',
   EnderecoCliente: 'EnderecoCliente',
-  Contato: 'Contato',
+  ContatoCliente: 'ContatoCliente',
   Caixa: 'Caixa',
   Entrada: 'Entrada',
   Saida: 'Saida',
@@ -404,7 +404,8 @@ export const ModelName = {
   Categoria: 'Categoria',
   Fornecedor: 'Fornecedor',
   EnderecoFornecedor: 'EnderecoFornecedor',
-  DadosComercialFornecedor: 'DadosComercialFornecedor'
+  DadosComercialFornecedor: 'DadosComercialFornecedor',
+  ContatoFornecedor: 'ContatoFornecedor'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -420,7 +421,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "documento" | "enderecoCliente" | "contato" | "caixa" | "entrada" | "saida" | "abertura" | "fechamento" | "venda" | "itemVenda" | "produto" | "pagamento" | "categoria" | "fornecedor" | "enderecoFornecedor" | "dadosComercialFornecedor"
+    modelProps: "user" | "session" | "account" | "verification" | "cliente" | "documento" | "enderecoCliente" | "contatoCliente" | "caixa" | "entrada" | "saida" | "abertura" | "fechamento" | "venda" | "itemVenda" | "produto" | "pagamento" | "categoria" | "fornecedor" | "enderecoFornecedor" | "dadosComercialFornecedor" | "contatoFornecedor"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -886,69 +887,69 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Contato: {
-      payload: Prisma.$ContatoPayload<ExtArgs>
-      fields: Prisma.ContatoFieldRefs
+    ContatoCliente: {
+      payload: Prisma.$ContatoClientePayload<ExtArgs>
+      fields: Prisma.ContatoClienteFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.ContatoFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload> | null
+          args: Prisma.ContatoClienteFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoClientePayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.ContatoFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>
+          args: Prisma.ContatoClienteFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoClientePayload>
         }
         findFirst: {
-          args: Prisma.ContatoFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload> | null
+          args: Prisma.ContatoClienteFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoClientePayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.ContatoFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>
+          args: Prisma.ContatoClienteFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoClientePayload>
         }
         findMany: {
-          args: Prisma.ContatoFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>[]
+          args: Prisma.ContatoClienteFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoClientePayload>[]
         }
         create: {
-          args: Prisma.ContatoCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>
+          args: Prisma.ContatoClienteCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoClientePayload>
         }
         createMany: {
-          args: Prisma.ContatoCreateManyArgs<ExtArgs>
+          args: Prisma.ContatoClienteCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         delete: {
-          args: Prisma.ContatoDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>
+          args: Prisma.ContatoClienteDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoClientePayload>
         }
         update: {
-          args: Prisma.ContatoUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>
+          args: Prisma.ContatoClienteUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoClientePayload>
         }
         deleteMany: {
-          args: Prisma.ContatoDeleteManyArgs<ExtArgs>
+          args: Prisma.ContatoClienteDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.ContatoUpdateManyArgs<ExtArgs>
+          args: Prisma.ContatoClienteUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         upsert: {
-          args: Prisma.ContatoUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoPayload>
+          args: Prisma.ContatoClienteUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoClientePayload>
         }
         aggregate: {
-          args: Prisma.ContatoAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateContato>
+          args: Prisma.ContatoClienteAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateContatoCliente>
         }
         groupBy: {
-          args: Prisma.ContatoGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ContatoGroupByOutputType>[]
+          args: Prisma.ContatoClienteGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContatoClienteGroupByOutputType>[]
         }
         count: {
-          args: Prisma.ContatoCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ContatoCountAggregateOutputType> | number
+          args: Prisma.ContatoClienteCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContatoClienteCountAggregateOutputType> | number
         }
       }
     }
@@ -1810,6 +1811,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ContatoFornecedor: {
+      payload: Prisma.$ContatoFornecedorPayload<ExtArgs>
+      fields: Prisma.ContatoFornecedorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ContatoFornecedorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoFornecedorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ContatoFornecedorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoFornecedorPayload>
+        }
+        findFirst: {
+          args: Prisma.ContatoFornecedorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoFornecedorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ContatoFornecedorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoFornecedorPayload>
+        }
+        findMany: {
+          args: Prisma.ContatoFornecedorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoFornecedorPayload>[]
+        }
+        create: {
+          args: Prisma.ContatoFornecedorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoFornecedorPayload>
+        }
+        createMany: {
+          args: Prisma.ContatoFornecedorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.ContatoFornecedorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoFornecedorPayload>
+        }
+        update: {
+          args: Prisma.ContatoFornecedorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoFornecedorPayload>
+        }
+        deleteMany: {
+          args: Prisma.ContatoFornecedorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ContatoFornecedorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.ContatoFornecedorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContatoFornecedorPayload>
+        }
+        aggregate: {
+          args: Prisma.ContatoFornecedorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateContatoFornecedor>
+        }
+        groupBy: {
+          args: Prisma.ContatoFornecedorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContatoFornecedorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ContatoFornecedorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContatoFornecedorCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1942,15 +2009,14 @@ export const EnderecoClienteScalarFieldEnum = {
 export type EnderecoClienteScalarFieldEnum = (typeof EnderecoClienteScalarFieldEnum)[keyof typeof EnderecoClienteScalarFieldEnum]
 
 
-export const ContatoScalarFieldEnum = {
+export const ContatoClienteScalarFieldEnum = {
   id: 'id',
   tipo: 'tipo',
-  conteudo: 'conteudo',
-  clienteId: 'clienteId',
-  fornecedorId: 'fornecedorId'
+  valor: 'valor',
+  clienteId: 'clienteId'
 } as const
 
-export type ContatoScalarFieldEnum = (typeof ContatoScalarFieldEnum)[keyof typeof ContatoScalarFieldEnum]
+export type ContatoClienteScalarFieldEnum = (typeof ContatoClienteScalarFieldEnum)[keyof typeof ContatoClienteScalarFieldEnum]
 
 
 export const CaixaScalarFieldEnum = {
@@ -2033,16 +2099,16 @@ export type ItemVendaScalarFieldEnum = (typeof ItemVendaScalarFieldEnum)[keyof t
 
 export const ProdutoScalarFieldEnum = {
   id: 'id',
-  nome: 'nome',
   codigo: 'codigo',
-  unidade_medida: 'unidade_medida',
-  material: 'material',
-  cor: 'cor',
   descricao: 'descricao',
   preco_venda: 'preco_venda',
   preco_compra: 'preco_compra',
   categoria_id: 'categoria_id',
-  fornecedor_id: 'fornecedor_id'
+  cor: 'cor',
+  fornecedor_id: 'fornecedor_id',
+  material: 'material',
+  nome: 'nome',
+  unidade_medida: 'unidade_medida'
 } as const
 
 export type ProdutoScalarFieldEnum = (typeof ProdutoScalarFieldEnum)[keyof typeof ProdutoScalarFieldEnum]
@@ -2083,7 +2149,9 @@ export const EnderecoFornecedorScalarFieldEnum = {
   cidade: 'cidade',
   pais: 'pais',
   cep: 'cep',
-  fornecedorId: 'fornecedorId'
+  fornecedorId: 'fornecedorId',
+  estado: 'estado',
+  complemento: 'complemento'
 } as const
 
 export type EnderecoFornecedorScalarFieldEnum = (typeof EnderecoFornecedorScalarFieldEnum)[keyof typeof EnderecoFornecedorScalarFieldEnum]
@@ -2100,6 +2168,16 @@ export const DadosComercialFornecedorScalarFieldEnum = {
 } as const
 
 export type DadosComercialFornecedorScalarFieldEnum = (typeof DadosComercialFornecedorScalarFieldEnum)[keyof typeof DadosComercialFornecedorScalarFieldEnum]
+
+
+export const ContatoFornecedorScalarFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  valor: 'valor',
+  fornecedorId: 'fornecedorId'
+} as const
+
+export type ContatoFornecedorScalarFieldEnum = (typeof ContatoFornecedorScalarFieldEnum)[keyof typeof ContatoFornecedorScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2197,15 +2275,14 @@ export const EnderecoClienteOrderByRelevanceFieldEnum = {
 export type EnderecoClienteOrderByRelevanceFieldEnum = (typeof EnderecoClienteOrderByRelevanceFieldEnum)[keyof typeof EnderecoClienteOrderByRelevanceFieldEnum]
 
 
-export const ContatoOrderByRelevanceFieldEnum = {
+export const ContatoClienteOrderByRelevanceFieldEnum = {
   id: 'id',
   tipo: 'tipo',
-  conteudo: 'conteudo',
-  clienteId: 'clienteId',
-  fornecedorId: 'fornecedorId'
+  valor: 'valor',
+  clienteId: 'clienteId'
 } as const
 
-export type ContatoOrderByRelevanceFieldEnum = (typeof ContatoOrderByRelevanceFieldEnum)[keyof typeof ContatoOrderByRelevanceFieldEnum]
+export type ContatoClienteOrderByRelevanceFieldEnum = (typeof ContatoClienteOrderByRelevanceFieldEnum)[keyof typeof ContatoClienteOrderByRelevanceFieldEnum]
 
 
 export const CaixaOrderByRelevanceFieldEnum = {
@@ -2278,14 +2355,14 @@ export type ItemVendaOrderByRelevanceFieldEnum = (typeof ItemVendaOrderByRelevan
 
 export const ProdutoOrderByRelevanceFieldEnum = {
   id: 'id',
-  nome: 'nome',
   codigo: 'codigo',
-  unidade_medida: 'unidade_medida',
-  material: 'material',
-  cor: 'cor',
   descricao: 'descricao',
   categoria_id: 'categoria_id',
-  fornecedor_id: 'fornecedor_id'
+  cor: 'cor',
+  fornecedor_id: 'fornecedor_id',
+  material: 'material',
+  nome: 'nome',
+  unidade_medida: 'unidade_medida'
 } as const
 
 export type ProdutoOrderByRelevanceFieldEnum = (typeof ProdutoOrderByRelevanceFieldEnum)[keyof typeof ProdutoOrderByRelevanceFieldEnum]
@@ -2326,7 +2403,9 @@ export const EnderecoFornecedorOrderByRelevanceFieldEnum = {
   cidade: 'cidade',
   pais: 'pais',
   cep: 'cep',
-  fornecedorId: 'fornecedorId'
+  fornecedorId: 'fornecedorId',
+  estado: 'estado',
+  complemento: 'complemento'
 } as const
 
 export type EnderecoFornecedorOrderByRelevanceFieldEnum = (typeof EnderecoFornecedorOrderByRelevanceFieldEnum)[keyof typeof EnderecoFornecedorOrderByRelevanceFieldEnum]
@@ -2342,6 +2421,16 @@ export const DadosComercialFornecedorOrderByRelevanceFieldEnum = {
 } as const
 
 export type DadosComercialFornecedorOrderByRelevanceFieldEnum = (typeof DadosComercialFornecedorOrderByRelevanceFieldEnum)[keyof typeof DadosComercialFornecedorOrderByRelevanceFieldEnum]
+
+
+export const ContatoFornecedorOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  valor: 'valor',
+  fornecedorId: 'fornecedorId'
+} as const
+
+export type ContatoFornecedorOrderByRelevanceFieldEnum = (typeof ContatoFornecedorOrderByRelevanceFieldEnum)[keyof typeof ContatoFornecedorOrderByRelevanceFieldEnum]
 
 
 
@@ -2500,7 +2589,7 @@ export type GlobalOmitConfig = {
   cliente?: Prisma.ClienteOmit
   documento?: Prisma.DocumentoOmit
   enderecoCliente?: Prisma.EnderecoClienteOmit
-  contato?: Prisma.ContatoOmit
+  contatoCliente?: Prisma.ContatoClienteOmit
   caixa?: Prisma.CaixaOmit
   entrada?: Prisma.EntradaOmit
   saida?: Prisma.SaidaOmit
@@ -2514,6 +2603,7 @@ export type GlobalOmitConfig = {
   fornecedor?: Prisma.FornecedorOmit
   enderecoFornecedor?: Prisma.EnderecoFornecedorOmit
   dadosComercialFornecedor?: Prisma.DadosComercialFornecedorOmit
+  contatoFornecedor?: Prisma.ContatoFornecedorOmit
 }
 
 /* Types for Logging */

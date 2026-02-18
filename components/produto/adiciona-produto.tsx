@@ -20,8 +20,8 @@ interface PropsCategoria {
 }
 
 interface PropsFornecedor {
-    nome: string;
-    codigo: string;
+    razao_social: string;
+    codigo: string | null;
 }
 
 export interface PropsProduto {
@@ -83,7 +83,7 @@ export default function AdicionaProduto(props: PropsProduto) {
                                 <SelectLabel>Fornecedores</SelectLabel>
                                 {
                                     fornecedores.map((f, k) => (
-                                            <SelectItem value={f.codigo} key={k}>{f.nome}</SelectItem>
+                                            <SelectItem value={f.codigo||"#"} key={k}>{f.razao_social}</SelectItem>
                                         )
                                     )
                                 }
