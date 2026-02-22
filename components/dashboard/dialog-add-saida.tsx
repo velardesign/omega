@@ -1,11 +1,11 @@
+"use client"
 import {Button} from "@/components/ui/button";
 import {Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle} from "@/components/ui/dialog";
 import {Field, FieldDescription, FieldGroup, FieldSet} from "@/components/ui/field";
 import {Input} from "@/components/ui/input";
-import React, {useState} from "react";
+import  {useState} from "react";
 import {addSaida} from "@/actions/caixa-action";
 import {SaidaDTO} from "@/src/domain/types/caixa-types";
-import {TipoEntrada} from "@/generated/prisma/enums";
 import CashAlertDialog from "@/components/cash/cash-alert-dialog";
 
 
