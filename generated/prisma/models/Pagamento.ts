@@ -158,7 +158,6 @@ export type PagamentoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   entradas?: Prisma.EntradaOrderByRelationAggregateInput
   venda?: Prisma.VendaOrderByWithRelationInput
-  _relevance?: Prisma.PagamentoOrderByRelevanceInput
 }
 
 export type PagamentoWhereUniqueInput = Prisma.AtLeast<{
@@ -228,12 +227,6 @@ export type PagamentoNullableScalarRelationFilter = {
 export type PagamentoScalarRelationFilter = {
   is?: Prisma.PagamentoWhereInput
   isNot?: Prisma.PagamentoWhereInput
-}
-
-export type PagamentoOrderByRelevanceInput = {
-  fields: Prisma.PagamentoOrderByRelevanceFieldEnum | Prisma.PagamentoOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type PagamentoCountOrderByAggregateInput = {
@@ -388,7 +381,13 @@ export type PagamentoSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   _count?: boolean | Prisma.PagamentoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pagamento"]>
 
+export type PagamentoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+}, ExtArgs["result"]["pagamento"]>
 
+export type PagamentoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+}, ExtArgs["result"]["pagamento"]>
 
 export type PagamentoSelectScalar = {
   id?: boolean
@@ -400,6 +399,8 @@ export type PagamentoInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   venda?: boolean | Prisma.Pagamento$vendaArgs<ExtArgs>
   _count?: boolean | Prisma.PagamentoCountOutputTypeDefaultArgs<ExtArgs>
 }
+export type PagamentoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type PagamentoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $PagamentoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Pagamento"
@@ -527,6 +528,30 @@ export interface PagamentoDelegate<ExtArgs extends runtime.Types.Extensions.Inte
   createMany<T extends PagamentoCreateManyArgs>(args?: Prisma.SelectSubset<T, PagamentoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many Pagamentos and returns the data saved in the database.
+   * @param {PagamentoCreateManyAndReturnArgs} args - Arguments to create many Pagamentos.
+   * @example
+   * // Create many Pagamentos
+   * const pagamento = await prisma.pagamento.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many Pagamentos and only return the `id`
+   * const pagamentoWithIdOnly = await prisma.pagamento.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends PagamentoCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, PagamentoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a Pagamento.
    * @param {PagamentoDeleteArgs} args - Arguments to delete one Pagamento.
    * @example
@@ -589,6 +614,36 @@ export interface PagamentoDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * 
    */
   updateMany<T extends PagamentoUpdateManyArgs>(args: Prisma.SelectSubset<T, PagamentoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more Pagamentos and returns the data updated in the database.
+   * @param {PagamentoUpdateManyAndReturnArgs} args - Arguments to update many Pagamentos.
+   * @example
+   * // Update many Pagamentos
+   * const pagamento = await prisma.pagamento.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more Pagamentos and only return the `id`
+   * const pagamentoWithIdOnly = await prisma.pagamento.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends PagamentoUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, PagamentoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Pagamento.
@@ -1014,6 +1069,25 @@ export type PagamentoCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
+ * Pagamento createManyAndReturn
+ */
+export type PagamentoCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Pagamento
+   */
+  select?: Prisma.PagamentoSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Pagamento
+   */
+  omit?: Prisma.PagamentoOmit<ExtArgs> | null
+  /**
+   * The data used to create many Pagamentos.
+   */
+  data: Prisma.PagamentoCreateManyInput | Prisma.PagamentoCreateManyInput[]
+  skipDuplicates?: boolean
+}
+
+/**
  * Pagamento update
  */
 export type PagamentoUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1043,6 +1117,32 @@ export type PagamentoUpdateArgs<ExtArgs extends runtime.Types.Extensions.Interna
  * Pagamento updateMany
  */
 export type PagamentoUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * The data used to update Pagamentos.
+   */
+  data: Prisma.XOR<Prisma.PagamentoUpdateManyMutationInput, Prisma.PagamentoUncheckedUpdateManyInput>
+  /**
+   * Filter which Pagamentos to update
+   */
+  where?: Prisma.PagamentoWhereInput
+  /**
+   * Limit how many Pagamentos to update.
+   */
+  limit?: number
+}
+
+/**
+ * Pagamento updateManyAndReturn
+ */
+export type PagamentoUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Pagamento
+   */
+  select?: Prisma.PagamentoSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Pagamento
+   */
+  omit?: Prisma.PagamentoOmit<ExtArgs> | null
   /**
    * The data used to update Pagamentos.
    */

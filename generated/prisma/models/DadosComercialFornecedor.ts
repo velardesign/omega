@@ -244,7 +244,6 @@ export type DadosComercialFornecedorOrderByWithRelationInput = {
   chave_pix?: Prisma.SortOrderInput | Prisma.SortOrder
   fornecedorId?: Prisma.SortOrder
   forecedor?: Prisma.FornecedorOrderByWithRelationInput
-  _relevance?: Prisma.DadosComercialFornecedorOrderByRelevanceInput
 }
 
 export type DadosComercialFornecedorWhereUniqueInput = Prisma.AtLeast<{
@@ -361,12 +360,6 @@ export type DadosComercialFornecedorUncheckedUpdateManyInput = {
 export type DadosComercialFornecedorNullableScalarRelationFilter = {
   is?: Prisma.DadosComercialFornecedorWhereInput | null
   isNot?: Prisma.DadosComercialFornecedorWhereInput | null
-}
-
-export type DadosComercialFornecedorOrderByRelevanceInput = {
-  fields: Prisma.DadosComercialFornecedorOrderByRelevanceFieldEnum | Prisma.DadosComercialFornecedorOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type DadosComercialFornecedorCountOrderByAggregateInput = {
@@ -512,7 +505,27 @@ export type DadosComercialFornecedorSelect<ExtArgs extends runtime.Types.Extensi
   forecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["dadosComercialFornecedor"]>
 
+export type DadosComercialFornecedorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  codigo?: boolean
+  prazo_pagamento?: boolean
+  forma_pagamento?: boolean
+  banco?: boolean
+  chave_pix?: boolean
+  fornecedorId?: boolean
+  forecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["dadosComercialFornecedor"]>
 
+export type DadosComercialFornecedorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  codigo?: boolean
+  prazo_pagamento?: boolean
+  forma_pagamento?: boolean
+  banco?: boolean
+  chave_pix?: boolean
+  fornecedorId?: boolean
+  forecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["dadosComercialFornecedor"]>
 
 export type DadosComercialFornecedorSelectScalar = {
   id?: boolean
@@ -526,6 +539,12 @@ export type DadosComercialFornecedorSelectScalar = {
 
 export type DadosComercialFornecedorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "codigo" | "prazo_pagamento" | "forma_pagamento" | "banco" | "chave_pix" | "fornecedorId", ExtArgs["result"]["dadosComercialFornecedor"]>
 export type DadosComercialFornecedorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  forecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
+}
+export type DadosComercialFornecedorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  forecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
+}
+export type DadosComercialFornecedorIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   forecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
 }
 
@@ -660,6 +679,30 @@ export interface DadosComercialFornecedorDelegate<ExtArgs extends runtime.Types.
   createMany<T extends DadosComercialFornecedorCreateManyArgs>(args?: Prisma.SelectSubset<T, DadosComercialFornecedorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many DadosComercialFornecedors and returns the data saved in the database.
+   * @param {DadosComercialFornecedorCreateManyAndReturnArgs} args - Arguments to create many DadosComercialFornecedors.
+   * @example
+   * // Create many DadosComercialFornecedors
+   * const dadosComercialFornecedor = await prisma.dadosComercialFornecedor.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many DadosComercialFornecedors and only return the `id`
+   * const dadosComercialFornecedorWithIdOnly = await prisma.dadosComercialFornecedor.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends DadosComercialFornecedorCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, DadosComercialFornecedorCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DadosComercialFornecedorPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a DadosComercialFornecedor.
    * @param {DadosComercialFornecedorDeleteArgs} args - Arguments to delete one DadosComercialFornecedor.
    * @example
@@ -722,6 +765,36 @@ export interface DadosComercialFornecedorDelegate<ExtArgs extends runtime.Types.
    * 
    */
   updateMany<T extends DadosComercialFornecedorUpdateManyArgs>(args: Prisma.SelectSubset<T, DadosComercialFornecedorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more DadosComercialFornecedors and returns the data updated in the database.
+   * @param {DadosComercialFornecedorUpdateManyAndReturnArgs} args - Arguments to update many DadosComercialFornecedors.
+   * @example
+   * // Update many DadosComercialFornecedors
+   * const dadosComercialFornecedor = await prisma.dadosComercialFornecedor.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more DadosComercialFornecedors and only return the `id`
+   * const dadosComercialFornecedorWithIdOnly = await prisma.dadosComercialFornecedor.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends DadosComercialFornecedorUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, DadosComercialFornecedorUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DadosComercialFornecedorPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one DadosComercialFornecedor.
@@ -1152,6 +1225,29 @@ export type DadosComercialFornecedorCreateManyArgs<ExtArgs extends runtime.Types
 }
 
 /**
+ * DadosComercialFornecedor createManyAndReturn
+ */
+export type DadosComercialFornecedorCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DadosComercialFornecedor
+   */
+  select?: Prisma.DadosComercialFornecedorSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the DadosComercialFornecedor
+   */
+  omit?: Prisma.DadosComercialFornecedorOmit<ExtArgs> | null
+  /**
+   * The data used to create many DadosComercialFornecedors.
+   */
+  data: Prisma.DadosComercialFornecedorCreateManyInput | Prisma.DadosComercialFornecedorCreateManyInput[]
+  skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DadosComercialFornecedorIncludeCreateManyAndReturn<ExtArgs> | null
+}
+
+/**
  * DadosComercialFornecedor update
  */
 export type DadosComercialFornecedorUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1193,6 +1289,36 @@ export type DadosComercialFornecedorUpdateManyArgs<ExtArgs extends runtime.Types
    * Limit how many DadosComercialFornecedors to update.
    */
   limit?: number
+}
+
+/**
+ * DadosComercialFornecedor updateManyAndReturn
+ */
+export type DadosComercialFornecedorUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DadosComercialFornecedor
+   */
+  select?: Prisma.DadosComercialFornecedorSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the DadosComercialFornecedor
+   */
+  omit?: Prisma.DadosComercialFornecedorOmit<ExtArgs> | null
+  /**
+   * The data used to update DadosComercialFornecedors.
+   */
+  data: Prisma.XOR<Prisma.DadosComercialFornecedorUpdateManyMutationInput, Prisma.DadosComercialFornecedorUncheckedUpdateManyInput>
+  /**
+   * Filter which DadosComercialFornecedors to update
+   */
+  where?: Prisma.DadosComercialFornecedorWhereInput
+  /**
+   * Limit how many DadosComercialFornecedors to update.
+   */
+  limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DadosComercialFornecedorIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

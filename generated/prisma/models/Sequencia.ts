@@ -206,7 +206,6 @@ export type SequenciaOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   proximo?: Prisma.SortOrder
-  _relevance?: Prisma.SequenciaOrderByRelevanceInput
 }
 
 export type SequenciaWhereUniqueInput = Prisma.AtLeast<{
@@ -280,12 +279,6 @@ export type SequenciaUncheckedUpdateManyInput = {
   proximo?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
-export type SequenciaOrderByRelevanceInput = {
-  fields: Prisma.SequenciaOrderByRelevanceFieldEnum | Prisma.SequenciaOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
-}
-
 export type SequenciaCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
@@ -328,7 +321,17 @@ export type SequenciaSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   proximo?: boolean
 }, ExtArgs["result"]["sequencia"]>
 
+export type SequenciaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  nome?: boolean
+  proximo?: boolean
+}, ExtArgs["result"]["sequencia"]>
 
+export type SequenciaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  nome?: boolean
+  proximo?: boolean
+}, ExtArgs["result"]["sequencia"]>
 
 export type SequenciaSelectScalar = {
   id?: boolean
@@ -463,6 +466,30 @@ export interface SequenciaDelegate<ExtArgs extends runtime.Types.Extensions.Inte
   createMany<T extends SequenciaCreateManyArgs>(args?: Prisma.SelectSubset<T, SequenciaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many Sequencias and returns the data saved in the database.
+   * @param {SequenciaCreateManyAndReturnArgs} args - Arguments to create many Sequencias.
+   * @example
+   * // Create many Sequencias
+   * const sequencia = await prisma.sequencia.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many Sequencias and only return the `id`
+   * const sequenciaWithIdOnly = await prisma.sequencia.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends SequenciaCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, SequenciaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SequenciaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a Sequencia.
    * @param {SequenciaDeleteArgs} args - Arguments to delete one Sequencia.
    * @example
@@ -525,6 +552,36 @@ export interface SequenciaDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * 
    */
   updateMany<T extends SequenciaUpdateManyArgs>(args: Prisma.SelectSubset<T, SequenciaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more Sequencias and returns the data updated in the database.
+   * @param {SequenciaUpdateManyAndReturnArgs} args - Arguments to update many Sequencias.
+   * @example
+   * // Update many Sequencias
+   * const sequencia = await prisma.sequencia.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more Sequencias and only return the `id`
+   * const sequenciaWithIdOnly = await prisma.sequencia.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends SequenciaUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, SequenciaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SequenciaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Sequencia.
@@ -926,6 +983,25 @@ export type SequenciaCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
+ * Sequencia createManyAndReturn
+ */
+export type SequenciaCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Sequencia
+   */
+  select?: Prisma.SequenciaSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Sequencia
+   */
+  omit?: Prisma.SequenciaOmit<ExtArgs> | null
+  /**
+   * The data used to create many Sequencias.
+   */
+  data: Prisma.SequenciaCreateManyInput | Prisma.SequenciaCreateManyInput[]
+  skipDuplicates?: boolean
+}
+
+/**
  * Sequencia update
  */
 export type SequenciaUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -951,6 +1027,32 @@ export type SequenciaUpdateArgs<ExtArgs extends runtime.Types.Extensions.Interna
  * Sequencia updateMany
  */
 export type SequenciaUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * The data used to update Sequencias.
+   */
+  data: Prisma.XOR<Prisma.SequenciaUpdateManyMutationInput, Prisma.SequenciaUncheckedUpdateManyInput>
+  /**
+   * Filter which Sequencias to update
+   */
+  where?: Prisma.SequenciaWhereInput
+  /**
+   * Limit how many Sequencias to update.
+   */
+  limit?: number
+}
+
+/**
+ * Sequencia updateManyAndReturn
+ */
+export type SequenciaUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Sequencia
+   */
+  select?: Prisma.SequenciaSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Sequencia
+   */
+  omit?: Prisma.SequenciaOmit<ExtArgs> | null
   /**
    * The data used to update Sequencias.
    */

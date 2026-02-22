@@ -4,15 +4,15 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
 }
 
 model User {
   id            String    @id
-  name          String    @db.Text
+  name          String
   email         String    @unique
   emailVerified Boolean   @default(false)
-  image         String?   @db.Text
+  image         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
@@ -27,8 +27,8 @@ model Session {
   token     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  ipAddress String?  @db.Text
-  userAgent String?  @db.Text
+  ipAddress String?
+  userAgent String?
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -38,16 +38,16 @@ model Session {
 
 model Account {
   id                    String    @id
-  accountId             String    @db.Text
-  providerId            String    @db.Text
+  accountId             String
+  providerId            String
   userId                String
-  accessToken           String?   @db.Text
-  refreshToken          String?   @db.Text
-  idToken               String?   @db.Text
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
   accessTokenExpiresAt  DateTime?
   refreshTokenExpiresAt DateTime?
-  scope                 String?   @db.Text
-  password              String?   @db.Text
+  scope                 String?
+  password              String?
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
   user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -58,13 +58,13 @@ model Account {
 
 model Verification {
   id         String   @id
-  identifier String   @db.Text
-  value      String   @db.Text
+  identifier String
+  value      String
   expiresAt  DateTime
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  @@index([identifier(length: 191)])
+  @@index([identifier])
   @@map("verification")
 }
 
@@ -89,7 +89,6 @@ model Documento {
   clienteId String
   cliente   Cliente   @relation(fields: [clienteId], references: [id], onDelete: Cascade)
 
-  @@index([clienteId], map: "documento_clienteId_fkey")
   @@map("documento")
 }
 
@@ -104,7 +103,6 @@ model EnderecoCliente {
   clienteId  String
   cliente    Cliente @relation(fields: [clienteId], references: [id], onDelete: Cascade)
 
-  @@index([clienteId], map: "endereco_clienteId_fkey")
   @@map("endereco_cliente")
 }
 
@@ -115,7 +113,6 @@ model ContatoCliente {
   clienteId String?
   cliente   Cliente? @relation(fields: [clienteId], references: [id], onDelete: Cascade)
 
-  @@index([clienteId], map: "contato_cliente_clienteId_fkey")
   @@map("contato_cliente")
 }
 
@@ -140,8 +137,6 @@ model Entrada {
   caixa        Caixa       @relation(fields: [caixa_id], references: [id], onDelete: Cascade)
   pagamento    Pagamento?  @relation(fields: [pagamento_id], references: [id])
 
-  @@index([caixa_id], map: "entrada_caixa_id_fkey")
-  @@index([pagamento_id], map: "entrada_pagamento_id_fkey")
   @@map("entrada")
 }
 
@@ -154,7 +149,6 @@ model Saida {
   caixa_id    String
   caixa       Caixa    @relation(fields: [caixa_id], references: [id], onDelete: Cascade)
 
-  @@index([caixa_id], map: "saida_caixa_id_fkey")
   @@map("saida")
 }
 
@@ -190,7 +184,6 @@ model Venda {
   cliente     Cliente     @relation(fields: [cliente_id], references: [id], onDelete: Cascade)
   pagamento   Pagamento   @relation(fields: [pagamentoId], references: [id])
 
-  @@index([cliente_id], map: "venda_cliente_id_fkey")
   @@map("venda")
 }
 
@@ -205,8 +198,6 @@ model ItemVenda {
   produto     Produto @relation(fields: [produto_id], references: [id])
   venda       Venda   @relation(fields: [venda_id], references: [id], onDelete: Cascade)
 
-  @@index([produto_id], map: "item_venda_produto_id_fkey")
-  @@index([venda_id], map: "item_venda_venda_id_fkey")
   @@map("item_venda")
 }
 
@@ -226,8 +217,6 @@ model Produto {
   categoria      Categoria   @relation(fields: [categoria_id], references: [id])
   fornecedor     Fornecedor  @relation(fields: [fornecedor_id], references: [id])
 
-  @@index([categoria_id], map: "produto_categoria_id_fkey")
-  @@index([fornecedor_id], map: "produto_fornecedor_id_fkey")
   @@map("produto")
 }
 
@@ -298,7 +287,6 @@ model ContatoFornecedor {
   fornecedorId String?
   fornecedor   Fornecedor? @relation(fields: [fornecedorId], references: [id])
 
-  @@index([fornecedorId], map: "contato_fornecedor_fornecedorId_fkey")
   @@map("contato_fornecedor")
 }
 
@@ -306,6 +294,8 @@ model Sequencia {
   id      String @id @default(uuid())
   nome    String @unique
   proximo Int
+
+  @@map("sequencia")
 }
 
 enum TipoEntrada {

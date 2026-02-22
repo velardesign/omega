@@ -196,7 +196,6 @@ export type VendaOrderByWithRelationInput = {
   itensVenda?: Prisma.ItemVendaOrderByRelationAggregateInput
   cliente?: Prisma.ClienteOrderByWithRelationInput
   pagamento?: Prisma.PagamentoOrderByWithRelationInput
-  _relevance?: Prisma.VendaOrderByRelevanceInput
 }
 
 export type VendaWhereUniqueInput = Prisma.AtLeast<{
@@ -301,12 +300,6 @@ export type VendaListRelationFilter = {
 
 export type VendaOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type VendaOrderByRelevanceInput = {
-  fields: Prisma.VendaOrderByRelevanceFieldEnum | Prisma.VendaOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type VendaCountOrderByAggregateInput = {
@@ -653,7 +646,25 @@ export type VendaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   _count?: boolean | Prisma.VendaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["venda"]>
 
+export type VendaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  data_hora?: boolean
+  responsavel?: boolean
+  cliente_id?: boolean
+  pagamentoId?: boolean
+  cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
+  pagamento?: boolean | Prisma.PagamentoDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["venda"]>
 
+export type VendaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  data_hora?: boolean
+  responsavel?: boolean
+  cliente_id?: boolean
+  pagamentoId?: boolean
+  cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
+  pagamento?: boolean | Prisma.PagamentoDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["venda"]>
 
 export type VendaSelectScalar = {
   id?: boolean
@@ -669,6 +680,14 @@ export type VendaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
   pagamento?: boolean | Prisma.PagamentoDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.VendaCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type VendaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
+  pagamento?: boolean | Prisma.PagamentoDefaultArgs<ExtArgs>
+}
+export type VendaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
+  pagamento?: boolean | Prisma.PagamentoDefaultArgs<ExtArgs>
 }
 
 export type $VendaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -802,6 +821,30 @@ export interface VendaDelegate<ExtArgs extends runtime.Types.Extensions.Internal
   createMany<T extends VendaCreateManyArgs>(args?: Prisma.SelectSubset<T, VendaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many Vendas and returns the data saved in the database.
+   * @param {VendaCreateManyAndReturnArgs} args - Arguments to create many Vendas.
+   * @example
+   * // Create many Vendas
+   * const venda = await prisma.venda.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many Vendas and only return the `id`
+   * const vendaWithIdOnly = await prisma.venda.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends VendaCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, VendaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VendaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a Venda.
    * @param {VendaDeleteArgs} args - Arguments to delete one Venda.
    * @example
@@ -864,6 +907,36 @@ export interface VendaDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * 
    */
   updateMany<T extends VendaUpdateManyArgs>(args: Prisma.SelectSubset<T, VendaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more Vendas and returns the data updated in the database.
+   * @param {VendaUpdateManyAndReturnArgs} args - Arguments to update many Vendas.
+   * @example
+   * // Update many Vendas
+   * const venda = await prisma.venda.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more Vendas and only return the `id`
+   * const vendaWithIdOnly = await prisma.venda.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends VendaUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, VendaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VendaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Venda.
@@ -1294,6 +1367,29 @@ export type VendaCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Venda createManyAndReturn
+ */
+export type VendaCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Venda
+   */
+  select?: Prisma.VendaSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Venda
+   */
+  omit?: Prisma.VendaOmit<ExtArgs> | null
+  /**
+   * The data used to create many Vendas.
+   */
+  data: Prisma.VendaCreateManyInput | Prisma.VendaCreateManyInput[]
+  skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VendaIncludeCreateManyAndReturn<ExtArgs> | null
+}
+
+/**
  * Venda update
  */
 export type VendaUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1335,6 +1431,36 @@ export type VendaUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many Vendas to update.
    */
   limit?: number
+}
+
+/**
+ * Venda updateManyAndReturn
+ */
+export type VendaUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Venda
+   */
+  select?: Prisma.VendaSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Venda
+   */
+  omit?: Prisma.VendaOmit<ExtArgs> | null
+  /**
+   * The data used to update Vendas.
+   */
+  data: Prisma.XOR<Prisma.VendaUpdateManyMutationInput, Prisma.VendaUncheckedUpdateManyInput>
+  /**
+   * Filter which Vendas to update
+   */
+  where?: Prisma.VendaWhereInput
+  /**
+   * Limit how many Vendas to update.
+   */
+  limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VendaIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

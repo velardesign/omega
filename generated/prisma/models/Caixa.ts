@@ -162,7 +162,6 @@ export type CaixaOrderByWithRelationInput = {
   entradas?: Prisma.EntradaOrderByRelationAggregateInput
   fechamento?: Prisma.FechamentoOrderByWithRelationInput
   saidas?: Prisma.SaidaOrderByRelationAggregateInput
-  _relevance?: Prisma.CaixaOrderByRelevanceInput
 }
 
 export type CaixaWhereUniqueInput = Prisma.AtLeast<{
@@ -232,12 +231,6 @@ export type CaixaUpdateManyMutationInput = {
 
 export type CaixaUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type CaixaOrderByRelevanceInput = {
-  fields: Prisma.CaixaOrderByRelevanceFieldEnum | Prisma.CaixaOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type CaixaCountOrderByAggregateInput = {
@@ -538,7 +531,13 @@ export type CaixaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   _count?: boolean | Prisma.CaixaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["caixa"]>
 
+export type CaixaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+}, ExtArgs["result"]["caixa"]>
 
+export type CaixaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+}, ExtArgs["result"]["caixa"]>
 
 export type CaixaSelectScalar = {
   id?: boolean
@@ -552,6 +551,8 @@ export type CaixaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   saidas?: boolean | Prisma.Caixa$saidasArgs<ExtArgs>
   _count?: boolean | Prisma.CaixaCountOutputTypeDefaultArgs<ExtArgs>
 }
+export type CaixaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type CaixaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $CaixaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Caixa"
@@ -681,6 +682,30 @@ export interface CaixaDelegate<ExtArgs extends runtime.Types.Extensions.Internal
   createMany<T extends CaixaCreateManyArgs>(args?: Prisma.SelectSubset<T, CaixaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many Caixas and returns the data saved in the database.
+   * @param {CaixaCreateManyAndReturnArgs} args - Arguments to create many Caixas.
+   * @example
+   * // Create many Caixas
+   * const caixa = await prisma.caixa.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many Caixas and only return the `id`
+   * const caixaWithIdOnly = await prisma.caixa.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends CaixaCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, CaixaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CaixaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a Caixa.
    * @param {CaixaDeleteArgs} args - Arguments to delete one Caixa.
    * @example
@@ -743,6 +768,36 @@ export interface CaixaDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * 
    */
   updateMany<T extends CaixaUpdateManyArgs>(args: Prisma.SelectSubset<T, CaixaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more Caixas and returns the data updated in the database.
+   * @param {CaixaUpdateManyAndReturnArgs} args - Arguments to update many Caixas.
+   * @example
+   * // Update many Caixas
+   * const caixa = await prisma.caixa.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more Caixas and only return the `id`
+   * const caixaWithIdOnly = await prisma.caixa.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends CaixaUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, CaixaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CaixaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Caixa.
@@ -1170,6 +1225,25 @@ export type CaixaCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Caixa createManyAndReturn
+ */
+export type CaixaCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Caixa
+   */
+  select?: Prisma.CaixaSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Caixa
+   */
+  omit?: Prisma.CaixaOmit<ExtArgs> | null
+  /**
+   * The data used to create many Caixas.
+   */
+  data: Prisma.CaixaCreateManyInput | Prisma.CaixaCreateManyInput[]
+  skipDuplicates?: boolean
+}
+
+/**
  * Caixa update
  */
 export type CaixaUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1199,6 +1273,32 @@ export type CaixaUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
  * Caixa updateMany
  */
 export type CaixaUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * The data used to update Caixas.
+   */
+  data: Prisma.XOR<Prisma.CaixaUpdateManyMutationInput, Prisma.CaixaUncheckedUpdateManyInput>
+  /**
+   * Filter which Caixas to update
+   */
+  where?: Prisma.CaixaWhereInput
+  /**
+   * Limit how many Caixas to update.
+   */
+  limit?: number
+}
+
+/**
+ * Caixa updateManyAndReturn
+ */
+export type CaixaUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Caixa
+   */
+  select?: Prisma.CaixaSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Caixa
+   */
+  omit?: Prisma.CaixaOmit<ExtArgs> | null
   /**
    * The data used to update Caixas.
    */

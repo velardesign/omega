@@ -183,7 +183,6 @@ export type ContatoFornecedorOrderByWithRelationInput = {
   valor?: Prisma.SortOrder
   fornecedorId?: Prisma.SortOrderInput | Prisma.SortOrder
   fornecedor?: Prisma.FornecedorOrderByWithRelationInput
-  _relevance?: Prisma.ContatoFornecedorOrderByRelevanceInput
 }
 
 export type ContatoFornecedorWhereUniqueInput = Prisma.AtLeast<{
@@ -273,12 +272,6 @@ export type ContatoFornecedorListRelationFilter = {
 
 export type ContatoFornecedorOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type ContatoFornecedorOrderByRelevanceInput = {
-  fields: Prisma.ContatoFornecedorOrderByRelevanceFieldEnum | Prisma.ContatoFornecedorOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type ContatoFornecedorCountOrderByAggregateInput = {
@@ -426,7 +419,21 @@ export type ContatoFornecedorSelect<ExtArgs extends runtime.Types.Extensions.Int
   fornecedor?: boolean | Prisma.ContatoFornecedor$fornecedorArgs<ExtArgs>
 }, ExtArgs["result"]["contatoFornecedor"]>
 
+export type ContatoFornecedorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  tipo?: boolean
+  valor?: boolean
+  fornecedorId?: boolean
+  fornecedor?: boolean | Prisma.ContatoFornecedor$fornecedorArgs<ExtArgs>
+}, ExtArgs["result"]["contatoFornecedor"]>
 
+export type ContatoFornecedorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  tipo?: boolean
+  valor?: boolean
+  fornecedorId?: boolean
+  fornecedor?: boolean | Prisma.ContatoFornecedor$fornecedorArgs<ExtArgs>
+}, ExtArgs["result"]["contatoFornecedor"]>
 
 export type ContatoFornecedorSelectScalar = {
   id?: boolean
@@ -437,6 +444,12 @@ export type ContatoFornecedorSelectScalar = {
 
 export type ContatoFornecedorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tipo" | "valor" | "fornecedorId", ExtArgs["result"]["contatoFornecedor"]>
 export type ContatoFornecedorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  fornecedor?: boolean | Prisma.ContatoFornecedor$fornecedorArgs<ExtArgs>
+}
+export type ContatoFornecedorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  fornecedor?: boolean | Prisma.ContatoFornecedor$fornecedorArgs<ExtArgs>
+}
+export type ContatoFornecedorIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   fornecedor?: boolean | Prisma.ContatoFornecedor$fornecedorArgs<ExtArgs>
 }
 
@@ -568,6 +581,30 @@ export interface ContatoFornecedorDelegate<ExtArgs extends runtime.Types.Extensi
   createMany<T extends ContatoFornecedorCreateManyArgs>(args?: Prisma.SelectSubset<T, ContatoFornecedorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many ContatoFornecedors and returns the data saved in the database.
+   * @param {ContatoFornecedorCreateManyAndReturnArgs} args - Arguments to create many ContatoFornecedors.
+   * @example
+   * // Create many ContatoFornecedors
+   * const contatoFornecedor = await prisma.contatoFornecedor.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many ContatoFornecedors and only return the `id`
+   * const contatoFornecedorWithIdOnly = await prisma.contatoFornecedor.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends ContatoFornecedorCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, ContatoFornecedorCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContatoFornecedorPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a ContatoFornecedor.
    * @param {ContatoFornecedorDeleteArgs} args - Arguments to delete one ContatoFornecedor.
    * @example
@@ -630,6 +667,36 @@ export interface ContatoFornecedorDelegate<ExtArgs extends runtime.Types.Extensi
    * 
    */
   updateMany<T extends ContatoFornecedorUpdateManyArgs>(args: Prisma.SelectSubset<T, ContatoFornecedorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more ContatoFornecedors and returns the data updated in the database.
+   * @param {ContatoFornecedorUpdateManyAndReturnArgs} args - Arguments to update many ContatoFornecedors.
+   * @example
+   * // Update many ContatoFornecedors
+   * const contatoFornecedor = await prisma.contatoFornecedor.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more ContatoFornecedors and only return the `id`
+   * const contatoFornecedorWithIdOnly = await prisma.contatoFornecedor.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends ContatoFornecedorUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, ContatoFornecedorUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContatoFornecedorPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one ContatoFornecedor.
@@ -1057,6 +1124,29 @@ export type ContatoFornecedorCreateManyArgs<ExtArgs extends runtime.Types.Extens
 }
 
 /**
+ * ContatoFornecedor createManyAndReturn
+ */
+export type ContatoFornecedorCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContatoFornecedor
+   */
+  select?: Prisma.ContatoFornecedorSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContatoFornecedor
+   */
+  omit?: Prisma.ContatoFornecedorOmit<ExtArgs> | null
+  /**
+   * The data used to create many ContatoFornecedors.
+   */
+  data: Prisma.ContatoFornecedorCreateManyInput | Prisma.ContatoFornecedorCreateManyInput[]
+  skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContatoFornecedorIncludeCreateManyAndReturn<ExtArgs> | null
+}
+
+/**
  * ContatoFornecedor update
  */
 export type ContatoFornecedorUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1098,6 +1188,36 @@ export type ContatoFornecedorUpdateManyArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many ContatoFornecedors to update.
    */
   limit?: number
+}
+
+/**
+ * ContatoFornecedor updateManyAndReturn
+ */
+export type ContatoFornecedorUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContatoFornecedor
+   */
+  select?: Prisma.ContatoFornecedorSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContatoFornecedor
+   */
+  omit?: Prisma.ContatoFornecedorOmit<ExtArgs> | null
+  /**
+   * The data used to update ContatoFornecedors.
+   */
+  data: Prisma.XOR<Prisma.ContatoFornecedorUpdateManyMutationInput, Prisma.ContatoFornecedorUncheckedUpdateManyInput>
+  /**
+   * Filter which ContatoFornecedors to update
+   */
+  where?: Prisma.ContatoFornecedorWhereInput
+  /**
+   * Limit how many ContatoFornecedors to update.
+   */
+  limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContatoFornecedorIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

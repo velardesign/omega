@@ -219,7 +219,6 @@ export type EnderecoClienteOrderByWithRelationInput = {
   cep?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
   cliente?: Prisma.ClienteOrderByWithRelationInput
-  _relevance?: Prisma.EnderecoClienteOrderByRelevanceInput
 }
 
 export type EnderecoClienteWhereUniqueInput = Prisma.AtLeast<{
@@ -349,12 +348,6 @@ export type EnderecoClienteListRelationFilter = {
 
 export type EnderecoClienteOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type EnderecoClienteOrderByRelevanceInput = {
-  fields: Prisma.EnderecoClienteOrderByRelevanceFieldEnum | Prisma.EnderecoClienteOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type EnderecoClienteCountOrderByAggregateInput = {
@@ -546,7 +539,29 @@ export type EnderecoClienteSelect<ExtArgs extends runtime.Types.Extensions.Inter
   cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["enderecoCliente"]>
 
+export type EnderecoClienteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  logradouro?: boolean
+  numero?: boolean
+  bairro?: boolean
+  cidade?: boolean
+  pais?: boolean
+  cep?: boolean
+  clienteId?: boolean
+  cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["enderecoCliente"]>
 
+export type EnderecoClienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  logradouro?: boolean
+  numero?: boolean
+  bairro?: boolean
+  cidade?: boolean
+  pais?: boolean
+  cep?: boolean
+  clienteId?: boolean
+  cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["enderecoCliente"]>
 
 export type EnderecoClienteSelectScalar = {
   id?: boolean
@@ -561,6 +576,12 @@ export type EnderecoClienteSelectScalar = {
 
 export type EnderecoClienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "logradouro" | "numero" | "bairro" | "cidade" | "pais" | "cep" | "clienteId", ExtArgs["result"]["enderecoCliente"]>
 export type EnderecoClienteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
+}
+export type EnderecoClienteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
+}
+export type EnderecoClienteIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cliente?: boolean | Prisma.ClienteDefaultArgs<ExtArgs>
 }
 
@@ -696,6 +717,30 @@ export interface EnderecoClienteDelegate<ExtArgs extends runtime.Types.Extension
   createMany<T extends EnderecoClienteCreateManyArgs>(args?: Prisma.SelectSubset<T, EnderecoClienteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many EnderecoClientes and returns the data saved in the database.
+   * @param {EnderecoClienteCreateManyAndReturnArgs} args - Arguments to create many EnderecoClientes.
+   * @example
+   * // Create many EnderecoClientes
+   * const enderecoCliente = await prisma.enderecoCliente.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many EnderecoClientes and only return the `id`
+   * const enderecoClienteWithIdOnly = await prisma.enderecoCliente.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends EnderecoClienteCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, EnderecoClienteCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnderecoClientePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a EnderecoCliente.
    * @param {EnderecoClienteDeleteArgs} args - Arguments to delete one EnderecoCliente.
    * @example
@@ -758,6 +803,36 @@ export interface EnderecoClienteDelegate<ExtArgs extends runtime.Types.Extension
    * 
    */
   updateMany<T extends EnderecoClienteUpdateManyArgs>(args: Prisma.SelectSubset<T, EnderecoClienteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more EnderecoClientes and returns the data updated in the database.
+   * @param {EnderecoClienteUpdateManyAndReturnArgs} args - Arguments to update many EnderecoClientes.
+   * @example
+   * // Update many EnderecoClientes
+   * const enderecoCliente = await prisma.enderecoCliente.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more EnderecoClientes and only return the `id`
+   * const enderecoClienteWithIdOnly = await prisma.enderecoCliente.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends EnderecoClienteUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, EnderecoClienteUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnderecoClientePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one EnderecoCliente.
@@ -1189,6 +1264,29 @@ export type EnderecoClienteCreateManyArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 /**
+ * EnderecoCliente createManyAndReturn
+ */
+export type EnderecoClienteCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EnderecoCliente
+   */
+  select?: Prisma.EnderecoClienteSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the EnderecoCliente
+   */
+  omit?: Prisma.EnderecoClienteOmit<ExtArgs> | null
+  /**
+   * The data used to create many EnderecoClientes.
+   */
+  data: Prisma.EnderecoClienteCreateManyInput | Prisma.EnderecoClienteCreateManyInput[]
+  skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EnderecoClienteIncludeCreateManyAndReturn<ExtArgs> | null
+}
+
+/**
  * EnderecoCliente update
  */
 export type EnderecoClienteUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1230,6 +1328,36 @@ export type EnderecoClienteUpdateManyArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many EnderecoClientes to update.
    */
   limit?: number
+}
+
+/**
+ * EnderecoCliente updateManyAndReturn
+ */
+export type EnderecoClienteUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EnderecoCliente
+   */
+  select?: Prisma.EnderecoClienteSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the EnderecoCliente
+   */
+  omit?: Prisma.EnderecoClienteOmit<ExtArgs> | null
+  /**
+   * The data used to update EnderecoClientes.
+   */
+  data: Prisma.XOR<Prisma.EnderecoClienteUpdateManyMutationInput, Prisma.EnderecoClienteUncheckedUpdateManyInput>
+  /**
+   * Filter which EnderecoClientes to update
+   */
+  where?: Prisma.EnderecoClienteWhereInput
+  /**
+   * Limit how many EnderecoClientes to update.
+   */
+  limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EnderecoClienteIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

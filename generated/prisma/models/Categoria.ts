@@ -174,7 +174,6 @@ export type CategoriaOrderByWithRelationInput = {
   codigo?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   produtos?: Prisma.ProdutoOrderByRelationAggregateInput
-  _relevance?: Prisma.CategoriaOrderByRelevanceInput
 }
 
 export type CategoriaWhereUniqueInput = Prisma.AtLeast<{
@@ -254,12 +253,6 @@ export type CategoriaUncheckedUpdateManyInput = {
 export type CategoriaScalarRelationFilter = {
   is?: Prisma.CategoriaWhereInput
   isNot?: Prisma.CategoriaWhereInput
-}
-
-export type CategoriaOrderByRelevanceInput = {
-  fields: Prisma.CategoriaOrderByRelevanceFieldEnum | Prisma.CategoriaOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type CategoriaCountOrderByAggregateInput = {
@@ -373,7 +366,17 @@ export type CategoriaSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   _count?: boolean | Prisma.CategoriaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["categoria"]>
 
+export type CategoriaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  codigo?: boolean
+  nome?: boolean
+}, ExtArgs["result"]["categoria"]>
 
+export type CategoriaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  codigo?: boolean
+  nome?: boolean
+}, ExtArgs["result"]["categoria"]>
 
 export type CategoriaSelectScalar = {
   id?: boolean
@@ -386,6 +389,8 @@ export type CategoriaInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   produtos?: boolean | Prisma.Categoria$produtosArgs<ExtArgs>
   _count?: boolean | Prisma.CategoriaCountOutputTypeDefaultArgs<ExtArgs>
 }
+export type CategoriaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type CategoriaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $CategoriaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Categoria"
@@ -514,6 +519,30 @@ export interface CategoriaDelegate<ExtArgs extends runtime.Types.Extensions.Inte
   createMany<T extends CategoriaCreateManyArgs>(args?: Prisma.SelectSubset<T, CategoriaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many Categorias and returns the data saved in the database.
+   * @param {CategoriaCreateManyAndReturnArgs} args - Arguments to create many Categorias.
+   * @example
+   * // Create many Categorias
+   * const categoria = await prisma.categoria.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many Categorias and only return the `id`
+   * const categoriaWithIdOnly = await prisma.categoria.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends CategoriaCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, CategoriaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a Categoria.
    * @param {CategoriaDeleteArgs} args - Arguments to delete one Categoria.
    * @example
@@ -576,6 +605,36 @@ export interface CategoriaDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * 
    */
   updateMany<T extends CategoriaUpdateManyArgs>(args: Prisma.SelectSubset<T, CategoriaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more Categorias and returns the data updated in the database.
+   * @param {CategoriaUpdateManyAndReturnArgs} args - Arguments to update many Categorias.
+   * @example
+   * // Update many Categorias
+   * const categoria = await prisma.categoria.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more Categorias and only return the `id`
+   * const categoriaWithIdOnly = await prisma.categoria.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends CategoriaUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, CategoriaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Categoria.
@@ -1002,6 +1061,25 @@ export type CategoriaCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
+ * Categoria createManyAndReturn
+ */
+export type CategoriaCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Categoria
+   */
+  select?: Prisma.CategoriaSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Categoria
+   */
+  omit?: Prisma.CategoriaOmit<ExtArgs> | null
+  /**
+   * The data used to create many Categorias.
+   */
+  data: Prisma.CategoriaCreateManyInput | Prisma.CategoriaCreateManyInput[]
+  skipDuplicates?: boolean
+}
+
+/**
  * Categoria update
  */
 export type CategoriaUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1031,6 +1109,32 @@ export type CategoriaUpdateArgs<ExtArgs extends runtime.Types.Extensions.Interna
  * Categoria updateMany
  */
 export type CategoriaUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * The data used to update Categorias.
+   */
+  data: Prisma.XOR<Prisma.CategoriaUpdateManyMutationInput, Prisma.CategoriaUncheckedUpdateManyInput>
+  /**
+   * Filter which Categorias to update
+   */
+  where?: Prisma.CategoriaWhereInput
+  /**
+   * Limit how many Categorias to update.
+   */
+  limit?: number
+}
+
+/**
+ * Categoria updateManyAndReturn
+ */
+export type CategoriaUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Categoria
+   */
+  select?: Prisma.CategoriaSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Categoria
+   */
+  omit?: Prisma.CategoriaOmit<ExtArgs> | null
   /**
    * The data used to update Categorias.
    */

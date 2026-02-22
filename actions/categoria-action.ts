@@ -7,8 +7,7 @@ const service = CategoriaServices.getInstance();
 
 export async function addCategoria(formData:FormData) {
     const nome = formData.get("nome") as string
-    const codigo = formData.get("codigo") as string
-    await service.addCategoria({nome,codigo});
+    await service.addCategoria(nome);
     revalidatePath("/dashboard/categoria/adicionar")
 }
 

@@ -14,11 +14,6 @@ export default function AdicionaCategoria() {
             <form action={addCategoria} className="flex flex-col gap-4">
                 <CardContent className="grid gap-4 pt-4 md:grid-cols-2">
                     <Input
-                        placeholder={"Código da Categoria"}
-                        name={"codigo"}
-                        required={true}
-                    />
-                    <Input
                         placeholder={"Nome da Categoria"}
                         name={"nome"}
                         required={true}

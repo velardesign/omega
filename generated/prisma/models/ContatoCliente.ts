@@ -183,7 +183,6 @@ export type ContatoClienteOrderByWithRelationInput = {
   valor?: Prisma.SortOrder
   clienteId?: Prisma.SortOrderInput | Prisma.SortOrder
   cliente?: Prisma.ClienteOrderByWithRelationInput
-  _relevance?: Prisma.ContatoClienteOrderByRelevanceInput
 }
 
 export type ContatoClienteWhereUniqueInput = Prisma.AtLeast<{
@@ -273,12 +272,6 @@ export type ContatoClienteListRelationFilter = {
 
 export type ContatoClienteOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type ContatoClienteOrderByRelevanceInput = {
-  fields: Prisma.ContatoClienteOrderByRelevanceFieldEnum | Prisma.ContatoClienteOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type ContatoClienteCountOrderByAggregateInput = {
@@ -426,7 +419,21 @@ export type ContatoClienteSelect<ExtArgs extends runtime.Types.Extensions.Intern
   cliente?: boolean | Prisma.ContatoCliente$clienteArgs<ExtArgs>
 }, ExtArgs["result"]["contatoCliente"]>
 
+export type ContatoClienteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  tipo?: boolean
+  valor?: boolean
+  clienteId?: boolean
+  cliente?: boolean | Prisma.ContatoCliente$clienteArgs<ExtArgs>
+}, ExtArgs["result"]["contatoCliente"]>
 
+export type ContatoClienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  tipo?: boolean
+  valor?: boolean
+  clienteId?: boolean
+  cliente?: boolean | Prisma.ContatoCliente$clienteArgs<ExtArgs>
+}, ExtArgs["result"]["contatoCliente"]>
 
 export type ContatoClienteSelectScalar = {
   id?: boolean
@@ -437,6 +444,12 @@ export type ContatoClienteSelectScalar = {
 
 export type ContatoClienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tipo" | "valor" | "clienteId", ExtArgs["result"]["contatoCliente"]>
 export type ContatoClienteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cliente?: boolean | Prisma.ContatoCliente$clienteArgs<ExtArgs>
+}
+export type ContatoClienteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cliente?: boolean | Prisma.ContatoCliente$clienteArgs<ExtArgs>
+}
+export type ContatoClienteIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cliente?: boolean | Prisma.ContatoCliente$clienteArgs<ExtArgs>
 }
 
@@ -568,6 +581,30 @@ export interface ContatoClienteDelegate<ExtArgs extends runtime.Types.Extensions
   createMany<T extends ContatoClienteCreateManyArgs>(args?: Prisma.SelectSubset<T, ContatoClienteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many ContatoClientes and returns the data saved in the database.
+   * @param {ContatoClienteCreateManyAndReturnArgs} args - Arguments to create many ContatoClientes.
+   * @example
+   * // Create many ContatoClientes
+   * const contatoCliente = await prisma.contatoCliente.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many ContatoClientes and only return the `id`
+   * const contatoClienteWithIdOnly = await prisma.contatoCliente.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends ContatoClienteCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, ContatoClienteCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContatoClientePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a ContatoCliente.
    * @param {ContatoClienteDeleteArgs} args - Arguments to delete one ContatoCliente.
    * @example
@@ -630,6 +667,36 @@ export interface ContatoClienteDelegate<ExtArgs extends runtime.Types.Extensions
    * 
    */
   updateMany<T extends ContatoClienteUpdateManyArgs>(args: Prisma.SelectSubset<T, ContatoClienteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more ContatoClientes and returns the data updated in the database.
+   * @param {ContatoClienteUpdateManyAndReturnArgs} args - Arguments to update many ContatoClientes.
+   * @example
+   * // Update many ContatoClientes
+   * const contatoCliente = await prisma.contatoCliente.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more ContatoClientes and only return the `id`
+   * const contatoClienteWithIdOnly = await prisma.contatoCliente.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends ContatoClienteUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, ContatoClienteUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContatoClientePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one ContatoCliente.
@@ -1057,6 +1124,29 @@ export type ContatoClienteCreateManyArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
+ * ContatoCliente createManyAndReturn
+ */
+export type ContatoClienteCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContatoCliente
+   */
+  select?: Prisma.ContatoClienteSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContatoCliente
+   */
+  omit?: Prisma.ContatoClienteOmit<ExtArgs> | null
+  /**
+   * The data used to create many ContatoClientes.
+   */
+  data: Prisma.ContatoClienteCreateManyInput | Prisma.ContatoClienteCreateManyInput[]
+  skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContatoClienteIncludeCreateManyAndReturn<ExtArgs> | null
+}
+
+/**
  * ContatoCliente update
  */
 export type ContatoClienteUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1098,6 +1188,36 @@ export type ContatoClienteUpdateManyArgs<ExtArgs extends runtime.Types.Extension
    * Limit how many ContatoClientes to update.
    */
   limit?: number
+}
+
+/**
+ * ContatoCliente updateManyAndReturn
+ */
+export type ContatoClienteUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContatoCliente
+   */
+  select?: Prisma.ContatoClienteSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContatoCliente
+   */
+  omit?: Prisma.ContatoClienteOmit<ExtArgs> | null
+  /**
+   * The data used to update ContatoClientes.
+   */
+  data: Prisma.XOR<Prisma.ContatoClienteUpdateManyMutationInput, Prisma.ContatoClienteUncheckedUpdateManyInput>
+  /**
+   * Filter which ContatoClientes to update
+   */
+  where?: Prisma.ContatoClienteWhereInput
+  /**
+   * Limit how many ContatoClientes to update.
+   */
+  limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContatoClienteIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

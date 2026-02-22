@@ -192,7 +192,6 @@ export type FechamentoOrderByWithRelationInput = {
   autorizacao?: Prisma.SortOrder
   caixa_id?: Prisma.SortOrder
   caixa?: Prisma.CaixaOrderByWithRelationInput
-  _relevance?: Prisma.FechamentoOrderByRelevanceInput
 }
 
 export type FechamentoWhereUniqueInput = Prisma.AtLeast<{
@@ -287,12 +286,6 @@ export type FechamentoUncheckedUpdateManyInput = {
 export type FechamentoNullableScalarRelationFilter = {
   is?: Prisma.FechamentoWhereInput | null
   isNot?: Prisma.FechamentoWhereInput | null
-}
-
-export type FechamentoOrderByRelevanceInput = {
-  fields: Prisma.FechamentoOrderByRelevanceFieldEnum | Prisma.FechamentoOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type FechamentoCountOrderByAggregateInput = {
@@ -406,7 +399,23 @@ export type FechamentoSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["fechamento"]>
 
+export type FechamentoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  data_hora?: boolean
+  responsavel?: boolean
+  autorizacao?: boolean
+  caixa_id?: boolean
+  caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["fechamento"]>
 
+export type FechamentoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  data_hora?: boolean
+  responsavel?: boolean
+  autorizacao?: boolean
+  caixa_id?: boolean
+  caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["fechamento"]>
 
 export type FechamentoSelectScalar = {
   id?: boolean
@@ -418,6 +427,12 @@ export type FechamentoSelectScalar = {
 
 export type FechamentoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "data_hora" | "responsavel" | "autorizacao" | "caixa_id", ExtArgs["result"]["fechamento"]>
 export type FechamentoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
+}
+export type FechamentoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
+}
+export type FechamentoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
 }
 
@@ -550,6 +565,30 @@ export interface FechamentoDelegate<ExtArgs extends runtime.Types.Extensions.Int
   createMany<T extends FechamentoCreateManyArgs>(args?: Prisma.SelectSubset<T, FechamentoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many Fechamentos and returns the data saved in the database.
+   * @param {FechamentoCreateManyAndReturnArgs} args - Arguments to create many Fechamentos.
+   * @example
+   * // Create many Fechamentos
+   * const fechamento = await prisma.fechamento.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many Fechamentos and only return the `id`
+   * const fechamentoWithIdOnly = await prisma.fechamento.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends FechamentoCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, FechamentoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FechamentoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a Fechamento.
    * @param {FechamentoDeleteArgs} args - Arguments to delete one Fechamento.
    * @example
@@ -612,6 +651,36 @@ export interface FechamentoDelegate<ExtArgs extends runtime.Types.Extensions.Int
    * 
    */
   updateMany<T extends FechamentoUpdateManyArgs>(args: Prisma.SelectSubset<T, FechamentoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more Fechamentos and returns the data updated in the database.
+   * @param {FechamentoUpdateManyAndReturnArgs} args - Arguments to update many Fechamentos.
+   * @example
+   * // Update many Fechamentos
+   * const fechamento = await prisma.fechamento.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more Fechamentos and only return the `id`
+   * const fechamentoWithIdOnly = await prisma.fechamento.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends FechamentoUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, FechamentoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FechamentoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Fechamento.
@@ -1040,6 +1109,29 @@ export type FechamentoCreateManyArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
+ * Fechamento createManyAndReturn
+ */
+export type FechamentoCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Fechamento
+   */
+  select?: Prisma.FechamentoSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Fechamento
+   */
+  omit?: Prisma.FechamentoOmit<ExtArgs> | null
+  /**
+   * The data used to create many Fechamentos.
+   */
+  data: Prisma.FechamentoCreateManyInput | Prisma.FechamentoCreateManyInput[]
+  skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FechamentoIncludeCreateManyAndReturn<ExtArgs> | null
+}
+
+/**
  * Fechamento update
  */
 export type FechamentoUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1081,6 +1173,36 @@ export type FechamentoUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many Fechamentos to update.
    */
   limit?: number
+}
+
+/**
+ * Fechamento updateManyAndReturn
+ */
+export type FechamentoUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Fechamento
+   */
+  select?: Prisma.FechamentoSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Fechamento
+   */
+  omit?: Prisma.FechamentoOmit<ExtArgs> | null
+  /**
+   * The data used to update Fechamentos.
+   */
+  data: Prisma.XOR<Prisma.FechamentoUpdateManyMutationInput, Prisma.FechamentoUncheckedUpdateManyInput>
+  /**
+   * Filter which Fechamentos to update
+   */
+  where?: Prisma.FechamentoWhereInput
+  /**
+   * Limit how many Fechamentos to update.
+   */
+  limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FechamentoIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

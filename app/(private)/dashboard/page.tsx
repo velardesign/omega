@@ -6,6 +6,7 @@ import {salesFunnelMock} from "@/__tests__/mocks/sales-funnel-mocks";
 import {useEffect, useState} from "react";
 import {carregarResumoCaixa} from "@/actions/caixa-action";
 import {ValoresCaixa} from "@/src/domain/types/caixa-types";
+import {Skeleton} from "@/components/ui/skeleton";
 
 interface ResumoCaixa {
     valoresCaixaAtual: ValoresCaixa,
@@ -20,17 +21,28 @@ export default function Home() {
     async function carregar() {
         const result = await carregarResumoCaixa();
         setData(result);
-        console.log("Carregando os dados do Dashboard...")
     }
 
     useEffect(() => {
         carregar().catch((error) => console.log("erro ao buscar dados", error));
-        const id = setInterval(carregar, 3000)
+
+        const id = setInterval(() => {
+            if (document.visibilityState === "visible") {
+                carregar().catch((error) => console.log("erro ao buscar dados", error));
+            }
+        }, 30000);
+
         return () => clearInterval(id);
     }, []);
 
     if (!data) {
-        return null
+        return (
+            <div className="flex flex-col gap-4 p-4">
+                <Skeleton className="h-10 w-48"/>
+                <Skeleton className="h-32 w-full"/>
+                <Skeleton className="h-32 w-full"/>
+            </div>
+        );
     }
 
     return (

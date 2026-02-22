@@ -237,7 +237,6 @@ export type EnderecoFornecedorOrderByWithRelationInput = {
   estado?: Prisma.SortOrder
   complemento?: Prisma.SortOrderInput | Prisma.SortOrder
   fornecedor?: Prisma.FornecedorOrderByWithRelationInput
-  _relevance?: Prisma.EnderecoFornecedorOrderByRelevanceInput
 }
 
 export type EnderecoFornecedorWhereUniqueInput = Prisma.AtLeast<{
@@ -382,12 +381,6 @@ export type EnderecoFornecedorUncheckedUpdateManyInput = {
 export type EnderecoFornecedorNullableScalarRelationFilter = {
   is?: Prisma.EnderecoFornecedorWhereInput | null
   isNot?: Prisma.EnderecoFornecedorWhereInput | null
-}
-
-export type EnderecoFornecedorOrderByRelevanceInput = {
-  fields: Prisma.EnderecoFornecedorOrderByRelevanceFieldEnum | Prisma.EnderecoFornecedorOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type EnderecoFornecedorCountOrderByAggregateInput = {
@@ -541,7 +534,33 @@ export type EnderecoFornecedorSelect<ExtArgs extends runtime.Types.Extensions.In
   fornecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["enderecoFornecedor"]>
 
+export type EnderecoFornecedorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  logradouro?: boolean
+  numero?: boolean
+  bairro?: boolean
+  cidade?: boolean
+  pais?: boolean
+  cep?: boolean
+  fornecedorId?: boolean
+  estado?: boolean
+  complemento?: boolean
+  fornecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["enderecoFornecedor"]>
 
+export type EnderecoFornecedorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  logradouro?: boolean
+  numero?: boolean
+  bairro?: boolean
+  cidade?: boolean
+  pais?: boolean
+  cep?: boolean
+  fornecedorId?: boolean
+  estado?: boolean
+  complemento?: boolean
+  fornecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["enderecoFornecedor"]>
 
 export type EnderecoFornecedorSelectScalar = {
   id?: boolean
@@ -558,6 +577,12 @@ export type EnderecoFornecedorSelectScalar = {
 
 export type EnderecoFornecedorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "logradouro" | "numero" | "bairro" | "cidade" | "pais" | "cep" | "fornecedorId" | "estado" | "complemento", ExtArgs["result"]["enderecoFornecedor"]>
 export type EnderecoFornecedorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  fornecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
+}
+export type EnderecoFornecedorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  fornecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
+}
+export type EnderecoFornecedorIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   fornecedor?: boolean | Prisma.FornecedorDefaultArgs<ExtArgs>
 }
 
@@ -695,6 +720,30 @@ export interface EnderecoFornecedorDelegate<ExtArgs extends runtime.Types.Extens
   createMany<T extends EnderecoFornecedorCreateManyArgs>(args?: Prisma.SelectSubset<T, EnderecoFornecedorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many EnderecoFornecedors and returns the data saved in the database.
+   * @param {EnderecoFornecedorCreateManyAndReturnArgs} args - Arguments to create many EnderecoFornecedors.
+   * @example
+   * // Create many EnderecoFornecedors
+   * const enderecoFornecedor = await prisma.enderecoFornecedor.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many EnderecoFornecedors and only return the `id`
+   * const enderecoFornecedorWithIdOnly = await prisma.enderecoFornecedor.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends EnderecoFornecedorCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, EnderecoFornecedorCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnderecoFornecedorPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a EnderecoFornecedor.
    * @param {EnderecoFornecedorDeleteArgs} args - Arguments to delete one EnderecoFornecedor.
    * @example
@@ -757,6 +806,36 @@ export interface EnderecoFornecedorDelegate<ExtArgs extends runtime.Types.Extens
    * 
    */
   updateMany<T extends EnderecoFornecedorUpdateManyArgs>(args: Prisma.SelectSubset<T, EnderecoFornecedorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more EnderecoFornecedors and returns the data updated in the database.
+   * @param {EnderecoFornecedorUpdateManyAndReturnArgs} args - Arguments to update many EnderecoFornecedors.
+   * @example
+   * // Update many EnderecoFornecedors
+   * const enderecoFornecedor = await prisma.enderecoFornecedor.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more EnderecoFornecedors and only return the `id`
+   * const enderecoFornecedorWithIdOnly = await prisma.enderecoFornecedor.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends EnderecoFornecedorUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, EnderecoFornecedorUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnderecoFornecedorPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one EnderecoFornecedor.
@@ -1190,6 +1269,29 @@ export type EnderecoFornecedorCreateManyArgs<ExtArgs extends runtime.Types.Exten
 }
 
 /**
+ * EnderecoFornecedor createManyAndReturn
+ */
+export type EnderecoFornecedorCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EnderecoFornecedor
+   */
+  select?: Prisma.EnderecoFornecedorSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the EnderecoFornecedor
+   */
+  omit?: Prisma.EnderecoFornecedorOmit<ExtArgs> | null
+  /**
+   * The data used to create many EnderecoFornecedors.
+   */
+  data: Prisma.EnderecoFornecedorCreateManyInput | Prisma.EnderecoFornecedorCreateManyInput[]
+  skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EnderecoFornecedorIncludeCreateManyAndReturn<ExtArgs> | null
+}
+
+/**
  * EnderecoFornecedor update
  */
 export type EnderecoFornecedorUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1231,6 +1333,36 @@ export type EnderecoFornecedorUpdateManyArgs<ExtArgs extends runtime.Types.Exten
    * Limit how many EnderecoFornecedors to update.
    */
   limit?: number
+}
+
+/**
+ * EnderecoFornecedor updateManyAndReturn
+ */
+export type EnderecoFornecedorUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EnderecoFornecedor
+   */
+  select?: Prisma.EnderecoFornecedorSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the EnderecoFornecedor
+   */
+  omit?: Prisma.EnderecoFornecedorOmit<ExtArgs> | null
+  /**
+   * The data used to update EnderecoFornecedors.
+   */
+  data: Prisma.XOR<Prisma.EnderecoFornecedorUpdateManyMutationInput, Prisma.EnderecoFornecedorUncheckedUpdateManyInput>
+  /**
+   * Filter which EnderecoFornecedors to update
+   */
+  where?: Prisma.EnderecoFornecedorWhereInput
+  /**
+   * Limit how many EnderecoFornecedors to update.
+   */
+  limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EnderecoFornecedorIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

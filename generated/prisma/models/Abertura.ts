@@ -192,7 +192,6 @@ export type AberturaOrderByWithRelationInput = {
   autorizacao?: Prisma.SortOrder
   caixa_id?: Prisma.SortOrder
   caixa?: Prisma.CaixaOrderByWithRelationInput
-  _relevance?: Prisma.AberturaOrderByRelevanceInput
 }
 
 export type AberturaWhereUniqueInput = Prisma.AtLeast<{
@@ -287,12 +286,6 @@ export type AberturaUncheckedUpdateManyInput = {
 export type AberturaNullableScalarRelationFilter = {
   is?: Prisma.AberturaWhereInput | null
   isNot?: Prisma.AberturaWhereInput | null
-}
-
-export type AberturaOrderByRelevanceInput = {
-  fields: Prisma.AberturaOrderByRelevanceFieldEnum | Prisma.AberturaOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type AberturaCountOrderByAggregateInput = {
@@ -406,7 +399,23 @@ export type AberturaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["abertura"]>
 
+export type AberturaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  data_hora?: boolean
+  responsavel?: boolean
+  autorizacao?: boolean
+  caixa_id?: boolean
+  caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["abertura"]>
 
+export type AberturaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  data_hora?: boolean
+  responsavel?: boolean
+  autorizacao?: boolean
+  caixa_id?: boolean
+  caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["abertura"]>
 
 export type AberturaSelectScalar = {
   id?: boolean
@@ -418,6 +427,12 @@ export type AberturaSelectScalar = {
 
 export type AberturaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "data_hora" | "responsavel" | "autorizacao" | "caixa_id", ExtArgs["result"]["abertura"]>
 export type AberturaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
+}
+export type AberturaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
+}
+export type AberturaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   caixa?: boolean | Prisma.CaixaDefaultArgs<ExtArgs>
 }
 
@@ -550,6 +565,30 @@ export interface AberturaDelegate<ExtArgs extends runtime.Types.Extensions.Inter
   createMany<T extends AberturaCreateManyArgs>(args?: Prisma.SelectSubset<T, AberturaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many Aberturas and returns the data saved in the database.
+   * @param {AberturaCreateManyAndReturnArgs} args - Arguments to create many Aberturas.
+   * @example
+   * // Create many Aberturas
+   * const abertura = await prisma.abertura.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many Aberturas and only return the `id`
+   * const aberturaWithIdOnly = await prisma.abertura.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends AberturaCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, AberturaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AberturaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a Abertura.
    * @param {AberturaDeleteArgs} args - Arguments to delete one Abertura.
    * @example
@@ -612,6 +651,36 @@ export interface AberturaDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    * 
    */
   updateMany<T extends AberturaUpdateManyArgs>(args: Prisma.SelectSubset<T, AberturaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more Aberturas and returns the data updated in the database.
+   * @param {AberturaUpdateManyAndReturnArgs} args - Arguments to update many Aberturas.
+   * @example
+   * // Update many Aberturas
+   * const abertura = await prisma.abertura.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more Aberturas and only return the `id`
+   * const aberturaWithIdOnly = await prisma.abertura.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends AberturaUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, AberturaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AberturaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Abertura.
@@ -1040,6 +1109,29 @@ export type AberturaCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
+ * Abertura createManyAndReturn
+ */
+export type AberturaCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Abertura
+   */
+  select?: Prisma.AberturaSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Abertura
+   */
+  omit?: Prisma.AberturaOmit<ExtArgs> | null
+  /**
+   * The data used to create many Aberturas.
+   */
+  data: Prisma.AberturaCreateManyInput | Prisma.AberturaCreateManyInput[]
+  skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AberturaIncludeCreateManyAndReturn<ExtArgs> | null
+}
+
+/**
  * Abertura update
  */
 export type AberturaUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1081,6 +1173,36 @@ export type AberturaUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many Aberturas to update.
    */
   limit?: number
+}
+
+/**
+ * Abertura updateManyAndReturn
+ */
+export type AberturaUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Abertura
+   */
+  select?: Prisma.AberturaSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Abertura
+   */
+  omit?: Prisma.AberturaOmit<ExtArgs> | null
+  /**
+   * The data used to update Aberturas.
+   */
+  data: Prisma.XOR<Prisma.AberturaUpdateManyMutationInput, Prisma.AberturaUncheckedUpdateManyInput>
+  /**
+   * Filter which Aberturas to update
+   */
+  where?: Prisma.AberturaWhereInput
+  /**
+   * Limit how many Aberturas to update.
+   */
+  limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AberturaIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
