@@ -6,8 +6,9 @@ const appUrl = process.env.BETTER_AUTH_URL || "http://localhost:3000";
 
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
-        provider: "mysql",
+        provider: "postgresql",
     }),
+    secret: process.env.BETTER_AUTH_SECRET,
     emailAndPassword:{
         enabled:true,
         requireEmailVerification:false,
