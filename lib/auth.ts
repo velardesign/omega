@@ -1,8 +1,12 @@
-import { betterAuth } from "better-auth";
-import { prismaAdapter } from "better-auth/adapters/prisma";
-import { prisma } from "@/lib/prisma"
+import {betterAuth} from "better-auth";
+import {prismaAdapter} from "better-auth/adapters/prisma";
+import {prisma} from "@/lib/prisma"
 
-const appUrl = process.env.BETTER_AUTH_URL || "http://localhost:3000";
+const appUrl =
+    process.env.BETTER_AUTH_URL ||
+    process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "http://localhost:3000";
 
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
@@ -16,6 +20,5 @@ export const auth = betterAuth({
     baseURL: appUrl,
     trustedOrigins: [
         appUrl,
-        "http://localhost:3000",
     ],
 });
