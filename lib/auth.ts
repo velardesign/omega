@@ -8,6 +8,9 @@ const appUrl =
         ? `https://${process.env.VERCEL_URL}`
         : "http://localhost:3000";
 
+console.log("[BetterAuth] appUrl calculado:", appUrl);                 // ← debug
+console.log("[BetterAuth] VERCEL_URL:", process.env.VERCEL_URL);       // ← debug
+console.log("[BetterAuth] BETTER_AUTH_URL:", process.env.BETTER_AUTH_URL); // ← debug
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
         provider: "postgresql",
