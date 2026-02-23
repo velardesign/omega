@@ -17,4 +17,5 @@ export async function loginUser(formData: FormData) {
     console.log("Erro ao logar",error);
     redirect("/login")
   }
+
 }

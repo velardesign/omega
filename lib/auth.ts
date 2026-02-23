@@ -20,5 +20,5 @@ export const auth = betterAuth({
     baseURL: appUrl,
     trustedOrigins: [
         appUrl,
-    ],
+    ].filter(Boolean),
 });
