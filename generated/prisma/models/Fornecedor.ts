@@ -149,7 +149,7 @@ export type FornecedorGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 
 export type FornecedorGroupByOutputType = {
   id: string
-  codigo: string | null
+  codigo: string
   razao_social: string
   nome_fantasia: string | null
   observacoes: string | null
@@ -178,7 +178,7 @@ export type FornecedorWhereInput = {
   OR?: Prisma.FornecedorWhereInput[]
   NOT?: Prisma.FornecedorWhereInput | Prisma.FornecedorWhereInput[]
   id?: Prisma.StringFilter<"Fornecedor"> | string
-  codigo?: Prisma.StringNullableFilter<"Fornecedor"> | string | null
+  codigo?: Prisma.StringFilter<"Fornecedor"> | string
   razao_social?: Prisma.StringFilter<"Fornecedor"> | string
   nome_fantasia?: Prisma.StringNullableFilter<"Fornecedor"> | string | null
   observacoes?: Prisma.StringNullableFilter<"Fornecedor"> | string | null
@@ -190,7 +190,7 @@ export type FornecedorWhereInput = {
 
 export type FornecedorOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  codigo?: Prisma.SortOrderInput | Prisma.SortOrder
+  codigo?: Prisma.SortOrder
   razao_social?: Prisma.SortOrder
   nome_fantasia?: Prisma.SortOrderInput | Prisma.SortOrder
   observacoes?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -217,7 +217,7 @@ export type FornecedorWhereUniqueInput = Prisma.AtLeast<{
 
 export type FornecedorOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  codigo?: Prisma.SortOrderInput | Prisma.SortOrder
+  codigo?: Prisma.SortOrder
   razao_social?: Prisma.SortOrder
   nome_fantasia?: Prisma.SortOrderInput | Prisma.SortOrder
   observacoes?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -231,7 +231,7 @@ export type FornecedorScalarWhereWithAggregatesInput = {
   OR?: Prisma.FornecedorScalarWhereWithAggregatesInput[]
   NOT?: Prisma.FornecedorScalarWhereWithAggregatesInput | Prisma.FornecedorScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Fornecedor"> | string
-  codigo?: Prisma.StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+  codigo?: Prisma.StringWithAggregatesFilter<"Fornecedor"> | string
   razao_social?: Prisma.StringWithAggregatesFilter<"Fornecedor"> | string
   nome_fantasia?: Prisma.StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
   observacoes?: Prisma.StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
@@ -239,7 +239,7 @@ export type FornecedorScalarWhereWithAggregatesInput = {
 
 export type FornecedorCreateInput = {
   id?: string
-  codigo?: string | null
+  codigo: string
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
@@ -251,7 +251,7 @@ export type FornecedorCreateInput = {
 
 export type FornecedorUncheckedCreateInput = {
   id?: string
-  codigo?: string | null
+  codigo: string
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
@@ -263,7 +263,7 @@ export type FornecedorUncheckedCreateInput = {
 
 export type FornecedorUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -275,7 +275,7 @@ export type FornecedorUpdateInput = {
 
 export type FornecedorUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -287,7 +287,7 @@ export type FornecedorUncheckedUpdateInput = {
 
 export type FornecedorCreateManyInput = {
   id?: string
-  codigo?: string | null
+  codigo: string
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
@@ -295,7 +295,7 @@ export type FornecedorCreateManyInput = {
 
 export type FornecedorUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -303,7 +303,7 @@ export type FornecedorUpdateManyMutationInput = {
 
 export type FornecedorUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -403,7 +403,7 @@ export type FornecedorUpdateOneWithoutContatosNestedInput = {
 
 export type FornecedorCreateWithoutProdutosInput = {
   id?: string
-  codigo?: string | null
+  codigo: string
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
@@ -414,7 +414,7 @@ export type FornecedorCreateWithoutProdutosInput = {
 
 export type FornecedorUncheckedCreateWithoutProdutosInput = {
   id?: string
-  codigo?: string | null
+  codigo: string
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
@@ -441,7 +441,7 @@ export type FornecedorUpdateToOneWithWhereWithoutProdutosInput = {
 
 export type FornecedorUpdateWithoutProdutosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -452,7 +452,7 @@ export type FornecedorUpdateWithoutProdutosInput = {
 
 export type FornecedorUncheckedUpdateWithoutProdutosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -463,7 +463,7 @@ export type FornecedorUncheckedUpdateWithoutProdutosInput = {
 
 export type FornecedorCreateWithoutEndereco_fornecedorInput = {
   id?: string
-  codigo?: string | null
+  codigo: string
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
@@ -474,7 +474,7 @@ export type FornecedorCreateWithoutEndereco_fornecedorInput = {
 
 export type FornecedorUncheckedCreateWithoutEndereco_fornecedorInput = {
   id?: string
-  codigo?: string | null
+  codigo: string
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
@@ -501,7 +501,7 @@ export type FornecedorUpdateToOneWithWhereWithoutEndereco_fornecedorInput = {
 
 export type FornecedorUpdateWithoutEndereco_fornecedorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -512,7 +512,7 @@ export type FornecedorUpdateWithoutEndereco_fornecedorInput = {
 
 export type FornecedorUncheckedUpdateWithoutEndereco_fornecedorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -523,7 +523,7 @@ export type FornecedorUncheckedUpdateWithoutEndereco_fornecedorInput = {
 
 export type FornecedorCreateWithoutDados_comercialInput = {
   id?: string
-  codigo?: string | null
+  codigo: string
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
@@ -534,7 +534,7 @@ export type FornecedorCreateWithoutDados_comercialInput = {
 
 export type FornecedorUncheckedCreateWithoutDados_comercialInput = {
   id?: string
-  codigo?: string | null
+  codigo: string
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
@@ -561,7 +561,7 @@ export type FornecedorUpdateToOneWithWhereWithoutDados_comercialInput = {
 
 export type FornecedorUpdateWithoutDados_comercialInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -572,7 +572,7 @@ export type FornecedorUpdateWithoutDados_comercialInput = {
 
 export type FornecedorUncheckedUpdateWithoutDados_comercialInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -583,7 +583,7 @@ export type FornecedorUncheckedUpdateWithoutDados_comercialInput = {
 
 export type FornecedorCreateWithoutContatosInput = {
   id?: string
-  codigo?: string | null
+  codigo: string
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
@@ -594,7 +594,7 @@ export type FornecedorCreateWithoutContatosInput = {
 
 export type FornecedorUncheckedCreateWithoutContatosInput = {
   id?: string
-  codigo?: string | null
+  codigo: string
   razao_social: string
   nome_fantasia?: string | null
   observacoes?: string | null
@@ -621,7 +621,7 @@ export type FornecedorUpdateToOneWithWhereWithoutContatosInput = {
 
 export type FornecedorUpdateWithoutContatosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -632,7 +632,7 @@ export type FornecedorUpdateWithoutContatosInput = {
 
 export type FornecedorUncheckedUpdateWithoutContatosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  codigo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codigo?: Prisma.StringFieldUpdateOperationsInput | string
   razao_social?: Prisma.StringFieldUpdateOperationsInput | string
   nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   observacoes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -739,7 +739,7 @@ export type $FornecedorPayload<ExtArgs extends runtime.Types.Extensions.Internal
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    codigo: string | null
+    codigo: string
     razao_social: string
     nome_fantasia: string | null
     observacoes: string | null

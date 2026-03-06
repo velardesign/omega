@@ -7,15 +7,23 @@ import {Prisma} from "@/generated/prisma/client";
 const services = FornecedorServices.getInstance();
 
 export async function addFornecedor(formData: unknown) {
+
     const data = fornecedorCriarSchema.parse(formData);
+
     try {
+
         await services.addFornecedor(data);
         revalidatePath("/dashboard/fornecedores/cadastrar-fornecedor")
         return {success: true};
+
     } catch (error) {
+
         console.log("ERRO COMPLETO:", JSON.stringify(error, null, 2));
+
         if (error instanceof Prisma.PrismaClientKnownRequestError) {
+
             if (error.code === "P2002") {
+
                 const driverError = (error.meta as any)?.driverAdapterError;
                 const index: string = driverError?.cause?.constraint?.index ?? "";
                 const rawField = index.replace(/_key$/, "");

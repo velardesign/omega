@@ -202,20 +202,21 @@ model ItemVenda {
 }
 
 model Produto {
-  id             String      @id @default(uuid())
-  codigo         String      @unique
-  descricao      String
-  preco_venda    Decimal?
-  preco_compra   Decimal
-  categoria_id   String
-  cor            String
-  fornecedor_id  String
-  material       String
-  nome           String      @unique
-  unidade_medida String
-  itens          ItemVenda[]
-  categoria      Categoria   @relation(fields: [categoria_id], references: [id])
-  fornecedor     Fornecedor  @relation(fields: [fornecedor_id], references: [id])
+  id                String      @id @default(uuid())
+  codigo            String      @unique
+  codigo_fabricante String
+  descricao         String
+  preco_venda       Decimal?
+  preco_compra      Decimal
+  cor               String
+  material          String
+  nome              String
+  unidade_medida    String
+  itens             ItemVenda[]
+  categoria_id      String
+  categoria         Categoria   @relation(fields: [categoria_id], references: [id])
+  fornecedor_id     String
+  fornecedor        Fornecedor  @relation(fields: [fornecedor_id], references: [id])
 
   @@map("produto")
 }
@@ -239,7 +240,7 @@ model Categoria {
 
 model Fornecedor {
   id                  String                    @id @default(uuid())
-  codigo              String?                   @unique
+  codigo              String                    @unique
   razao_social        String                    @unique
   nome_fantasia       String?                   @unique
   observacoes         String?

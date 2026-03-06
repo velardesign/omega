@@ -276,15 +276,16 @@ export type ItemVendaScalarFieldEnum = (typeof ItemVendaScalarFieldEnum)[keyof t
 export const ProdutoScalarFieldEnum = {
   id: 'id',
   codigo: 'codigo',
+  codigo_fabricante: 'codigo_fabricante',
   descricao: 'descricao',
   preco_venda: 'preco_venda',
   preco_compra: 'preco_compra',
-  categoria_id: 'categoria_id',
   cor: 'cor',
-  fornecedor_id: 'fornecedor_id',
   material: 'material',
   nome: 'nome',
-  unidade_medida: 'unidade_medida'
+  unidade_medida: 'unidade_medida',
+  categoria_id: 'categoria_id',
+  fornecedor_id: 'fornecedor_id'
 } as const
 
 export type ProdutoScalarFieldEnum = (typeof ProdutoScalarFieldEnum)[keyof typeof ProdutoScalarFieldEnum]

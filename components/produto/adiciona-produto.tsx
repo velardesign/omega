@@ -10,9 +10,11 @@ import {
     SelectValue
 } from "@/components/ui/select";
 import {useRouter} from "next/navigation";
-import {Plus} from "lucide-react";
+import {Plus, PlusCircle} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
+import {Textarea} from "@/components/ui/textarea";
+import {addProduto} from "@/actions/produto-action";
 
 interface PropsCategoria {
     nome: string;
@@ -42,69 +44,74 @@ export default function AdicionaProduto(props: PropsProduto) {
                 <CardHeader>
                     <CardTitle>Cadastro Produto</CardTitle>
                 </CardHeader>
-                <CardContent className="grid gap-4 pt-4 md:grid-cols-2">
-                    <Select onValueChange={(value) => {
-                        if (value === "nova_categoria") {
-                            router.push(urlCategoria);
-                        }
-                    }}>
-                        <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Selecione a Categoria do Produto"></SelectValue>
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectGroup>
-                                <SelectLabel>Categorias</SelectLabel>
-                                {
-                                    categorias.map((c, k) => (
-                                            <SelectItem value={c.codigo} key={k}>{c.nome}</SelectItem>
+                <form action={}>
+                    <CardContent className="grid gap-4 pt-4 md:grid-cols-2">
+                        <Select onValueChange={(value) => {
+                            if (value === "nova_categoria") {
+                                router.push(urlCategoria);
+                            }
+                        }}>
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Selecione a Categoria do Produto"></SelectValue>
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel>Categorias</SelectLabel>
+                                    {
+                                        categorias.map((c, k) => (
+                                                <SelectItem value={c.codigo} key={k}>{c.nome}</SelectItem>
+                                            )
                                         )
-                                    )
-                                }
-                            </SelectGroup>
-                            <SelectSeparator></SelectSeparator>
-                            <SelectGroup>
-                                <SelectItem value="nova_categoria" className="flex items-center gap-2 ">
-                                    <Plus className="h-4, w-4"/>
-                                    Cadastrar Categoria
-                                </SelectItem>
-                            </SelectGroup>
-                        </SelectContent>
-                    </Select>
-                    <Select onValueChange={(value) => {
-                        if (value === "novo_fornecedor") {
-                            router.push(urlFornecedor);
-                        }
-                    }}>
-                        <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Selecione o Fornecedor do Produto"></SelectValue>
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectGroup>
-                                <SelectLabel>Fornecedores</SelectLabel>
-                                {
-                                    fornecedores.map((f, k) => (
-                                            <SelectItem value={f.codigo||"#"} key={k}>{f.razao_social}</SelectItem>
+                                    }
+                                </SelectGroup>
+                                <SelectSeparator></SelectSeparator>
+                                <SelectGroup>
+                                    <SelectItem value="nova_categoria" className="flex items-center gap-2 ">
+                                        <Plus className="h-4, w-4"/>
+                                        Cadastrar Categoria
+                                    </SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                        <Select onValueChange={(value) => {
+                            if (value === "novo_fornecedor") {
+                                router.push(urlFornecedor);
+                            }
+                        }}>
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Selecione o Fornecedor do Produto"></SelectValue>
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel>Fornecedores</SelectLabel>
+                                    {
+                                        fornecedores.map((f, k) => (
+                                                <SelectItem value={f.codigo || "#"} key={k}>{f.razao_social}</SelectItem>
+                                            )
                                         )
-                                    )
-                                }
-                            </SelectGroup>
-                            <SelectSeparator></SelectSeparator>
-                            <SelectGroup>
-                                <SelectItem value="novo_fornecedor" className="flex items-center gap-2 ">
-                                    <Plus className="h-4, w-4"/>
-                                    Cadastrar Fornecedor
-                                </SelectItem>
-                            </SelectGroup>
-                        </SelectContent>
-                    </Select>
-                    <Input placeholder="Código do Produto"></Input>
-                    <Input placeholder="Nome do Produto"></Input>
-                    <Input placeholder="Preço de Compra"></Input>
-                    <Input placeholder="Unidade de Medida"></Input>
-                    <Input placeholder="Cor"></Input>
-                    <Input placeholder="Material"></Input>
-                </CardContent>
-                <CardFooter></CardFooter>
+                                    }
+                                </SelectGroup>
+                                <SelectSeparator></SelectSeparator>
+                                <SelectGroup>
+                                    <SelectItem value="novo_fornecedor" className="flex items-center gap-2 ">
+                                        <Plus className="h-4, w-4"/>
+                                        Cadastrar Fornecedor
+                                    </SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                        <Input placeholder="Código do Fabricante" name={"codigo_fabricante"}/>
+                        <Input placeholder="Nome do Produto" name={"nome"}/>
+                        <Input placeholder="Preço de Compra" name={"preco_compra"}/>
+                        <Input placeholder="Unidade de Medida" name={"unidade_medida"}/>
+                        <Input placeholder="Cor" name={"cor"}/>
+                        <Input placeholder="Material" name={"material"}/>
+                        <Textarea placeholder={"Descrição do Produto"} className={"col-span-2"} name={"descricao"}/>
+                    </CardContent>
+                    <CardFooter>
+                        <Button variant={"outline"} type={"submit"}><PlusCircle className={"text-green-500"}/>Cadastrar</Button>
+                    </CardFooter>
+                </form>
             </Card>
         </div>
     );
