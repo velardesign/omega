@@ -11,8 +11,8 @@ export async function addFornecedor(formData: unknown) {
     const data = fornecedorCriarSchema.parse(formData);
 
     try {
-
-        await services.addFornecedor(data);
+        const fornecedor = {...data, codigo: ""};
+        await services.addFornecedor(fornecedor);
         revalidatePath("/dashboard/fornecedores/cadastrar-fornecedor")
         return {success: true};
 

@@ -1,16 +1,16 @@
-import {fornecedorCriarSchema} from "@/schemas/fornecedor-criar-schema";
+"use server"
 import {revalidatePath} from "next/cache";
 import {Prisma} from "@/generated/prisma/client";
 import {ProdutoServices} from "@/src/application/services/produto-services";
-import {produtoCriarSchema} from "@/schemas/produto-criar-schema";
+import {ProdutoDTO} from "@/src/domain/types/produto-types";
 
 const services = ProdutoServices.getInstance();
 
-export async function addProduto(formData: FormData) {
-    const data = produtoCriarSchema.parse(formData);
+export async function addProduto(produto :ProdutoDTO) {
+
     try {
 
-        await services.addProduto(data);
+        await services.addProduto(produto);
         revalidatePath("/dashboard/produto/adiciona");
         return {success: true};
 

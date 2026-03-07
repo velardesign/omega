@@ -1,5 +1,5 @@
 export interface FornecedorDTO{
-    codigo?:string;
+    codigo:string;
     razao_social:string;
     nome_fantasia?:string;
     cnpj:string;

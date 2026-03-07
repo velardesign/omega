@@ -12,23 +12,19 @@ export const produtoCriarSchema = z.object({
     codigo_categoria: z
         .string()
         .trim()
-        .min(3, "Código da Categoria deve ter no mínimo 3 caracteres"),
+        .min(3, "Categoria é obrigatoria"),
     codigo_fornecedor: z
         .string()
         .trim()
-        .min(3, "Código da Fornecedor deve ter no mínimo 3 caracteres"),
+        .min(3, "Fornecedor é obrigatorio"),
     codigo: z
         .string()
         .trim()
         .min(3, "Código do Produto deve ter no mínimo 3 caracteres"),
     preco_compra: z
-        .string()
-        .trim()
-        .transform((valor) => valor.replace(",", "."))
-        .refine((valor) => !isNaN(Number(valor)) && Number(valor) > 0, {
-            message: "Preço deve ser um número válido maior que zero",
-        })
-        .transform((valor) => Number(valor)),
+        .coerce
+        .number()
+        .positive("Preço dever maior que zero"),
     unidade_medida: z
         .string()
         .trim()
@@ -47,4 +43,7 @@ export const produtoCriarSchema = z.object({
         .trim()
         .min(10, "Descrição do produto deve ter no mínimo de 10 caracteres"),
 });
-export type ProdutoCriarSchema = z.infer<typeof produtoCriarSchema>;
+
+
+export type ProdutoInput = z.input<typeof produtoCriarSchema>
+export type ProdutoOutput = z.output<typeof produtoCriarSchema>
