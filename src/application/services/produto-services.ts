@@ -30,4 +30,8 @@ export class ProdutoServices{
     async todosProdutos() {
         return await this.repository.todosProdutos();
     }
+
+    async updateProduto(produto: ProdutoDTO) {
+        await this.repository.update(produto);
+    }
 }

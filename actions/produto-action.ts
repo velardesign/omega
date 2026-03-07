@@ -11,7 +11,6 @@ export async function addProduto(produto: ProdutoDTO) {
     try {
 
         await services.addProduto(produto);
-        revalidatePath("/dashboard/produto/adiciona");
         return {success: true};
 
     } catch (error) {
@@ -50,4 +49,33 @@ export async function addProduto(produto: ProdutoDTO) {
 
 export async function listarTodosProdutos(): Promise<ProdutoDTO[]> {
     return await services.todosProdutos();
+}
+
+export async function updateProduto(produto: ProdutoDTO) {
+    try {
+        await services.updateProduto(produto);
+        return {success: true};
+
+    } catch (error) {
+        return {
+            success: false,
+            error: `Erro interno ao alterar produto ERROR: ${error}`
+        }
+    }
+}
+
+export async function saveProduto(produto: ProdutoDTO) {
+    let result;
+    if (produto.codigo === "0000") {
+        result = await addProduto(produto);
+        result = {...result, action: "create"}
+    } else {
+        result = await updateProduto(produto);
+        result = {...result, action: "update"}
+    }
+
+    if (result.success) {
+        revalidatePath("/dashboard/produto/adiciona");
+    }
+    return result;
 }

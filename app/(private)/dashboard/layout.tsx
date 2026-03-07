@@ -14,6 +14,7 @@ import {auth} from "@/lib/auth";
 import {redirect} from "next/navigation";
 import {ThemeProvider} from "@/components/ui/theme-provider";
 import {headers} from "next/headers";
+import {Toaster} from "sonner";
 
 export const metadata: Metadata = {
     title: "Omega | Sistema Cálculo Móveis MVA",
@@ -56,6 +57,7 @@ export default async function RootLayout({
                         </div>
                         <ThemeToggle/>
                     </header>
+                    <Toaster position={"top-right"} richColors/>
                     {children}
                 </SidebarInset>
             </SidebarProvider>

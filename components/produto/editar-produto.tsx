@@ -6,10 +6,11 @@ import {Button} from "@/components/ui/button";
 
 export interface ProdutoProp {
     produtos: ProdutoDTO[],
+    onEditar?: (produto:ProdutoDTO) => void
 }
 
 export default function EditaProduto(produtoProp: ProdutoProp) {
-    const {produtos} = produtoProp;
+    const {produtos,onEditar} = produtoProp;
     return (
         <div>
             <Card className={"flex flex-col"}>
@@ -32,7 +33,7 @@ export default function EditaProduto(produtoProp: ProdutoProp) {
                         <TableBody>
                             {
                                 produtos.map((produto, key) => (
-                                    <TableRow key={key}>
+                                    <TableRow key={produto.codigo}>
                                         <TableCell>{produto.codigo}</TableCell>
                                         <TableCell>{produto.codigo_fabricante}</TableCell>
                                         <TableCell>{produto.nome}</TableCell>
@@ -41,7 +42,10 @@ export default function EditaProduto(produtoProp: ProdutoProp) {
                                         <TableCell>{produto.codigo_fornecedor}</TableCell>
                                         <TableCell>{produto.codigo_categoria}</TableCell>
                                         <TableCell>
-                                            <Button variant={"outline"}>
+                                            <Button
+                                                variant={"outline"}
+                                                onClick={()=> onEditar?.(produto)}
+                                            >
                                                 <Pencil className={"text-blue-500"}/>
                                             </Button>
                                         </TableCell>
