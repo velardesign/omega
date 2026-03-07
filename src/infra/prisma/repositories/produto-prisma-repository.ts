@@ -3,6 +3,32 @@ import {ProdutoDTO} from "@/src/domain/types/produto-types";
 import {prisma} from "@/lib/prisma";
 
 export class ProdutoPrismaRepository implements ProdutoRepository {
+
+    async todosProdutos(): Promise<ProdutoDTO[]> {
+        const produtos = await prisma.produto.findMany({
+            include: {
+                categoria: {
+                    select: {
+                        codigo: true,
+                    }
+                },
+                fornecedor: {
+                    select: {
+                        codigo: true,
+                    }
+                }
+            }
+        });
+        return produtos.map(
+            produto => ({
+                ...produto,
+                codigo_categoria:produto.categoria.codigo,
+                codigo_fornecedor:produto.fornecedor.codigo,
+                preco_compra:Number(produto.preco_compra)
+            })
+        )
+    }
+
     async addProduto(produto: ProdutoDTO): Promise<void> {
         await prisma.produto.create({
             data: {

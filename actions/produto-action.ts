@@ -6,7 +6,7 @@ import {ProdutoDTO} from "@/src/domain/types/produto-types";
 
 const services = ProdutoServices.getInstance();
 
-export async function addProduto(produto :ProdutoDTO) {
+export async function addProduto(produto: ProdutoDTO) {
 
     try {
 
@@ -35,8 +35,8 @@ export async function addProduto(produto :ProdutoDTO) {
                 const entry = fieldMap[rawField];
 
                 return {
-                    success:false,
-                    error: entry?.message?? `Já existe um produto com este código: ${rawField}`
+                    success: false,
+                    error: entry?.message ?? `Já existe um produto com este código: ${rawField}`
                 }
             }
         }
@@ -46,4 +46,8 @@ export async function addProduto(produto :ProdutoDTO) {
         }
     }
 
+}
+
+export async function listarTodosProdutos(): Promise<ProdutoDTO[]> {
+    return await services.todosProdutos();
 }

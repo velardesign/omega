@@ -26,4 +26,8 @@ export class ProdutoServices{
         produto.codigo = await this.gerador.geraCodigo("PRODUTO");
         await this.repository.addProduto(produto);
     }
+
+    async todosProdutos() {
+        return await this.repository.todosProdutos();
+    }
 }
