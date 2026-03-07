@@ -5,7 +5,7 @@ import {listarTodosProdutos} from "@/actions/produto-action";
 import EditaProduto from "@/components/produto/editar-produto";
 import {ProdutoDTO} from "@/src/domain/types/produto-types";
 
-async function carregaCategoria(): Promise<PropsProduto> {
+async function carregaProps(): Promise<PropsProduto> {
 
     const categorias = await listarTodasCategorias();
     const fornecedores = await listarTodosFornecedores();
@@ -19,7 +19,7 @@ async function carregaProdutos(): Promise<ProdutoDTO[]> {
 
 export default async function Page() {
 
-    const {categorias, fornecedores} = await carregaCategoria();
+    const {categorias, fornecedores} = await carregaProps();
     const produtos = await carregaProdutos();
     return (
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
