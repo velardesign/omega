@@ -73,9 +73,5 @@ export async function saveProduto(produto: ProdutoDTO) {
         result = await updateProduto(produto);
         result = {...result, action: "update"}
     }
-
-    if (result.success) {
-        revalidatePath("/dashboard/produto/adiciona");
-    }
     return result;
 }

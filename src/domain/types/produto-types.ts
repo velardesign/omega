@@ -11,3 +11,20 @@ export interface ProdutoDTO {
     descricao:string,
 
 }
+
+interface PropsCategoria {
+    nome: string;
+    codigo: string;
+}
+
+interface PropsFornecedor {
+    razao_social: string;
+    codigo: string | null;
+}
+
+export interface PropsProduto {
+    categorias: PropsCategoria[],
+    fornecedores: PropsFornecedor[],
+    produtoSelecionado?: ProdutoDTO | null
+    onSalvar:() => Promise<void>,
+}

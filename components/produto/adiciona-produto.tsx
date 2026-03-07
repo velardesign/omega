@@ -12,146 +12,35 @@ import {
     SelectTrigger,
     SelectValue
 } from "@/components/ui/select";
-import {useRouter} from "next/navigation";
 import {Plus, PlusCircle} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {Textarea} from "@/components/ui/textarea";
-import {saveProduto} from "@/actions/produto-action";
-import {produtoCriarSchema, ProdutoInput, ProdutoOutput} from "@/schemas/produto-criar-schema";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {useForm} from "react-hook-form";
-import {useEffect, useRef, useState} from "react";
-import {ProdutoDTO} from "@/src/domain/types/produto-types";
-import {toast} from "sonner";
-
-interface PropsCategoria {
-    nome: string;
-    codigo: string;
-}
-
-interface PropsFornecedor {
-    razao_social: string;
-    codigo: string | null;
-}
-
-export interface PropsProduto {
-    categorias: PropsCategoria[],
-    fornecedores: PropsFornecedor[],
-    produtoSelecionado?: ProdutoDTO | null
-}
-
-function FieldError({error}: { error?: string }) {
-    if (!error) return null;
-    return (
-        <p className="text-sm text-red-400 py-2">{error}</p>
-    )
-}
+import {PropsProduto} from "@/src/domain/types/produto-types";
+import {useProdutoForm} from "@/hooks/use-produto-form";
+import FieldError from "@/components/produto/field-error";
 
 export default function AdicionaProduto(props: PropsProduto) {
     const {
-        register,
+        produtoAtual,
         handleSubmit,
-        setValue,
-        setError,
-        reset,
-        watch,
-        formState: {errors},
-    } = useForm<ProdutoInput, any, ProdutoOutput>({
-        resolver: zodResolver(produtoCriarSchema),
-        defaultValues: {
-            codigo: "0000",
-        }
-    });
+        onSubmit,
+        errors,
+        errorRef,
+        register,
+        codigoFornecedor,
+        codigoCategoria,
+        onNovaCategoria,
+        onNovoFornecedor,
+        onFornecedorChange,
+        onCategoriaChange,
+        isSubmitting,
 
-    const codigoCategoria = watch("codigo_categoria");
-    const codigoFornecedor = watch("codigo_fornecedor");
-    const errorRef = useRef<HTMLParagraphElement>(null);
-    const {categorias, fornecedores, produtoSelecionado} = props;
-    const router = useRouter();
-    const urlCategoria = "/dashboard/categoria/adicionar";
-    const urlFornecedor = "/dashboard/fornecedores/cadastrar-fornecedor";
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [produtoAtual, setProdutoAtual] = useState<ProdutoDTO | null>(produtoSelecionado || null);
-
-    useEffect(() => {
-        if (errors.root) {
-            errorRef.current?.scrollIntoView({behavior: "smooth", block: "center"});
-        }
-    }, [errors.root]);
-
-    useEffect(() => {
-
-        if (!produtoAtual) {
-           reset({
-            codigo: "0000",
-            codigo_categoria: "",
-            codigo_fornecedor: "",
-            codigo_fabricante: "",
-            nome: "",
-            preco_compra: "" as any,
-            unidade_medida: "",
-            cor: "",
-            material: "",
-            descricao: "",
-        });
-            return;
-        }
-
-        reset({
-            codigo: produtoAtual.codigo,
-            codigo_categoria: produtoAtual.codigo_categoria,
-            codigo_fornecedor: produtoAtual.codigo_fornecedor,
-            codigo_fabricante: produtoAtual.codigo_fabricante,
-            nome: produtoAtual.nome,
-            preco_compra: Number(produtoAtual.preco_compra),
-            unidade_medida: produtoAtual.unidade_medida,
-            cor: produtoAtual.cor,
-            material: produtoAtual.material,
-            descricao: produtoAtual.descricao,
-        });
-        setValue("codigo_categoria", produtoAtual.codigo_categoria, {shouldValidate: false});
-        setValue("codigo_fornecedor", produtoAtual.codigo_fornecedor ?? "", {shouldValidate: false});
-
-    }, [produtoAtual, reset, setValue]);
-
-    useEffect(() => {
-        setProdutoAtual(produtoSelecionado || null);
-    }, [produtoSelecionado]);
-
-    async function onSubmit(produto: ProdutoOutput) {
-        if (isSubmitting) return;
-        setIsSubmitting(true);
-        const result = await saveProduto(produto);
-
-        if (result.success) {
-            toast.success(
-                result.action === "create"
-                    ? "Produto Cadastrado com sucesso!"
-                    : "Produto Atualizado com sucesso!"
-            );
-
-            setProdutoAtual(null);
-            reset({
-            codigo: "0000",
-            codigo_categoria: "",
-            codigo_fornecedor: "",
-            codigo_fabricante: "",
-            nome: "",
-            preco_compra: "" as any,
-            unidade_medida: "",
-            cor: "",
-            material: "",
-            descricao: "",
-        });
-            setIsSubmitting(false);
-
-            return;
-        }
-
-        setError("root", {message: result.error});
-        setIsSubmitting(false)
-    }
+    } = useProdutoForm(props);
+    const {
+        categorias,
+        fornecedores,
+    } = props;
 
     return (
         <div className="grid auto-rows-min gap-4 md:grid-cols-1">
@@ -189,12 +78,10 @@ export default function AdicionaProduto(props: PropsProduto) {
                                 onValueChange={(value) => {
 
                                     if (value === "nova_categoria") {
-                                        router.push(urlCategoria);
+                                        onNovaCategoria();
                                         return;
                                     }
-
-                                    setValue("codigo_categoria", value, {shouldValidate: true});
-
+                                    onCategoriaChange(value);
                                 }}
                             >
 
@@ -237,24 +124,22 @@ export default function AdicionaProduto(props: PropsProduto) {
 
                         </div>
 
-                        {/* FORNECEDOR */}
-
                         <div className="flex flex-col gap-1">
 
                             <input type="hidden" {...register("codigo_fornecedor")} />
 
                             <Select
                                 value={codigoFornecedor}
-                                onValueChange={(value) => {
+                                onValueChange={
+                                    (value) => {
 
-                                    if (value === "novo_fornecedor") {
-                                        router.push(urlFornecedor);
-                                        return;
+                                        if (value === "novo_fornecedor") {
+                                            onNovoFornecedor();
+                                            return;
+                                        }
+                                        onFornecedorChange(value);
                                     }
-
-                                    setValue("codigo_fornecedor", value, {shouldValidate: true});
-
-                                }}
+                                }
                             >
 
                                 <SelectTrigger className="w-full">
@@ -298,18 +183,24 @@ export default function AdicionaProduto(props: PropsProduto) {
 
                         <div className="flex flex-col gap-1">
                             <input type="hidden" {...register("codigo")} />
-                            <Input placeholder="Código do Fabricante" {...register("codigo_fabricante")}/>
+                            <Input
+                                placeholder="Código do Fabricante"
+                                {...register("codigo_fabricante")}
+                            />
                             <FieldError error={errors.codigo_fabricante?.message}/>
                         </div>
 
                         <div className="flex flex-col gap-1">
-                            <Input placeholder="Nome do Produto" {...register("nome")}/>
+                            <Input
+                                placeholder="Nome do Produto"
+                                {...register("nome")}
+                            />
                             <FieldError error={errors.nome?.message}/>
                         </div>
 
                         <div className="flex flex-col gap-1">
                             <Input type="number" step="0.01"
-                                   placeholder="Preço de Compra" {...register("preco_compra",{valueAsNumber:true})}/>
+                                   placeholder="Preço de Compra" {...register("preco_compra", {valueAsNumber: true})}/>
                             <FieldError error={errors.preco_compra?.message}/>
                         </div>
 
