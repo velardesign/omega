@@ -43,7 +43,11 @@ export class ProdutoPrismaRepository implements ProdutoRepository {
                         codigo: true,
                     }
                 }
-            }
+            },
+            orderBy:{
+                codigo: 'asc'
+            },
+
         });
         return produtos.map(
             produto => ({

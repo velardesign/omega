@@ -199,8 +199,7 @@ export default function AdicionaProduto(props: PropsProduto) {
                         </div>
 
                         <div className="flex flex-col gap-1">
-                            <Input type="number" step="0.01"
-                                   placeholder="Preço de Compra" {...register("preco_compra", {valueAsNumber: true})}/>
+                            <Input placeholder="Preço de Compra" {...register("preco_compra")}/>
                             <FieldError error={errors.preco_compra?.message}/>
                         </div>
 
