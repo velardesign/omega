@@ -22,6 +22,7 @@ import FieldError from "@/components/produto/field-error";
 import {Controller} from "react-hook-form";
 import {NumericFormat} from "react-number-format";
 import {useRouter} from "next/navigation";
+import {produtoFormDefaults} from "@/constants/produto-form-defaults";
 
 
 export default function AdicionaProduto(props: PropsProduto) {
@@ -42,6 +43,7 @@ export default function AdicionaProduto(props: PropsProduto) {
         isSubmitting,
         control,
         setProdutoAtual,
+        reset,
 
     } = useProdutoForm(props);
     const {
@@ -290,6 +292,7 @@ export default function AdicionaProduto(props: PropsProduto) {
                                 () => {
                                     if(produtoAtual) {
                                          setProdutoAtual(null);
+                                         reset(produtoFormDefaults);
                                     }else {
                                         router.push("/dashboard");
                                     }
