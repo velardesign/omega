@@ -27,4 +27,5 @@ export interface PropsProduto {
     fornecedores: PropsFornecedor[],
     produtoSelecionado?: ProdutoDTO | null
     onSalvar:() => Promise<void>,
+    onCancelar:() => void,
 }

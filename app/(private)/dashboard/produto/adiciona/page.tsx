@@ -30,10 +30,12 @@ export default function Page() {
     return (
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
             <AdicionaProduto
+                key={produtoSelecionado?.codigo ?? "novo"}
                 categorias={categorias}
                 fornecedores={fornecedores}
                 produtoSelecionado={produtoSelecionado}
                 onSalvar={carregar}
+                onCancelar={() => setProdutoSelecionado(null)}
             />
             <EditaProduto produtos={produtos} onEditar={setProdutoSelecionado}/>
         </div>

@@ -49,6 +49,7 @@ export default function AdicionaProduto(props: PropsProduto) {
     const {
         categorias,
         fornecedores,
+        onCancelar,
     } = props;
 
     return (
@@ -90,7 +91,7 @@ export default function AdicionaProduto(props: PropsProduto) {
                             <input type="hidden" {...register("codigo_categoria")} />
 
                             <Select
-                                value={codigoCategoria ?? ""}
+                                value={codigoCategoria}
                                 onValueChange={(value) => {
 
                                     if (value === "nova_categoria") {
@@ -145,7 +146,7 @@ export default function AdicionaProduto(props: PropsProduto) {
                             <input type="hidden" {...register("codigo_fornecedor")} />
 
                             <Select
-                                value={codigoFornecedor ?? ""}
+                                value={codigoFornecedor}
                                 onValueChange={
                                     (value) => {
 
@@ -291,8 +292,7 @@ export default function AdicionaProduto(props: PropsProduto) {
                             onClick={
                                 () => {
                                     if(produtoAtual) {
-                                         setProdutoAtual(null);
-                                         reset(produtoFormDefaults);
+                                         onCancelar();
                                     }else {
                                         router.push("/dashboard");
                                     }

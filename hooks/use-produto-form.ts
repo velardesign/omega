@@ -27,8 +27,11 @@ export function useProdutoForm({categorias, fornecedores, produtoSelecionado, on
         formState: {errors},
     } = useForm<ProdutoInput, any, ProdutoOutput>({
         resolver: zodResolver(produtoCriarSchema),
-        defaultValues: produtoFormDefaults,
+        defaultValues: produtoSelecionado
+            ? {...produtoSelecionado, preco_compra: Number(produtoSelecionado.preco_compra)}
+            : produtoFormDefaults,
     });
+
     const codigoCategoria = watch("codigo_categoria");
     const codigoFornecedor = watch("codigo_fornecedor");
 
@@ -38,24 +41,6 @@ export function useProdutoForm({categorias, fornecedores, produtoSelecionado, on
         }
     }, [errors.root]);
 
-    useEffect(() => {
-        setProdutoAtual(produtoSelecionado || null);
-    }, [produtoSelecionado]);
-
-    useEffect(() => {
-        if (!produtoAtual) {
-            reset(produtoFormDefaults);
-            return;
-        }
-
-        reset({...produtoAtual, preco_compra: Number(produtoAtual.preco_compra)});
-
-        setValue("codigo_categoria", produtoAtual.codigo_categoria, {shouldValidate: false});
-        setValue("codigo_fornecedor", produtoAtual.codigo_fornecedor ?? "", {shouldValidate: false});
-
-        window.scrollTo({top: 0, behavior: "smooth"});
-        categoriaRef.current?.focus();
-    }, [produtoAtual, reset, setValue]);
 
     async function onSubmit(produto: ProdutoOutput) {
         if (isSubmitting) return;
