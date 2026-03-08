@@ -33,8 +33,9 @@ export const produtoCriarSchema = z.object({
                         return parseFloat(str);
                     }
                 },
-                z.number()
+                z.number({error:"Preço não pode ficar vazio"})
                     .positive("Preço deve ser maior que zero")
+
             ),
         unidade_medida: z
             .string

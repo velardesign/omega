@@ -23,6 +23,7 @@ export function useProdutoForm({categorias, fornecedores, produtoSelecionado, on
         setError,
         reset,
         watch,
+        control,
         formState: {errors},
     } = useForm<ProdutoInput, any, ProdutoOutput>({
         resolver: zodResolver(produtoCriarSchema),
@@ -91,6 +92,7 @@ export function useProdutoForm({categorias, fornecedores, produtoSelecionado, on
         onCategoriaChange: (value: string) => setValue("codigo_categoria", value, {shouldValidate: false}),
         onFornecedorChange: (value: string) => setValue("codigo_fornecedor", value, {shouldValidate: false}),
         categoriaRef,
+        control,
     }
 }
 

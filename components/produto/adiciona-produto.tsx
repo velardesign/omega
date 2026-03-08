@@ -19,6 +19,8 @@ import {Textarea} from "@/components/ui/textarea";
 import {PropsProduto} from "@/src/domain/types/produto-types";
 import {useProdutoForm} from "@/hooks/use-produto-form";
 import FieldError from "@/components/produto/field-error";
+import {Controller} from "react-hook-form";
+import {NumericFormat} from "react-number-format";
 
 export default function AdicionaProduto(props: PropsProduto) {
     const {
@@ -35,6 +37,7 @@ export default function AdicionaProduto(props: PropsProduto) {
         onFornecedorChange,
         onCategoriaChange,
         isSubmitting,
+        control,
 
     } = useProdutoForm(props);
     const {
@@ -199,7 +202,25 @@ export default function AdicionaProduto(props: PropsProduto) {
                         </div>
 
                         <div className="flex flex-col gap-1">
-                            <Input placeholder="Preço de Compra" {...register("preco_compra")}/>
+                            <Controller
+                                name="preco_compra"
+                                control={control}
+                                render={({field}) => (
+                                    <NumericFormat
+                                        customInput={Input}
+                                        thousandSeparator="."
+                                        decimalSeparator=","
+                                        prefix="R$ "
+                                        decimalScale={2}
+                                        fixedDecimalScale
+                                        placeholder="Preço de Compra"
+                                        value={field.value as string | number | undefined}
+                                        onValueChange={(values) => {
+                                            field.onChange(values.value)
+                                        }}
+                                    />
+                                )}
+                            />
                             <FieldError error={errors.preco_compra?.message}/>
                         </div>
 
