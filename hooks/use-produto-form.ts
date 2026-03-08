@@ -93,6 +93,8 @@ export function useProdutoForm({categorias, fornecedores, produtoSelecionado, on
         onFornecedorChange: (value: string) => setValue("codigo_fornecedor", value, {shouldValidate: false}),
         categoriaRef,
         control,
+        reset,
+        setProdutoAtual,
     }
 }
 

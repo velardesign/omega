@@ -12,7 +12,7 @@ import {
     SelectTrigger,
     SelectValue
 } from "@/components/ui/select";
-import {Plus, PlusCircle} from "lucide-react";
+import {Ban, Plus, PlusCircle} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {Textarea} from "@/components/ui/textarea";
@@ -21,8 +21,11 @@ import {useProdutoForm} from "@/hooks/use-produto-form";
 import FieldError from "@/components/produto/field-error";
 import {Controller} from "react-hook-form";
 import {NumericFormat} from "react-number-format";
+import {useRouter} from "next/navigation";
+
 
 export default function AdicionaProduto(props: PropsProduto) {
+    const router = useRouter();
     const {
         produtoAtual,
         handleSubmit,
@@ -38,6 +41,7 @@ export default function AdicionaProduto(props: PropsProduto) {
         onCategoriaChange,
         isSubmitting,
         control,
+        setProdutoAtual,
 
     } = useProdutoForm(props);
     const {
@@ -51,7 +55,14 @@ export default function AdicionaProduto(props: PropsProduto) {
 
                 <CardHeader>
                     <CardTitle>
-                        {produtoAtual ? "Editar Produto" : "Cadastro Produto"}
+                        {produtoAtual ?
+                            (
+                                <div className={"flex flex-col gap-4"}>
+                                    <span>Editar Produto</span>
+                                    <span className="block text-blue-400">Código: {produtoAtual.codigo}</span>
+                                </div>
+                            ) : ("Cadastro Produto")
+                        }
                     </CardTitle>
                 </CardHeader>
 
@@ -70,14 +81,14 @@ export default function AdicionaProduto(props: PropsProduto) {
                         </p>
                     )}
 
-                    <CardContent className="grid gap-4 pt-4 md:grid-cols-2">
+                    <CardContent className="grid grid-cols-1 gap-4 pt-4 md:grid-cols-2">
 
                         <div className="flex flex-col gap-1">
 
                             <input type="hidden" {...register("codigo_categoria")} />
 
                             <Select
-                                value={codigoCategoria}
+                                value={codigoCategoria ?? ""}
                                 onValueChange={(value) => {
 
                                     if (value === "nova_categoria") {
@@ -132,7 +143,7 @@ export default function AdicionaProduto(props: PropsProduto) {
                             <input type="hidden" {...register("codigo_fornecedor")} />
 
                             <Select
-                                value={codigoFornecedor}
+                                value={codigoFornecedor ?? ""}
                                 onValueChange={
                                     (value) => {
 
@@ -187,6 +198,7 @@ export default function AdicionaProduto(props: PropsProduto) {
                         <div className="flex flex-col gap-1">
                             <input type="hidden" {...register("codigo")} />
                             <Input
+                                className={"w-full"}
                                 placeholder="Código do Fabricante"
                                 {...register("codigo_fabricante")}
                             />
@@ -195,6 +207,7 @@ export default function AdicionaProduto(props: PropsProduto) {
 
                         <div className="flex flex-col gap-1">
                             <Input
+                                className={"w-full"}
                                 placeholder="Nome do Produto"
                                 {...register("nome")}
                             />
@@ -207,6 +220,7 @@ export default function AdicionaProduto(props: PropsProduto) {
                                 control={control}
                                 render={({field}) => (
                                     <NumericFormat
+                                        className={"w-full"}
                                         customInput={Input}
                                         thousandSeparator="."
                                         decimalSeparator=","
@@ -214,7 +228,7 @@ export default function AdicionaProduto(props: PropsProduto) {
                                         decimalScale={2}
                                         fixedDecimalScale
                                         placeholder="Preço de Compra"
-                                        value={field.value as string | number | undefined}
+                                        value={field.value as string || ""}
                                         onValueChange={(values) => {
                                             field.onChange(values.value)
                                         }}
@@ -225,29 +239,40 @@ export default function AdicionaProduto(props: PropsProduto) {
                         </div>
 
                         <div className="flex flex-col gap-1">
-                            <Input placeholder="Unidade de Medida" {...register("unidade_medida")}/>
+                            <Input
+                                className={"w-full"}
+                                placeholder="Unidade de Medida" {...register("unidade_medida")}
+                            />
                             <FieldError error={errors.unidade_medida?.message}/>
                         </div>
 
                         <div className="flex flex-col gap-1">
-                            <Input placeholder="Cor" {...register("cor")}/>
+                            <Input
+                                className={"w-full"}
+                                placeholder="Cor" {...register("cor")}
+                            />
                             <FieldError error={errors.cor?.message}/>
                         </div>
 
                         <div className="flex flex-col gap-1">
-                            <Input placeholder="Material" {...register("material")}/>
+                            <Input
+                                className={"w-full"}
+                                placeholder="Material" {...register("material")}
+                            />
                             <FieldError error={errors.material?.message}/>
                         </div>
 
-                        <div className="col-span-2">
-                            <Textarea placeholder="Descrição do Produto" {...register("descricao")}/>
+                        <div className="flex flex-col gap-1 md:col-span-2">
+                            <Textarea
+                                className={"w-full"}
+                                placeholder="Descrição do Produto" {...register("descricao")}
+                            />
                             <FieldError error={errors.descricao?.message}/>
                         </div>
 
                     </CardContent>
 
-                    <CardFooter>
-
+                    <CardFooter className={"flex justify-end gap-4"}>
                         <Button
                             variant="outline"
                             type="submit"
@@ -255,6 +280,25 @@ export default function AdicionaProduto(props: PropsProduto) {
                         >
                             <PlusCircle className="text-green-500"/>
                             {isSubmitting ? "Salvando..." : produtoAtual ? "Atualizar Produto" : "Cadastrar"}
+                        </Button>
+
+                        <Button
+                            variant={"outline"}
+                            type={"button"}
+                            disabled={isSubmitting}
+                            onClick={
+                                () => {
+                                    if(produtoAtual) {
+                                         setProdutoAtual(null);
+                                    }else {
+                                        router.push("/dashboard");
+                                    }
+
+                                }
+                            }
+                        >
+                            <Ban className={"text-red-500"}/>
+                            Cancelar
                         </Button>
 
                     </CardFooter>
