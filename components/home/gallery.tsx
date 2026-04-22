@@ -44,7 +44,7 @@ export function Gallery() {
 
     return (
         <>
-            <section className="w-full py-20 px-6">
+            <section className="w-full py-4 px-6" id="projetos">
                 <div className="max-w-6xl mx-auto">
 
                     {/* Header */}

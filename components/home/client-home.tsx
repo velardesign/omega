@@ -4,16 +4,22 @@ import {Gallery} from "@/components/home/gallery";
 import {About} from "@/components/home/about";
 import {Contact} from "@/components/home/contact";
 import {Analytics} from "@vercel/analytics/next";
+import {Footer} from "@/components/home/footer";
+import {Navbar} from "@/components/home/nav-bar";
 
 
 export default function ClientHome() {
     return (
-        <div className="flex flex-col gap-4 p-4 pt-0">
-            <HeroCarousel/>
-            <Gallery/>
-            <About/>
-            <Contact/>
-            <Analytics/>
-        </div>
+        <main className="w-full">
+            <Navbar/>
+            <div className="pt-16">
+                <HeroCarousel/>
+                <Gallery/>
+                <About/>
+                <Contact/>
+                <Footer/>
+                <Analytics />
+            </div>
+        </main>
     );
 }
