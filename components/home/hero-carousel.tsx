@@ -17,49 +17,48 @@ export default function HeroCarousel() {
     }, []);
 
     return (
-    <section className="relative h-[80vh] w-full overflow-hidden">
-      {images.map((img, i) => (
-        <div
-          key={i}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            i === index ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <Image
-            src={img}
-            alt={`Slide ${i}`}
-            fill
-            priority={i === 0}
-            sizes="100vw"
-            className="object-cover"
-          />
-        </div>
-      ))}
+        <section className="relative h-[80vh] w-full overflow-hidden">
+            {images.map((img, i) => (
+                <div
+                    key={i}
+                    className={`absolute inset-0 transition-opacity duration-1000 ${
+                        i === index ? "opacity-100" : "opacity-0"
+                    }`}
+                >
+                    <Image
+                        src={img}
+                        alt={`Slide ${i}`}
+                        fill
+                        priority={i === 0}
+                        sizes="100vw"
+                        className="object-cover"
+                    />
+                </div>
+            ))}
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+            <div className="absolute inset-0 flex items-center justify-center px-4">
 
-  {/* Overlay mais elegante */}
-  <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
+                <div className="bg-black/15 backdrop-blur-sm px-8 py-6 rounded-2xl text-center max-w-3xl">
 
-  <div className="relative z-10 max-w-3xl">
+                    <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white drop-shadow-lg">
+                        Boreal Móveis
+                    </h1>
 
-    <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white drop-shadow-lg">
-      Boreal Móveis
-    </h1>
+                    <p className="mt-6 text-lg md:text-xl text-gray-200 font-light leading-relaxed">
+                        Móveis em vidro e alumínio
+                        <span className="block font-medium text-white">
+          sob medida para seu ambiente
+        </span>
+                    </p>
 
-    <p className="mt-6 text-lg md:text-xl text-gray-200 font-light leading-relaxed">
-      Móveis em vidro e alumínio
-      <span className="block font-medium text-white">
-        sob medida para seu ambiente
-      </span>
-    </p>
+                    <button
+                        className="mt-8 px-8 py-3 rounded-xl bg-white text-black font-medium hover:bg-gray-200 transition">
+                        Solicitar orçamento
+                    </button>
 
-    <button className="mt-8 px-8 py-3 rounded-xl bg-white text-black font-medium hover:bg-gray-200 transition">
-      Solicitar orçamento
-    </button>
+                </div>
 
-  </div>
-</div>
-    </section>
-  );
+            </div>
+        </section>
+    );
 }
